@@ -37,6 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'complain',
+    'management',
+    'messaging',
+    'service',
+    'service_provider',
+    'tourist'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,7 +106,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'sepas_iran', 'base_staticfiles'),
 )
+
+SITE_URL = 'http://localhost:8000'
