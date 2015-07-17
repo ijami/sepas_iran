@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <link type="text/css" rel="stylesheet" href="base.css">
+    <link type="text/css" rel="stylesheet" href="Semantic-UI-1.6.1/dist/semantic.css">
+    <title>base</title>
 </head>
 <body>
 
+<header id="header">
+    <div id="header_container">
+        <div class="right floated bordered" id="runit">
+            <div id="user-menu" class="bordered">
+                <div id="sign-in" class="bordered"><a class="nodec" href="#"><i class="lock icon large right_float"></i><span> سلام، لطفا وارد شوید</span></a> </div>
+                <div class="vertical_divider"></div>
+                <div id="sign-up" class="bordered"><a class="nodec" href="#"><i class="user basic icon large right_float"></i><span>ثبت نام کنید</span> </a> </div>
+            </div>
+            <div id="search" class="bordered">
+                <div class="big green ui button right_float" id="cart">
+                    <i class="cart icon right_float"></i>
+                    &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
+                    <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
+                        12
+                    </a>
+                </div>
+                <div class="ui big icon input right_float" id="search_box">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="جستجو" class="right_aligned">
+                </div>
+            </div>
+        </div>
+        <div class="right floated bordered" id="logo">
+            <div class="left floated">
+                <a style="cursor: pointer" href="#"><img src="sepasIran.png" id="sepasiran"></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% block content %}
+{#    content extends it :|   #}
+{% endblock %}
+
+
+<nav id="nav">
+    <nav id="navbar" class="bordered">
+        <ul>
+            <li><a>تورهای داخلی
+                <i class="ui small dropdown icon"></i>
+            </a></li>
+            <li><a>هتل ها
+                <i class="ui small dropdown icon"></i>
+            </a></li>
+            <li><a>دفاتر هواپیمایی
+                <i class="ui small dropdown icon"></i>
+            </a></li>
+            <li><a>رستوران ها
+                <i class="ui small dropdown icon"></i>
+            </a></li>
+            <li><a>توالت های بین راهی
+                <i class="ui small dropdown icon"></i>
+            </a></li>
+        </ul>
+    </nav>
+</nav>
+
+<footer id="footer">
+    <div class="topwrap">
+       <div class="topwrap-in">
+           <div class="right rtl span" id="motto">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم.</div>
+           <div class="left span">
+               <ul>
+                   <li><a href="#"><i class="phone square icon"></i> 021-66166609 </a></li>
+                   <li><a href="#"><i class="help circle icon"></i>سوالات متداول</a><div class="sep"></div></li>
+                   <li><a href="#"><i class="mail icon"></i>info@sepasiran.com</a><div class="sep"></div></li>
+               </ul>
+           </div>
+       </div>
+    </div>
+    <div class="brd">
+        <div class="mrg-auto">
+            <div class="ui grid" id="cols">
+                <div class="three column row">
+                    <div class="center aligned column">
+                        <span><b>در سپاس ایران ثبت نام کنید</b></span>
+                        <div class="ui divider" style="border-top: #5a5a5a"></div>
+                        <span>و از تخفیف در خرید، مشاهده سوابق سفارشات، شرکت در نقد و بررسی و بسیاری از خدمات دیگر بهره مند شوید.</span>
+                        <br><br>
+                        <button class="ui button" style="background-color: #6aaa15; color: #ffffff">
+                            ثبت نام در سپاس ایران
+                            <i class="icon user"></i>
+                        </button>
+                        <div class="ui divider" style="border-top: #5a5a5a"></div>
+                        <button class="ui circular facebook icon button">
+                            <i class="facebook icon"></i>
+                        </button>
+                        <button class="ui circular twitter icon button">
+                            <i class="twitter icon"></i>
+                        </button>
+                        <button class="ui circular linkedin icon button">
+                            <i class="linkedin icon"></i>
+                        </button>
+                        <button class="ui circular google plus icon button">
+                            <i class="google plus icon"></i>
+                        </button>
+                    </div>
+                    <div class="right aligned column">
+                        <span><b>خدمات مشتریان</b></span>
+                        <div class="ui divider" style="border-top: #5a5a5a"></div>
+                        <span><a class="general-link">تماس با ما</a></span>
+                        <br>
+                        <span><a class="general-link">پاسخ به پرسش های متداول</a></span>
+                        <div style="height: 15px;"></div>
+                        <br>
+                        <span><b>سپاس ایران من</b></span>
+                        <div class="ui divider" style="border-top: #5a5a5a"></div>
+                        <span><a class="general-link"> ورود به سپاس ایران</a></span>
+                    </div>
+                    <div class="right aligned column">
+                        <span><b>راهنمای خرید از سپاس ایران</b></span>
+                        <div class="ui divider" style="border-top: #5a5a5a"></div>
+                        <span><a class="general-link">چطور تورها را شناسایی کنم؟</a></span>
+                        <br><br>
+                        <span><a class="general-link">چطور بفهمم تور خوب است؟</a></span>
+                        <br><br>
+                        <span><a class="general-link">چطور بفهمم تور خوب نیست؟</a></span>
+                        <br><br>
+                        <span><a class="general-link">کلا چطور بفهمم؟</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright-in">
+            <div class="center aligned">
+                copyright by SHAMIMJAM @ 2015 - ? &nbsp  <a class="general-link"> Sepasiran.com </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
+
+<script type="text/javascript" src="semantic.js"></script>
