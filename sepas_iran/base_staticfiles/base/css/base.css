@@ -1,4 +1,9 @@
 /* BLOCK ELEMENTS */
+
+* {
+    font-family: "B Yekan", serif;
+}
+
 html, div, map, dt, form { display:block; }
 body { display:block; margin:8px; font-family:serif; font-size:medium; }
 p, dl { display:block; margin-top:1em; margin-bottom:1em; }
