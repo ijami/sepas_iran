@@ -1,7 +1,13 @@
 /* BLOCK ELEMENTS */
 
 * {
-    font-family: "B Yekan", serif;
+    font-family: abc;
+}
+
+@font-face {
+  font-family: 'abc';
+  src: url('/static/fonts/yekan.ttf');
+  src: local('../fonts/abc.ttf')
 }
 
 html, div, map, dt, form { display:block; }
@@ -336,3 +342,4 @@ a.nodec {
     text-align: center;
     padding-top: 10px;
 }
+

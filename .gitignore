@@ -63,7 +63,7 @@ target/
 
 *.map
 */.sass-cache/***
-sepas_iran/base_staticfiles/bower_components/****
+sepas_iran/static/bower_components/****
 
 # migration
 **/migrations

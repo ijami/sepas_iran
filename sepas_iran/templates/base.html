@@ -2,8 +2,10 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="../">
-    <link type="text/css" rel="stylesheet" href="Semantic-UI-1.6.1/dist/semantic.css">
+    {% load staticfiles %}
+    <script type="text/javascript" src=""{% static 'bower_components/jquery/dist/jquery.js' %}></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'base/css/base.css' %}">
     <title>base</title>
 </head>
 <body>
@@ -32,15 +34,15 @@
         </div>
         <div class="right floated bordered" id="logo">
             <div class="left floated">
-                <a style="cursor: pointer" href="#"><img src="sepasIran.png" id="sepasiran"></a>
+                <a style="cursor: pointer" href="#"><img src="{% static 'base/images/sepasIran.png' %}" id="sepasiran"></a>
             </div>
         </div>
     </div>
 </header>
 
-{% block content %}
+{#{% block content %}#}
 {#    content extends it :|   #}
-{% endblock %}
+{#{% endblock %}#}
 
 
 <nav id="nav">
@@ -144,4 +146,4 @@
 </body>
 </html>
 
-<script type="text/javascript" src="semantic.js"></script>
+<script type="text/javascript" src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>

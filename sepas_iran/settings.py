@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'messaging',
     'service',
     'service_provider',
-    'tourist'
+    'tourist',
+    'sepas_iran',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,7 +108,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'sepas_iran', 'base_staticfiles'),
+    os.path.join(BASE_DIR, 'sepas_iran', 'static'),
 )
 
 SITE_URL = 'http://localhost:8000'
+
