@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     {% load staticfiles %}
+    {% block head %}{% endblock %}
     <script type="text/javascript" src=""{% static 'bower_components/jquery/dist/jquery.js' %}></script>
     <link type="text/css" rel="stylesheet" href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/base.css' %}">
@@ -40,11 +41,6 @@
     </div>
 </header>
 
-{#{% block content %}#}
-{#    content extends it :|   #}
-{#{% endblock %}#}
-
-
 <nav id="nav">
     <nav id="navbar" class="bordered">
         <ul>
@@ -66,6 +62,9 @@
         </ul>
     </nav>
 </nav>
+
+{% block content %}
+{% endblock %}
 
 <footer id="footer">
     <div class="topwrap">
