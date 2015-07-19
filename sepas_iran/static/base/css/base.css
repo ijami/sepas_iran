@@ -11,7 +11,7 @@
 }
 
 html, div, map, dt, form { display:block; }
-body { display:block; font-family:serif; font-size:medium;}
+body { background-color: #dfdfdf; display:block; font-family:serif; font-size:medium;}
 p, dl { display:block; margin-top:1em; margin-bottom:1em; }
 dd { display:block; margin-left:40px; }
 address { display:block; font-style:italic; }
@@ -343,3 +343,39 @@ a.nodec {
     padding-top: 10px;
 }
 
+
+.item_preview {
+    background-color: #fdfdfe;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.card_image {
+    width: 359px;
+    height: 300px!important;
+}
+
+.card_link {
+    text-align: center;
+    font-size: 18px;
+    background-color: #404040!important;
+}
+
+.card_header {
+    color: #ffffff!important;
+}
+
+.new_topics {
+    text-align: right;
+}
+
+.persian_card {
+    text-align: right;
+    direction: rtl;
+}
+
+.new_topics_img {
+    width: 198px!important;
+    height: 159px!important;
+}
