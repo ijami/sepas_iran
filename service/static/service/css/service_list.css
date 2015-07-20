@@ -9,7 +9,7 @@
     margin-right: auto;
     padding: 10px;
     display: block;
-    overflow: auto;
+    overflow: hidden;
     text-align: center;
 }
 
@@ -21,8 +21,7 @@
 .list_container {
     float: left;
     width: 79%;
-    height: 400px;
-    background-color: blue;
+    height: auto;
     display: inline-block;
 }
 
@@ -32,11 +31,18 @@
     float: right;
     width: 20%;
     height: 699px;
-    background-color: red;
+    border: 1px solid #696969;
 }
 
 .body {
     width: 100%;
     height: auto;
+    display: block;
+}
+
+.advanced_search_box {
+    width: 100%;
+    margin: auto auto 10px auto;
+    height: 130px;
     display: block;
 }
