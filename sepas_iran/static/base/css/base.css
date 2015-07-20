@@ -9,6 +9,7 @@
     src: url(../../fonts/yekan.ttf);
 }
 
+a, input {font-family: abc !important;}
 html, div, map, dt, form { display:block; }
 body { background-color: #dfdfdf; display:block; font-family:serif; font-size:medium;}
 p, dl { display:block; margin-top:1em; margin-bottom:1em; }
