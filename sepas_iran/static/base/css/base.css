@@ -208,7 +208,7 @@ a.nodec {
 
 #navbar ul li a
 {
-    font-size: 1.4em;
+    font-size: 1em;
     text-decoration: none;
     padding: 5px 10px 11px 10px ;
     color: #000000;
@@ -275,7 +275,7 @@ a.nodec {
 }
 
 #motto {
-    width: 290px;
+    width: 330px;
     display: inline;
     direction: rtl;
     float: right;
@@ -314,7 +314,7 @@ a.nodec {
 
 #cols div div {
     color: #f5f5f5;
-    font-size: 16px;
+    font-size: 17px;
     direction: rtl;
 }
 
