@@ -185,7 +185,7 @@ a.nodec {
 #navbar ul
 {
     direction: rtl;
-    margin: 0;
+    margin: 6px 0;
     padding: 0;
     list-style-type: none;
     text-align: right;
