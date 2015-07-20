@@ -15,12 +15,12 @@
     <div id="header_container">
         <div class="right floated bordered" id="runit">
             <div id="user-menu" class="bordered">
-                <div id="sign-in" class="bordered"><a class="nodec" href="#"><i class="lock icon large right_float"></i><span> سلام، لطفا وارد شوید</span></a> </div>
+                <div id="sign-in" class="bordered"><a class="nodec" href="#"><i class="lock icon right_float"></i><span> سلام، لطفا وارد شوید</span></a> </div>
                 <div class="vertical_divider"></div>
-                <div id="sign-up" class="bordered"><a class="nodec" href="#"><i class="user basic icon large right_float"></i><span>ثبت نام کنید</span> </a> </div>
+                <div id="sign-up" class="bordered"><a class="nodec" href="#"><i class="user basic icon right_float"></i><span>ثبت نام کنید</span> </a> </div>
             </div>
             <div id="search" class="bordered">
-                <div class="big green ui button right_float" id="cart">
+                <div class="digigreen ui small button right_float" id="cart">
                     <i class="cart icon right_float"></i>
                     <a style="color: white">
                     &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
@@ -29,9 +29,10 @@
                         12
                     </a>
                 </div>
-                <div class="ui big icon input right_float" id="search_box">
+                <div class="ui left icon small input right_float" id="search_box"  dir="rtl">
+                    <input type="text" placeholder="تور یا سرویس مورد نظر خود را جستجو کنید" class="right_aligned">
+
                     <i class="search icon"></i>
-                    <input type="text" placeholder="جستجو" class="right_aligned">
                 </div>
             </div>
         </div>
@@ -44,18 +45,17 @@
 </header>
 
 <nav id="nav">
-    <nav id="navbar" class="bordered">
-        <ul>
-            <li><a>تورهای داخلی
+    <nav id="navbar" class="ui menu">
+
+            <a class="browse item">تورهای داخلی
                 <i class="ui small dropdown icon"></i>
-            </a></li>
-            <li><a>هتل ها
+            </a>
+            <a class="browse item">هتل ها
                 <i class="ui small dropdown icon"></i>
-            </a></li>
-            <li><a>دفاتر هواپیمایی
+            </a>
+            <a class="browse item">دفاتر هواپیمایی
                 <i class="ui small dropdown icon"></i>
-            </a></li>
-        </ul>
+            </a>
     </nav>
 </nav>
 
