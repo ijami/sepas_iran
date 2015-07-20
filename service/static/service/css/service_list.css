@@ -1,0 +1,42 @@
+
+#main_container {
+    background-color: #ffffff;
+    width: 1180px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    display: block;
+    overflow: auto;
+    text-align: center;
+}
+
+.list_item_img {
+    width: 200px;
+    height: 200px;
+}
+
+.list_container {
+    float: left;
+    width: 79%;
+    height: 400px;
+    background-color: blue;
+    display: inline-block;
+}
+
+.search_container {
+    float: right;
+    display: inline-block;
+    float: right;
+    width: 20%;
+    height: 699px;
+    background-color: red;
+}
+
+.body {
+    width: 100%;
+    height: auto;
+    display: block;
+}
