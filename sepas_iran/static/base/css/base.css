@@ -6,8 +6,7 @@
 
 @font-face {
   font-family: 'abc';
-  src: url('/static/fonts/yekan.ttf');
-  src: local('../fonts/abc.ttf')
+    src: url(../../fonts/yekan.ttf);
 }
 
 html, div, map, dt, form { display:block; }
