@@ -1,0 +1,61 @@
+
+.body {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+#main_container {
+    background-color: #ffffff;
+    width: 1180px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.w45 {
+    width: 45%;
+}
+
+.w8 {
+    width: 8%;
+}
+
+.w7 {
+    width: 7%;
+}
+
+.w20 {
+    width: 20%;
+}
+
+.pd {
+    padding: 15px 10px;
+}
+
+.pic {
+    float: right;
+    width: 150px;
+    height: auto;
+    text-align: right;
+    display: table;
+}
+
+.pic img {
+    width: 150px;
+    height: auto;
+}
+
+.desc {
+    direction: rtl;
+    text-align: right;
+    margin-right: 165px;
+    min-height: 110px;
+}
