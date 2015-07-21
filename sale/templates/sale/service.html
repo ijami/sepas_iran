@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static 'sale/css/service.css' %}">
+{% endblock %}
+{% block title %}
+    <title>مشخصات خدمت</title>
+{% endblock %}
+
+{% block content %}
+    <div class=" main_container">
+        <div class="ui right_float rtl breadcrumb">
+            <a class="section">صفحه اصلی</a>
+            <i class="left angle icon divider"></i>
+            <a class="section">خدمات</a>
+            <i class="left angle icon divider"></i>
+            <a class="section">تورها</a>
+            <i class="left angle icon divider"></i>
+            <div class="active section">تور خوب</div>
+        </div>
+
+        <br>
+
+        <div class="ui divider"></div>
+
+
+        <div id="service_img_container">
+            <button class="ui right green labeled icon button">
+                <i class="sidebar icon"></i>
+                مقایسه کن
+            </button>
+            <button class="ui right red labeled icon button">
+                <i class="wait icon"></i>
+                به من اطلاع بده
+            </button>
+
+            <br>
+
+            <img src="{% static 'home/images/hotel.jpg' %}" id="service_img">
+
+        </div>
+
+
+        <div id="service_details_container">
+            <h2>هتل تور شمیم جمزاد شمال </h2>
+            <h5>هتل  شمیم جمزاد با همکاری دکتر جمزاد و شمیم جم</h5>
+            <br/>
+            وضعیت :
+            <i class="green checkmark box icon"></i>
+            <div class="ui small grey label">موجود</div>
+            <br/>
+            <br>
+            <span>مشخصات : </span>
+            <div class="ui small green label">حمام</div>
+            <div class="ui small red label">دستشویی</div>
+            <div class="ui small green label">اینترنت</div>
+            <div class="ui small red label">لاندری</div>
+            <div class="ui small green label">سرویس</div>
+            <div class="ui small green label">استخر</div>
+            <div class="ui small green label">سونا</div>
+            <div class="ui small green label">سالن بیلیارد</div>
+            <div class="ui small red label">سالن همایش</div>
+            <div class="ui small green label">ویوی عالی</div>
+            <div class="ui small red label">بهترین فرعی</div>
+
+            <div class="ui divider"></div>
+
+            <span>قیمت لیست : </span>
+            <span class="on_price">200,000</span>
+            <br/><br/>
+            <span>قیمت لیست : </span>
+            <span class="off_price">2,000,000 تومان</span>
+            <br><br>
+            <div class="ui big labeled green icon button ">
+                افزودن به سبد خرید
+                <i class="add to cart icon"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mrg-auto" style="width: 1180px;">
+        <i class="big chevron circle left icon right_float"></i>
+        <div class="ui large grey label right_float">نظرات کاربران</div>
+    </div>
+    <br/>
+
+    <div class="main_container">
+        <div class="user_comment">
+            <h4>احسان نظریان (21/2/94)</h4>
+            <button class="ui mini green icon button left floated">
+                <i class="tiny white add icon"></i>
+            </button>
+            <i class="ui large circular white label left_float">12</i>
+            <br><br>
+                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
+        </div>
+        <div class="ui divider"></div>
+        <div class="user_comment">
+            <h4>اکبر کبرایی (4/2/1393)</h4>
+            <button class="ui mini green icon button left floated">
+                <i class="tiny white add icon"></i>
+            </button>
+            <i class="ui large circular white label left_float">12</i>
+            <br><br>
+                <p>رفتار راهنمای تور کمی غیر مودبانه بود. ایشان به من فحش دادند.<br> کیفیت وسائل حمل و نقل خوب بود.</p>
+        </div>
+        <div class="ui divider"></div>
+            <div class="user_comment">
+            <h4>احسان نظریان (21/2/94)</h4>
+            <button class="ui mini green icon button left floated">
+                <i class="tiny white add icon"></i>
+            </button>
+            <i class="ui large circular white label left_float">222</i>
+                <br><br>
+                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
+        </div>
+        <div class="ui divider"></div>
+            <div class="user_comment">
+            <h4>جواد رفیعی (1/1/1394)</h4>
+            <button class="ui mini green icon button left floated">
+                <i class="tiny white add icon"></i>
+            </button>
+            <i class="ui large circular white label left_float">1200</i>
+                <br><br>
+                <p>این تور را همراه با استاد ابطحی رفتیم. اگر ایشان نبودند، بسیار خوش میگذشت</p>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui form">
+        <div class="field">
+        <label class="right_float">لطفا نظر خود را وارد کنید</label>
+        <textarea></textarea>
+        </div>
+            <div class="ui large grey button left_float">ارسال نظر</div>
+        </div>
+    </div>
+
+{% endblock %}
