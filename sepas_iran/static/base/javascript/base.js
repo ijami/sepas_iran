@@ -13,6 +13,8 @@ $(' .menu .browse .item')
     }
   })
 ;
+
+
 $('.ui.search')
   .search({
     source: content
