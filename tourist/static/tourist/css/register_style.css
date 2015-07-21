@@ -24,3 +24,53 @@ body>#main_content{
     margin: 5px 80px 0px 80px;
 }
 
+#register_grid{
+    padding: 30px;
+}
+
+#register_grid .column{
+    padding: 20px 40px 10px 0px;
+    direction: rtl;
+
+}
+
+
+#register_grid .column .icon{
+    padding-left: 45px;
+}
+
+#register_grid #site_benefits div{
+    padding-bottom: 35px;
+}
+
+#register_grid .column form{
+    padding-left: 70px;
+}
+
+.digilightgreen {
+background: -webkit-linear-gradient(bottom, #69a715 0%, #77bd19 100%) !important;
+color: #ffffff !important;
+border: 1px solid #666 !important;
+box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15) !important;
+}
+
+.digilightgreen:hover {
+background: -webkit-linear-gradient(top, #69a715 0%, #77bd19 100%) !important;
+color: #ffffff !important;
+}
+
+#register_grid .column form input,button{
+    padding: 5px;
+    width: 100%;
+    margin: 0 !important;
+}
+
+#register_grid .column form .checkbox{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#register_grid .divider{
+    /*width: 100%;*/
+    margin-top: 20px;
+}
