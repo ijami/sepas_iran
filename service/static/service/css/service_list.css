@@ -31,7 +31,10 @@
     float: right;
     width: 20%;
     height: 699px;
-    border: 1px solid #696969;
+    border-left: 1px solid #696969;
+    direction: rtl;
+    text-align: right;
+
 }
 
 .body {
