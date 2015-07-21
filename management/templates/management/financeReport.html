@@ -2,40 +2,48 @@
 {% load staticfiles %}
 
 {% block head %}
-    <link type="text/css" rel="stylesheet" href="{% static 'service/css/service_list.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'management/css/managementReport.css' %}">
 {% endblock %}
 
 {% block title %}
-    <title>لیست تورها</title>
+    <title>گزارش گردش مالی</title>
 {% endblock %}
 
 {% block content %}
     <div class="body">
-        <div id="main_container" class="center aligned">
-            <div class="list_container">
-                <div class="rtl">
-                    <table>
-                    <td>
-                    از تاریخ :
-                    </td>
-                    <td>
-                        <input style="" value="2015-11-30" type="date" class="form-control" placeholder="Date de naissance">
-                    </td>
-                    <td>
-                                                 تا تاریخ :
-                    </td>
-                    <td>
-                        <input style="" value="2015-11-30" type="date" class="form-control" placeholder="Date de naissance">
-                    </td>
-                        </table>
-                </div>
+        <div id="main_container" class="center aligned" style="position: relative">
+
+
+                  <div class="ui right_float rtl breadcrumb">
+                    <a class="section">صفحه اصلی</a>
+                    <i class="left angle icon divider"></i>
+                    <div class="active section"> داشبورد مدیریتی</div>
+                    <i class="left angle icon divider"></i>
+                      <div class="active section"> گزارش مالی</div>
+                  </div>
+                <br>
                 <div class="ui divider"></div>
-                <div>
+                <br>
+
+                 <table class="right_float rtl">
+                    <td >از تاریخ :</td>
+                    <td>
+                        <input style="" value="2015-11-30" type="date" class="form-control" placeholder="Date de naissance">
+                    </td>
+                    <td >تا تاریخ :</td>
+                    <td>
+                        <input style="" value="2015-11-30" type="date" class="form-control" placeholder="Date de naissance">
+                    </td>
+                 </table>
+                <br><br>
+                <div class="right_float">
                     <img src="../../static/management/images/chart.png">
                 </div>
-                <div class="ui floating right_float right_aligned dropdown labeled mini search icon button"style="position: absolute;right: 36%">
+                <br>
+                <div class="ui floating right_float right_aligned dropdown labeled mini search icon button"
+                     style="position: absolute;left: 250px;bottom: 35px">
                     دانلود نسخه کامل گزارش
-                    </div>
+                </div>
                 <br><br><br>
         </div>
     </div>

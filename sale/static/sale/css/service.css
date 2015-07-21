@@ -1,0 +1,77 @@
+
+.main_container {
+    background-color: #ffffff;
+    width: 1180px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+#service_img_container {
+    float: right;
+    width: 340px;
+    height: 380px;
+    border-left: 1px solid #dcdcdc;
+}
+
+#service_details_container {
+    float: left;
+    width: 810px;
+    height: 400px;
+    text-align: right;
+    direction: rtl;
+}
+
+#service_details_container h2 {
+    margin-bottom: 3px;
+}
+
+#service_details_container h5 {
+    margin-top: 7px;
+}
+
+.on_price {
+    text-decoration: line-through;
+    color: red;
+}
+
+.off_price {
+    font-size: 22px;
+    color: green;
+}
+
+#service_img {
+    border-radius: 4px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    width: 230px;
+    height: 300px;
+}
+
+
+.user_comment {
+    text-align: right;
+    direction: rtl;
+    width: 1150px;
+    min-height: 70px;
+    height: auto;
+    margin: 10px auto;
+    /*border: 1px solid #dcdcdc;*/
+}
+
+.user_comment h4 {
+    float: right;
+}
+
+.user_comment p {
+    font-size: 13px;
+    direction: rtl;
+    margin-right: 25px;
+}
