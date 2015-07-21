@@ -1,0 +1,26 @@
+#register_section .header img.icon{
+    margin-bottom: 5px !important;
+}
+
+#register_section .header div{
+    font-weight: normal;
+    color: gray;
+}
+
+#register_section .header{
+    padding: 20px;
+}
+
+#register_section{
+    padding: 10px 120px 120px 120px;
+}
+
+body{
+    background-color: #ddd;
+}
+
+body>#main_content{
+
+    margin: 5px 80px 0px 80px;
+}
+
