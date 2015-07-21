@@ -2,7 +2,17 @@
  * Created by Javad on 7/17/2015.
  */
 
-$('.ui.dropdown').dropdown();
+$(' .menu .browse .item')
+  .popup({
+    inline   : true,
+    hoverable: true,
+    position : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 800
+    }
+  })
+;
 $('.ui.search')
   .search({
     source: content
