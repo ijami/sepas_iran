@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static 'tourist/css/reportUser.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>سبد خرید</title>
+{% endblock %}
+
+{% block content %}
+    <div class="body">
+        <div id="main_container" class="center aligned">
+
+            <div class="ui right_float rtl breadcrumb">
+                <a class="section">صفحه اصلی</a>
+                <i class="left angle icon divider"></i>
+                <div class="active section"> پنل کاربر</div>
+                <i class="left angle icon divider"></i>
+                <div class="active section"> گزارش مالی</div>
+            </div>
+
+            <br>
+
+            <div class="ui divider"></div>
+
+            <br>
+
+            <div class="row">
+                <h2 style="float: right;">گزارش خریدها</h2>
+
+            </div>
+
+            <br><br>
+
+            <table class="ui celled padded center aligned table">
+                <colgroup>
+                    <col class="w13">
+                    <col class="w13">
+                    <col class="w13">
+                    <col class="w8">
+                    <col class="w8">
+                    <col class="w8">
+                    <col class="w37">
+
+                </colgroup>
+                <thead>
+                    <tr>
+
+                        <th> بدهی</th>
+                        <th> پرداختی</th>
+                        <th>قیمت نهایی</th>
+                        <th>نوع خرید</th>
+                        <th>وضعیت اجرا</th>
+                        <th>تاریخ اجرا تور</th>
+                        <th>خدمت خریداری شده</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0.00</td>
+                        <td>
+                           <span class="rtl">20,200,000</span>
+                        </td>
+                        <td>
+                            <span class="rtl">20,200,000</span>
+                        </td>
+                        <td class="single line">نقد</td>
+                        <td class="single line">اجرا شده</td>
+                        <td class="single line">1392/4/12</td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}" style="width: 60%; height: auto">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>-15,000,000</td>
+                        <td>
+                           <span class="rtl">3,000,000</span>
+                        </td>
+                        <td>
+                            <span class="rtl">18,000,000</span>
+                        </td>
+                        <td class="single line">اقساط</td>
+                        <td class="single line">اجرا شده</td>
+                        <td class="single line">1393/4/12</td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}" style="width: 60%; height: auto">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>-4,000,000</td>
+                        <td>
+                           <span class="rtl">0.00</span>
+                        </td>
+                        <td>
+                            <span class="rtl">4,000,000</span>
+                        </td>
+                        <td class="single line">اقساط</td>
+                        <td class="single line">در حال اجرا</td>
+                        <td class="single line">1394/4/12</td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}" style="width: 60%; height: auto">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <div class="row">
+                <div class="ui compact segments left_float">
+                    <div class="ui green inverted segment">
+                        <p>مجموع مبلغ خدمات خریداری شده : 89,850,000</p>
+                    </div>
+                    <div class="ui teal inverted segment">
+                        <p>مجموع مبلغ پرداختی  تا به امروز : 67,859,800</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui floating right_float right_aligned dropdown labeled mini search icon button"style="position: absolute;right: 7%">
+                    دانلود نسخه کامل گزارش
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

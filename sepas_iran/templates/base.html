@@ -6,7 +6,6 @@
     {% block head %}{% endblock %}
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
-    <script type="text/javascript" src="{% static 'base/javascript/base.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/base.css' %}">
     {% block title %}{% endblock %}
@@ -19,21 +18,34 @@
     <div id="header_container">
         <div class="right floated bordered" id="runit">
             <div id="user-menu" class="bordered">
-                <div id="sign-in" class="bordered"><a class="nodec" href="#"><i class="lock icon right_float"></i><span> سلام، لطفا وارد شوید</span></a> </div>
+                <div id="sign-in" class="bordered"><a class="nodec"><i class="lock icon right_float"></i><span>
+                    {% if request.user %}
+                        سلام {{ request.user.username }}
+                    {% else %}
+                        سلام، لطفا وارد شوید
+                    {% endif %}
+                </span></a>
+                </div>
                 <div class="vertical_divider"></div>
-                <div id="sign-up" class="bordered"><a class="nodec" href="#"><i class="user basic icon right_float"></i><span>ثبت نام کنید</span> </a> </div>
+                <div id="sign-up" class="bordered"><a class="nodec" href="#"><i class="user basic icon right_float"></i><span>ثبت نام کنید</span>
+                </a></div>
+            {% if request.user.username %}
+                <div class="vertical_divider"></div>
+                <div id="manage" class="bordered"><a class="nodec" href="/manage"><i class="setting basic icon right_float"></i><span>مدیریت</span>
+                </a></div>
+            {% endif %}
             </div>
             <div id="search" class="bordered">
                 <div class="digigreen ui small button right_float" id="cart">
                     <i class="cart icon right_float"></i>
-                    <a href="/sale/cart" style="color: white">
-                    &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
+                    <a style="color: white">
+                        &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
                     </a>
                     <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
                         12
                     </a>
                 </div>
-                <div class="ui left icon small input right_float" id="search_box"  dir="rtl">
+                <div class="ui left icon small input right_float" id="search_box" dir="rtl">
                     <input type="text" placeholder="تور یا سرویس مورد نظر خود را جستجو کنید" class="right_aligned">
 
                     <i class="search icon"></i>
@@ -50,15 +62,16 @@
 
 <nav id="nav">
     <nav id="navbar" class="ui menu">
-            <a class="browse item">تورهای داخلی
-                <i class="ui small dropdown icon"></i>
-            </a>
-            <a class="browse item">هتل ها
-                <i class="ui small dropdown icon"></i>
-            </a>
-            <a class="browse item">دفاتر هواپیمایی
-                <i class="ui small dropdown icon"></i>
-            </a>
+
+        <a class="browse item">تورهای داخلی
+            <i class="ui small dropdown icon"></i>
+        </a>
+        <a class="browse item">هتل ها
+            <i class="ui small dropdown icon"></i>
+        </a>
+        <a class="browse item">دفاتر هواپیمایی
+            <i class="ui small dropdown icon"></i>
+        </a>
     </nav>
 </nav>
 
@@ -67,16 +80,22 @@
 
 <footer id="footer">
     <div class="topwrap">
-       <div class="topwrap-in">
-           <div class="right rtl span" id="motto">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم.</div>
-           <div class="left span">
-               <ul>
-                   <li><a href="#"><i class="phone square icon"></i> 021-66166609 </a></li>
-                   <li><a href="#"><i class="help circle icon"></i>سوالات متداول</a><div class="sep"></div></li>
-                   <li><a href="#"><i class="mail icon"></i>info@sepasiran.com</a><div class="sep"></div></li>
-               </ul>
-           </div>
-       </div>
+        <div class="topwrap-in">
+            <div class="right rtl span" id="motto">۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم.</div>
+            <div class="left span">
+                <ul>
+                    <li><a href="#"><i class="phone square icon"></i> 021-66166609 </a></li>
+                    <li><a href="#"><i class="help circle icon"></i>سوالات متداول</a>
+
+                        <div class="sep"></div>
+                    </li>
+                    <li><a href="#"><i class="mail icon"></i>info@sepasiran.com</a>
+
+                        <div class="sep"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="brd">
         <div class="mrg-auto">
@@ -84,6 +103,7 @@
                 <div class="three column row">
                     <div class="center aligned column">
                         <span><b>در سپاس ایران ثبت نام کنید</b></span>
+
                         <div class="ui divider" style="border-top: #5a5a5a"></div>
                         <span>و از تخفیف در خرید، مشاهده سوابق سفارشات، شرکت در نقد و بررسی و بسیاری از خدمات دیگر بهره مند شوید.</span>
                         <br><br>
@@ -107,18 +127,22 @@
                     </div>
                     <div class="right aligned column">
                         <span><b>خدمات مشتریان</b></span>
+
                         <div class="ui divider" style="border-top: #5a5a5a"></div>
                         <span><a class="general-link">تماس با ما</a></span>
                         <br>
                         <span><a class="general-link">پاسخ به پرسش های متداول</a></span>
+
                         <div style="height: 15px;"></div>
                         <br>
                         <span><b>سپاس ایران من</b></span>
+
                         <div class="ui divider" style="border-top: #5a5a5a"></div>
                         <span><a class="general-link"> ورود به سپاس ایران</a></span>
                     </div>
                     <div class="right aligned column">
                         <span><b>راهنمای خرید از سپاس ایران</b></span>
+
                         <div class="ui divider" style="border-top: #5a5a5a"></div>
                         <span><a class="general-link">چطور تورها را شناسایی کنم؟</a></span>
                         <br><br>
@@ -135,11 +159,55 @@
     <div class="copyright">
         <div class="copyright-in">
             <div class="center aligned">
-                copyright by SHAMIMJAM @ 2015 - ? &nbsp  <a class="general-link"> Sepasiran.com </a>
+                copyright by SHAMIMJAM @ 2015 - ? &nbsp <a class="general-link"> Sepasiran.com </a>
             </div>
         </div>
     </div>
 </footer>
+
+<div class="ui login small modal center-block">
+    <i class="close icon"></i>
+
+    <div class="header">
+        ورود به سپاس ایران
+    </div>
+    <div class="content">
+        <div class="description">
+            <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
+                {% csrf_token %}
+                <div class="field">
+                    <label>نام کاربری</label>
+                    <input type="text" name="username" placeholder="نام کاربری">
+                </div>
+                <div class="field">
+                    <label>گذرواژه</label>
+                    <input class="" type="password" name="password" placeholder="گذرواژه ">
+                </div>
+
+
+                <button class="digiblue ui button" type="submit">ورود به سپاس ایران</button>
+            </form>
+        </div>
+    </div>
+{#    <div class="actions">#}
+{#        <div class="ui black deny button">#}
+{#            Nope#}
+{#        </div>#}
+{#        <div class="ui positive right labeled icon button">#}
+{#            Yep, that's me#}
+{#            <i class="checkmark icon"></i>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+<script>
+    var modal = $('.ui.modal');
+    modal.modal();
+    var login_btn = $('#sign-in');
+    login_btn.on('click', function () {
+        modal.modal('show');
+        console.log("saka");
+    })
+</script>
 
 </body>
 </html>
