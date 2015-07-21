@@ -18,17 +18,56 @@
                 </div>
             </div>
             <div class="ui divider"></div>
-            <div class="ui two column middle very relaxed stackable aligned grid">
-            <div class="column">
-                sssalam
+            <div class="ui two column center aligned divided relaxed stackable grid container right aligned"
+                 id="register_grid">
+                <div class="column right aligned" id="site_benefits">
+                    <div>
+                        <i class="plane big icon yellow"></i><strong>راحت تر و ساده تر </strong>تور رزرو کنید
+                    </div>
+                    <div>
+                        <i class="browser big icon teal"></i><strong>به سادگی</strong> سوابق خرید و فعالیت های خود را
+                        مدیریت کنید
+                    </div>
+                    <div>
+                        <i class="comments big icon orange"></i><strong>نظرات خود </strong>را با دیگران به اشتراک
+                        بگذارید
+                    </div>
+                    <div>
+                        <i class="heart big icon red"></i>به <strong>کاربران وفادار</strong> بپیوندید!
+                    </div>
+                    <div>
+                        <i class="gift big icon blue"></i><strong>تخفیف های ویژه </strong>دریافت کنید.
+                    </div>
+                </div>
+                <div class="column right aligned">
+                    <form class="ui form">
+                        <div class="small field">
+                            <label>نام</label>
+                            <input type="text" name="first-name" placeholder="نام">
+                        </div>
+                        <div class="field">
+                            <label>نام خانوادگی</label>
+                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">
+                        </div>
+                        <div class="field">
+                            <label>پست الکترونیک</label>
+                            <input class="" type="text" name="last-name" placeholder="example@host.com">
+                        </div>
+                        <button class="digilightgreen ui button" type="submit">ثبت نام در سپاس ایران</button>
+                        <div class="ui divider"></div>
+                        <div class="field">
+                            <div class="ui checkbox" dir="ltr">
+                                <input type="checkbox" tabindex="0" class="hidden">
+                                <label>من با تمام قوانین سپاس ایران موافقم</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="ui vertical divider"></div>
-            <div class="column">
-                slalamdf
-            </div>
-        </div>
 
         </div>
-        </div>
+        <script>
+            $('.ui.checkbox').checkbox();
+        </script>
     </div>
 {% endblock %}
