@@ -25,8 +25,7 @@
                         <i class="plane big icon yellow"></i><strong>راحت تر و ساده تر </strong>تور رزرو کنید
                     </div>
                     <div>
-                        <i class="browser big icon teal"></i><strong>به سادگی</strong> سوابق خرید و فعالیت های خود را
-                        مدیریت کنید
+                        <i class="browser big icon teal"></i><strong> به سادگی</strong>سوابق فعالیت های خود را مدیریت کنید
                     </div>
                     <div>
                         <i class="comments big icon orange"></i><strong>نظرات خود </strong>را با دیگران به اشتراک
@@ -40,19 +39,41 @@
                     </div>
                 </div>
                 <div class="column right aligned">
-                    <form class="ui form">
+                    <form class="ui form" method="post" action="">
+                        {% csrf_token %}
                         <div class="small field">
-                            <label>نام</label>
-                            <input type="text" name="first-name" placeholder="نام">
+                            {{ form.firstname.label }}
+{#                            <input type="text" name="first-name" placeholder="نام">#}
+                            {{ form.firstname }}
                         </div>
                         <div class="field">
-                            <label>نام خانوادگی</label>
-                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">
+                            {{ form.lastname.label }}
+{#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
+                            {{ form.lastname }}
                         </div>
                         <div class="field">
-                            <label>پست الکترونیک</label>
-                            <input class="" type="text" name="last-name" placeholder="example@host.com">
+                            {{ form.username.label }}
+{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.username }}
                         </div>
+                        <div class="field">
+                            {{ form.email.label }}
+{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.email }}
+                        </div>
+                        <div class="field">
+{#                            <label>پست الکترونیک</label>#}
+                            {{ form.password1.label }}
+{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.password1 }}
+                        </div>
+                        <div class="field">
+                            {{ form.password2.label }}
+{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.password2 }}
+                        </div>
+
+
                         <button class="digilightgreen ui button" type="submit">ثبت نام در سپاس ایران</button>
                         <div class="ui divider"></div>
                         <div class="field">

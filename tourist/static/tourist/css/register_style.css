@@ -59,7 +59,7 @@ background: -webkit-linear-gradient(top, #69a715 0%, #77bd19 100%) !important;
 color: #ffffff !important;
 }
 
-#register_grid .column form input,button{
+#register_grid .column form input, #register_grid .column form   button{
     padding: 5px;
     width: 100%;
     margin: 0 !important;
@@ -71,6 +71,6 @@ color: #ffffff !important;
 }
 
 #register_grid .divider{
-    /*width: 100%;*/
+    width: 100%;
     margin-top: 20px;
 }
