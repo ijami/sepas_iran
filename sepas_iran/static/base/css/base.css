@@ -320,6 +320,14 @@ padding-top: 6px;
 margin-right: 12px;
 }
 
+#manage {
+height: 100%;
+width: auto;
+float: right;
+padding-top: 6px;
+margin-right: 12px;
+}
+
 #search_box {
 margin-right: 10px;
 width: 500px;
@@ -553,4 +561,65 @@ margin-top: 8px;
 a:hover {
     color: red;
     transition: 0.3s ease;
+}
+
+.login.modal{
+    direction: rtl;
+    width: 400px;
+}
+
+.modal form .field input, #register_grid .column form button{
+    padding: 5px;
+    width: 100%;
+    margin: 0 !important;
+}
+
+.modal form .fields .field{
+    padding: 0;
+}
+
+
+.modal form .fields .field:first-child{
+    margin-left: 10px;
+}
+
+.modal form button{
+    height: 38px;
+}
+
+.modal form .field input, .modal form button{
+    padding: 5px;
+    width: 100%;
+    margin: 0 !important;
+}
+
+.modal form .fields .field{
+    padding: 0;
+}
+
+
+.modal form .fields .field:first-child{
+    margin-left: 10px;
+}
+
+.modal form button{
+    height: 38px;
+}
+
+.modal form .checkbox{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.digiblue {
+background: -webkit-linear-gradient(bottom, #0087ba 0%, #25f 100%) !important;
+color: #ffffff !important;
+border: 1px solid #666 !important;
+box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15) !important;
+}
+
+.digiblue:hover {
+background: -webkit-linear-gradient(top, #0087ba 0%, #25f 100%) !important;
+color: #ffffff !important;
 }

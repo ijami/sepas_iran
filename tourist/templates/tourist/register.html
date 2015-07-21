@@ -25,7 +25,8 @@
                         <i class="plane big icon yellow"></i><strong>راحت تر و ساده تر </strong>تور رزرو کنید
                     </div>
                     <div>
-                        <i class="browser big icon teal"></i><strong> به سادگی</strong>سوابق فعالیت های خود را مدیریت کنید
+                        <i class="browser big icon teal"></i><strong> به سادگی</strong>سوابق فعالیت های خود را مدیریت
+                        کنید
                     </div>
                     <div>
                         <i class="comments big icon orange"></i><strong>نظرات خود </strong>را با دیگران به اشتراک
@@ -39,37 +40,39 @@
                     </div>
                 </div>
                 <div class="column right aligned">
-                    <form class="ui form" method="post" action="">
+                    <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
                         {% csrf_token %}
-                        <div class="small field">
-                            {{ form.firstname.label }}
-{#                            <input type="text" name="first-name" placeholder="نام">#}
-                            {{ form.firstname }}
-                        </div>
-                        <div class="field">
-                            {{ form.lastname.label }}
-{#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
-                            {{ form.lastname }}
+                        <div class="two fields">
+                            <div class="field">
+                                {{ form.firstname.label }}
+                                {#                            <input type="text" name="first-name" placeholder="نام">#}
+                                {{ form.firstname }}
+                            </div>
+                            <div class="field">
+                                {{ form.lastname.label }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
+                                {{ form.lastname }}
+                            </div>
                         </div>
                         <div class="field">
                             {{ form.username.label }}
-{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.username }}
                         </div>
                         <div class="field">
                             {{ form.email.label }}
-{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.email }}
                         </div>
                         <div class="field">
-{#                            <label>پست الکترونیک</label>#}
+                            {#                            <label>پست الکترونیک</label>#}
                             {{ form.password1.label }}
-{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password1 }}
                         </div>
                         <div class="field">
                             {{ form.password2.label }}
-{#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password2 }}
                         </div>
 
@@ -78,9 +81,15 @@
                         <div class="ui divider"></div>
                         <div class="field">
                             <div class="ui checkbox" dir="ltr">
-                                <input type="checkbox" tabindex="0" class="hidden">
+                                <input type="checkbox" name="terms" tabindex="0" class="hidden">
                                 <label>من با تمام قوانین سپاس ایران موافقم</label>
                             </div>
+                        </div>
+
+                        <div class="ui error message rtl" dir="rtl">
+                            {% for k, message in form.errors.items %}
+                                {{ message }}
+                            {% endfor %}
                         </div>
                     </form>
                 </div>
@@ -88,7 +97,92 @@
 
         </div>
         <script>
+            var form = $('#register_grid form');
             $('.ui.checkbox').checkbox();
+            $('.form .button').on('click', function () {
+                form.form('validate form');
+                form.find(".error.message ul").addClass('errorlist');
+            });
+
+            form.form({
+                fields: {
+                    firstname: {
+                        identifier: 'firstname',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا نام خود را وارد کنید'
+                            }
+                        ]
+                    },
+                    lastname: {
+                        identifier: 'lastname',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا نام خانوادگی خود را وارد کنید'
+                            }
+                        ]
+                    },
+                    username: {
+                        identifier: 'username',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا نام کاربری را وارد کنید'
+                            }
+                        ]
+                    },
+                    email: {
+                        identifier: 'email',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا ایمیل خود را وارد کنید'
+                            },
+                            {
+                                type: 'email',
+                                prompt: 'ایمیل معتبر وارد کنید'
+                            }
+                        ]
+                    },
+                    password1: {
+                        identifier: 'password1',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا گذرواژه خود را وارد کنید'
+                            },
+                            {
+                                type: 'minLength[8]',
+                                prompt: 'گذرواژه باید حداقل 8 کاراکتر داشته باشد'
+                            }
+                        ]
+                    },
+                    password2: {
+                        identifier: 'password2',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'لطفا تکرار گذرواژه خود را وارد کنید'
+                            },
+                            {
+                                type: 'match[password1]',
+                                prompt: 'گذرواژه ها همخوانی ندارند.'
+                            }
+                        ]
+                    },
+                    terms: {
+                        identifier: 'terms',
+                        rules: [
+                            {
+                                type: 'checked',
+                                prompt: 'باید با قوانین سپاس ایران موافقت کنید'
+                            }
+                        ]
+                    }
+                }
+            });
         </script>
     </div>
 {% endblock %}

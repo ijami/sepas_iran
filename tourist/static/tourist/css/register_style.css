@@ -44,7 +44,7 @@ body>#main_content{
 }
 
 #register_grid .column form{
-    padding-left: 70px;
+    padding-left: 90px;
 }
 
 .digilightgreen {
@@ -59,10 +59,23 @@ background: -webkit-linear-gradient(top, #69a715 0%, #77bd19 100%) !important;
 color: #ffffff !important;
 }
 
-#register_grid .column form input, #register_grid .column form   button{
+#register_grid .column form .field input, #register_grid .column form button{
     padding: 5px;
     width: 100%;
     margin: 0 !important;
+}
+
+#register_grid .column form .fields .field{
+    padding: 0;
+}
+
+
+#register_grid .column form .fields .field:first-child{
+    margin-left: 10px;
+}
+
+#register_grid .column form button{
+    height: 38px;
 }
 
 #register_grid .column form .checkbox{
@@ -73,4 +86,22 @@ color: #ffffff !important;
 #register_grid .divider{
     width: 100%;
     margin-top: 20px;
+}
+
+#register_grid .error ul{
+    /*direction: rtl !important;*/
+    text-align: right;
+    /*list-style: none;*/
+    /*color: red;*/
+}
+
+#register_grid .error li{
+    /*direction: rtl;*/
+
+    /*color: red;*/
+}
+
+.rtl{
+    flex-direction: row-reverse;
+    direction: rtl;
 }
