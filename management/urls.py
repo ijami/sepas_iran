@@ -1,11 +1,11 @@
-__author__ = 'آرمان'
-from django.conf.urls import include, url
-from django.contrib import admin
+__author__ = 'Iman'
+from django.conf.urls import url
+from django.views.generic.base import TemplateView
 
+__author__ = 'Iman'
 urlpatterns = [
     # Examples:
-    url(r'^$', 'sepas_iran.views.home', name='home'),
-    url(r'^service/', include('service.urls')),
-    url(r'^management/', include('management.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^advertisement$', TemplateView.as_view(template_name='management/advertisement.html'), name='service-list'),
+    url(r'^service_activate$', TemplateView.as_view(template_name='management/service_activate.html'), name='service-list'),
+    url(r'^$', TemplateView.as_view(template_name='management/dashboard.html'), name='service-list'),
 ]

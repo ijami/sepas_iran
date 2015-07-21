@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static 'sale/css/cart.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>سبد خرید</title>
+{% endblock %}
+
+{% block content %}
+    <div class="body">
+        <div id="main_container" class="center aligned">
+
+            <div class="ui right_float rtl breadcrumb">
+                <a class="section">صفحه اصلی</a>
+                <i class="left angle icon divider"></i>
+                <div class="active section">سبد خرید</div>
+            </div>
+
+            <br>
+
+            <div class="ui divider"></div>
+
+            <br>
+
+            <div class="row">
+                <h2 style="float: right;">سبد خرید شما در سپاس ایران</h2>
+                <div class="huge green ui button left_float" id="cart">
+                    <a style="color: white">
+                        &nbsp &nbsp نهایی کردن خرید &nbsp &nbsp &nbsp
+                    </a>
+                    <i class="cart icon right_float"></i>
+                </div>
+            </div>
+
+            <br><br>
+
+            <table class="ui celled padded center aligned table">
+                <colgroup>
+                    <col class="w7">
+                    <col class="w20">
+                    <col class="w20">
+                    <col class="w8">
+                    <col class="w45">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>قیمت کل</th>
+                        <th>قیمت واحد</th>
+                        <th>تعداد</th>
+                        <th>شرح خدمت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                           <div>
+                               <a href="#"><i class="big red remove circle outline icon"></i></a>
+                           </div>
+                        </td>
+                        <td>
+                           <span class="rtl">4,200,000</span>
+                        </td>
+                        <td>
+                            <span class="rtl">1,400,000</span>
+                        </td>
+                        <td class="single line">
+                            3
+                        </td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+                                    <h6>ظرفیت : 4</h6>
+                                    <h5>به مدت محدود، به صورت هوایی، در بهترین تفرجگاه </h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <div>
+                               <a href="#"><i class="big red remove circle outline icon"></i></a>
+                           </div>
+                        </td>
+                        <td>
+                           <span class="rtl">4,200,000</span>
+                        </td>
+                        <td>
+                            <span class="rtl">1,400,000</span>
+                        </td>
+                        <td class="single line">
+                            3
+                        </td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+                                    <h6>ظرفیت : 4</h6>
+                                    <h5>به مدت محدود، به صورت هوایی، در بهترین تفرجگاه </h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr><tr>
+                        <td>
+                           <div>
+                               <a href="#"><i class="big red remove circle outline icon"></i></a>
+                           </div>
+                        </td>
+                        <td>
+                           <span class="rtl">4,200,000</span>
+                        </td>
+                        <td>
+                            <span class="rtl">1,400,000</span>
+                        </td>
+                        <td class="single line">
+                            3
+                        </td>
+                        <td>
+                             <div class="pd">
+                                <div class="pic">
+                                    <img src="{% static 'home/images/tour.jpeg' %}">
+                                </div>
+                                <div class="desc">
+                                    <h4>تور تابستانه کیش</h4>
+                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
+                                    <h6>ظرفیت : 4</h6>
+                                    <h5>به مدت محدود، به صورت هوایی، در بهترین تفرجگاه </h5>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <div class="row">
+                <div class="ui compact segments left_float">
+                    <div class="ui green inverted segment">
+                        <p>جمع کل خرید شما : 12,600,600</p>
+                    </div>
+                    <div class="ui teal inverted segment">
+                        <p>مبلغ قابل پرداخت : 12,000,000</p>
+                    </div>
+                </div>
+                <a class="ui red tag label" style="float: left; top: 70px;">با احتساب تخفیف</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

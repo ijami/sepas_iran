@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'service_provider',
     'tourist',
     'sepas_iran',
+    'sale',
 )
 
 MIDDLEWARE_CLASSES = (
