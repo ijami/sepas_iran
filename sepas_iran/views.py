@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 def home(request):
     if request.POST:
 
-        user = authenticate(username="ehsan", password="ehsan")
+        user = authenticate(username="ehsan", password="ehsanehsan")
         login(request, user)
 
     return render(request, 'home.html')
