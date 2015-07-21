@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>مدیریت</title>{% endblock %}
+
+{% block content %}
+
+    <div class="mrg-auto" style="height: 600px; margin-top: 10px">
+        <div class="ui grid">
+
+            <div class="three wide column right_float">
+                <div class="ui vertical menu right_float right_aligned">
+                    <div class="item">
+                        <div class="header">خانه</div>
+                        <div class="menu">
+                            <a class="item" href="/manage/">خانه</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">تبلیغات</div>
+                        <div class="menu">
+                            <a class="item" href="/manage/advertisement">تعیین تبلیغ</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">گزارش گیری</div>
+                        <div class="menu">
+                            <a class="item">گزارش خرید</a>
+                            <a class="item">گزارش فروش</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">فعالسازی و غیرفعالسازی</div>
+                        <div class="menu">
+                            <a class="item">خدمات</a>
+                            <a class="item">گردش ساز/ گردش یار</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">پیامرسانی</div>
+                        <div class="menu">
+                            <a class="item">پیام‌های دریافتی</a>
+                            <a class="item">پیام‌های ارسالی</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">شکایات</div>
+                        <div class="menu">
+                            <a class="item">در صف بررسی</a>
+                            <a class="item">در حال رسیدگی</a>
+                            <a class="item">صدور حکم</a>
+                            <a class="item">پایان یافته</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" thirteen wide column right_float">
+                <div class="ui container segment right_aligned" style="height: 570px">
+                    {% block menu_content %}
+                        <h2>سلام ایمان</h2>
+                        <h3>به صفحه مدیریت سپاس‌ایران خوش آمدی</h3>
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% load staticfiles %}
+<head>
+    <link type="text/css" rel="stylesheet"
+          href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
+    <script type="text/javascript"
+            src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+</head>
+
