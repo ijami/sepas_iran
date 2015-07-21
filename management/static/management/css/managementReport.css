@@ -1,0 +1,52 @@
+
+#main_container {
+    background-color: #ffffff;
+    width: 1180px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.list_item_img {
+    width: 200px;
+    height: 200px;
+}
+
+.list_container {
+    float: right;
+    width: 79%;
+    padding-bottom: 10px;
+    height: auto;
+    display: inline-block;
+}
+
+.search_container {
+    float: right;
+    display: inline-block;
+    float: right;
+    width: 20%;
+    height: 699px;
+    border-left: 1px solid #696969;
+    direction: rtl;
+    text-align: right;
+
+}
+
+.body {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.advanced_search_box {
+    width: 100%;
+    margin: auto auto 10px auto;
+    height: 130px;
+    display: block;
+}
