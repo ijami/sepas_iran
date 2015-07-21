@@ -1,0 +1,67 @@
+{% extends 'management/dashboard.html' %}
+{% block menu_content %}
+    <h2 xmlns="http://www.w3.org/1999/html">گزارش خرید گردشگران</h2>
+    <form class="ui form rtl">
+        <h3>ویژگی کاربران مشمول گزارش</h3>
+        <div class="field">
+            <label>سطح کاربری:</label>
+
+            <div class="fields right_float">
+                <div class="field">
+                    <input type="number" placeholder="تا">
+                </div>
+                <div class="field">
+                    <input type="number" placeholder="از">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>استان</label>
+
+            <div class="ui fluid search selection dropdown right_aligned">
+                <input type="hidden" name="country">
+                <i class="dropdown icon"></i>
+
+                <div class="default text">استان مورد نظر را انتخاب کنید</div>
+                <div class="menu">
+                    <div class="item" data-value="af"><i class="af flag"></i>تهران</div>
+                    <div class="item" data-value="ax"><i class="ax flag"></i>یزد</div>
+                    <div class="item" data-value="al"><i class="al flag"></i>قزوین</div>
+                    <div class="item" data-value="dz"><i class="dz flag"></i>اصفهان</div>
+                </div>
+            </div>
+        </div>
+        <h3>بازه زمانی گزاش</h3>
+        <div class="field">
+            <label>از تاریخ</label>
+
+            <div class="fields right_float">
+                <div class="field">
+                    <input type="number" placeholder="سال">
+                </div>
+                <div class="field">
+                    <input type="number" placeholder="ماه">
+                </div>
+                <div class="field">
+                    <input type="number" placeholder="روز">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>تا تاریخ</label>
+
+            <div class="three fields right_float">
+                <div class="field">
+                    <input type="number" placeholder="سال">
+                </div>
+                <div class="field">
+                    <input type="number" placeholder="ماه">
+                </div>
+                <div class="field">
+                    <input type="number" placeholder="روز">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="ui green button">دریافت گزارش</div>
+{% endblock %}
