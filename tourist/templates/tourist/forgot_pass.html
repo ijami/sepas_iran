@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <!-- Start WOWSlider.com HEAD section -->
+    <link rel="stylesheet" type="text/css" href="{% static 'tourist/css/forgot_pass_style.css' %}"/>
+    {#    <script type="text/javascript" src="{% static 'home/engine1/jquery.js' %}"></script>#}
+{% endblock %}
+
+{% block content %}
+    <div id="main_content">
+        <div class="ui segment" id="forgot_pass_section">
+            <div class="inner">
+                <div class="ui center aligned small icon header">
+                    <img class="icon" src="{% static 'tourist/images/reset_pass_icon.png' %}">
+
+                    <div style="font-family: inherit">
+                        یادآوری کلمه عبور
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="content rtl">
+                    <div class="description">
+                        <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label>پست الکترونیک</label>
+                                <input type="email" name="email" placeholder="youruser@example.com" dir="ltr">
+                            </div>
+                            <div class="field">
+                                <label>حاصل عبارت زیر را در کادر روبروی آن وارد کنید</label>
+                                <input type="text" name="password" placeholder="" style="display: inline-block; width: 55%">
+                                <img src="{% static 'tourist/images/captcha.jpg' %}" style="display: inline-block; float: left; height: 100%; width: auto; border-radius: 4px; border: 1px solid rgba(50,50,50,0.3)">
+                            </div>
+
+
+                            <button class="digiblue ui button" type="submit">ورود به سپاس ایران</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ui clearing divider"></div>
+                <div class="bottom attached header rtl">
+                    <div class="center aligned">
+                        <div class="rememberme ui checkbox">
+                            <input type="checkbox" name="example">
+                            <label>مرا به خاطر بسپار</label>
+                        </div>
+
+                        <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green"
+                                                                                        href="/tourist/register">ثبت
+                            نام
+                            در سپاس ایران</a></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

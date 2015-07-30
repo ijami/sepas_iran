@@ -278,7 +278,7 @@
 #wowslider-container1 a.ws_prev,
 #wowslider-container1 .ws_playpause {
 	position:absolute;
-	font: 2em "ws-ctrl-convex";
+	font: 2em "ws-ctrl-convex" !important;
 	width: 2.5em;
 	height: 2.5em;
 	top:50%;
