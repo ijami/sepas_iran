@@ -47,18 +47,6 @@ body>#main_content{
     padding-left: 90px;
 }
 
-.digilightgreen {
-background: -webkit-linear-gradient(bottom, #69a715 0%, #77bd19 100%) !important;
-color: #ffffff !important;
-border: 1px solid #666 !important;
-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15) !important;
-}
-
-.digilightgreen:hover {
-background: -webkit-linear-gradient(top, #69a715 0%, #77bd19 100%) !important;
-color: #ffffff !important;
-}
-
 #register_grid .column form .field input, #register_grid .column form button{
     padding: 5px;
     width: 100%;

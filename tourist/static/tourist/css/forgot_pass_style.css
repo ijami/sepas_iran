@@ -1,0 +1,115 @@
+#forgot_pass_section .header img.icon{
+    margin-bottom: 8px !important;
+}
+
+#forgot_pass_section .header:not(.bottom) div{
+    font-size: 14px;
+    font-weight: bold;
+    color: gray;
+}
+
+#forgot_pass_section .header:not(.bottom){
+    padding: 20px 20px 0px 20px;
+}
+
+#forgot_pass_section{
+    padding: 10px 120px 120px 120px;
+}
+
+#forgot_pass_section .inner{
+    width: 328px;
+    margin: 0 auto;
+}
+
+
+body{
+    background-color: #ddd;
+}
+
+body>#main_content{
+
+    margin: 5px 80px 0px 80px;
+}
+
+#forgot_pass_section .content {
+    padding: 30px 20px;
+}
+
+#forgot_pass_section .divider {
+    margin: 0;
+}
+
+#forgot_pass_section .bottom.header {
+    /*background: #F6F8F8;*/
+    color: #3c3c3c !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    padding: 20px 20px 10px;
+}
+
+
+#forgot_pass_section form .field input {
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, .15);
+    border: 1px solid #bdc7cd;
+}
+
+#forgot_pass_section form .field input:hover{
+    box-shadow: 0 1px 3px rgba(0,0,0,.2), inset 0 0 4px rgba(77,143,253,.5);
+    border: 1px solid #4d8ffd;
+}
+
+#forgot_pass_section form .field input:focus{
+    box-shadow: 0 1px 4px rgba(0,0,0,.2), inset 0 0 4px rgba(77,143,253,.5);
+    border: 1px solid #36f;
+}
+
+#forgot_pass_section form .field input, #forgot_pass_section form button {
+    padding: 5px;
+    width: 100%;
+    margin: 0 !important;
+}
+
+#forgot_pass_section form a.forgot_pass{
+    font-size: 10px;
+    color: #427fed;
+    float: left;
+    margin-top: 4px;
+}
+
+#forgot_pass_section form a:hover{
+    color: #ed1b2f;
+}
+
+#forgot_pass_section form button {
+    height: 38px;
+    text-align: center;
+    margin-top: 5px !important;
+}
+
+#forgot_pass_section .rememberme{
+    margin-bottom: 15px;
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+
+#forgot_pass_section .rememberme input {
+    /*font-size: 12px !important;*/
+    /*font-weight: normal !important;*/
+    /*padding: 3px;*/
+    /*align-content: flex-start;*/
+}
+
+#forgot_pass_section .register{
+    /*font-size: 12px !important;*/
+}
+
+#forgot_pass_section .register a {
+    color: #69a816;
+    border-bottom: 1px dotted #69a816;
+    margin-right: 5px;
+}
+
+#forgot_pass_section .register a:hover {
+    color: #ed1b2f;
+    border-bottom: 1px dotted #ed1b2f;
+}
