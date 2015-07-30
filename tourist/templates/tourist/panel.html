@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'tourist/css/panel.css' %}"/>
+    <script type="text/javascript" src="{% static 'tourist/javascript/panel.js' %}"></script>
+{% endblock %}
+{% block title %}
+    <title>پنل کاربری</title>
+{% endblock %}
+{% block content %}
+    <div class="mrg-auto" style="height: auto; margin-top: 10px">
+        <div class="ui grid rtl">
+            <div class="three wide column ">
+                <div class="ui vertical menu ">
+                    <div class="item">
+                        <div class="header">خانه</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'panel' %}">پروفایل کاربری</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">گزارش گیری</div>
+                        <div class="menu">
+                            <a class="item" href="/manage/buy_report">گزارش عملکردی</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">پیام ها</div>
+                        <div class="menu">
+                            <a class="item">صندوق پیام ها</a>
+                            <a class="item">ارسال پیام</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">شکایات</div>
+                        <div class="menu">
+                            <a class="item">در صف بررسی</a>
+                            <a class="item">در حال رسیدگی</a>
+                            <a class="item">صدور حکم</a>
+                            <a class="item">پایان یافته</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" thirteen wide column right_float">
+                <div class="ui container segment right_aligned scrolling" style="height: auto; min-height: 400px; margin-bottom: 10px;">
+                    {% block menu_content %}
+                        <div class="rtl">
+                            <div class="right floated" id="profpic">
+                                <div class="ui special cards">
+                                    <div class="card">
+                                        <div class="blurring dimmable image">
+                                            <div class="ui dimmer">
+                                                <div class="content">
+                                                    <div class="center">
+                                                        <div>
+                                                            <input type="file" id="files" class="hidden"/>
+                                                            <label for="files" id="button">تغییر عکس</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                                        </div>
+                                        <div class="content">
+                                            <a class="header">صدرا بریری</a>
+                                            <div class="meta">
+                                                <span class="date">عضویت در : فروردین 94</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left floated" id="user_information">
+                                <table id="information">
+                                    <tr>
+                                        <td>نام و نام خانوادگی : صدرا بریری</td>
+                                        <td>جنسیت : مرد</td>
+                                    </tr>
+                                    <tr>
+                                        <td>نام کاربری : صدرا کوچولو</td>
+                                        <td>ایمیل : sadra@sadra.sadra</td>
+                                    </tr>
+                                    <tr>
+                                        <td>محل سکونت : تهران، تهران</td>
+                                        <td>شماره تلفن : 2466</td>
+                                    </tr>
+                                </table>
+                                <div id="buttons">
+                                    <div class="ui buttons">
+                                        <button class="ui red button">اصلاح مشخصات</button>
+                                        <div class="or" data-text="یا"></div>
+                                        <button class="ui black button">تغییر کلمه عبور</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

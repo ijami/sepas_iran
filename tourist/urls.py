@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     # Examples:
-    url(r'^register/$', 'tourist.views.singup_view.register', name='home'),
-    url(r'^financeReport/$', TemplateView.as_view(template_name='tourist/userFinanceReport.html'), name='user_finance_report')
+    #url(r'^register/$', 'tourist.views.signup_view.register', name='home'),
+    url(r'^financeReport/$', TemplateView.as_view(template_name='tourist/userFinanceReport.html'), name='user_finance_report'),
+    url(r'^panel$', TemplateView.as_view(template_name='tourist/panel.html'), name='panel')
 ]

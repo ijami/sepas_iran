@@ -1,0 +1,55 @@
+
+#profpic {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+#user_information {
+    display: inline-block;
+    float: left;
+    width: 610px;
+    height: 350px;
+}
+
+input[type='file'] {
+  opacity:0
+}
+
+#button {
+    border: 1px solid white;
+    background-color: #00719b;
+    border-radius: 5px;
+    padding: 6px 15px;
+    cursor: pointer;
+    position: relative;
+    right: -15px;
+}
+
+#information {
+    margin: auto;
+    vertical-align: middle;
+    border: none;
+    position: relative;
+    top: 35px;
+    direction: rtl;
+    text-align: right;
+}
+
+#information tr td {
+    direction: rtl;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 270px;
+    text-align: right;
+}
+
+#buttons {
+    position: relative;
+    top: 70px;
+    left: 10px;
+    width: auto;
+    height: auto;
+    float: left;
+
+}
