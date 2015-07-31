@@ -23,7 +23,7 @@
 #service_details_container {
     float: left;
     width: 810px;
-    height: 400px;
+    height: auto;
     text-align: right;
     direction: rtl;
 }

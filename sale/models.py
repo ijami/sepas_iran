@@ -1,3 +1,22 @@
 from django.db import models
+from service.models import Service
+from tourist.models import Tourist
 
-# Create your models here.
+
+class Cart(models.Model):
+    def pay(self):
+        pass  # instantiate Factor
+
+class Factor(models.Model):
+    tourist = models.ForeignKey(Tourist, related_name='factors')
+    create_date = models.DateTimeField(auto_now_add=True)
+
+
+class ServiceItem(models.Model):
+    service = models.ForeignKey(Service)
+    number = models.IntegerField()
+    cart = models.ForeignKey('Cart', null=True, blank=True)
+    factor = models.ForeignKey('Factor', null=True, blank=True)
+
+    def get_price(self):
+        return self.number * self.service.price
