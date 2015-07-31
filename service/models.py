@@ -1,6 +1,6 @@
 from django.db import models
-from base.models import City, SiteUser
 
+from base.models import City, SiteUser
 from service_provider.models import ServiceProvider, AirLine, Hotel
 from tourist.models import Tourist
 
@@ -20,8 +20,8 @@ class Comment(models.Model):
 
 class Flight(Service):
     airline = models.ForeignKey(AirLine, related_name='flights')
-    origin = models.ForeignKey('FlightLocation', related_name='departures')
-    destination = models.ForeignKey('FlightLocation', related_name='arrivals')
+    origin = models.ForeignKey('Airport', related_name='departures')
+    destination = models.ForeignKey('Airport', related_name='arrivals')
     time = models.DateTimeField()
 
 
@@ -41,9 +41,9 @@ class Tour(Service):
     going_date = models.DateField()
     return_date = models.DateField()
     description = models.TextField()
-    going_flight = models.ForeignKey('Flight', null=True, blank=True)
-    return_flight = models.ForeignKey('Flight', null=True, blank=True)
-    hotel = models.ForeignKey('Hotel', null=True, blank=True)
+    going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
+    return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
+    hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)
     hotel_name = models.CharField(max_length=100, null=True, blank=True)
     tour_guide_name = models.CharField(max_length=100)
 

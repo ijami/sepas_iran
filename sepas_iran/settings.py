@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'service',
     'service_provider',
     'tourist',
-    'sepas_iran',
     'sale',
     'base'
 )

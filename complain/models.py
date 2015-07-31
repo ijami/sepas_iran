@@ -1,7 +1,8 @@
 from django.db import models
-from sale.models import ServiceItem
 
+from sale.models import ServiceItem
 from tourist.models import Tourist
+
 
 # Create your models here.
 

@@ -1,11 +1,12 @@
 from django.db import models
+
 from service.models import Service
 from tourist.models import Tourist
 
 
 class Cart(models.Model):
-    def pay(self):
-        pass  # instantiate Factor
+    last_modified = models.DateTimeField(auto_now=True)
+
 
 class Factor(models.Model):
     tourist = models.ForeignKey(Tourist, related_name='factors')
