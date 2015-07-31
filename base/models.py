@@ -5,7 +5,6 @@ from django.db import models
 
 class SiteUser(models.Model):
     primary_user = models.OneToOneField(User, related_name='site_user')
-    name = models.CharField(max_length=30)
     location = models.ForeignKey('Location', null=True, related_name='location_owner')
     image = models.ImageField(upload_to='base/images/profile_images')
     telephone = models.CharField(max_length=20)
