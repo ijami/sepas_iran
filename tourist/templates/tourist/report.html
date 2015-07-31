@@ -1,0 +1,83 @@
+{% extends 'tourist/dashbord.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'tourist/css/report.css' %}"/>
+{% endblock %}
+
+{% block menu_content %}
+    <div class="ui middle aligned divided list rtl">
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/total.png' %}">
+    <div class="content">
+      <h3>تعداد کل خدمات خریداری شده</h3>
+    </div>
+      <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/passed.jpg' %}">
+    <div class="content">
+      <h3>تعداد کل خدمات استفاده شده</h3>
+    </div>
+      <div class="mrgtp_1em left floated ui huge label">32</div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/sandclockflat.png' %}">
+    <div class="content">
+        <h3>تعداد خدمات در حال انتظار</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/hotel.png' %}">
+    <div class="content">
+        <h3>تعداد هتل  خریداری شده</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/flight.png' %}">
+    <div class="content">
+        <h3>تعداد پروازهای خریداری شده</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/tour.png' %}">
+    <div class="content">
+        <h3>تعداد تورهای خریداری شده</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+
+
+      <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/money.png' %}">
+    <div class="content">
+        <h3>هزینه کل پرداختی</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          320,000,000 ریال
+      </div>
+  </div>
+  <div class="item">
+    <img class="ui avatar tiny image" src="{% static 'tourist/images/comment.png' %}">
+    <div class="content">
+        <h3>تعداد کل نظرات</h3>
+    </div>
+       <div class="mrgtp_1em left floated ui huge label">
+          32
+      </div>
+  </div>
+</div>
+{% endblock %}

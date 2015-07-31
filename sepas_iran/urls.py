@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^tourist/', include('tourist.urls')),
     url(r'^manage/', include('management.urls')),
     url(r'^sale/', include('sale.urls')),
-    url(r'^admin/', include(admin.site.urls))
+    url(r'^messaging/', include('messaging.urls')),
+    url(r'^admin/', include(admin.site.urls)),
 ]
