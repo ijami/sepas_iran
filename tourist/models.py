@@ -4,18 +4,13 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 from django.db import models
-# Create your models here.
+from base.models import SiteUser
+from sale.models import Cart
 
 
-class Tourist(models.Model):
-    primary_user = models.ForeignKey(User)
-    location = models.ForeignKey('Location', null=True)
+class Tourist(SiteUser):
+    birth_day = models.DateField()
+    cart = models.OneToOneField(Cart, related_name='tourist')
 
-
-class Location(models.Model):
-    country = models.CharField(max_length=30)
-    city = models.CharField(max_length=30)
-    province = models.CharField(max_length=30)
-    address = models.TextField()
 
 
