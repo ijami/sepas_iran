@@ -13,4 +13,3 @@ class Tourist(SiteUser):
         return self.primary_user.first_name + " " + self.primary_user.last_name
 
 
-
