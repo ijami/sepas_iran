@@ -1,6 +1,8 @@
 {% extends 'tourist/dashbord.html' %}
 
 {% load staticfiles %}
+{% load static %}
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
@@ -15,7 +17,7 @@
                                     <div class="card">
                                         <div class="image">
 
-                                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                                            <img src={{ image.url }}>
                                         </div>
 
                                     </div>
@@ -24,16 +26,28 @@
                             <div class="left floated" id="user_information">
                                 <table id="information">
                                     <tr>
-                                        <td>نام و نام خانوادگی : صدرا بریری</td>
-                                        <td>تاریخ عضویت: 24 فروردین</td>
+                                        <td>نام و نام خانوادگی :
+                                            {{ name }}
+                                        </td>
+                                        <td>تاریخ تولد:
+                                        {{ birth_day }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>نام کاربری : صدرا کوچولو</td>
-                                        <td>ایمیل : sadra@sadra.sadra</td>
+                                        <td>نام کاربری :
+                                            {{ user_name }}
+                                        </td>
+                                        <td>ایمیل :
+                                            {{ mail }}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>محل سکونت : تهران، تهران</td>
-                                        <td>شماره تلفن : 2466</td>
+                                        <td>محل سکونت :
+                                        {{ address }}
+                                        </td>
+                                        <td>شماره تلفن :
+                                            {{ phone }}
+                                        </td>
                                     </tr>
                                 </table>
                                 <div id="buttons">

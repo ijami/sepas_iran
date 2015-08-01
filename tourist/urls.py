@@ -1,3 +1,5 @@
+from sepas_iran import settings
+
 __author__ = 'Ehsan'
 
 from django.conf.urls import url
@@ -12,3 +14,5 @@ urlpatterns = [
     url(r'^report$', TemplateView.as_view(template_name='tourist/report.html'), name='report'),
     url(r'^service_list$', TemplateView.as_view(template_name='tourist/services.html'), name='service_list'),
 ]
+
+
