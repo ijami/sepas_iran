@@ -1,7 +1,7 @@
 from django.db import models
 
 from base.models import City, SiteUser
-from service_provider.models import ServiceProvider, AirLine, Hotel, TravelAgency
+from service_provider.models import AirLine, Hotel, TravelAgency
 from tourist.models import Tourist
 
 
