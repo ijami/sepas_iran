@@ -1,51 +1,15 @@
-{% extends 'base/base.html' %}
+{% extends 'tourist/dashbord.html' %}
+
 {% load staticfiles %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'tourist/css/panel.css' %}"/>
-    <script type="text/javascript" src="{% static 'tourist/javascript/panel.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
+    <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
-{% block content %}
-    <div class="mrg-auto" style="height: auto; margin-top: 10px">
-        <div class="ui grid rtl">
-            <div class="three wide column ">
-                <div class="ui vertical menu ">
-                    <div class="item">
-                        <div class="header">خانه</div>
-                        <div class="menu">
-                            <a class="item" href="{% url 'panel' %}">پروفایل کاربری</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">گزارش گیری</div>
-                        <div class="menu">
-                            <a class="item" href="/manage/buy_report">گزارش عملکردی</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">پیام ها</div>
-                        <div class="menu">
-                            <a class="item">صندوق پیام ها</a>
-                            <a class="item">ارسال پیام</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">شکایات</div>
-                        <div class="menu">
-                            <a class="item">در صف بررسی</a>
-                            <a class="item">در حال رسیدگی</a>
-                            <a class="item">صدور حکم</a>
-                            <a class="item">پایان یافته</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" thirteen wide column right_float">
-                <div class="ui container segment right_aligned scrolling" style="height: auto; min-height: 400px; margin-bottom: 10px;">
-                    {% block menu_content %}
-                        <div class="rtl">
+{% block menu_content %}
+    <div class="rtl">
                             <div class="right floated" id="profpic">
                                 <div class="ui special cards">
                                     <div class="card">
@@ -95,11 +59,5 @@
                                 </div>
                             </div>
                         </div>
-                    {% endblock %}
-                </div>
-            </div>
-
-        </div>
-    </div>
 {% endblock %}
 

@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+
+{% block title %}<title>پنل کاربری</title>{% endblock %}
+
+{% block content %}
+
+    <div class="mrg-auto" style="height: auto; margin-top: 10px; margin-bottom: 10px;">
+        <div class="ui grid rtl">
+            <div class="three wide column ">
+                <div class="ui vertical menu ">
+                    <div class="item">
+                        <div class="header">خانه</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'panel' %}">پروفایل کاربری</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">گزارش گیری</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'report' %}">گزارش عملکردی</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">پیام ها</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'write' %}">پیام جدید</a>
+                            <a class="item" href="{% url 'message_box' %}">صندوق پیام ها
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">تاریخچه خدمات</div>
+                        <div class="menu">
+                            <a class="item" href="{% url 'service_list' %}">لیست خدمات خریداری شده</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" thirteen wide column right_float">
+                <div class="ui container segment right_aligned" style="height: auto; margin-bottom: 10px;">
+                    {% block menu_content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% load staticfiles %}
+<head>
+    <link type="text/css" rel="stylesheet"
+          href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
+    <script type="text/javascript"
+            src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+</head>
+
