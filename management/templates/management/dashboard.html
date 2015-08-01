@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}<title>مدیریت</title>{% endblock %}
 
@@ -11,27 +11,27 @@
                     <div class="item">
                         <div class="header">خانه</div>
                         <div class="menu">
-                            <a class="item" href="/manage/">خانه</a>
+                            <a class="item" href="{% url 'management_dashboard' %}">خانه</a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="header">تبلیغات</div>
                         <div class="menu">
-                            <a class="item" href="/manage/advertisement">تعیین تبلیغ</a>
+                            <a class="item" href="{% url 'advertisement' %}">تعیین تبلیغ</a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="header">گزارش گیری</div>
                         <div class="menu">
-                            <a class="item" href="/manage/buy_report">گزارش خرید</a>
-                            <a class="item" href="/manage/buy_report">گزارش فروش</a>
+                            <a class="item" href="{% url 'buy_report' %}">گزارش خرید</a>
+                            <a class="item" href="{% url 'buy_report' %}">گزارش فروش</a>
                         </div>
                     </div>
                     <div class="item">
                         <div class="header">فعالسازی و غیرفعالسازی</div>
                         <div class="menu">
-                            <a class="item" href="/manage/service_activate">خدمات</a>
-                            <a class="item" href="/manage/service_provider_activate">گردش ساز/ گردش یار</a>
+                            <a class="item" href="{% url 'service-activate' %}">خدمات</a>
+                            <a class="item" href="{% url 'service-provider-activate' %}">گردش ساز/ گردش یار</a>
                         </div>
                     </div>
                     <div class="item">
@@ -65,14 +65,3 @@
     </div>
 
 {% endblock %}
-
-{% load staticfiles %}
-<head>
-    <link type="text/css" rel="stylesheet"
-          href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
-    <script type="text/javascript"
-            src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
-    <script type="text/javascript"
-            src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-</head>
-

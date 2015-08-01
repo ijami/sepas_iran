@@ -3,7 +3,10 @@ from django.contrib import admin
 
 urlpatterns = [
     # Examples:
-    url(r'^$', 'base.views.home', name='home'),
+    url(r'^$', 'base.views.home_view.home', name='home'),
+    url(r'^accounts/login/$', 'base.views.login_view.login_user', name='login'),
+    url(r'^accounts/forgot-password/$', 'base.views.forgot_pass_view.forgot_pass', name='forgot-password'),
+    url(r'^accounts/logout/$', 'base.views.login_view.logout_user', name='logout'),
     url(r'^service/', include('service.urls')),
     url(r'^tourist/', include('tourist.urls')),
     url(r'^manage/', include('management.urls')),

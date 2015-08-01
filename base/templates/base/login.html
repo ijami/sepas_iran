@@ -25,7 +25,7 @@
                                 <input type="text" name="username" placeholder="نام کاربری">
                             </div>
                             <div class="field">
-                                <label>گذرواژه<a class="forgot_pass" href="/tourist/forgot-password"> رمز عبورم را
+                                <label>گذرواژه<a class="forgot_pass" href="{% url 'forgot-password' %}"> رمز عبورم را
                                     فراموش
                                     کرده
                                     ام</a></label>
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green"
-                                                                                        href="/tourist/register">ثبت
+                                                                                        href="{% url 'register_tourist' %}">ثبت
                             نام
                             در سپاس ایران</a></div>
                     </div>
