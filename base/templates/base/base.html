@@ -30,12 +30,12 @@
                 <div class="vertical_divider"></div>
                 <div id="sign-up" class="bordered">
                     {% if request.user.username %}
-                         <a href="/tourist/logout" class="nodec" href="#"><i
+                         <a href="/tourist/logout" class="nodec"><i
                             class="sign out icon right_float"></i><span>
                              خروج
                 </span></a>
                     {% else %}
-                         <a href="/tourist/register" class="nodec" href="#"><i
+                         <a href="/tourist/register" class="nodec"><i
                             class="user basic icon right_float"></i><span>
                     ثبت نام کنید
                 </span></a>
@@ -249,8 +249,9 @@
     <div class="bottom attached header">
         <div class="center aligned">
             <div class="rememberme ui checkbox">
-                <input type="checkbox" name="example">
-                <label>مرا به خاطر بسپار</label>
+                <label for="example">مرا به خاطر بسپار
+                    <input type="checkbox" name="example">
+                </label>
             </div>
 
             <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green" href="/tourist/register">ثبت

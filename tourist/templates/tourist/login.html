@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 {% load staticfiles %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'tourist/css/login_style.css' %}"/>
@@ -41,8 +41,9 @@
                 <div class="bottom attached header rtl">
                     <div class="center aligned">
                         <div class="rememberme ui checkbox">
-                            <input type="checkbox" name="example">
-                            <label>مرا به خاطر بسپار</label>
+                            <label>مرا به خاطر بسپار
+                                <input type="checkbox" name="example">
+                            </label>
                         </div>
 
                         <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green"
