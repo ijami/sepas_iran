@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login
 
 def home(request):
     if request.POST:
-
         user = authenticate(username="ehsan", password="ehsanehsan")
         login(request, user)
 

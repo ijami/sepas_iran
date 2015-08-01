@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load staticfiles %}
 
 {% block head %}
@@ -15,7 +15,7 @@
             <div class="list_container">
                 <div class="advanced_search_box">
                     <div class="ui right_float rtl breadcrumb">
-                        <a href="/" class="section">صفحه اصلی</a>
+                        <a href="{% url 'home' %}" class="section">صفحه اصلی</a>
                         <i class="left angle icon divider"></i>
                         <a class="section">خدمات</a>
                         <i class="left angle icon divider"></i>
@@ -124,7 +124,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -144,7 +144,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -164,7 +164,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -184,7 +184,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -204,7 +204,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -224,7 +224,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -244,7 +244,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -264,7 +264,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -284,7 +284,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -304,7 +304,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -324,7 +324,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>
@@ -344,7 +344,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">مشهد</a>
+                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
                             <div class="meta">
                             <span class="date">شهریور 94</span>
                             </div>
@@ -364,7 +364,7 @@
                             <img src="{% static 'service/images/tour.jpeg' %}">
                         </div>
                         <div class="content">
-                            <a href="/sale/shopping" class="header">کیش</a>
+                            <a href="{% url 'shopping' %}" class="header">کیش</a>
                             <div class="meta">
                             <span class="date">مرداد 94</span>
                             </div>

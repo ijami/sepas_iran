@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head lang="fa">
     <meta charset="UTF-8">
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
@@ -30,12 +30,12 @@
                 <div class="vertical_divider"></div>
                 <div id="sign-up" class="bordered">
                     {% if request.user.username %}
-                         <a href="/tourist/logout" class="nodec" href="#"><i
+                         <a href="{% url 'logout' %}" class="nodec"><i
                             class="sign out icon right_float"></i><span>
                              خروج
                 </span></a>
                     {% else %}
-                         <a href="/tourist/register" class="nodec" href="#"><i
+                         <a href="{% url 'register_tourist' %}" class="nodec"><i
                             class="user basic icon right_float"></i><span>
                     ثبت نام کنید
                 </span></a>
@@ -52,7 +52,7 @@
             <div id="search" class="bordered">
                 <div class="digigreen ui small button right_float" id="cart">
                     <i class="cart icon right_float"></i>
-                    <a href="/sale/cart" style="color: white">
+                    <a href="{% url 'cart' %}" style="color: white">
                         &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
                     </a>
                     <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
@@ -68,7 +68,7 @@
         </div>
         <div class="right floated bordered" id="logo">
             <div class="left floated">
-                <a style="cursor: pointer" href="/"><img src="{% static 'base/images/sepasIran.png' %}" id="sepasiran"></a>
+                <a style="cursor: pointer" href="{% url 'home' %}"><img src="{% static 'base/images/sepasIran.png' %}" id="sepasiran"></a>
             </div>
         </div>
     </div>
@@ -130,8 +130,10 @@
     </nav>
 </nav>
 
-{% block content %}
-{% endblock %}
+<div id="base_content_block_container">
+    {% block content %}
+    {% endblock %}
+</div>
 
 <a href="#0" class="cd-top">Top</a>
 
@@ -190,7 +192,7 @@
             <div class="ui divider" style="border-top: #5a5a5a"></div>
             <span class="footer_gray">و از تخفیف در خرید، مشاهده سوابق سفارشات، شرکت در نقد و بررسی و بسیاری از خدمات دیگر بهره مند شوید.</span>
             <br>
-            <a href="/tourist/register" class="ui rtl digilightgreen button register">
+            <a href="{% url 'register_tourist' %}" class="ui rtl digilightgreen button register">
                 ثبت نام در سپاس ایران
                 <i class="circular icon user" style="background-color: #591"></i>
             </a>
@@ -235,7 +237,7 @@
                     <input type="text" name="username" placeholder="نام کاربری">
                 </div>
                 <div class="field">
-                    <label>گذرواژه<a class="forgot_pass" href="/tourist/forgot-password"> رمز عبورم را فراموش کرده
+                    <label>گذرواژه<a class="forgot_pass" href="{% url 'forgot-password' %}"> رمز عبورم را فراموش کرده
                         ام</a></label>
                     <input class="" type="password" name="password" placeholder="گذرواژه ">
                 </div>
@@ -249,11 +251,12 @@
     <div class="bottom attached header">
         <div class="center aligned">
             <div class="rememberme ui checkbox">
-                <input type="checkbox" name="example">
-                <label>مرا به خاطر بسپار</label>
+                <label for="example">مرا به خاطر بسپار
+                    <input type="checkbox" name="example">
+                </label>
             </div>
 
-            <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green" href="/tourist/register">ثبت
+            <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green" href="{% url 'register_tourist' %}">ثبت
                 نام
                 در سپاس ایران</a></div>
         </div>

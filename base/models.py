@@ -15,10 +15,5 @@ class Location(models.Model):
     address = models.TextField()
 
 
-class Country(models.Model):
-    name = models.CharField(max_length=100)
-
-
 class City(models.Model):
-    country = models.ForeignKey('Country', related_name='cities')
     name = models.CharField(max_length=100)

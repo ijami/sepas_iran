@@ -207,6 +207,17 @@ a:hover {
 }
 
 /***************************details****************************/
+.group{
+    width: 100%;
+    height: 10px;
+    background: red;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .rtl {
     direction: rtl;
@@ -315,6 +326,11 @@ a:hover {
 .forestgreen {
     background-color: forestgreen !important;
     color: #ffffff !important;
+}
+
+#base_content_block_container{
+    background: none;
+    overflow: hidden
 }
 
 #header {
@@ -478,8 +494,7 @@ a.nodec {
 #footer {
     height: auto;
     /*width: 100%;*/
-    border-top: 4px solid #ee3e3e;
-    border-bottom: 1px solid #1B1C1D;
+    /*border-bottom: 1px solid #1B1C1D;*/
     font-size: 14px;
     /*margin: 0 !important;*/
 }
@@ -506,6 +521,8 @@ a.nodec {
 
     background-color: #292929;
     border-bottom: 1px solid #141414;
+    border-top: 4px solid #ee3e3e;
+
 
     font-size: 16px !important;
     color: #ffffff !important;
