@@ -14,6 +14,12 @@ class Location(models.Model):
     city = models.ForeignKey('City', related_name='locations')
     address = models.TextField()
 
+    def __str__(self):
+        return self.city.__str__() + ": " + self.address
+
 
 class City(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
