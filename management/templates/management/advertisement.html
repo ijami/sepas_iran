@@ -1,33 +1,78 @@
 {% extends 'management/dashboard.html' %}
-
-{% block menu_content %}
-    <h2>انتخاب تبلیغات</h2>
-    <form class="ui form right_float">
-        <div class="field">
-            <label>تبلیغ اول</label>
-            <input class="right_aligned" type="text" name="first-name" value="سخت سیر"
-                   placeholder="خالی">
-        </div>
-        <button class="ui button" type="submit">تعویض</button>
-        <div class="field">
-            <label>تبلیغ دوم</label>
-            <input class="right_aligned" type="text" name="last-name" value="آسان سیر"
-                   placeholder="خالی">
-        </div>
-        <button class="ui button" type="submit">تعویض</button>
-        <div class="field">
-            <label>تبلیغ سوم</label>
-            <input class="right_aligned" type="text" name="last-name" value="آسان سیر"
-                   placeholder="خالی">
-        </div>
-        <button class="ui button" type="submit">تعویض</button>
-        <div class="field">
-            <label>تبلیغ چهارم</label>
-            <input class="right_aligned" type="text" name="last-name"
-                   placeholder="خالی">
-        </div>
-        <button class="ui button" type="submit">تعویض</button>
-
-
-    </form>
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'management/css/advertisement.css' %}"/>
 {% endblock %}
+{% block menu_content %}
+    <h2 class="ui header">
+    تعیین تبلیغات برای صفحه خانه سایت
+    </h2>
+    <div class="ui divider"></div>
+    <h5 class="ui header">
+    برای هر قسمت خدمت رسانی که می خواهید تبلیغ آن را بکنید انتخاب کنید!
+    </h5>
+
+    <section class="red_bordered advertisement">
+        <div class="ad_number">
+            <div class="ad_title">
+                تبلیغ اول :
+            </div>
+        </div>
+        <div class="ad_select">
+            <div class="ui input">
+                <input type="text">
+            </div>
+        </div>
+    </section>
+    <section class="green_bordered advertisement">
+        <div class="ad_number">
+            <div class="ad_title">
+تبلیغ دوم :
+            </div>
+        </div>
+        <div class="ad_select">
+            <div class="ui input">
+                <input type="text">
+            </div>
+        </div>
+    </section>
+    <section class="blue_bordered advertisement">
+        <div class="ad_number">
+            <div class="ad_title">
+                تبلیغ سوم:
+            </div>
+        </div>
+        <div class="ad_select">
+            <div class="ui input">
+                <input type="text">
+            </div>
+        </div>
+    </section>
+    <section class="yellow_bordered advertisement">
+        <div class="ad_number">
+            <div class="ad_title">
+                تبلیغ چهارم:
+            </div>
+        </div>
+        <div class="ad_select">
+            <div class="ui input">
+                <input type="text">
+            </div>
+        </div>
+    </section>
+    <section class="orange_bordered advertisement">
+        <div class="ad_number">
+            <div class="ad_title">
+                تبلیغ پنجم:
+            </div>
+        </div>
+        <div class="ad_select">
+            <div class="ui input">
+                <input type="text">
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+

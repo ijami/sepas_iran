@@ -1,9 +1,7 @@
 {% extends "base/base.html" %}
 {% load staticfiles %}
 {% block head %}
-    <!-- Start WOWSlider.com HEAD section -->
     <link rel="stylesheet" type="text/css" href="{% static 'tourist/css/forgot_pass_style.css' %}"/>
-    {#    <script type="text/javascript" src="{% static 'home/engine1/jquery.js' %}"></script>#}
 {% endblock %}
 
 {% block content %}
@@ -28,8 +26,8 @@
                             </div>
                             <div class="field">
                                 <label>حاصل عبارت زیر را در کادر روبروی آن وارد کنید</label>
-                                <input type="text" name="password" placeholder="" style="display: inline-block; width: 55%">
-                                <img src="{% static 'tourist/images/captcha.jpg' %}" style="display: inline-block; float: left; height: 100%; width: auto; border-radius: 4px; border: 1px solid rgba(50,50,50,0.3)">
+                                <input type="text" name="password" placeholder="" style="display: inline-block; width: 55%; height: 30px">
+                                <img src="{% static 'tourist/images/captcha.jpg' %}" style="display: inline-block; float: left; height: 30px; max-width: 40%; border-radius: 4px; border: 1px solid rgba(50,50,50,0.3)">
                             </div>
 
 
@@ -46,7 +44,7 @@
                         </div>
 
                         <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green"
-                                                                                        href="/tourist/register">ثبت
+                                                                                        href="{% url 'register_tourist' %}">ثبت
                             نام
                             در سپاس ایران</a></div>
                     </div>
