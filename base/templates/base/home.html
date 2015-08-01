@@ -52,7 +52,7 @@
         <img src="{% static 'home/images/airline.jpg' %}" class="card_image">
       </div>
       <div class="content card_link">
-        <a href="/service/list" class="header card_header">هواپیمایی</a>
+        <a href="{% url 'service-list' %}" class="header card_header">هواپیمایی</a>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
         <img src="{% static 'home/images/hotel.jpg' %}" class="card_image">
       </div>
       <div class="content card_link">
-        <a href="/service/list" class="header card_header">هتل</a>
+        <a href="{% url 'service-list' %}" class="header card_header">هتل</a>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
         <img src="{% static 'home/images/tour.jpeg' %}" class="card_image">
       </div>
       <div class="content card_link">
-        <a href="/service/list" class="header card_header">تور</a>
+        <a href="{% url 'service-list' %}" class="header card_header">تور</a>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">پاتایا</a>
+									<a href="{% url 'shopping' %}" class="header">پاتایا</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>
@@ -119,7 +119,7 @@
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">آنتالیا</a>
+									<a href="{% url 'shopping' %}" class="header">آنتالیا</a>
 									<div class="meta">
 										<span class="date">18 مرداد 94</span>
 									</div>
@@ -141,7 +141,7 @@
     								<img style="height: 159px;" src="{% static 'home/images/tour.jpeg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">زامبیا</a>
+									<a href="{% url 'shopping' %}" class="header">زامبیا</a>
 									<div class="meta">
 										<span class="date">3 تیر 95</span>
 									</div>
@@ -163,7 +163,7 @@
     								<img style="height: 159px;" src="{% static 'home/images/hotel.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">هتل سگمست</a>
+									<a href="{% url 'shopping' %}" class="header">هتل سگمست</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>
@@ -184,8 +184,8 @@
  								<div class="image new_topics_img">
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
-								<div href="/sale/shopping" class="content">
-									<a href="/sale/shopping" class="header">سگ یوش</a>
+								<div class="content">
+									<a href="{% url 'shopping' %}" class="header">سگ یوش</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>
@@ -223,7 +223,7 @@
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">پاتایا</a>
+									<a href="{% url 'shopping' %}" class="header">پاتایا</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>
@@ -245,7 +245,7 @@
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">آنتالیا</a>
+									<a href="{% url 'shopping' %}" class="header">آنتالیا</a>
 									<div class="meta">
 										<span class="date">18 مرداد 94</span>
 									</div>
@@ -267,7 +267,7 @@
     								<img style="height: 159px;" src="{% static 'home/images/tour.jpeg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">زامبیا</a>
+									<a href="{% url 'shopping' %}" class="header">زامبیا</a>
 									<div class="meta">
 										<span class="date">3 تیر 95</span>
 									</div>
@@ -289,7 +289,7 @@
     								<img style="height: 159px;" src="{% static 'home/images/hotel.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">هتل سگمست</a>
+									<a href="{% url 'shopping' %}" class="header">هتل سگمست</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>
@@ -311,7 +311,7 @@
     								<img src="{% static 'home/images/airline.jpg' %}">
   								</div>
 								<div class="content">
-									<a href="/sale/shopping" class="header">سگ یوش</a>
+									<a href="{% url 'shopping' %}" class="header">سگ یوش</a>
 									<div class="meta">
 										<span class="date">18 مهر 94</span>
 									</div>

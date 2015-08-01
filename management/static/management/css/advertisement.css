@@ -1,0 +1,62 @@
+.advertisement {
+    width: 95%;
+    margin: 7px auto;
+    height: 70px;
+    border: 1px solid black;
+}
+
+.red_bordered {
+    border: 1px solid red;
+}
+
+.green_bordered {
+    border: 1px solid green;
+}
+
+.blue_bordered {
+    border: 1px solid blue;
+}
+
+.yellow_bordered {
+    border: 1px solid #ffff00;
+}
+
+.orange_bordered {
+    border: 1px solid orange;
+}
+
+section:first-of-type {
+    margin-top: 35px;
+}
+
+.ad_number {
+    float: right;
+    display: inline-block;
+    height: 70px;
+    width: 12%;
+    vertical-align: middle;
+}
+
+.ad_select {
+    height: 70px;
+    width: 85%;
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+.ad_select .input {
+    width: 95%;
+    margin-top: 10px;
+}
+
+.input input {
+    direction: rtl;
+    text-align: right;
+}
+
+.ad_title {
+    margin-top: 20px;
+    margin-right: 10px;
+}

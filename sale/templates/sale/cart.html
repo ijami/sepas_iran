@@ -1,4 +1,4 @@
-{% extends 'base/base/base.html' %}
+{% extends 'base/base.html' %}
 {% load staticfiles %}
 
 {% block head %}
@@ -14,7 +14,7 @@
         <div id="main_container" class="center aligned">
 
             <div class="ui right_float rtl breadcrumb">
-                <a href="/" class="section">صفحه اصلی</a>
+                <a href="{% url 'home' %}" class="section">صفحه اصلی</a>
                 <i class="left angle icon divider"></i>
                 <div class="active section">سبد خرید</div>
             </div>
