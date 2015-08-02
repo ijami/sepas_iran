@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
+
 __author__ = 'Ehsan'
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-
 
 def forgot_pass(request):
     errors = []
@@ -25,6 +26,5 @@ def forgot_pass(request):
             else:
                 errors.extend("?? ???? ?? ???? ???? ????")
                 return render(request, 'base/forgot_pass.html', {'errors': errors})
-
 
     return render(request, 'base/forgot_pass.html')
