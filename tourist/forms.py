@@ -64,7 +64,7 @@ class TouristEditProfileForm(ModelForm):
     email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
                              widget=forms.EmailInput(attrs={'placeholder': 'example@host.com', 'readonly': 'readonly'}))
     image = forms.ImageField()
-    birth_day = forms.Date(widget=forms.DateInput)
+    birth_day = forms.DateField(widget=forms.DateInput)
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
 
