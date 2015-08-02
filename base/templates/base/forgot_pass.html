@@ -26,12 +26,19 @@
                             </div>
                             <div class="field">
                                 <label>حاصل عبارت زیر را در کادر روبروی آن وارد کنید</label>
-                                <input type="text" name="password" placeholder="" style="display: inline-block; width: 55%; height: 30px">
-                                <img src="{% static 'tourist/images/captcha.jpg' %}" style="display: inline-block; float: left; height: 30px; max-width: 40%; border-radius: 4px; border: 1px solid rgba(50,50,50,0.3)">
+                                <input type="text" name="captcha" placeholder=""
+                                       style="display: inline-block; width: 55%; height: 30px">
+                                <img src="{% static 'tourist/images/captcha.jpg' %}"
+                                     style="display: inline-block; float: left; height: 30px; max-width: 40%; border-radius: 4px; border: 1px solid rgba(50,50,50,0.3)">
                             </div>
 
 
                             <button class="digiblue ui button" type="submit">ورود به سپاس ایران</button>
+                            <div class="ui error message rtl" dir="rtl">
+                                {% for error in errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </div>
                         </form>
                     </div>
                 </div>

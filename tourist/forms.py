@@ -1,14 +1,20 @@
-__author__ = 'mohsenkatebi'
+__author__ = 'Ehsan'
+
+from django.forms.models import ModelForm
+from base.models import City, Location
+from sale.models import Cart
+from tourist.models import Tourist
+
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
 
-class MyUserCreationForm(UserCreationForm):
-    firstname = forms.CharField(max_length=100, label="نام", required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'نام'}))
-    lastname = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
+class TouristCreationForm(ModelForm):
+    first_name = forms.CharField(max_length=100, label="نام", required=True,
+                                 widget=forms.TextInput(attrs={'placeholder': 'نام'}))
+    last_name = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
+                                widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
     username = forms.CharField(max_length=100, label="نام کاربری", required=True,
                                widget=forms.TextInput(attrs={'placeholder': 'نام کاربری'}))
     email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
@@ -17,10 +23,18 @@ class MyUserCreationForm(UserCreationForm):
                                 widget=forms.PasswordInput(attrs={'placeholder': 'گذرواژه'}))
     password2 = forms.CharField(max_length=100, label="تکرار گذرواژه", required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}))
+    city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=True)
+
+    address = forms.CharField(max_length=500, label="آدرس", required=False,
+                              widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل'}))
+    mobile_number = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
+                                    widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
+
+    birth_day = forms.DateField(label="تاریخ تولد", required=False)
 
     class Meta:
-        model = User
-        fields = ("firstname", "lastname", "username", "email")
+        model = Tourist
+        fields = ("first_name", "last_name", "username", "email", 'mobile_number', 'birth_day')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -28,7 +42,7 @@ class MyUserCreationForm(UserCreationForm):
             User.objects.get(username=username)
         except User.DoesNotExist:
             return username
-        raise forms.ValidationError(("نام کاربری موجود است. یک نام کاربری دیگر انتخاب کنید."))
+        raise forms.ValidationError("این نام کاربری موجود است. یک نام کاربری دیگر انتخاب کنید.", code='duplicate_user')
 
     def clean_email(self):
         email = self.cleaned_data["email"]
@@ -44,8 +58,14 @@ class MyUserCreationForm(UserCreationForm):
         return password2
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        tourist = super(TouristCreationForm, self).save(commit=False)
+        tourist.set_password(self.cleaned_data["password1"])
+        location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
+        location.save()
+        cart = Cart()
+        cart.save()
+        tourist.location = location
+        tourist.cart = cart
         if commit:
-            user.save()
-        return user
+            tourist.save()
+        return tourist
