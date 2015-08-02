@@ -29,7 +29,7 @@ $(document).ready(function () {
     var modal = $('.ui.modal');
     modal.modal();
     modal.modal('setting',{detachable:false, observeChanges: true, debug: true});
-    var login_btn = $('#sign-in');
+    var login_btn = $('#sign-in:not(.logged_in)');
     login_btn.on('click', function () {
         modal.modal('show');
         console.log("saka");
