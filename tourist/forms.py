@@ -1,3 +1,6 @@
+from django.forms.models import ModelForm
+from tourist.models import Tourist
+
 __author__ = 'mohsenkatebi'
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
@@ -49,3 +52,34 @@ class MyUserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class TouristEditProfileForm(ModelForm):
+    firstname = forms.CharField(max_length=100, label="نام", required=True,
+                                widget=forms.TextInput(attrs={'placeholder': 'نام'}))
+    lastname = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
+    username = forms.CharField(max_length=100, label="نام کاربری", required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'نام کاربری', 'readonly': 'readonly'}))
+    email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
+                             widget=forms.EmailInput(attrs={'placeholder': 'example@host.com', 'readonly': 'readonly'}))
+    image = forms.ImageField()
+    birth_day = forms.Date(widget=forms.DateInput)
+    city = forms.CharField()
+    address = forms.CharField(max_length=1000)
+
+
+    def __init__(self, instance=None):
+        self.instance = instance
+        self.firstname = instance.primary_user.first_name
+        self.lastname = instance.primary_user.last_name
+        self.username = instance.primary_user.username
+        self.email = instance.primary_user.mail
+        self.image = instance.image
+        self.city = instance.location.city
+        self.address = instance.location.address
+
+
+    class Meta:
+        model = Tourist
+        fields = ['birth_day', 'image', 'telephone']
