@@ -10,5 +10,5 @@ def profile_edit_view(request):
         if request.user.site_user.tourist:
             tourist = request.user.site_user.tourist
             edit_profile_form = TouristEditProfileForm(tourist)
-            render(request, 'tourist/profile_modify.html', {'form': edit_profile_form})
+            return render(request, 'tourist/profile_modify.html', {'form': edit_profile_form})
 

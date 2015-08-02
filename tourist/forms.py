@@ -24,14 +24,14 @@ class TouristCreationForm(ModelForm):
 
     address = forms.CharField(max_length=500, label="آدرس", required=False,
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل'}))
-    mobile_number = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
+    telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
                                     widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
 
     birth_day = forms.DateField(label="تاریخ تولد", required=False)
 
     class Meta:
         model = Tourist
-        fields = ("first_name", "last_name", "username", "email", 'mobile_number', 'birth_day')
+        fields = ("first_name", "last_name", "username", "email", 'telephone', 'birth_day')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
