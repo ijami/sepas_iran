@@ -1,0 +1,252 @@
+{% extends 'tourist/dashbord.html' %}
+
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
+    <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
+
+{% endblock %}
+{% block title %}
+    <title>پنل کاربری</title>
+{% endblock %}
+{% block menu_content %}
+    <div class="rtl">
+                            <div class="right floated" id="profpic">
+                                <div class="ui special cards">
+                                    <div class="card">
+                                        <div class="blurring dimmable image">
+                                            <div class="ui dimmer">
+                                                <div class="content">
+                                                    <div class="center">
+                                                        <div>
+                                                            <input type="file" id="files" class="hidden"/>
+                                                            <label for="files" id="button">تغییر عکس</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left floated" id="user_information">
+                                <form class="ui form">
+                                    <div class="field">
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label>نام</label>
+                                                <input type="text" placeholder="نام">
+                                            </div>
+                                            <div class="field">
+                                                <label>نام خانوادگی</label>
+                                                <input type="text" placeholder="نام خانوادگی">
+                                            </div>
+                                        </div>
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label>نام کاربری</label>
+                                                <input type="text" placeholder="نام کاربری">
+                                            </div>
+                                            <div class="field">
+                                                <label>تاریخ تولد</label>
+                                                <input type="date" placeholder="تاریخ تولد">
+                                            </div>
+                                        </div>
+                                        <div class="three fields">
+                                            <div class="field">
+                                                <label>محل سکونت</label>
+                                                <select class="ui fluid dropdown">
+                                                <option value="-1">
+...
+                                                </option>
+                                                <option value="2">
+
+                                                    آذربایجان شرقی
+
+                                                </option>
+                                                <option value="3">
+
+                                                    آذربایجان غربی
+
+                                                </option>
+                                                <option value="4">
+
+                                                    اردبیل
+
+                                                </option>
+                                                <option value="5">
+
+                                                    اصفهان
+
+                                                </option>
+                                                <option value="6">
+
+                                                    البرز
+
+                                                </option>
+                                                <option value="7">
+
+                                                    ایلام
+
+                                                </option>
+                                                <option value="8">
+
+                                                    بوشهر
+
+                                                </option>
+                                                <option value="9" selected="selected">
+
+                                                    تهران
+
+                                                </option>
+                                                <option value="10">
+
+                                                    چهار محال و بختیاری
+
+                                                </option>
+                                                <option value="11">
+
+                                                    خراسان جنوبی
+
+                                                </option>
+                                                <option value="12">
+
+                                                    خراسان رضوی
+
+                                                </option>
+                                                <option value="13">
+
+                                                    خراسان شمالی
+
+                                                </option>
+                                                <option value="14">
+
+                                                    خوزستان
+
+                                                </option>
+                                                <option value="15">
+
+                                                    زنجان
+
+                                                </option>
+                                                <option value="16">
+
+                                                    سمنان
+
+                                                </option>
+                                                <option value="17">
+
+                                                    سیستان و بلوچستان
+
+                                                </option>
+                                                <option value="18">
+
+                                                    فارس
+
+                                                </option>
+                                                <option value="19">
+
+                                                    قزوین
+
+                                                </option>
+                                                <option value="20">
+
+                                                    قم
+
+                                                </option>
+                                                <option value="21">
+
+                                                    کردستان
+
+                                                </option>
+                                                <option value="22">
+
+                                                    کرمان
+
+                                                </option>
+                                                <option value="23">
+
+                                                    کرمانشاه
+
+                                                </option>
+                                                <option value="24">
+
+                                                    کهگیلویه و بویراحمد
+
+                                                </option>
+                                                <option value="25">
+
+                                                    گلستان
+
+                                                </option>
+                                                <option value="26">
+
+                                                    گیلان
+
+                                                </option>
+                                                <option value="27">
+
+                                                    لرستان
+
+                                                </option>
+                                                <option value="28">
+
+                                                    مازندران
+
+                                                </option>
+                                                <option value="29">
+
+                                                    مرکزی
+
+                                                </option>
+                                                <option value="30">
+
+                                                    هرمزگان
+
+                                                </option>
+                                                <option value="31">
+
+                                                    همدان
+
+                                                </option>
+                                                <option value="32">
+
+                                                    یزد
+
+                                                </option>
+                                                </select>
+                                            </div>
+                                            <div class="eleven wide field">
+                                                <label>آدرس</label>
+
+                                                <input type="text" placeholder="محدوده">
+                                            </div>
+
+
+                                            </div>
+                                            <div class="two fields">
+                                                <div class="field">
+                                                <label>شماره تماس</label>
+                                                <input type="text" placeholder="شماره تماس">
+
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                </form>
+                                <div id="buttons">
+                                        <button class="ui black button">ثبت تغییرات</button>
+                                </div>
+
+                            </div>
+                            <div style="margin-bottom: 20px; height: 100px;"></div>
+                        </div>
+
+    <script>
+        $('select.dropdown')
+            .dropdown();
+    </script>
+{% endblock %}
+
