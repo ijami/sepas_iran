@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+
 __author__ = 'آرمان'
 
 from django.shortcuts import render
@@ -7,6 +9,7 @@ from sepas_iran.service_provider.models import ServiceProvider
 
 # Create your views here.
 
+@login_required
 def tourist_report(user_id):
     try:
         tourist = Tourist.objects.get(id=user_id)

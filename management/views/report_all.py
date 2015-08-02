@@ -1,12 +1,11 @@
+from django.contrib.auth.decorators import login_required
+
 __author__ = 'آرمان'
-from django.shortcuts import render
 from sepas_iran.tourist.models import Tourist
-from django.http import Http404
-from sepas_iran.service.models import ServiceInfo
 from sepas_iran.service_provider.models import ServiceProvider
 
 
-
+@login_required
 def all_report():
     tourists = Tourist.objects.all()
     service_providers = ServiceProvider.objects.all()

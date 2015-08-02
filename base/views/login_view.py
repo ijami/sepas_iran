@@ -24,6 +24,8 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                if request.GET.get('next'):
+                    return redirect(request.GET.get('next'))
                 return redirect("home")
         else:
             return render(request, 'base/login.html', {'errors': ["نام کابری یا گذرواژه اشتباه است"]})
