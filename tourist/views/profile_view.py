@@ -12,7 +12,7 @@ def profile_view(request):
             context = {
                 'name': tourist.primary_user.first_name + " " + tourist.primary_user.last_name,
                 'user_name': tourist.primary_user.username,
-                'address': tourist.location,
+                'address': tourist.location.address,
                 'mail': tourist.primary_user.email,
                 'phone': tourist.telephone,
                 'birth_day': tourist.birth_day,

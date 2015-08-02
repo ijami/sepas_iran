@@ -12,57 +12,59 @@
 {% endblock %}
 {% block menu_content %}
     <div class="rtl">
-                            <div class="right floated" id="profpic">
-                                <div class="ui special cards">
-                                    <div class="card">
-                                        <div class="image">
+        <div class="right floated" id="profpic">
+            <div class="ui special cards">
+                <div class="card">
+                    <div class="image">
 
-                                            <img src={{ image.url }}>
-                                        </div>
+                        <img src={{ image.url }}>
+                    </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="left floated" id="user_information">
-                                <table id="information">
-                                    <tr>
-                                        <td>نام و نام خانوادگی :
-                                            {{ name }}
-                                        </td>
-                                        <td>تاریخ تولد:
-                                        {{ birth_day }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>نام کاربری :
-                                            {{ user_name }}
-                                        </td>
-                                        <td>ایمیل :
-                                            {{ mail }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>محل سکونت :
-                                        {{ address }}
-                                        </td>
-                                        <td>شماره تلفن :
-                                            {{ phone }}
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div id="buttons">
-                                    <div class="ui buttons">
-                                        <button class="ui red button" >
-                                            <a href="panel/modify">
-                                            اصلاح مشخصات
-                                            </a>
-                                        </button>
-                                        <div class="or" data-text="یا"></div>
-                                        <button class="ui black button">تغییر کلمه عبور</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-bottom: 20px; height: 10px;"></div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="left floated" id="user_information">
+            <table id="information">
+                <tr>
+                    <td>نام و نام خانوادگی :
+                        {{ name }}
+                    </td>
+                    <td>تاریخ تولد:
+                        {{ birth_day }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>نام کاربری :
+                        {{ user_name }}
+                    </td>
+                    <td>ایمیل :
+                        {{ mail }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>محل سکونت :
+                        {{ address }}
+                    </td>
+                    <td>شماره تلفن :
+                        {{ phone }}
+                    </td>
+                </tr>
+            </table>
+            <div id="buttons">
+                <div class="ui buttons">
+                    <a href="{% url 'profile_modify' %}">
+                    <button class="ui red button">
+
+                            اصلاح مشخصات
+
+                    </button>
+                    </a>
+                    <div class="or" data-text="یا"></div>
+                    <button class="ui black button">تغییر کلمه عبور</button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 20px; height: 10px;"></div>
+    </div>
 {% endblock %}
 
