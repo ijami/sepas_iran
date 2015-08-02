@@ -68,18 +68,19 @@ class TouristEditProfileForm(ModelForm):
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
 
-
     def __init__(self, instance=None):
         self.instance = instance
         self.firstname = instance.primary_user.first_name
         self.lastname = instance.primary_user.last_name
         self.username = instance.primary_user.username
-        self.email = instance.primary_user.mail
+        self.email = instance.primary_user.email
         self.image = instance.image
         self.city = instance.location.city
         self.address = instance.location.address
 
-
     class Meta:
         model = Tourist
         fields = ['birth_day', 'image', 'telephone']
+
+    def save(self, commit=True):
+        super(TouristEditProfileForm, self).save()
