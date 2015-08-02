@@ -1,22 +1,30 @@
 __author__ = 'Ehsan'
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 
 def forgot_pass(request):
+    errors = []
     if request.user.is_authenticated():
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        username = request.POST.get('email')
-        password = request.POST.get('captcha')
+        email = request.POST.get('email')
+        captcha = request.POST.get('captcha')
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect("home")
+        user = User.objects.filter(email=email)
+        if user.count() != 1:
+            errors.extend("????? ???? ??? ?? ?????? ??? ????")
+            return render(request, 'base/forgot_pass.html', {'errors': errors})
+
         else:
-            return render(request, 'base/login.html', {'errors': ["??? ????? ?? ??????? ?????? ???"]})
+            if captcha == '21':
+                user.set_password("new")
+                return redirect(reverse('login'))
+            else:
+                errors.extend("?? ???? ?? ???? ???? ????")
+                return render(request, 'base/forgot_pass.html', {'errors': errors})
+
 
     return render(request, 'base/forgot_pass.html')
