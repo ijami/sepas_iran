@@ -64,6 +64,7 @@ target/
 *.map
 */.sass-cache/***
 base/static/bower_components/****
+base/images
 
 # migration
 **/migrations

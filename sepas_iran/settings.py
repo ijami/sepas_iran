@@ -107,6 +107,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -115,3 +117,4 @@ STATICFILES_DIRS = (
 
 SITE_URL = 'http://localhost:8000'
 LOGIN_URL = '/accounts/login/'
+

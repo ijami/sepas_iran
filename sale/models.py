@@ -12,6 +12,9 @@ class Factor(models.Model):
     tourist = models.ForeignKey(Tourist, related_name='factors')
     create_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.tourist.__str__() + " " + self.create_date
+
 
 class ServiceItem(models.Model):
     service = models.ForeignKey(Service)
@@ -21,3 +24,6 @@ class ServiceItem(models.Model):
 
     def get_price(self):
         return self.number * self.service.price
+
+    def __str__(self):
+        self.service.__str__() + ": " + self.number

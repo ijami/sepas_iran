@@ -6,5 +6,7 @@ from django.contrib.auth.models import User
 from base.models import SiteUser
 
 
-class Manager(models.Model):
-    primary_user = models.ForeignKey(SiteUser)
+class Manager(SiteUser):
+
+    def __str__(self):
+        return self.primary_user.username

@@ -26,5 +26,3 @@ class AirLine(ServiceProvider):
 
 class TravelAgency(ServiceProvider):
     pass
-
-
