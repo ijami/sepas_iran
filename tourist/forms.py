@@ -20,11 +20,11 @@ class TouristCreationForm(ModelForm):
                                 widget=forms.PasswordInput(attrs={'placeholder': 'گذرواژه'}))
     password2 = forms.CharField(max_length=100, label="تکرار گذرواژه", required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}))
-    city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=True)
+    city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False)
 
     address = forms.CharField(max_length=500, label="آدرس", required=False,
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل'}))
-    telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
+    telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=False,
                                     widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
 
     birth_day = forms.DateField(label="تاریخ تولد", required=False)
@@ -78,19 +78,21 @@ class TouristEditProfileForm(ModelForm):
     email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
                              widget=forms.EmailInput(attrs={'placeholder': 'example@host.com', 'readonly': 'readonly'}))
     image = forms.ImageField()
-    birth_day = forms.DateField(widget=forms.DateInput)
+    birth_day = forms.DateField(widget=forms.DateInput())
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
+    telephone = forms.CharField(max_length=20)
 
-    def __init__(self, instance=None):
+    def __init__(self, *args, instance=None, **kwargs):
+        super(TouristEditProfileForm, self).__init__(*args, **kwargs)
         self.instance = instance
-        self.firstname = instance.primary_user.first_name
-        self.lastname = instance.primary_user.last_name
-        self.username = instance.primary_user.username
-        self.email = instance.primary_user.email
-        self.image = instance.image
-        self.city = instance.location.city
-        self.address = instance.location.address
+        self.fields['firstname'].initial = instance.primary_user.first_name
+        self.fields['lastname'].initial = instance.primary_user.last_name
+        self.fields['username'].initial = instance.primary_user.username
+        self.fields['birth_day'].initial = instance.birth_day
+        self.fields['city'].initial = instance.location.city
+        self.fields['address'].initial = instance.location.address
+        self.fields['telephone'].initial = instance.telephone
 
     class Meta:
         model = Tourist

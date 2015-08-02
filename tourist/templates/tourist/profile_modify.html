@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src = "{{ form.image.url }}">
+                        <img src = "{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
                     </div>
 
                 </div>
@@ -47,11 +47,11 @@
                     <div class="two fields">
                         <div class="field">
                             <label>نام کاربری</label>
-                            <input type="text" placeholder="نام کاربری">
+                            {{ form.username }}
                         </div>
                         <div class="field">
                             <label>تاریخ تولد</label>
-                            <input type="date" placeholder="تاریخ تولد">
+                            {{ form.birth_day }}
                         </div>
                     </div>
                     <div class="three fields">
@@ -220,8 +220,7 @@
                         </div>
                         <div class="eleven wide field">
                             <label>آدرس</label>
-
-                            <input type="text" placeholder="محدوده">
+                            {{ form.address }}
                         </div>
 
 
@@ -229,8 +228,7 @@
                     <div class="two fields">
                         <div class="field">
                             <label>شماره تماس</label>
-                            <input type="text" placeholder="شماره تماس">
-
+                            {{ form.telephone }}
                         </div>
                     </div>
                 </div>
