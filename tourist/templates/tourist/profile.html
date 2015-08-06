@@ -16,8 +16,11 @@
                                 <div class="ui special cards">
                                     <div class="card">
                                         <div class="image">
-
-                                            <img src={{ image.url }}>
+                                            {% if image %}
+                                                <img src={{ image.url }}>
+                                            {% else %}
+                                                <img src="{% static 'tourist/images/default_profile.jpg'%}">
+                                            {% endif %}
                                         </div>
 
                                     </div>
