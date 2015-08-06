@@ -90,9 +90,6 @@ class TouristEditProfileForm(ModelForm):
                                widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
     username = forms.CharField(max_length=100, label="نام کاربری", required=True,
                                widget=forms.TextInput(attrs={'placeholder': 'نام کاربری', 'readonly': 'readonly'}))
-    email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
-                             widget=forms.EmailInput(attrs={'placeholder': 'example@host.com', 'readonly': 'readonly'}))
-    image = forms.ImageField()
     birth_day = forms.DateField(widget=forms.DateInput())
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
@@ -101,17 +98,27 @@ class TouristEditProfileForm(ModelForm):
     def __init__(self, *args, instance=None, **kwargs):
         super(TouristEditProfileForm, self).__init__(*args, **kwargs)
         self.instance = instance
-        self.fields['firstname'].initial = instance.primary_user.first_name
-        self.fields['lastname'].initial = instance.primary_user.last_name
-        self.fields['username'].initial = instance.primary_user.username
-        self.fields['birth_day'].initial = instance.birth_day
-        self.fields['city'].initial = instance.location.city
-        self.fields['address'].initial = instance.location.address
-        self.fields['telephone'].initial = instance.telephone
+        if instance:
+            self.fields['firstname'].initial = instance.primary_user.first_name
+            self.fields['lastname'].initial = instance.primary_user.last_name
+            self.fields['username'].initial = instance.primary_user.username
+            self.fields['birth_day'].initial = instance.birth_day
+            self.fields['city'].initial = instance.location.city
+            self.fields['address'].initial = instance.location.address
+            self.fields['telephone'].initial = instance.telephone
+            self.image = instance.image
 
     class Meta:
         model = Tourist
-        fields = ['birth_day', 'image', 'telephone']
+        fields = ['birth_day', 'telephone']
 
     def save(self, commit=True):
-        super(TouristEditProfileForm, self).save()
+        tourist = User.objects.get(username=self['username'].value()).site_user.tourist
+        tourist.primary_user.first_name = self['firstname'].value()
+        tourist.primary_user.last_name = self['lastname'].value()
+        tourist.primary_user.save()
+        tourist.birth_day = self['birth_day'].value()
+        tourist.location.address = self['address'].value()
+        tourist.location.save()
+        tourist.telephone = self['telephone'].value()
+        tourist.save()
