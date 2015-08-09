@@ -6,6 +6,11 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
+    <script type="text/javascript">
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
@@ -13,10 +18,9 @@
 {% block menu_content %}
     <div class="rtl">
         <div class="right floated" id="profpic">
-            <div class="ui special cards">
+            <div class="ui  cards">
                 <div class="card">
                     <div class="image">
-
                         <img src={{ image.url }}>
                     </div>
 

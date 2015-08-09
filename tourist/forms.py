@@ -91,11 +91,11 @@ class TouristEditProfileForm(ModelForm):
             self.fields['city'].initial = instance.location.city
             self.fields['address'].initial = instance.location.address
             self.fields['telephone'].initial = instance.telephone
-            self.image = instance.image
+            self.fields['image'].inital = instance.image
 
     class Meta:
         model = Tourist
-        fields = ['birth_day', 'telephone']
+        fields = ['birth_day', 'telephone', 'image']
 
     def save(self, commit=True):
         tourist = User.objects.get(username=self['username'].value()).site_user.tourist
@@ -106,4 +106,5 @@ class TouristEditProfileForm(ModelForm):
         tourist.location.address = self['address'].value()
         tourist.location.save()
         tourist.telephone = self['telephone'].value()
+        tourist.image = self['image'].value()
         tourist.save()

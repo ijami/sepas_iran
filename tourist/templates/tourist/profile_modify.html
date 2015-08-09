@@ -4,12 +4,18 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
-
+    <script type="text/javascript">
+        function sag() {
+            window.location = "{% url 'upload_image' %}"
+        }
+    </script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
 {% block menu_content %}
+            <form class="ui form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
     <div class="rtl">
         <div class="right floated" id="profpic">
@@ -19,22 +25,18 @@
                         <div class="ui dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <div>
-                                        <input type="file" id="files" class="hidden"/>
-                                        <label for="files" id="button">تغییر عکس</label>
-                                    </div>
+                                    <form  enctype="multipart/form-data" action="{% url 'upload_image' %}">
+                                        {{ form.image }}
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <img src="{{ form.image.url }}">
+                        <img src="{{ image.url }}">
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="left floated" id="user_information">
-            <form class="ui form" action="{% url 'profile_modify' %}" method="post">
-                {% csrf_token %}
                 <div class="field">
                     <div class="two fields">
                         <div class="field">
@@ -237,11 +239,11 @@
                 <div id="buttons">
                     <button type="submit" class="ui black button">ثبت تغییرات</button>
                 </div>
+
+
+    </div>
             </form>
-
-
-        </div>
-        <div style="margin-bottom: 20px; height: 100px;"></div>
+    <div style="margin-bottom: 20px; height: 100px;"></div>
     </div>
 
     <script>

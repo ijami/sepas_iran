@@ -3,6 +3,7 @@
     display: inline-block;
     width: auto;
     height: auto;
+    min-height: 300px!important;
 }
 
 #user_information {
