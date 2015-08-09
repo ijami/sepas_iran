@@ -1,3 +1,5 @@
+from setuptools.compat import unicode
+
 __author__ = 'Ehsan'
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -13,6 +15,7 @@ def register(request):
         })
 
     form = TouristCreationForm(request.POST)
+    print(unicode(form['username'].value()).encode('utf8'))
 
     if form.is_valid():
         form.save()
