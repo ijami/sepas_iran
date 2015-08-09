@@ -54,3 +54,19 @@ input[type='file'] {
     float: left;
 
 }
+
+#chng_img_btn {
+    width: 100px;
+    height: 40px;
+    background-image: url("../images/changepic.png")!important;
+    cursor: pointer;
+    border: 2px solid aqua;
+    padding-top: 10px;
+    margin: auto;
+}
+
+
+select option {
+    text-align: right;
+    direction: rtl;
+}

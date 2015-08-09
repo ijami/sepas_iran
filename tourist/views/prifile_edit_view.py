@@ -17,9 +17,3 @@ def profile_edit_view(request):
         form = TouristEditProfileForm(request.POST, request.FILES)
         form.save()
         return redirect(reverse('panel'))
-
-
-def upload_image(request):
-    return HttpResponse("""
-        <h1><b>Hello!<b><h1>
-    """)

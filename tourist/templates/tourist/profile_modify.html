@@ -4,11 +4,6 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
-    <script type="text/javascript">
-        function sag() {
-            window.location = "{% url 'upload_image' %}"
-        }
-    </script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
@@ -26,7 +21,9 @@
                             <div class="content">
                                 <div class="center">
                                     <form  enctype="multipart/form-data" action="{% url 'upload_image' %}">
-                                        {{ form.image }}
+                                        <div id="chng_img_btn">
+                                            {{ form.image }}
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -58,10 +55,10 @@
                             {{ form.birth_day }}
                         </div>
                     </div>
-                    <div class="three fields">
-                        <div class="field">
+                    <div class="three fields" >
+                        <div class="field" >
                             <label>محل سکونت</label>
-                            <select class="ui fluid dropdown">
+                            <select   id="sds" style="text-align: right!important; height: 3em!important; max-height: 400px!important;">
                                 <option value="-1">
                                     ...
                                 </option>
@@ -246,9 +243,12 @@
     <div style="margin-bottom: 20px; height: 100px;"></div>
     </div>
 
-    <script>
+    <script type="text/javascript">
         $('select.dropdown')
                 .dropdown();
+        $(document).ready(function size_resolution(){
+            $('select#sds').css("height", "3em!important");
+        });
     </script>
 {% endblock %}
 

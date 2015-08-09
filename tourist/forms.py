@@ -79,6 +79,7 @@ class TouristEditProfileForm(ModelForm):
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
     telephone = forms.CharField(max_length=20)
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class' : 'ui inverted button'}))
 
     def __init__(self, *args, instance=None, **kwargs):
         super(TouristEditProfileForm, self).__init__(*args, **kwargs)
@@ -106,5 +107,6 @@ class TouristEditProfileForm(ModelForm):
         tourist.location.address = self['address'].value()
         tourist.location.save()
         tourist.telephone = self['telephone'].value()
-        tourist.image = self['image'].value()
+        if self['image'].value() != None:
+            tourist.image = self['image'].value()
         tourist.save()
