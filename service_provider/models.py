@@ -9,6 +9,13 @@ class ServiceProvider(SiteUser):
     short_description = models.CharField(max_length=200)
     long_description = models.TextField(null=True, blank=True)
     advertise_image = models.ImageField(upload_to='service_provider/images/advertisement')
+    SERVICE_PROVIDER_TYPE = (
+        ('H', '???'),
+        ('T', '????? ????? ??????? (???)'),
+        ('A', '?????????'),
+    )
+    service_provider_type = models.CharField(max_length=1, choices=SERVICE_PROVIDER_TYPE, default=None)
+
 
 
 class Hotel(ServiceProvider):

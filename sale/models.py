@@ -19,8 +19,8 @@ class Factor(models.Model):
 class ServiceItem(models.Model):
     service = models.ForeignKey(Service)
     number = models.IntegerField()
-    cart = models.ForeignKey('Cart', null=True, blank=True)
-    factor = models.ForeignKey('Factor', null=True, blank=True)
+    cart = models.ForeignKey('Cart', null=True, blank=True, related_name='items')
+    factor = models.ForeignKey('Factor', null=True, blank=True, related_name='items')
 
     def get_price(self):
         return self.number * self.service.price

@@ -22,9 +22,9 @@
                 <div class="card">
                     <div class="image">
                         {% if image %}
-                            <img src={{ image.url }}>
+                            <img style="width: 270px; min-height: 240px;" src={{ image.url }}>
                         {% else %}
-                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                            <img style="width: 270px; min-height: 240px;" src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
                         {% endif %}
                     </div>
 
@@ -59,7 +59,7 @@
                 </tr>
             </table>
             <div id="buttons">
-                <div class="ui buttons">
+                <div class="ui buttons" style="float: left; margin-top: 22px;">
                     <a href="{% url 'profile_modify' %}">
                     <button class="ui red button">
 
@@ -72,7 +72,6 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom: 20px; height: 10px;"></div>
     </div>
 {% endblock %}
 

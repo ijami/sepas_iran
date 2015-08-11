@@ -9,7 +9,7 @@
     <title>پنل کاربری</title>
 {% endblock %}
 {% block menu_content %}
-            <form class="ui form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
+            <form class="ui form" id="my_form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
     <div class="rtl">
@@ -236,15 +236,9 @@
                             {{ form.telephone }}
                         </div>
                     </div>
+                    <button type="submit" class="ui left floated black large button">ثبت تغییرات</button>
                 </div>
-                <div id="buttons">
-                    <button type="submit" class="ui black button">ثبت تغییرات</button>
-                </div>
-
-
-    </div>
             </form>
-    <div style="margin-bottom: 20px; height: 100px;"></div>
     </div>
 
     <script type="text/javascript">
