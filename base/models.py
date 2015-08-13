@@ -3,13 +3,15 @@ from django.db import models
 import os
 
 # Create your models here.
+from polymorphic.polymorphic_model import PolymorphicModel
+
 
 def get_image_path(instance, filename):
     folder_name = str(instance.user.username)
     return os.path.join('images/profile_images/', folder_name, filename)
 
 
-class SiteUser(models.Model):
+class SiteUser(PolymorphicModel):
     primary_user = models.OneToOneField(User, related_name='site_user')
     location = models.ForeignKey('Location', null=True, blank=True, related_name='location_owner')
     image = models.ImageField(upload_to='base/profile_images/', blank=True, null=True)
@@ -23,6 +25,12 @@ class Location(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=100)
-    
+    collection = models.ForeignKey('CityCollection', null=True, black=True)
+
     def __str__(self):
         return self.name
+
+
+class CityCollection(models.Model):
+    name = models.CharField(max_length=100)
+
