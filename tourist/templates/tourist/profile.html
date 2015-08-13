@@ -15,6 +15,9 @@
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
+{% block breadcrumb %}
+    پروفایل
+{% endblock %}
 {% block menu_content %}
     <div class="rtl">
         <div class="right floated" id="profpic">
@@ -24,7 +27,7 @@
                         {% if image %}
                             <img style="width: 270px; min-height: 240px;" src={{ image.url }}>
                         {% else %}
-                            <img style="width: 270px; min-height: 240px;" src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                            <img style="width: 270px; min-height: 240px;" src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
                         {% endif %}
                     </div>
 

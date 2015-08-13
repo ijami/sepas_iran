@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
 __author__ = 'آرمان'
 
 from django.shortcuts import render
