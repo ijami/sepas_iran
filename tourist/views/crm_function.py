@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from datetime import datetime, timedelta, timezone
-
+from django.db.models import Max
 # Create your views here.
 
 
@@ -38,11 +38,15 @@ def send_recommended_mail(user_id):
     except Tourist.DoesNotExist:
         return Http404
     tours_past = tourist.factors.all()
-    tours_recommended = []
+    recommended = []
     for factor in tours_past:
-        ariports = factor.serviceitem_set.all().filter(instanceof=Flight)
-        for tour in ariports:
-            tour.destination.city
+        flights = factor.serviceitem_set.filter(instanceof=Flight)
+        flights_exist = Flight.get_exist()
+        for flight in flights:
+            airports = Airport.objects.filter(city=flight.destination.city)
+            for airport in airports:
+                recommended.extend(flights_exist.filter(destination=airport).all())
+
 #
 # def send_news():
 #     tourists = Tourist.objects.all()
