@@ -25,7 +25,7 @@ class Location(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=100)
-    collection = models.ForeignKey('CityCollection', null=True, black=True)
+    collection = models.ForeignKey('CityCollection', null=True, blank=True)
 
     def __str__(self):
         return self.name
