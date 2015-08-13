@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^manage/', include('management.urls')),
     url(r'^sale/', include('sale.urls')),
     url(r'^messaging/', include('messaging.urls')),
+    url(r'^service_provider/', include('service_provider.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

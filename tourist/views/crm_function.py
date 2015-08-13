@@ -42,7 +42,7 @@ def send_recommended_mail(user_id):
     for factor in tours_past:
         ariports = factor.serviceitem_set.all().filter(instanceof=Flight)
         for tour in ariports:
-            tour.destination
+            tour.destination.city
 #
 # def send_news():
 #     tourists = Tourist.objects.all()

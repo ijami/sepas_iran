@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polymorphic',
     'complain',
     'management',
     'messaging',
@@ -139,3 +140,4 @@ CRON_CLASSES = [
     "base.views.tasks.MyCronJob"
 ]
 # CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
