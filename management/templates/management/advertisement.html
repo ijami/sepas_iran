@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'management/css/advertisement.css' %}"/>
+    <script src="{% static 'management/javascript/advertisement.js' %}"></script>
 {% endblock %}
 {% block menu_content %}
     <h2 class="ui header">
@@ -20,7 +21,7 @@
         </div>
         <div class="ad_select">
             <div class="ui input">
-                <input type="text">
+                <input type="text" class="auto-complete">
             </div>
         </div>
     </section>

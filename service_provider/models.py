@@ -20,6 +20,7 @@ class Hotel(ServiceProvider):
     has_conference_hall = models.BooleanField()
     map_widget = models.CharField(max_length=500)
 
+
 class AirLine(ServiceProvider):
     is_international = models.BooleanField()
 

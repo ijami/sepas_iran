@@ -1,6 +1,7 @@
 __author__ = 'Iman'
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
+from .views import advertise_search
 
 urlpatterns = [
     # Examples:
@@ -12,5 +13,6 @@ urlpatterns = [
         name='service-provider-activate'),
     url(r'^buy_report', TemplateView.as_view(template_name='management/buy_report.html'), name='buy_report'),
     url(r'^sell_report', TemplateView.as_view(template_name='management/advertisement.html'), name='sell_report'),
-    url(r'^$', TemplateView.as_view(template_name='management/dashboard.html'), name='management_dashboard')
+    url(r'^$', TemplateView.as_view(template_name='management/dashboard.html'), name='management_dashboard'),
+    url(r'^search/$', advertise_search.search, name='search_advertise')
 ]
