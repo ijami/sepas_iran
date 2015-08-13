@@ -1,0 +1,11 @@
+{
+  "name": "Sepas Iran",
+  "description": "only ui",
+  "license": "none",
+  "private": true,
+  "dependencies": {
+    "jquery": "*",
+    "semantic-ui": "*",
+    "bootstrap": "*"
+  }
+}
