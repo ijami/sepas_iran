@@ -1,11 +1,12 @@
 from django.db import models
+from polymorphic.polymorphic_model import PolymorphicModel
 
 from base.models import City, SiteUser
 from service_provider.models import AirLine, Hotel, TravelAgency
 from tourist.models import Tourist
 
 
-class Service(models.Model):
+class Service(PolymorphicModel):
     price = models.IntegerField()
     capacity = models.IntegerField()
     sold_number = models.IntegerField()
@@ -30,7 +31,8 @@ class Flight(Service):
     time = models.DateTimeField()
 
     def __str__(self):
-        return self.flight_number + ": " + "از" + self.origin.city.name + "به"+ self.destination.city.name
+        return self.flight_number + ": " + "از" + self.origin.city.name + "به"\
+               + self.destination.city.name
 
 
 class Room(Service):
@@ -60,7 +62,7 @@ class Tour(Service):
     tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
-        self.travel_agency.name + ": " + "از " + self.origin.city.name + " به " + self.destination.city.name
+        return self.travel_agency.name + ": " + "از " + self.origin.city.name + " به " + self.destination.city.name
 
 
 class Airport(models.Model):
