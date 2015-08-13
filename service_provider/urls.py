@@ -5,5 +5,5 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     # Examples:
-    url(r'^panel/$', 'service_provider.views.panel_view.panel'),
+    url(r'^panel/$', 'service_provider.views.panel_view.panel', name='service_provider_panel'),
 ]

@@ -1,0 +1,22 @@
+{% extends 'provider_dashbord_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'service_provider/css/panel.css' %}">
+{% endblock %}
+{% block breadcrumb %}
+    ??????? ???? ????
+{% endblock %}
+{% block menu_content %}
+
+   <div class="ui three column centered grid" id="provider_profile">
+       <div class="column" id="profpic_container">
+           <img class="ui medium rounded image" src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
+       </div>
+       <div class="five column centered row" id="provider_information">
+          <div class="seven wide column"></div>
+          <div class="seven wide column"></div>
+       </div>
+   </div>
+
+
+{% endblock %}

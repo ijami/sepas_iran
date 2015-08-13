@@ -8,6 +8,9 @@
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
+{% block breadcrumb %}
+اصلاح مشخصات
+{% endblock %}
 {% block menu_content %}
             <form class="ui form" id="my_form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -31,7 +34,7 @@
                         {% if image %}
                             <img src={{ image.url }}>
                         {% else %}
-                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
                         {% endif %}
                     </div>
                 </div>
