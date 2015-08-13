@@ -9,29 +9,39 @@ from tourist.models import Tourist
 
 class TouristCreationForm(ModelForm):
     first_name = forms.CharField(max_length=100, label="نام", required=True,
+                                 error_messages={'required': "پر کردن فیلد 1 الزامی است"},
                                  widget=forms.TextInput(attrs={'placeholder': 'نام'}))
     last_name = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
+                                error_messages={'required': "پر کردن فیلد 2 الزامی است"},
                                 widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
     username = forms.CharField(max_length=100, label="نام کاربری", required=True,
+                               error_messages={'required': "پر کردن فیلد 3 الزامی است"},
                                widget=forms.TextInput(attrs={'placeholder': 'نام کاربری'}))
     email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
+                             error_messages={'required': "پر کردن فیلد 4 الزامی است"},
                              widget=forms.EmailInput(attrs={'placeholder': 'example@host.com'}))
     password1 = forms.CharField(max_length=100, label="گذرواژه", required=True,
+                                error_messages={'required': "پر کردن فیلد 4 الزامی است"},
                                 widget=forms.PasswordInput(attrs={'placeholder': 'گذرواژه'}))
     password2 = forms.CharField(max_length=100, label="تکرار گذرواژه", required=True,
+                                error_messages={'required': "پر کردن فیلد 5 الزامی است"},
                                 widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}))
-    city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False)
+    city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False,
+                                  error_messages={'required': "پر کردن فیلد شهر الزامی است"})
 
     address = forms.CharField(max_length=500, label="آدرس", required=False,
+                              error_messages={'required': "پر کردن فیلد آدرس الزامی است"},
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل'}))
     telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=False,
-                                    widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
+                                error_messages={'required': "پر کردن فیلد شماره تلفن الزامی است"},
+                                widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
 
-    birth_day = forms.DateField(label="تاریخ تولد", required=False)
+    birth_day = forms.DateField(label="تاریخ تولد", required=False,
+                                error_messages={'required': "پر کردن فیلد تولد الزامی است"})
 
     class Meta:
         model = Tourist
-        fields = ("first_name", "last_name", "username", "email", 'telephone', 'birth_day')
+        fields = ('telephone', 'birth_day')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -56,7 +66,12 @@ class TouristCreationForm(ModelForm):
 
     def save(self, commit=True):
         tourist = super(TouristCreationForm, self).save(commit=False)
-        tourist.set_password(self.cleaned_data["password1"])
+        user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
+                                        password=self.cleaned_data["password1"])
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.save()
+        tourist.primary_user = user
         location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
         location.save()
         cart = Cart()
@@ -79,6 +94,7 @@ class TouristEditProfileForm(ModelForm):
     city = forms.CharField()
     address = forms.CharField(max_length=1000)
     telephone = forms.CharField(max_length=20)
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class' : 'ui inverted button'}))
 
     def __init__(self, *args, instance=None, **kwargs):
         super(TouristEditProfileForm, self).__init__(*args, **kwargs)
@@ -91,11 +107,11 @@ class TouristEditProfileForm(ModelForm):
             self.fields['city'].initial = instance.location.city
             self.fields['address'].initial = instance.location.address
             self.fields['telephone'].initial = instance.telephone
-            self.image = instance.image
+            self.fields['image'].inital = instance.image
 
     class Meta:
         model = Tourist
-        fields = ['birth_day', 'telephone']
+        fields = ['birth_day', 'telephone', 'image']
 
     def save(self, commit=True):
         tourist = User.objects.get(username=self['username'].value()).site_user.tourist
@@ -106,4 +122,6 @@ class TouristEditProfileForm(ModelForm):
         tourist.location.address = self['address'].value()
         tourist.location.save()
         tourist.telephone = self['telephone'].value()
+        if self['image'].value() != None:
+            tourist.image = self['image'].value()
         tourist.save()

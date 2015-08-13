@@ -118,3 +118,4 @@ STATICFILES_DIRS = (
 SITE_URL = 'http://localhost:8000'
 LOGIN_URL = '/accounts/login/'
 
+FILE_UPLOAD_PERMISSIONS = 0o777

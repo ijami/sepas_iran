@@ -6,6 +6,11 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
+    <script type="text/javascript">
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
@@ -13,11 +18,14 @@
 {% block menu_content %}
     <div class="rtl">
         <div class="right floated" id="profpic">
-            <div class="ui special cards">
+            <div class="ui  cards">
                 <div class="card">
                     <div class="image">
-
-                        <img src={{ image.url }}>
+                        {% if image %}
+                            <img style="width: 270px; min-height: 240px;" src={{ image.url }}>
+                        {% else %}
+                            <img style="width: 270px; min-height: 240px;" src="{% static 'bower_components/semantic-ui/examples/assets/images/avatar/tom.jpg' %}">
+                        {% endif %}
                     </div>
 
                 </div>
@@ -51,7 +59,7 @@
                 </tr>
             </table>
             <div id="buttons">
-                <div class="ui buttons">
+                <div class="ui buttons" style="float: left; margin-top: 22px;">
                     <a href="{% url 'profile_modify' %}">
                     <button class="ui red button">
 
@@ -64,7 +72,6 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom: 20px; height: 10px;"></div>
     </div>
 {% endblock %}
 

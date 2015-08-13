@@ -9,6 +9,7 @@ class Service(models.Model):
     price = models.IntegerField()
     capacity = models.IntegerField()
     sold_number = models.IntegerField()
+    tag_line = models.CharField(max_length=255)
 
 
 class Comment(models.Model):
