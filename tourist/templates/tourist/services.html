@@ -1,197 +1,47 @@
 {% extends 'tourist/dashbord.html' %}
 {% load staticfiles %}
+{% load static %}
+{#{% block head %}#}
+{#    <link rel="stylesheet" href="{% static 'tourist/css/services.css' %}"/>#}
+{#{% endblock %}#}
 
-{% block head %}
-    <link rel="stylesheet" href="{% static 'tourist/css/services.css' %}"/>
+{% block breadcrumb %}
+    ?????
 {% endblock %}
 
 {% block menu_content %}
+    <div class="ui link cards">
 
-    <div class="ui segment" id="list_container">
-
-<div class="ui right floated divided items rtl">
-  <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-      <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="item">
-      <div class="image">
-          <img src="{% static 'home/images/tour.jpeg' %}">
-      </div>
-      <div class="content">
-          <a class="header">
-          تور گلدختران پلدختر
-          </a>
-          <div class="meta">
-              <span class="cinema">بهترین تور شرکت سگدختر</span>
-          </div>
-          <div class="description">
-              <ul>
-                  <li>مورد اول از لیست مشخصات تور</li>
-                  <li>مورد دوم از لیست مشخصات تور</li>
-                  <li>مورد سوم از لیست مشخصات تور</li>
-              </ul>
-          </div>
-          <div class="extra">
-              <div class="ui left floated orange button">
-          شکایت
-                  <i class="left chevron icon"></i>
-              </div>
-              <div class="ui left floated yellow button">
-          امتیازدهی
-                  <i class="left chevron icon"></i>
-              </div>
-          </div>
-      </div>
-  </div>
-
+    {% for service in services %}
+            <div class="card">
+                <div class="image">
+                    <img src="{{ service.service.image }}">
+                </div>
+                <div class="content">
+                    <div class="header">
+                        {{ service.service.name }}
+                    </div>
+                    <div class="meta">
+                        <a>{{ service.number }}</a>
+                    </div>
+                    <div class="description">
+                        {{ service.service.tag_line }}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <div class="ui basic green button">???</div>
+                        <div class="ui basic red button">???</div>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
 
     </div>
+
+
 </div>
+
 {% endblock %}
+
+
