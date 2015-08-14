@@ -435,6 +435,7 @@ a:hover {
     float: right;
     padding-top: 6px;
     margin-left: 0px;
+    direction: rtl;
 }
 
 #sign-up {

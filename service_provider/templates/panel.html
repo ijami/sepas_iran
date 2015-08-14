@@ -28,6 +28,17 @@
                        {{ context.degree }}
                        ستاره
                </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
                <div class="ui horizontal divider">توضیحات</div>
                <div class="ten wide column" style="text-align: right">
                 {{ context.short_description }}
@@ -160,9 +171,65 @@
                     </a>
                </div>
 
-
+{#از این جا به بعد به شرطیست که کاربر وارد شده مربوط به یک آژانس هوایپیمایی باشد  #}
            {% elif context.type == 'airline' %}
+
+               <div class="six wide column" style="text-align: right">
+               نام دفتر هواپیمایی:
+               {{ context.name }}
+               </div>
+               <div class="four wide column" style="text-align: right">
+               نوع:
+                       {% if context.is_international %}
+                           بین المللی
+                                     {% else %}
+                           داخلی
+                       {% endif %}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
+               <div class="ui horizontal divider">توضیحات</div>
+               <div class="ten wide column" style="text-align: right">
+                {{ context.short_description }}
+                   <br><br>
+                {{ context.long_description|linebreaks }}
+               </div>
+
+
+{#               از این جا به بعد به شرطیست که کاربر وارد شده، خدمت سازی از جنس دفتر خدمات مسافرتی باشد               #}
            {% elif context.type == 'agency' %}
+
+               <div class="ten wide column" style="text-align: right">
+نام دفتر خدمات مسافرتی:
+               {{ context.name }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
+               <div class="ui horizontal divider">توضیحات</div>
+               <div class="ten wide column" style="text-align: right">
+                {{ context.short_description }}
+                   <br><br>
+                {{ context.long_description|linebreaks }}
+               </div>
+
            {% endif %}
 
        </div>

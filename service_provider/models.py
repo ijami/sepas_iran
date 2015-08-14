@@ -12,6 +12,7 @@ class ServiceProvider(SiteUser):
 
 
 
+
 class Hotel(ServiceProvider):
     degree = models.IntegerField()
     has_restaurant = models.BooleanField(default=False)
@@ -36,6 +37,8 @@ class Hotel(ServiceProvider):
             'type': 'hotel',
             'image': self.image,
             'name': self.name,
+            'phone': self.telephone,
+            'address': self.location,
             'short_description': self.short_description,
             'long_description': self.long_description,
             'degree': self.degree,
@@ -53,7 +56,7 @@ class Hotel(ServiceProvider):
             'has_protection_system': self.has_protection_system,
             'has_shop_center': self.has_shop_center,
             'has_gamenet': self.has_gamenet,
-            'has_photo_studio': self.has_photo_studio
+            'has_photo_studio': self.has_photo_studio,
         }
         return context
 
@@ -65,6 +68,8 @@ class AirLine(ServiceProvider):
             'type': 'airline',
             'image': self.image,
             'name': self.name,
+            'address': self.location,
+            'phone': self.telephone,
             'short_description': self.short_description,
             'long_description': self.long_description,
             'is_international': self.is_international
@@ -79,6 +84,8 @@ class TravelAgency(ServiceProvider):
             'type': 'agency',
             'image': self.image,
             'name': self.name,
+            'address': self.location,
+            'phone': self.telephone,
             'short_description': self.short_description,
             'long_description': self.long_description
         }
