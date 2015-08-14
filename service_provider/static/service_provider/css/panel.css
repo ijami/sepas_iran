@@ -1,6 +1,6 @@
 
 div.grid div {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 #provider_profile {
@@ -19,4 +19,35 @@ div.grid div {
 
 #provider_information div.column {
     height: auto;
+    text-align: right;
+    direction: rtl;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 7px;
+    /*border-bottom: 1px solid gainsboro;*/
+}
+
+table tr {
+    text-align: center;
+    direction: rtl;
+    vertical-align: top;
+    padding: 5px 15px;
+}
+
+@font-face {
+    font-family: 'yekan';
+    src: url(../../../../base/static/fonts/yekan.ttf);
+}
+
+div.wide.column {
+    font-family: 'yekan'!important;
+    font-size: 16px;
+}
+
+div#labels {
+    /*text-align: right;*/
+}
+
+div#labels a {
+    margin-bottom: 10px;
 }

@@ -17,6 +17,9 @@ class SiteUser(PolymorphicModel):
     image = models.ImageField(upload_to='base/profile_images/', blank=True, null=True)
     telephone = models.CharField(max_length=20)
 
+    def get_fields(self):
+        pass
+
 
 class Location(models.Model):
     city = models.ForeignKey('City', related_name='locations')
