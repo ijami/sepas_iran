@@ -4,12 +4,16 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
-
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
+{% block breadcrumb %}
+اصلاح مشخصات
+{% endblock %}
 {% block menu_content %}
+            <form class="ui form" id="my_form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
     <div class="rtl">
         <div class="right floated" id="profpic">
@@ -19,26 +23,24 @@
                         <div class="ui dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <div>
-                                        <input type="file" id="files" class="hidden"/>
-                                        <label for="files" id="button">تغییر عکس</label>
-                                    </div>
+                                    <form  enctype="multipart/form-data" action="{% url 'upload_image' %}">
+                                        <div id="chng_img_btn">
+                                            {{ form.image }}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        {% if form.image %}
-                            <img src="{{ form.image.url }}">
+                        {% if image %}
+                            <img src={{ image.url }}>
                         {% else %}
-                            <img src="{% static 'tourist/images/default_profile.jpg'%}">
+                            <img src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
                         {% endif %}
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="left floated" id="user_information">
-            <form class="ui form" action="{% url 'profile_modify' %}" method="post">
-                {% csrf_token %}
                 <div class="field">
                     <div class="two fields">
                         <div class="field">
@@ -60,10 +62,10 @@
                             {{ form.birth_day }}
                         </div>
                     </div>
-                    <div class="three fields">
-                        <div class="field">
+                    <div class="three fields" >
+                        <div class="field" >
                             <label>محل سکونت</label>
-                            <select class="ui fluid dropdown">
+                            <select   id="sds" style="text-align: right!important; height: 3em!important; max-height: 400px!important;">
                                 <option value="-1">
                                     ...
                                 </option>
@@ -237,20 +239,17 @@
                             {{ form.telephone }}
                         </div>
                     </div>
-                </div>
-                <div id="buttons">
-                    <button type="submit" class="ui black button">ثبت تغییرات</button>
+                    <button type="submit" class="ui left floated black large button">ثبت تغییرات</button>
                 </div>
             </form>
-
-
-        </div>
-        <div style="margin-bottom: 20px; height: 100px;"></div>
     </div>
 
-    <script>
+    <script type="text/javascript">
         $('select.dropdown')
                 .dropdown();
+        $(document).ready(function size_resolution(){
+            $('select#sds').css("height", "3em!important");
+        });
     </script>
 {% endblock %}
 

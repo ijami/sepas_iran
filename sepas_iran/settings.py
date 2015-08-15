@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polymorphic',
     'complain',
     'management',
     'messaging',
@@ -119,3 +120,4 @@ STATICFILES_DIRS = (
 SITE_URL = 'http://localhost:8000'
 LOGIN_URL = '/accounts/login/'
 
+FILE_UPLOAD_PERMISSIONS = 0o777

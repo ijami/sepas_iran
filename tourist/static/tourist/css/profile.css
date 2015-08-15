@@ -3,13 +3,16 @@
     display: inline-block;
     width: auto;
     height: auto;
+    min-height: 280px;
+    max-height: 320px;
+    max-width: 270px;
 }
 
 #user_information {
     display: inline-block;
     float: left;
-    width: 610px;
-    height: 350px;
+    width: 65%;
+    height: auto;
 }
 
 input[type='file'] {
@@ -31,7 +34,7 @@ input[type='file'] {
     vertical-align: middle;
     border: none;
     position: relative;
-    top: 35px;
+    margin-top: 18px;
     direction: rtl;
     text-align: right;
 }
@@ -44,12 +47,22 @@ input[type='file'] {
     text-align: right;
 }
 
-#buttons {
-    position: relative;
-    top: 70px;
-    left: 10px;
-    width: auto;
-    height: auto;
-    float: left;
+#chng_img_btn {
+    width: 100px;
+    height: 40px;
+    background-image: url("../images/changepic.png")!important;
+    cursor: pointer;
+    border: 2px solid aqua;
+    padding-top: 10px;
+    margin: auto;
+}
 
+
+select option {
+    text-align: right;
+    direction: rtl;
+}
+
+#my_form {
+    height: auto;
 }

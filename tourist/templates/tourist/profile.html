@@ -6,66 +6,75 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'tourist/css/profile.css' %}"/>
     <script type="text/javascript" src="{% static 'tourist/javascript/profile.js' %}"></script>
+    <script type="text/javascript">
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
 {% endblock %}
 {% block title %}
     <title>پنل کاربری</title>
 {% endblock %}
+{% block breadcrumb %}
+    پروفایل
+{% endblock %}
 {% block menu_content %}
     <div class="rtl">
-                            <div class="right floated" id="profpic">
-                                <div class="ui special cards">
-                                    <div class="card">
-                                        <div class="image">
-                                            {% if image %}
-                                                <img src={{ image.url }}>
-                                            {% else %}
-                                                <img src="{% static 'tourist/images/default_profile.jpg'%}">
-                                            {% endif %}
-                                        </div>
+        <div class="right floated" id="profpic">
+            <div class="ui  cards">
+                <div class="card">
+                    <div class="image">
+                        {% if image %}
+                            <img style="width: 270px; min-height: 240px;" src={{ image.url }}>
+                        {% else %}
+                            <img style="width: 270px; min-height: 240px;" src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
+                        {% endif %}
+                    </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="left floated" id="user_information">
-                                <table id="information">
-                                    <tr>
-                                        <td>نام و نام خانوادگی :
-                                            {{ name }}
-                                        </td>
-                                        <td>تاریخ تولد:
-                                        {{ birth_day }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>نام کاربری :
-                                            {{ user_name }}
-                                        </td>
-                                        <td>ایمیل :
-                                            {{ mail }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>محل سکونت :
-                                        {{ address }}
-                                        </td>
-                                        <td>شماره تلفن :
-                                            {{ phone }}
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div id="buttons">
-                                    <div class="ui buttons">
-                                        <button class="ui red button" >
-                                            <a href="panel/modify">
-                                            اصلاح مشخصات
-                                            </a>
-                                        </button>
-                                        <div class="or" data-text="یا"></div>
-                                        <button class="ui black button">تغییر کلمه عبور</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-bottom: 20px; height: 10px;"></div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="left floated" id="user_information">
+            <table id="information">
+                <tr>
+                    <td>نام و نام خانوادگی :
+                        {{ name }}
+                    </td>
+                    <td>تاریخ تولد:
+                        {{ birth_day }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>نام کاربری :
+                        {{ user_name }}
+                    </td>
+                    <td>ایمیل :
+                        {{ mail }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>محل سکونت :
+                        {{ address }}
+                    </td>
+                    <td>شماره تلفن :
+                        {{ phone }}
+                    </td>
+                </tr>
+            </table>
+            <div id="buttons">
+                <div class="ui buttons" style="float: left; margin-top: 22px;">
+                    <a href="{% url 'profile_modify' %}">
+                    <button class="ui red button">
+
+                            اصلاح مشخصات
+
+                    </button>
+                    </a>
+                    <div class="or" data-text="یا"></div>
+                    <button class="ui black button">تغییر کلمه عبور</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 

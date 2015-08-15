@@ -1,0 +1,22 @@
+
+div.grid div {
+    border: 1px solid black;
+}
+
+#provider_profile {
+    margin-top: 25px;
+}
+
+#profpic_container {
+    height: auto;
+    min-height: 160px;
+    border: 1px solid antiquewhite;
+}
+
+#provider_information {
+    margin-top: 22px;
+}
+
+#provider_information div.column {
+    height: auto;
+}

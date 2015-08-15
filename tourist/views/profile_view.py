@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
-
+from django.conf import settings
 __author__ = 'Iman'
 
 @login_required
@@ -16,7 +16,7 @@ def profile_view(request):
                 'mail': tourist.primary_user.email,
                 'phone': tourist.telephone,
                 'birth_day': tourist.birth_day,
-                'image': tourist.image
+                'image': tourist.image,
             }
             return render(request, 'tourist/profile.html', context)
         return HttpResponse("You don't have permition to this page")
