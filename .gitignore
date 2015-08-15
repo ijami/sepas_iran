@@ -63,7 +63,12 @@ target/
 
 *.map
 */.sass-cache/***
-base/static/bower_components/****
+base/static/bower_components/**/*
+!base/static/bower_components/persian-datepicker/dist/js/persian-datepicker-0.4.5.js
+
+
+
+
 base/images
 
 # migration
@@ -98,5 +103,3 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
-
-!base/static/bower_components/persian-datepicker/dist/js/persian-datepicker-0.4.5.js

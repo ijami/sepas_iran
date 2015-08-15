@@ -2,9 +2,6 @@
 {% load staticfiles %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'service_provider/css/register_style.css' %}"/>
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css' %}"/>#}
-    {##}
-    {#    <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>#}
     <link rel="stylesheet"
           href="{% static 'bower_components/persian-datepicker/dist/css/persian-datepicker-0.4.5.min.css' %}"/>
     <script src="{% static 'bower_components/persian-date/dist/0.1.8/persian-date-0.1.8.js' %}"></script>
@@ -45,64 +42,90 @@
                  id="register_grid">
                 <div class="column right aligned" id="site_benefits">
                     <div>
-                        <i class="circular inverted dollar icon yellow"></i><strong>با تجارت الکترونیک </strong>درآمد خود را چند برابر کنید
+                        <i class="circular inverted dollar icon yellow"></i><strong>با تجارت الکترونیک </strong>درآمد
+                        خود را چند برابر کنید
                     </div>
                     <div>
                         <i class="line chart big icon teal"></i><strong>گزارش های مدیریتی </strong>همیشه در اختیار شماست
                         کنید
                     </div>
                     <div>
-                        <i class="users big icon orange"></i><strong>با پاسخ به بازخورد کاربران </strong>محبوبیت خود را زیاد کنید
+                        <i class="users big icon orange"></i><strong>با پاسخ به بازخورد کاربران </strong>محبوبیت خود را
+                        زیاد کنید
                     </div>
                     <div>
-                        <i class="settings big icon red"></i>سپاس ایران در سیستم خدمات حضوری شما <strong>دخالت نمی کند</strong>
+                        <i class="settings big icon red"></i>سپاس ایران در سیستم خدمات حضوری شما <strong>دخالت نمی
+                        کند</strong>
                     </div>
                     <div>
-                        <i class="privacy big icon green"></i><strong>با سرورهای امن ما، </strong>از امنیت اطلاعات خود مطمئن باشید
+                        <i class="privacy big icon green"></i><strong>با سرورهای امن ما، </strong>از امنیت اطلاعات خود
+                        مطمئن باشید
                     </div>
                 </div>
                 <div class="column right aligned">
                     <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
                         {% csrf_token %}
-                        <div class="two fields">
-                            <div class="field {% if form.first_name.errors %}error{% endif %}">
-                                {{ form.first_name.label_tag }}
-                                {#                            <input type="text" name="first-name" placeholder="نام">#}
-                                {{ form.first_name }}
-                            </div>
-                            <div class="field {% if form.last_name.errors %}error{% endif %}">
+                        <div class="field">
+                            <label>خدمت ارائه شده</label>
 
-                                {{ form.last_name.label_tag }}
-                                {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
-                                {{ form.last_name }}
+                            <div class="ui selection dropdown">
+                                <input type="hidden" name="gender">
+                                <i class="dropdown icon"></i>
+
+                                <div class="default text">انتخاب کنید</div>
+                                <div class="menu">
+                                    <div class="item" data-value="tour">تور</div>
+                                    <div class="item" data-value="hotel">هتل</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="field {% if form.username.errors %}error{% endif %}">
-                            {{ form.username.label_tag }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                            {{ form.username }}
+
+                        <div class="special-form" data-tab="tour">
+                            <div class="two fields">
+                                <div class="field {% if form.first_name.errors %}error{% endif %}">
+                                    {{ form.first_name.label_tag }}
+                                    {#                            <input type="text" name="first-name" placeholder="نام">#}
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="field {% if form.last_name.errors %}error{% endif %}">
+
+                                    {{ form.last_name.label_tag }}
+                                    {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            <div class="field {% if form.username.errors %}error{% endif %}">
+                                {{ form.username.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.username }}
+                            </div>
+                            <div class="field {% if form.email.errors %}error{% endif %}">
+                                {{ form.email.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.email }}
+                            </div>
                         </div>
-                        <div class="field {% if form.email.errors %}error{% endif %}">
-                            {{ form.email.label_tag }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                            {{ form.email }}
+
+                        <div class="special-form" hidden="hidden" data-tab="hotel">
+                            <div class="field {% if form.password1.errors %}error{% endif %}">
+                                {#                            <label>پست الکترونیک</label>#}
+                                {{ form.password1.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.password1 }}
+                            </div>
+                            <div class="field {% if form.password2.errors %}error{% endif %}">
+                                {{ form.password2.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.password2 }}
+                            </div>
+                            <div class="field {% if form.telephone.errors %}error{% endif %}">
+                                {{ form.telephone.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.telephone }}
+                            </div>
                         </div>
-                        <div class="field {% if form.password1.errors %}error{% endif %}">
-                            {#                            <label>پست الکترونیک</label>#}
-                            {{ form.password1.label_tag }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                            {{ form.password1 }}
-                        </div>
-                        <div class="field {% if form.password2.errors %}error{% endif %}">
-                            {{ form.password2.label_tag }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                            {{ form.password2 }}
-                        </div>
-                        <div class="field {% if form.telephone.errors %}error{% endif %}">
-                            {{ form.telephone.label_tag }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                            {{ form.telephone }}
-                        </div>
+
+
                         <div class="field {% if form.birth_day.errors %}error{% endif %}">
                             {{ form.birth_day.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
