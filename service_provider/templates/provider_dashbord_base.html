@@ -17,7 +17,7 @@
                     <div class="item">
                         <div class="header">افزودن خدمت</div>
                         <div class="menu">
-                            <a class="item" href="{% url 'service_list' %}">افزودن خدمت جدید</a>
+                            <a class="item" href="{% url 'new_service' %}">افزودن خدمت جدید</a>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
             margin-bottom: 15px; box-shadow: honeydew; margin-right: 10px;">
                 <div class="ui container segment right_aligned" style="border: none; box-shadow: none">
                     <div class="ui small breadcrumb">
-                        <a class="section" href="{{ site_url }}">خانه</a>
+                        <a class="section" href="{% url  'home' %}">خانه</a>
                         <i class="left chevron icon divider"></i>
                         <a class="section" href="{% url 'service_provider_panel' %}">پنل کاربری</a>
                         <i class="left chevron icon divider"></i>
