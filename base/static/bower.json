@@ -7,5 +7,6 @@
     "jquery": "*",
     "semantic-ui": "*",
     "bootstrap": "*"
+	"persian-datepicker": "*"
   }
 }
