@@ -11,6 +11,8 @@
 
 #register_section .header img.icon{
     margin-bottom: 5px !important;
+    height: 64px;
+    width: auto;
 }
 
 #register_section > .header div{
@@ -59,16 +61,21 @@ body{
 #register_grid .column{
     padding: 20px 40px 10px 0px;
     direction: rtl;
-
 }
 
 
 #register_grid .column .icon{
-    padding-left: 45px;
+    margin-left: 15px;
+}
+
+
+#register_grid .column .icon.circular{
+    margin-right: 10px;
 }
 
 #register_grid #site_benefits div{
     padding-bottom: 35px;
+    font-size: 15px;
 }
 
 #register_grid .column form{
