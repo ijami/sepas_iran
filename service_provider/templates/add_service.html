@@ -1,0 +1,25 @@
+{% extends 'provider_dashbord_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'service_provider/css/add_service.css' %}">
+{% endblock %}
+{% block breadcrumb %}
+افزودن خدمت
+{% endblock %}
+
+{% block menu_content %}
+     <form class="ui form" id="my_form" action="{% url 'profile_modify' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+        {% if type == 'agency' %}
+            {% for foo in form %}
+                {{ foo.name }}{{ foo }}
+            {% endfor %}
+
+        {% elif user.site_user.get_fields.type == 'hotel' %}
+
+        {% elif user.site_user.get_fields.type == 'airline' %}
+
+        {% endif %}
+     </form>
+
+{% endblock %}
