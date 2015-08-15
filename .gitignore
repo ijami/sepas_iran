@@ -63,11 +63,7 @@ target/
 
 *.map
 */.sass-cache/***
-base/static/bower_components/**/*
-!base/static/bower_components/persian-datepicker/dist/js/persian-datepicker-0.4.5.js
-
-
-
+base/static/bower_components/*
 
 base/images
 
