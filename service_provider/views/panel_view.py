@@ -4,5 +4,5 @@ from django.conf import settings
 
 
 def panel(request):
-    return render(request, 'panel.html', {'site_url': settings.SITE_URL})
+    return render(request, 'service_provider/panel.html', {'site_url': settings.SITE_URL})
 
