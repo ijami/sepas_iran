@@ -1,6 +1,7 @@
-from django.forms.models import ModelForm
+from django.forms import Form
 from django import forms
 from django.contrib.auth.models import User
+from django.template.defaultfilters import register
 
 from base.models import City, Location
 from sale.models import Cart
@@ -8,6 +9,11 @@ from tourist.models import Tourist
 from jdatetime import date as jdate
 import datetime
 import re
+
+
+@register.filter(is_safe=True)
+def label_with_classes(value, arg):
+    return value.label_tag(attrs={'class': arg})
 
 
 class PersianDateField(forms.DateField):
@@ -33,7 +39,7 @@ class PersianDateField(forms.DateField):
             raise forms.ValidationError(self.default_error_messages['invalid'], code='invalid')
 
 
-class TouristCreationForm(ModelForm):
+class ServiceProviderCreationForm(Form):
     first_name = forms.CharField(max_length=100, label="نام", required=True,
                                  error_messages={'required': "پر کردن فیلد نام الزامی است"},
                                  widget=forms.TextInput(attrs={'placeholder': 'نام'}))
@@ -55,19 +61,27 @@ class TouristCreationForm(ModelForm):
     telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
                                 error_messages={'required': "پر کردن فیلد شماره تلفن الزامی است"},
                                 widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
-    birth_day = PersianDateField(label="تاریخ تولد", required=True,
-                                 error_messages={'required': "پر کردن فیلد تولد الزامی است"},
-                                 widget=forms.DateInput(attrs={'class': 'datepicker'}))
     city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False,
                                   error_messages={'required': "پر کردن فیلد شهر الزامی است"})
-
+    name = forms.CharField(max_length=100, label="نام شرکت", required=True,
+                           error_messages={'required': "پر کردن فیلد نام شرکت الزامی است"},
+                           widget=forms.TextInput(attrs={'placeholder': 'نام شرکت'}))
+    short_description = forms.CharField(max_length=100, label="توضیح مختصر", required=True,
+                                        error_messages={'required': "برای مثال: اولین شرکت خدمات جامع گردشگری ایران"},
+                                        widget=forms.TextInput(attrs={'placeholder': 'توضیح مختصر'}))
+    long_description = forms.CharField(max_length=100, label="توضیح بلند", required=False,
+                                       error_messages={'required': "پر کردن فیلد توضیح بلند اجباری است"},
+                                       widget=forms.Textarea(attrs={
+                                           'placeholder': 'توضیحاتی در مورد سابقه و خدمات ارائه شده توسط گردش ساز / یار',
+                                           'rows': '5'}))
+    image = forms.ImageField(label="عکس پروفایل کاربری", required=False,
+                             widget=forms.FileInput(attrs={'style': "display:none", 'accept': "image/*"}))
+    national_id = forms.IntegerField(min_value=0, max_value=10000000000, label="کد ملی", required=False,
+                                     error_messages={'required': "پر کردن فیلد کد ملی الزامی است"},
+                                     widget=forms.NumberInput(attrs={'placeholder': '0015557890'}))
     address = forms.CharField(max_length=500, label="آدرس", required=False,
                               error_messages={'required': "پر کردن فیلد آدرس الزامی است"},
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل', 'rows': '5'}))
-
-    class Meta:
-        model = Tourist
-        fields = ('telephone', 'birth_day')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -110,7 +124,7 @@ class TouristCreationForm(ModelForm):
             raise forms.ValidationError("شماره موبایل وارد شده معتبر نیست", code="invalid mobile number")
 
     def save(self, commit=True):
-        tourist = super(TouristCreationForm, self).save(commit=False)
+        tourist = super(ServiceProviderCreationForm, self).save(commit=False)
         user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
                                         password=self.cleaned_data["password1"])
         user.first_name = self.cleaned_data["first_name"]
@@ -126,44 +140,3 @@ class TouristCreationForm(ModelForm):
         if commit:
             tourist.save()
         return tourist
-
-
-class TouristEditProfileForm(ModelForm):
-    firstname = forms.CharField(max_length=100, label="نام", required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'نام'}))
-    lastname = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
-    username = forms.CharField(max_length=100, label="نام کاربری", required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'نام کاربری', 'readonly': 'readonly'}))
-    birth_day = forms.DateField(widget=forms.DateInput())
-    city = forms.CharField()
-    address = forms.CharField(max_length=1000)
-    telephone = forms.CharField(max_length=20)
-
-    def __init__(self, *args, instance=None, **kwargs):
-        super(TouristEditProfileForm, self).__init__(*args, **kwargs)
-        self.instance = instance
-        if instance:
-            self.fields['firstname'].initial = instance.primary_user.first_name
-            self.fields['lastname'].initial = instance.primary_user.last_name
-            self.fields['username'].initial = instance.primary_user.username
-            self.fields['birth_day'].initial = instance.birth_day
-            self.fields['city'].initial = instance.location.city
-            self.fields['address'].initial = instance.location.address
-            self.fields['telephone'].initial = instance.telephone
-            self.image = instance.image
-
-    class Meta:
-        model = Tourist
-        fields = ['birth_day', 'telephone']
-
-    def save(self, commit=True):
-        tourist = User.objects.get(username=self['username'].value()).site_user.tourist
-        tourist.primary_user.first_name = self['firstname'].value()
-        tourist.primary_user.last_name = self['lastname'].value()
-        tourist.primary_user.save()
-        tourist.birth_day = self['birth_day'].value()
-        tourist.location.address = self['address'].value()
-        tourist.location.save()
-        tourist.telephone = self['telephone'].value()
-        tourist.save()
