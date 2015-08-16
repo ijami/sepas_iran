@@ -1,0 +1,98 @@
+{% extends 'service_provider/provider_dashbord_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'service_provider/css/add_service.css' %}">
+{% endblock %}
+{% block breadcrumb %}
+افزودن خدمت
+{% endblock %}
+
+{% block menu_content %}
+     <form class="ui form" id="my_form" action="{% url 'new_service' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+        {% if type == 'agency' %}
+             <h4 class="ui dividing header">مشخصات تور</h4>
+            <div class="field">
+                <div class="fields">
+                    <div class="six wide field">
+                        <label>مبدا</label>
+                        {{ form.origin }}
+                    </div>
+                    <div class="six wide field">
+                        <label>مقصد</label>
+                        {{ form.destination }}
+                    </div>
+                    <div class="three wide field">
+                        <label>ظرفیت</label>
+                        {{ form.capacity }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="five wide field">
+                        <label>تاریخ رفت</label>
+                        {{ form.going_date }}
+                    </div>
+                    <div class="five wide field">
+                        <label>تاریخ برگشت</label>
+                        {{ form.return_date }}
+                    </div>
+                    <div class="five wide field">
+                        <label>قیمت واحد (هر نفر)</label>
+                        {{ form.price }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="five wide field">
+                        <label>نام هتل</label>
+                        {{ form.hotel_name }}
+                    </div>
+                    <div class="ten wide field">
+                        <label>توضیح کوتاه</label>
+                        {{ form.tag_line }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="fifteen wide field">
+                        <label>توضیحات</label>
+                        {{ form.description }}
+                    </div>
+                </div>
+            </div>
+
+
+        {% elif user.site_user.get_fields.type == 'hotel' %}
+
+            <div class="field"></div>
+
+        {% elif user.site_user.get_fields.type == 'airline' %}
+
+        {% endif %}
+        <div class="field">
+                <label for="file-upload" class="custom-file-upload">
+آپلود عکس خدمت (اختیاری)
+                </label>
+                {{ form.image }}
+            </div>
+
+        <div class="ui divider"></div>
+        <div id="buttons">
+                <div class="ui buttons" style="float: left; margin-top: 22px;">
+                    <a href="{% url 'new_service' %}">
+                    <button class="ui green button">
+                            افزودن تور
+                    </button>
+                    </a>
+                    <div class="or" data-text="یا"></div>
+                    <button class="ui red button">انصراف</button>
+                </div>
+        </div>
+     </form>
+
+{% endblock %}
+

@@ -2,11 +2,9 @@ from django.core.urlresolvers import reverse
 # from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from tourist.forms import TouristEditProfileForm
-from django.conf import settings
 
 
 __author__ = 'Iman'
-saved_setting = settings.SITE_URL
 
 def profile_edit_view(request):
     if request.method == 'GET':

@@ -8,5 +8,5 @@ def panel(request):
     user = request.user.site_user
     context = user.get_fields()
     data = {'context': context}
-    return render(request, 'panel.html', data, context_instance=RequestContext(request))
+    return render(request, 'service_provider/panel.html', data, context_instance=RequestContext(request))
 
