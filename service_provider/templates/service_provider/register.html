@@ -3,9 +3,9 @@
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'service_provider/css/register_style.css' %}"/>
     <link rel="stylesheet"
-          href="{% static 'bower_components/persian-datepicker/dist/css/persian-datepicker-0.4.5.min.css' %}"/>
-    <script src="{% static 'bower_components/persian-date/dist/0.1.8/persian-date-0.1.8.js' %}"></script>
-    <script src="{% static 'bower_components/persian-datepicker/dist/js/persian-datepicker-0.4.5.js' %}"></script>
+          href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
     <script type="text/javascript" src="{% static 'service_provider/javascript/register_script.js' %}"></script>
     {{ form.media }}
 {% endblock %}
@@ -65,6 +65,10 @@
                 <div class="column right aligned">
                     <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
                         {% csrf_token %}
+
+                        <h4 class="ui dividing header blue">
+                             مشخصات خود شرکت
+                        </h4>
                         <div class="field">
                             <label>خدمت ارائه شده</label>
 
@@ -74,13 +78,13 @@
 
                                 <div class="default text">انتخاب کنید</div>
                                 <div class="menu">
-                                    <div class="item" data-value="tour">تور</div>
-                                    <div class="item" data-value="hotel">هتل</div>
+                                    <div class="item" data-value="1" data-tab="tour">تور</div>
+                                    <div class="item" data-value="2" data-tab="hotel">هتل</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="special-form" data-tab="tour">
+                        <div class="ui tab special-form" data-tab="tour">
                             <div class="two fields">
                                 <div class="field {% if form.first_name.errors %}error{% endif %}">
                                     {{ form.first_name.label_tag }}
@@ -106,7 +110,7 @@
                             </div>
                         </div>
 
-                        <div class="special-form" hidden="hidden" data-tab="hotel">
+                        <div class="ui tab special-form" data-tab="hotel">
                             <div class="field {% if form.password1.errors %}error{% endif %}">
                                 {#                            <label>پست الکترونیک</label>#}
                                 {{ form.password1.label_tag }}
@@ -131,6 +135,9 @@
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.birth_day }}
                         </div>
+                        <h4 class="ui dividing header blue">
+                            مشخصات نماینده حقوقی شرکت
+                        </h4>
                         <div class="field {% if form.city.errors %}error{% endif %}">
                             {{ form.city.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
