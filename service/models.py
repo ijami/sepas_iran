@@ -25,15 +25,17 @@ class Comment(models.Model):
 
 
 class Flight(Service):
-    flight_number = models.CharField(max_length=10)
+    flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
-    origin = models.ForeignKey('Airport', related_name='departures')
-    destination = models.ForeignKey('Airport', related_name='arrivals')
-    time = models.DateTimeField()
+    origin = models.ForeignKey('base.City', related_name='flight_departures')
+    destination = models.ForeignKey('base.City', related_name='flight_arrivals')
+    date = models.DateTimeField()
+    time = models.TimeField()
+    airplane = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.flight_number + ": " + "از" + self.origin.city.name + "به"\
-               + self.destination.city.name
+        return self.flight_number + ": " + "از" + self.origin.name + "به"\
+               + self.destination.name
 
 
 class Room(Service):
@@ -43,7 +45,7 @@ class Room(Service):
     has_telephone = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.hotel.name + ": " + "اتاق " + self.number_of_bed + "تخته"
+        return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + "تخته"
 
 
 class Tour(Service):

@@ -2,6 +2,11 @@
 {% load staticfiles %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'service_provider/css/add_service.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'service_provider/javascript/add_service.js' %}"></script>
 {% endblock %}
 {% block breadcrumb %}
 افزودن خدمت
@@ -11,55 +16,55 @@
      <form class="ui form" id="my_form" action="{% url 'new_service' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
         {% if type == 'agency' %}
-             <h4 class="ui dividing header">مشخصات تور</h4>
+            <h4 class="ui dividing header">مشخصات تور</h4>
             <div class="field">
                 <div class="fields">
-                    <div class="six wide field">
-                        <label>مبدا</label>
+                    <div class="six wide field {% if form.origin.errors %}error{% endif %}">
+                        {{ form.origin.label_tag }}
                         {{ form.origin }}
                     </div>
-                    <div class="six wide field">
-                        <label>مقصد</label>
+                    <div class="six wide field {% if form.destination.errors %}error{% endif %}">
+                        {{ form.destination.label_tag }}
                         {{ form.destination }}
                     </div>
-                    <div class="three wide field">
-                        <label>ظرفیت</label>
+                    <div class="three wide field {% if form.capacity.errors %}error{% endif %}">
+                        {{ form.capacity.label_tag }}
                         {{ form.capacity }}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="fields">
-                    <div class="five wide field">
-                        <label>تاریخ رفت</label>
+                    <div class="five wide field {% if form.going_date.errors %}error{% endif %}">
+                        {{ form.going_date.label_tag }}
                         {{ form.going_date }}
                     </div>
-                    <div class="five wide field">
-                        <label>تاریخ برگشت</label>
+                    <div class="five wide field {% if form.return_date.errors %}error{% endif %}">
+                        {{ form.return_date.label_tag }}
                         {{ form.return_date }}
                     </div>
-                    <div class="five wide field">
-                        <label>قیمت واحد (هر نفر)</label>
+                    <div class="five wide field {% if form.price.errors %}error{% endif %}">
+                        {{ form.price.label_tag }}
                         {{ form.price }}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="fields">
-                    <div class="five wide field">
-                        <label>نام هتل</label>
+                    <div class="five wide field {% if form.hotel_name.errors %}error{% endif %}">
+                        {{ form.hotel_name.label_tag }}
                         {{ form.hotel_name }}
                     </div>
-                    <div class="ten wide field">
-                        <label>توضیح کوتاه</label>
+                    <div class="ten wide field {% if form.tag_line.errors %}error{% endif %}">
+                        {{ form.tag_line.label_tag }}
                         {{ form.tag_line }}
                     </div>
                 </div>
             </div>
             <div class="field">
                 <div class="fields">
-                    <div class="fifteen wide field">
-                        <label>توضیحات</label>
+                    <div class="fifteen wide field {% if form.description.errors %}error{% endif %}">
+                        {{ form.description.label_tag }}
                         {{ form.description }}
                     </div>
                 </div>
@@ -68,9 +73,123 @@
 
         {% elif user.site_user.get_fields.type == 'hotel' %}
 
-            <div class="field"></div>
+            <h4 class="ui dividing header">مشخصات اتاق</h4>
+            <div class="field">
+                <div class="fields">
+                    <div class="six wide field {% if form.start_date.errors %}error{% endif %}">
+                        {{ form.start_date.label_tag }}
+                        {{ form.start_date }}
+                    </div>
+                    <div class="six wide field {% if form.end_date.errors %}error{% endif %}">
+                        {{ form.end_date.label_tag }}
+                        {{ form.end_date }}
+                    </div>
+                    <div class="three wide field {% if form.capacity.errors %}error{% endif %}">
+                        {{ form.capacity.label_tag }}
+                        {{ form.capacity }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="three wide field {% if form.price.errors %}error{% endif %}">
+                        {{ form.price.label_tag }}
+                        {{ form.price }}
+                    </div>
+                    <div class="two wide field {% if form.number_of_bed.errors %}error{% endif %}">
+                        {{ form.number_of_bed.label_tag }}
+                        {{ form.number_of_bed }}
+                    </div>
+                    <div class="ten wide field {% if form.tag_line.errors %}error{% endif %}">
+                        {{ form.tag_line.label_tag }}
+                        {{ form.tag_line }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="fifteen wide field {% if form.description.errors %}error{% endif %}">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="three wide field">
+                        <div class="ui checkbox">
+                            {{ form.has_television }}
+                            {{ form.has_television.label_tag }}
+                        </div>
+                    </div>
+                    <div class="three wide field">
+                        <div class="ui checkbox">
+                            {{ form.has_telephone }}
+                            {{ form.has_telephone.label_tag }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         {% elif user.site_user.get_fields.type == 'airline' %}
+            <h4 class="ui dividing header">مشخصات پرواز</h4>
+            <div class="field">
+                <div class="fields">
+                    <div class="six wide field {% if form.origin.errors %}error{% endif %}">
+                        {{ form.origin.label_tag }}
+                        {{ form.origin }}
+                    </div>
+                    <div class="six wide field {% if form.destination.errors %}error{% endif %}">
+                        {{ form.destination.label_tag }}
+                        {{ form.destination }}
+                    </div>
+                    <div class="three wide field {% if form.capacity.errors %}error{% endif %}">
+                        {{ form.capacity.label_tag }}
+                        {{ form.capacity }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="five wide field {% if form.date.errors %}error{% endif %}">
+                        {{ form.date.label_tag }}
+                        {{ form.date }}
+                    </div>
+                    <div class="three wide field {% if form.time.errors %}error{% endif %}">
+                        {{ form.time.label_tag }}
+                        {{ form.time }}
+                    </div>
+                    <div class="four wide field {% if form.price.errors %}error{% endif %}">
+                        {{ form.price.label_tag }}
+                        {{ form.price }}
+                    </div>
+                    <div class="three wide field {% if form.flight_number.errors %}error{% endif %}">
+                        {{ form.flight_number.label_tag }}
+                        {{ form.flight_number }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="five wide field {% if form.airplane.errors %}error{% endif %}">
+                        {{ form.airplane.label_tag }}
+                        {{ form.airplane }}
+                    </div>
+                    <div class="ten wide field {% if form.tag_line.errors %}error{% endif %}">
+                        {{ form.tag_line.label_tag }}
+                        {{ form.tag_line }}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="fields">
+                    <div class="fifteen wide field {% if form.description.errors %}error{% endif %}">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                </div>
+            </div>
 
         {% endif %}
         <div class="field">
@@ -79,13 +198,18 @@
                 </label>
                 {{ form.image }}
             </div>
+        <div class="ui error message rtl" dir="rtl"  id="error_box" {% if form.errors.items %}style=""{% else %}style="display: none!important;"{% endif %}>
+            {% for k, message in form.errors.items %}
+                {{ message }}
+            {% endfor %}
+        </div>
 
         <div class="ui divider"></div>
         <div id="buttons">
                 <div class="ui buttons" style="float: left; margin-top: 22px;">
                     <a href="{% url 'new_service' %}">
                     <button class="ui green button">
-                            افزودن تور
+                            افزودن
                     </button>
                     </a>
                     <div class="or" data-text="یا"></div>

@@ -35,3 +35,13 @@ input[type="file"] {
     margin-bottom: 25px!important;
     cursor: pointer;
 }
+
+#error_box {
+    display: inline-block!important;
+    width: 430px;
+    float: left;
+    text-align: right;
+    direction: rtl;
+    margin-left: 50px;
+
+}
