@@ -35,7 +35,7 @@
                     }
                 },
                 tooltip: {
-                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                    pointFormat: 'salam'
                 },
                 plotOptions: {
                     area: {
@@ -71,6 +71,9 @@
 
 {% block menu_content %}
 
-    <div id="container"></div>
-
+    <!div id="container" style="text-align: right; direction: rtl"></div>
+    <div>
+        <input type="text" id="pcal1" class="pdate">
+    </div>
+    <script> var objCal1 = new AMIB.persianCalendar( 'pcal1' ); </script>
 {% endblock %}
