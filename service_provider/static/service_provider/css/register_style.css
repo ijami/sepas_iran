@@ -11,6 +11,8 @@
 
 #register_section .header img.icon{
     margin-bottom: 5px !important;
+    height: 64px;
+    width: auto;
 }
 
 #register_section > .header div{
@@ -59,16 +61,21 @@ body{
 #register_grid .column{
     padding: 20px 40px 10px 0px;
     direction: rtl;
-
 }
 
 
-#register_grid .column .icon{
-    padding-left: 45px;
+#register_grid #site_benefits.column .icon{
+    margin-left: 15px;
+}
+
+
+#register_grid .column .icon.circular{
+    margin-right: 10px;
 }
 
 #register_grid #site_benefits div{
     padding-bottom: 35px;
+    font-size: 15px;
 }
 
 #register_grid .column form{
@@ -99,10 +106,10 @@ body{
     font-weight: bold;
 }
 
-#register_grid .divider{
-    width: 100%;
-    margin-top: 20px;
-}
+/*#register_grid .divider{*/
+    /*width: 100%;*/
+    /*margin-top: 20px;*/
+/*}*/
 
 #register_grid .error.message{
     padding-right: 10px;
@@ -123,6 +130,23 @@ body{
 }
 
 .rtl{
-    flex-direction: row-reverse;
-    direction: rtl;
+    flex-direction: row-reverse!important;
+    direction: rtl!important;
+    text-align: right!important;
+}
+
+.dropdown{
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    text-align: right !important;
+}
+
+.dropdown *{
+    text-align: right !important;
+}
+
+.dropdown .dropdown.icon{
+    float: left !important;
+    left: 1em !important;
+    right: auto !important;
 }

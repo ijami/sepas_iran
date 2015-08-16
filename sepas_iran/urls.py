@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', 'base.views.login_view.logout_user', name='logout'),
     url(r'^service/', include('service.urls')),
     url(r'^tourist/', include('tourist.urls')),
+    url(r'^service_provider/', include('service_provider.urls')),
     url(r'^manage/', include('management.urls')),
     url(r'^sale/', include('sale.urls')),
     url(r'^messaging/', include('messaging.urls')),

@@ -63,7 +63,8 @@ target/
 
 *.map
 */.sass-cache/***
-base/static/bower_components/****
+base/static/bower_components/*
+
 base/images
 
 # migration
@@ -98,5 +99,3 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
-
-

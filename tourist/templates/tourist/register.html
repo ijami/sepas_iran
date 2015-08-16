@@ -2,10 +2,31 @@
 {% load staticfiles %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'tourist/css/register_style.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'tourist/javascript/register_script.js' %}"></script>
+    {{ form.media }}
 {% endblock %}
+
+{% block title %}
+    <title>
+        ثبت نام گردشگر
+    </title>
+{% endblock %}
+
 
 {% block content %}
     <div id="main_content">
+        <div class="ui segment rtl" id="breadcrumb_container">
+            <div class="ui right_float rtl breadcrumb">
+                <a href="{% url 'home' %}" class="section">صفحه اصلی</a>
+                <i class="left angle icon divider"></i>
+
+                <div class="active section">ثبت نام گردشگر</div>
+            </div>
+        </div>
         <div class="ui segment" id="register_section">
             <div class="ui center aligned small icon header"
                  style="font-family: 'yekan', 'B Koodak', 'X Koodak', 'Koodak', Arial, serif">
@@ -13,7 +34,13 @@
 
                 <div style="font-family: inherit">
                     به سپاس ایران بپیوندید
+                    <div class="sub header">
+                        آیا گردش ساز هستید؟
+                        <a href="{% url 'register_service_provider' %}">برای همکاری با سپاس ایران و ارائه سرویس خود کلیک
+                            کنید</a>
+                    </div>
                 </div>
+
             </div>
             <div class="ui divider"></div>
             <div class="ui two column center aligned divided relaxed stackable grid container right aligned"
@@ -41,55 +68,56 @@
                     <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
                         {% csrf_token %}
                         <div class="two fields">
-                            <div class="field">
-                                {{ form.first_name.label }}
+                            <div class="field {% if form.first_name.errors %}error{% endif %}">
+                                {{ form.first_name.label_tag }}
                                 {#                            <input type="text" name="first-name" placeholder="نام">#}
                                 {{ form.first_name }}
                             </div>
-                            <div class="field">
-                                {{ form.last_name.label }}
+                            <div class="field {% if form.last_name.errors %}error{% endif %}">
+
+                                {{ form.last_name.label_tag }}
                                 {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
                                 {{ form.last_name }}
                             </div>
                         </div>
-                        <div class="field">
-                            {{ form.username.label }}
+                        <div class="field {% if form.username.errors %}error{% endif %}">
+                            {{ form.username.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.username }}
                         </div>
-                        <div class="field">
-                            {{ form.email.label }}
+                        <div class="field {% if form.email.errors %}error{% endif %}">
+                            {{ form.email.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.email }}
                         </div>
-                        <div class="field">
+                        <div class="field {% if form.password1.errors %}error{% endif %}">
                             {#                            <label>پست الکترونیک</label>#}
-                            {{ form.password1.label }}
+                            {{ form.password1.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password1 }}
                         </div>
-                        <div class="field">
-                            {{ form.password2.label }}
+                        <div class="field {% if form.password2.errors %}error{% endif %}">
+                            {{ form.password2.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password2 }}
                         </div>
-                        <div class="field">
-                            {{ form.telephone.label }}
+                        <div class="field {% if form.telephone.errors %}error{% endif %}">
+                            {{ form.telephone.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.telephone }}
                         </div>
-                        <div class="field">
-                            {{ form.birth_day.label }}
+                        <div class="field {% if form.birth_day.errors %}error{% endif %}">
+                            {{ form.birth_day.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.birth_day }}
                         </div>
-                        <div class="field">
-                            {{ form.city.label }}
+                        <div class="field {% if form.city.errors %}error{% endif %}">
+                            {{ form.city.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.city }}
                         </div>
-                        <div class="field">
-                            {{ form.address.label }}
+                        <div class="field {% if form.address.errors %}error{% endif %}">
+                            {{ form.address.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.address }}
                         </div>
@@ -114,93 +142,5 @@
             </div>
 
         </div>
-        <script>
-            var form = $('#register_grid form');
-            $('.ui.checkbox').checkbox();
-            $('.form .button').on('click', function () {
-                form.form('validate form');
-                form.find(".error.message ul").addClass('errorlist');
-            });
-
-            form.form({
-                fields: {
-                    firstname: {
-                        identifier: 'firstname',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا نام خود را وارد کنید'
-                            }
-                        ]
-                    },
-                    lastname: {
-                        identifier: 'lastname',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا نام خانوادگی خود را وارد کنید'
-                            }
-                        ]
-                    },
-                    username: {
-                        identifier: 'username',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا نام کاربری را وارد کنید'
-                            }
-                        ]
-                    },
-                    email: {
-                        identifier: 'email',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا ایمیل خود را وارد کنید'
-                            },
-                            {
-                                type: 'email',
-                                prompt: 'ایمیل معتبر وارد کنید'
-                            }
-                        ]
-                    },
-                    password1: {
-                        identifier: 'password1',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا گذرواژه خود را وارد کنید'
-                            },
-                            {
-                                type: 'minLength[8]',
-                                prompt: 'گذرواژه باید حداقل 8 کاراکتر داشته باشد'
-                            }
-                        ]
-                    },
-                    password2: {
-                        identifier: 'password2',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'لطفا تکرار گذرواژه خود را وارد کنید'
-                            },
-                            {
-                                type: 'match[password1]',
-                                prompt: 'گذرواژه ها همخوانی ندارند.'
-                            }
-                        ]
-                    },
-                    terms: {
-                        identifier: 'terms',
-                        rules: [
-                            {
-                                type: 'checked',
-                                prompt: 'باید با قوانین سپاس ایران موافقت کنید'
-                            }
-                        ]
-                    }
-                }
-            });
-        </script>
     </div>
 {% endblock %}
