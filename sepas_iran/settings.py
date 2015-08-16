@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'service_provider',
     'tourist',
     'sale',
-    'base'
+    'base',
+    'kombu.transport.django'
 )
 
 MIDDLEWARE_CLASSES = (

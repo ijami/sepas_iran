@@ -11,6 +11,7 @@ class Service(PolymorphicModel):
     capacity = models.IntegerField()
     sold_number = models.IntegerField()
     tag_line = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
 
 class Comment(models.Model):
@@ -51,15 +52,15 @@ class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
     origin = models.ForeignKey('TourLocation', related_name='departures')
     destination = models.ForeignKey('TourLocation', related_name='arrivals')
-    airline = models.ForeignKey(AirLine)
+    # airline = models.ForeignKey(AirLine)
     going_date = models.DateField()
     return_date = models.DateField()
     description = models.TextField()
-    going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
-    return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
-    hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)
+    # going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
+    # return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
+    # hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)
     hotel_name = models.CharField(max_length=100, null=True, blank=True)
-    tour_guide_name = models.CharField(max_length=100)
+    # tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.travel_agency.name + ": " + "از " + self.origin.city.name + " به " + self.destination.city.name

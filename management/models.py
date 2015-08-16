@@ -27,20 +27,3 @@ class Advertise(PolymorphicModel):
     def get_service_provider(self):
         return self.service_provider
 
-
-class HotelAdvertise(Advertise):
-    service_provider = models.ForeignKey('service_provider.Hotel')
-
-    # def get_service_provider(self):
-    #     return self.service_provider
-
-
-class AirLineAdvertise(Advertise):
-    service_provider = models.ForeignKey('service_provider.AirLine')
-
-    # def get_service_provider(self):
-    #     return self.service_provider
-
-
-class TravelAgencyAdvertise(Advertise):
-    service_provider = models.ForeignKey('service_provider.TravelAgency')

@@ -1,0 +1,173 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'service_provider/css/register_style.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'service_provider/javascript/register_script.js' %}"></script>
+    {{ form.media }}
+{% endblock %}
+
+{% block title %}
+    <title>
+        ثبت نام گردش ساز
+    </title>
+{% endblock %}
+
+
+{% block content %}
+    <div id="main_content">
+        <div class="ui segment rtl" id="breadcrumb_container">
+            <div class="ui right_float rtl breadcrumb">
+                <a href="{% url 'home' %}" class="section">صفحه اصلی</a>
+                <i class="left angle icon divider"></i>
+
+                <div class="active section">ثبت نام گردش ساز</div>
+            </div>
+        </div>
+        <div class="ui segment" id="register_section">
+            <div class="ui center aligned small icon header"
+                 style="font-family: 'yekan', 'B Koodak', 'X Koodak', 'Koodak', Arial, serif">
+                <img class="icon" src="{% static 'service_provider/images/cooperation_icon.png' %}">
+
+                <div style="font-family: inherit">
+                    با سپاس ایران همکاری کنید
+                </div>
+
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui two column center aligned divided relaxed stackable grid container right aligned"
+                 id="register_grid">
+                <div class="column right aligned" id="site_benefits">
+                    <div>
+                        <i class="circular inverted dollar icon yellow"></i><strong>با تجارت الکترونیک </strong>درآمد
+                        خود را چند برابر کنید
+                    </div>
+                    <div>
+                        <i class="line chart big icon teal"></i><strong>گزارش های مدیریتی </strong>همیشه در اختیار شماست
+                        کنید
+                    </div>
+                    <div>
+                        <i class="users big icon orange"></i><strong>با پاسخ به بازخورد کاربران </strong>محبوبیت خود را
+                        زیاد کنید
+                    </div>
+                    <div>
+                        <i class="settings big icon red"></i>سپاس ایران در سیستم خدمات حضوری شما <strong>دخالت نمی
+                        کند</strong>
+                    </div>
+                    <div>
+                        <i class="privacy big icon green"></i><strong>با سرورهای امن ما، </strong>از امنیت اطلاعات خود
+                        مطمئن باشید
+                    </div>
+                </div>
+                <div class="column right aligned">
+                    <form class="ui form {% if form.errors %}error{% endif %}" method="post" action="">
+                        {% csrf_token %}
+
+                        <h4 class="ui dividing header blue">
+                             مشخصات خود شرکت
+                        </h4>
+                        <div class="field">
+                            <label>خدمت ارائه شده</label>
+
+                            <div class="ui selection dropdown">
+                                <input type="hidden" name="gender">
+                                <i class="dropdown icon"></i>
+
+                                <div class="default text">انتخاب کنید</div>
+                                <div class="menu">
+                                    <div class="item" data-value="1" data-tab="tour">تور</div>
+                                    <div class="item" data-value="2" data-tab="hotel">هتل</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui tab special-form" data-tab="tour">
+                            <div class="two fields">
+                                <div class="field {% if form.first_name.errors %}error{% endif %}">
+                                    {{ form.first_name.label_tag }}
+                                    {#                            <input type="text" name="first-name" placeholder="نام">#}
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="field {% if form.last_name.errors %}error{% endif %}">
+
+                                    {{ form.last_name.label_tag }}
+                                    {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            <div class="field {% if form.username.errors %}error{% endif %}">
+                                {{ form.username.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.username }}
+                            </div>
+                            <div class="field {% if form.email.errors %}error{% endif %}">
+                                {{ form.email.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <div class="ui tab special-form" data-tab="hotel">
+                            <div class="field {% if form.password1.errors %}error{% endif %}">
+                                {#                            <label>پست الکترونیک</label>#}
+                                {{ form.password1.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.password1 }}
+                            </div>
+                            <div class="field {% if form.password2.errors %}error{% endif %}">
+                                {{ form.password2.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.password2 }}
+                            </div>
+                            <div class="field {% if form.telephone.errors %}error{% endif %}">
+                                {{ form.telephone.label_tag }}
+                                {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                                {{ form.telephone }}
+                            </div>
+                        </div>
+
+
+                        <div class="field {% if form.birth_day.errors %}error{% endif %}">
+                            {{ form.birth_day.label_tag }}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.birth_day }}
+                        </div>
+                        <h4 class="ui dividing header blue">
+                            مشخصات نماینده حقوقی شرکت
+                        </h4>
+                        <div class="field {% if form.city.errors %}error{% endif %}">
+                            {{ form.city.label_tag }}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.city }}
+                        </div>
+                        <div class="field {% if form.address.errors %}error{% endif %}">
+                            {{ form.address.label_tag }}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                            {{ form.address }}
+                        </div>
+
+
+                        <button class="digilightgreen ui button" type="submit">ثبت نام در سپاس ایران</button>
+                        <div class="ui divider"></div>
+                        <div class="field">
+                            <div class="ui checkbox" dir="ltr">
+                                <input type="checkbox" name="terms" tabindex="0" class="hidden">
+                                <label>من با تمام قوانین سپاس ایران موافقم</label>
+                            </div>
+                        </div>
+
+                        <div class="ui error message rtl" dir="rtl">
+                            {% for k, message in form.errors.items %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
