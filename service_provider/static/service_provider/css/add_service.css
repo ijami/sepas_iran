@@ -1,0 +1,47 @@
+
+#my_form {
+
+
+}
+
+#file {
+    display: none;
+}
+
+#chng_img_btn {
+    width: 100px;
+    height: 40px;
+    background-image: url("../../../../tourist/static/tourist/images/changepic.png")!important;
+    cursor: pointer;
+    border: 2px solid aqua;
+    padding-top: 10px;
+    margin: auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid black;
+    float: right;
+    text-align: center;
+    width: 220px;
+    height: 40px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 25px!important;
+    cursor: pointer;
+}
+
+#error_box {
+    display: inline-block!important;
+    width: 430px;
+    float: left;
+    text-align: right;
+    direction: rtl;
+    margin-left: 50px;
+
+}

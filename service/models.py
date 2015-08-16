@@ -9,7 +9,7 @@ from tourist.models import Tourist
 class Service(PolymorphicModel):
     price = models.IntegerField()
     capacity = models.IntegerField()
-    sold_number = models.IntegerField()
+    sold_number = models.IntegerField(default=0)
     tag_line = models.CharField(max_length=255)
     image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
@@ -25,33 +25,33 @@ class Comment(models.Model):
 
 
 class Flight(Service):
-    flight_number = models.CharField(max_length=10)
+    flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
-    origin = models.ForeignKey('Airport', related_name='departures')
-    destination = models.ForeignKey('Airport', related_name='arrivals')
-    time = models.DateTimeField()
+    origin = models.ForeignKey('base.City', related_name='flight_departures')
+    destination = models.ForeignKey('base.City', related_name='flight_arrivals')
+    date = models.DateTimeField()
+    time = models.TimeField()
+    airplane = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.flight_number + ": " + "از" + self.origin.city.name + "به"\
-               + self.destination.city.name
+        return self.flight_number + ": " + "از" + self.origin.name + "به"\
+               + self.destination.name
 
 
 class Room(Service):
     hotel = models.ForeignKey(Hotel, related_name='rooms')
     number_of_bed = models.IntegerField()
-    additional_capacity = models.IntegerField()
     has_television = models.BooleanField(default=False)
     has_telephone = models.BooleanField(default=False)
-    has_bathroom = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.hotel.name + ": " + "اتاق " + self.number_of_bed + "تخته"
+        return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + "تخته"
 
 
 class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
-    origin = models.ForeignKey('TourLocation', related_name='departures')
-    destination = models.ForeignKey('TourLocation', related_name='arrivals')
+    origin = models.ForeignKey('base.City', related_name='departures')
+    destination = models.ForeignKey('base.City', related_name='arrivals')
     # airline = models.ForeignKey(AirLine)
     going_date = models.DateField()
     return_date = models.DateField()
@@ -63,7 +63,7 @@ class Tour(Service):
     # tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.travel_agency.name + ": " + "از " + self.origin.city.name + " به " + self.destination.city.name
+        return self.travel_agency.name + ": " + "از " + self.origin.name + " به " + self.destination.name
 
 
 class Airport(models.Model):
@@ -73,8 +73,3 @@ class Airport(models.Model):
 
     def __str__(self):
         return self.city.name + ": " + self.name
-
-
-class TourLocation(models.Model):
-    city = models.ForeignKey(City, related_name='tour_locations')
-
