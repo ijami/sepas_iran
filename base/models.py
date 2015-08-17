@@ -18,10 +18,13 @@ class SiteUser(PolymorphicModel):
     telephone = models.CharField(max_length=20)
 
 
+    def get_fields(self):
+        pass
+
+
 class Location(models.Model):
     city = models.ForeignKey('City', related_name='locations')
     address = models.TextField()
-
 
 class City(models.Model):
     name = models.CharField(max_length=100)

@@ -14,13 +14,15 @@
     <title>base</title>
 </head>
 <body>
-
 <header id="header">
     <div id="header_container">
         <div class="right floated bordered" id="runit">
             <div id="user-menu" class="bordered">
                 {% if user.is_authenticated %}
-                    <div id="sign-in" class="logged_in bordered"><a class="nodec" href="{% url 'panel' %}">
+                    <div id="sign-in" class="logged_in bordered"><a class="nodec" {% if user.site_user.get_fields.type == 'tourist' %}
+                        href="{% url 'panel' %}"
+                        {% else %}
+                        href="{% url 'service_provider_panel' %}" {% endif %}>
                     <i class="user basic icon right_float"></i><span>
                     سلام
                     {{ user.first_name }}،

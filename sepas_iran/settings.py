@@ -55,6 +55,8 @@ INSTALLED_APPS = (
     'django_cron',
     'kombu.transport.django',
     'base'
+    'base',
+    'kombu.transport.django'
 )
 
 
@@ -128,6 +130,7 @@ STATICFILES_DIRS = (
 SITE_URL = 'http://localhost:8000'
 LOGIN_URL = '/accounts/login/'
 
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = "samanasoftware@gmail.com"
@@ -141,3 +144,5 @@ CRON_CLASSES = [
 ]
 # CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
+
+FILE_UPLOAD_PERMISSIONS = 0o777
