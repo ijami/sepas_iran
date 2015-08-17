@@ -53,8 +53,6 @@ INSTALLED_APPS = (
     'sale',
     'djcelery',
     'django_cron',
-    'kombu.transport.django',
-    'base'
     'base',
     'kombu.transport.django'
 )

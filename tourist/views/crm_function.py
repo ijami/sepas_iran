@@ -2,18 +2,12 @@ __author__ = 'آرمان'
 
 from django.shortcuts import render
 from tourist.models import Tourist
-from service.models import Flight,Room,Tour,TourLocation
+from service.models import Flight,Room,Tour,Comment
 from service.models import Airport
-from service_provider.models import Hotel
+from sale.views.finance import tourist_services
 from django.http import Http404
-from django.core.mail import send_mail
-from datetime import datetime, timedelta, timezone
-from celery.schedules import crontab
-from celery.task import periodic_task
 from service.models import Service,Tour
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
 from datetime import datetime, timedelta, timezone
 from django.db.models import Max
 from base.models import City
@@ -34,6 +28,15 @@ def loyalty(user_id):
     # print("\n%%%%%   "+str(time_joining)+ "  " + str(comments_count)+" %%%%%%%\n" )
     # prices = [bought_service.service.cost for bought_service in tourist.boughtservice_set]
     # sum_buy = sum(prices)
+
+def tourist_comments_count(tourist_id):
+    services = tourist_services(tourist_id)
+    counter =0
+    for service in services:
+        counter += Comment.objects.filter(service=service).all().count()
+    return counter
+
+
 def send_recommended_mail(user_id):
     try:
         tourist = Tourist.objects.get(id=user_id)
@@ -54,11 +57,10 @@ def send_recommended_mail(user_id):
         tours = factor.serviceitem_set.filter(instanceof=Tour)
         tours_exist = Tour.get_exist()
         for tour in tours :
-            cities = City.objects.filter(collection=tour.destination.city.collection)
+            cities = City.objects.filter(collection=tour.destination.collection)
             for tour_city in cities:
-                if tour_city != tour.destination.city:
-                    destination = TourLocation.objects.filter(city=tour_city)
-                    recommended.append(tours_exist.filter(destination=destination).all().latest('sold_number'))
+                if tour_city != tour.destination:
+                    recommended.append(tours_exist.filter(destination=tour_city).all().latest('sold_number'))
 
 
 

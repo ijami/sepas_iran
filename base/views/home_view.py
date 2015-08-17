@@ -11,20 +11,20 @@ from django.db.models import Max
 from itertools import chain
 
 def home(request):
-    users = User.objects.all()
-        #  tourists = Tourist.objects.all()
-    for user in users:
-        print(str(user.id)+" =user_id\n")
-    print (str(users.latest('id'))+"\n -> "+str(str(users.latest('id').id)=="3"))
-
-    # e = list(chain(users,users ))
-    e = []
-    e.append(users.latest('id'))
-    e.append(users.earliest('id'))
-    e.append(users.latest('id'))
-    e.sort(key=lambda x: x.id)
-    # e = e.extend(User.objects.filter(id=2).all())
-    print("\n --->  "+str(str(e[1].id) == str(e[2].id))+"  "+str(e[0].id)+" "+str(e[e.__len__()-1].id)+" ** "+str(e.__len__())+" ++ \n")
+    # users = User.objects.all()
+    #     #  tourists = Tourist.objects.all()
+    # for user in users:
+    #     print(str(user.id)+" =user_id\n")
+    # print (str(users.latest('id'))+"\n -> "+str(str(users.latest('id').id)=="3"))
+    #
+    # # e = list(chain(users,users ))
+    # e = []
+    # e.append(users.latest('id'))
+    # e.append(users.earliest('id'))
+    # e.append(users.latest('id'))
+    # e.sort(key=lambda x: x.id)
+    # # e = e.extend(User.objects.filter(id=2).all())
+    # print("\n --->  "+str(str(e[1].id) == str(e[2].id))+"  "+str(e[0].id)+" "+str(e[e.__len__()-1].id)+" ** "+str(e.__len__())+" ++ \n")
     # # for tourist in users:
     #     send_mail('تولدت مبارک', 'samanasoftware@gmail.com', [tourist.email], 'tourist/mail_birthday.txt',
     #                   'tourist/mail_birthday.html', {'user': tourist,'date': datetime.now()}, True)
