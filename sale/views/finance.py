@@ -3,6 +3,38 @@ from sale.models import ServiceItem,Factor
 from service.models import Tour,Room,Flight
 from datetime import datetime, timedelta, timezone
 
+
+def dashboard_report(start,end):
+    services = tourist_services_all()
+    output =[]
+    for service in services:
+        if isinstance(service,Tour):
+            if service.going_date < end:
+                if service.going_date > start:
+                    output.append(service)
+        elif isinstance(service,Room):
+            if service.end_date < end:
+                if service.end_date > start:
+                    output.append(service)
+        elif isinstance(service,Flight):
+            if service.date < end:
+                if service.date > start:
+                    output.append(service)
+    return output
+
+
+
+def tourist_services_all():
+    factors = Factor.objects.all()
+    services =[]
+    for factor in factors:
+        serviceItems = ServiceItem.objects.filter(factor=factor).all()
+        for serviceItem in serviceItems:
+            services.append(serviceItem)
+    return services
+
+
+
 def tourist_services(tourist_id):
     tourist = Tourist.objects.filter(id=tourist_id)
     factors = Factor.objects.filter(tourist=tourist)
