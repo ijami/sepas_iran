@@ -35,17 +35,21 @@
             </div>
             <div class="field">
                 <div class="fields">
-                    <div class="five wide field {% if form.going_date.errors %}error{% endif %}">
+                    <div class="four wide field {% if form.going_date.errors %}error{% endif %}">
                         {{ form.going_date.label_tag }}
                         {{ form.going_date }}
                     </div>
-                    <div class="five wide field {% if form.return_date.errors %}error{% endif %}">
+                    <div class="four wide field {% if form.return_date.errors %}error{% endif %}">
                         {{ form.return_date.label_tag }}
                         {{ form.return_date }}
                     </div>
-                    <div class="five wide field {% if form.price.errors %}error{% endif %}">
+                    <div class="four wide field {% if form.price.errors %}error{% endif %}">
                         {{ form.price.label_tag }}
                         {{ form.price }}
+                    </div>
+                    <div class="three wide field">
+                        {{ form.trans_type.label_tag }}
+                        {{ form.trans_type }}
                     </div>
                 </div>
             </div>

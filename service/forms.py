@@ -84,6 +84,13 @@ class TourForm(ModelForm):
     tag_line = forms.CharField(max_length=555, label="جمله نشانه", required=True,
                                 error_messages={'required': "پر کردن فیلد جمله نشانه الزامی است"},
                                 widget=forms.TimeInput(attrs={'placeholder': 'مثال: تور خاطره انگیز در سواحل بکر دریای مازندران'}))
+    CHOICES = (
+        ("plane", "هواپیما"),
+        ("tran", "قطار"),
+        ("bus", 'اتوبوس'),
+    )
+    trans_type = forms.ChoiceField(label="وسیله نقلیه", required=True, error_messages={'required': "پرکردن فیلد وسیله نقلیه الزامی است"}
+                                   , choices=CHOICES)
 
     def clean_going_date(self):
         going_date = self.cleaned_data["going_date"]
@@ -126,6 +133,7 @@ class TourForm(ModelForm):
         service.capacity = self.cleaned_data['capacity']
         service.sold_number = 't_' + str(user.id) + "_" + str(len(Tour.objects.filter(travel_agency=user)))
         service.tag_line = self.cleaned_data['tag_line']
+        service.trans_type = self.cleaned_data['trans_type']
         print("sag")
         print(self.cleaned_data['image'])
         service.image = self.cleaned_data['image']
@@ -260,6 +268,7 @@ class FlightForm(ModelForm):
         price = self.cleaned_data['price']
         if price <= 0 or price > 1000000000:
             raise forms.ValidationError(message="قیمت نامعتبر است")
+        return price
 
     def save(self, commit=True, user=None):
         flight = super(FlightForm, self).save(commit=False)
@@ -268,6 +277,7 @@ class FlightForm(ModelForm):
         flight.destination = self.cleaned_data['destination']
         flight.capacity = self.cleaned_data['capacity']
         flight.price = self.cleaned_data['price']
+        print(flight.price)
         flight.tag_line = self.cleaned_data['tag_line']
         flight.date = self.cleaned_data['date']
         flight.time = self.cleaned_data['time']
