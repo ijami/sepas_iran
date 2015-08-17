@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from base.models import SiteUser
+
 class ServiceProvider(SiteUser):
     name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=200)

@@ -7,7 +7,7 @@ from base.models import SiteUser
 
 class Tourist(SiteUser):
     birth_day = models.DateField()
-    cart = models.OneToOneField('sale.Cart', related_name='tourist', blank=True, null=True)
+    cart = models.OneToOneField('sale.Cart', related_name='tourist')
 
     def get_fields(self):
         return {'type': 'tourist'}
