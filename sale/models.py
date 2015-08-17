@@ -16,7 +16,7 @@ class Factor(ServiceList):
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.tourist.__str__() + "'s factor"
+        return self.tourist.__str__() + "\'s factor"
 
 
 class ServiceItem(models.Model):

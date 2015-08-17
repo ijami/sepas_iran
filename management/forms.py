@@ -13,7 +13,6 @@ class IntervalReportForm(Form):
                                 error_messages={'required':'پر کردن فیلد پایان بازه الزامیست!'},
                                 widget=DateInput(attrs={'class': 'datepicker'}),)
     service = ChoiceField(choices=((1, 'همه‌‌ی خدمات'), (2, 'تور'), (3, 'هواپیما'), (4, 'هتل' ),), label='انتخاب خدمات')
-
     kind = ChoiceField(choices=((1, 'مبلغ دریافتی'), (2, 'تعداد فروخته شده')), label='بر حسب')
 
     def clean(self):
@@ -21,6 +20,5 @@ class IntervalReportForm(Form):
         start_date = data['start_date']
         end_date = data['end_date']
         if start_date > end_date:
-            print("inja")
             raise ValidationError(message='تاریخ‌های وارد شده معتبر نیست')
 
