@@ -55,6 +55,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for serviceItem in serviceItems %}
                     <tr>
                         <td>
                            <div>
@@ -62,28 +63,47 @@
                            </div>
                         </td>
                         <td>
-                           <span class="rtl">4,200,000</span>
+                           <span class="rtl">
+                          {{ serviceItem.get_price }}
+                           </span>
                         </td>
                         <td>
-                            <span class="rtl">1,400,000</span>
+                            <span class="rtl">
+
+                               {{ serviceItem.service.price }}
+
+                            </span>
                         </td>
                         <td class="single line">
-                            3
+                             {{ serviceItem.number }}
                         </td>
                         <td>
                              <div class="pd">
                                 <div class="pic">
-                                    <img src="{% static 'home/images/tour.jpeg' %}">
+                                    <img src={{ serviceItem.service.image.url }}>
                                 </div>
                                 <div class="desc">
-                                    <h4>تور تابستانه کیش</h4>
-                                    <h5>خدمتی از گردش سازان آینده نگر</h5>
-                                    <h6>ظرفیت : 4</h6>
-                                    <h5>به مدت محدود، به صورت هوایی، در بهترین تفرجگاه </h5>
+                                    <h4>
+
+                                    {{ serviceItem.service.tag_line }}
+                                    </h4>
+                                    <h5>
+
+                                    {{ serviceItem.service.tag_line }}
+                                    </h5>
+                                    <h6>
+
+                                    {{ serviceItem.service.capacity}}
+                                    </h6>
+                                    <h5>
+
+                                     {{ serviceItem.service.tag_line }}
+                                    </h5>
                                 </div>
                             </div>
                         </td>
                     </tr>
+                {% endfor %}
                     <tr>
                         <td>
                            <div>
@@ -148,10 +168,16 @@
             <div class="row">
                 <div class="ui compact segments left_float">
                     <div class="ui green inverted segment">
-                        <p>جمع کل خرید شما : 12,600,600</p>
+                        <p>
+                            جمع کل خرید شما :
+{{ sum }}
+                        </p>
                     </div>
                     <div class="ui teal inverted segment">
-                        <p>مبلغ قابل پرداخت : 12,000,000</p>
+                        <p>
+                            مبلغ قابل پرداخت :
+{{ sum2 }}
+                        </p>
                     </div>
                 </div>
                 <a class="ui red tag label" style="float: left; top: 70px;">با احتساب تخفیف</a>
