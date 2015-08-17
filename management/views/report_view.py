@@ -10,7 +10,6 @@ class IntervalReportView(FormView):
     template_name = 'management/buy_report.html'
     form_class = IntervalReportForm
 
-
     def form_valid(self, form):
         data = form.cleaned_data
         start_date = data['start_date']
