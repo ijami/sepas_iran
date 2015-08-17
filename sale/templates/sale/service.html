@@ -10,13 +10,13 @@
 {% block content %}
     <div class=" main_container">
         <div class="ui right_float rtl breadcrumb">
-            <a class="section">صفحه اصلی</a>
-            <i class="left angle icon divider"></i>
+            <a class="section" href="{% url 'home' %}">صفحه اصلی</a>
+            <i class="left big angle icon divider"></i>
             <a class="section">خدمات</a>
-            <i class="left angle icon divider"></i>
-            <a class="section">تورها</a>
-            <i class="left angle icon divider"></i>
-            <div class="active section">تور خوب</div>
+            <i class="left big angle icon divider"></i>
+            <a class="section">{{ type }}</a>
+            <i class="left big angle icon divider"></i>
+            <div class="active section">{{ name }}</div>
         </div>
 
         <br>
@@ -36,50 +36,210 @@
 
             <br>
 
-            <img src="{% static 'home/images/hotel.jpg' %}" id="service_img">
+            <img src="{{ service.image.url }}" id="service_img">
 
         </div>
 
-
         <div id="service_details_container">
-            <h2>هتل تور شمیم جمزاد شمال </h2>
-            <h5>هتل  شمیم جمزاد با همکاری دکتر جمزاد و شمیم جم</h5>
-            <br/>
-            وضعیت :
-            <i class="green checkmark box icon"></i>
-            <div class="ui small grey label">موجود</div>
-            <br/>
-            <br>
-            <span>مشخصات : </span>
-            <div class="ui small green label">حمام</div>
-            <div class="ui small red label">دستشویی</div>
-            <div class="ui small green label">اینترنت</div>
-            <div class="ui small red label">لاندری</div>
-            <div class="ui small green label">سرویس</div>
-            <div class="ui small green label">استخر</div>
-            <div class="ui small green label">سونا</div>
-            <div class="ui small green label">سالن بیلیارد</div>
-            <div class="ui small red label">سالن همایش</div>
-            <div class="ui small green label">ویوی عالی</div>
-            <div class="ui small red label">بهترین فرعی</div>
+            <h2>{{ name }}</h2>
+            <h5>{{ tagline }}</h5>
 
-            <div class="ui divider"></div>
 
-            <span>قیمت لیست : </span>
-            <span class="on_price">200,000</span>
-            <br/><br/>
-            <span>قیمت لیست : </span>
-            <span class="off_price">2,000,000 تومان</span>
-            <br><br>
-            <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8955192008875!2d51.48534099999998!3d35.72878800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQzJzQzLjYiTiA1McKwMjknMDcuMiJF!5e0!3m2!1sen!2sir!4v1438352009292" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+
+            {% if type == "هتل" %}
+                <div class="ui horizontal divider">مشخصات</div>
+                <div class="ui orange large label">
+                            درجه کیفی هتل:
+            {{ service.degree }}
+        ستاره
+                </div>
+                <div class="ui yellow large label" style="direction: ltr; margin-bottom: 3px;">
+                تلفن هتل:
+                {{ provider.telephone }}
+                </div>
+                <div class="ui brown large label">
+                تعداد تخت هر اتاق:
+                {{ service.number_of_bed }}
+                </div>
+                <div class="ui large grey label">
+                ظرفیت (تعداد اتاق ها):
+                {{ service.capacity }}
+                </div>
+                <div class="ui blue large label">
+                آدرس هتل:
+                {{ provider.location.city.name }}
+                ،
+                {{ provider.location.address }}
+                </div>
+                <div class="ui horizontal divider">امکانات</div>
+                <a class="ui small{% if service.has_restaurant %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large food icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        رستوران
+                    </a>
+                    <a class="ui small{% if service.has_parking %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large car icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        پارکینگ
+                    </a>
+                    <a class="ui small{% if service.has_internet %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large wifi icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        اینترنت
+                    </a>
+                    <a class="ui small{% if service.has_pool %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large life ring icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        استخر
+                    </a>
+                    <a class="ui small{% if service.has_conference_hall %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large desktop icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        سالن کنفرانس
+                    </a>
+                    <a class="ui small{% if service.has_fire_extinguisher %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large fire extinguisher icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        سیستم اطفاء حریق
+                    </a>
+                    <a class="ui small{% if service.has_sport_salloon %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large soccer icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        سالن ورزشی
+                    </a>
+                    <a class="ui small{% if service.has_health_center %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large treatment icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        کلینیک درمانی
+                    </a>
+                    <a class="ui small{% if service.has_coffeeshop %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large coffee icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        کافی شاپ
+                    </a>
+                    <a class="ui small{% if service.has_emergency %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large emergency icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        اورژانس
+                    </a>
+                    <a class="ui small{% if service.has_jungle %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large tree icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        فضای سبز
+                    </a>
+                    <a class="ui small{% if service.has_protection_system %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large protect icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        سیستم یپشرفته امنیتی
+                    </a>
+                    <a class="ui small{% if service.has_shop_center %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large shop icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        مرکز خرید
+                    </a>
+                    <a class="ui small{% if service.has_gamenet %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large game icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        گیم نت
+                    </a>
+                    <a class="ui small{% if service.has_photo_studio %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}label" style="margin-bottom: 5px;">
+                        <i class="large photo icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
+                        آتلیه عکاسی
+                    </a>
+
+
+            {% elif type == "تور" %}
+                <div class="ui horizontal divider">مشخصات</div>
+
+
+
+            {% elif type == "پرواز" %}
+            {% endif %}
+
+
+            <div class="ui horizontal divider">وضعیت</div>
+            {% if exist %}
+                <div class="ui small green label">موجود
+                    <i class="large white checkmark box icon"></i>
+                </div>
+                <div class="ui small label">
+                    ظرفیت کل:
+                {{ service.capacity }}
+                </div>
+                <div class="ui small label">
+                    ظرفیت باقی مانده:
+                {{ remain }}
+                </div>
+            {% else %}
+                <i class="red remove circle icon"></i>
+                <i class="ui small black label">ناموجود</i>
+            {% endif %}
+
+            {% if service.description %}
+            <div class="ui horizontal divider">توضیحات</div>
+            <div class="ui segment">
+                {{ service.description }}
             </div>
-            <form>
+<<<<<<< HEAD
+            {% endif %}
 
-            </form>
-            <div class="ui big labeled green icon button ">
-            <i class="cart icon right_float"></i>
-                <a href="{% url 'cart' %}" style="color: white">
+            <div class="ui horizontal divider">خرید</div>
+
+            <span>قیمت (به ریال): </span>
+            <span class="off_price">{{ service.price }}</span>
+{#            <div>#}
+{#                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8955192008875!2d51.48534099999998!3d35.72878800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQzJzQzLjYiTiA1McKwMjknMDcuMiJF!5e0!3m2!1sen!2sir!4v1438352009292" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>#}
+{#            </div>#}
+            <div class="ui big labeled left floated green icon button ">
+
                 افزودن به سبد خرید
              </a>
                 <i class="add to cart icon"></i>
