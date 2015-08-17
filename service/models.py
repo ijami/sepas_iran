@@ -35,8 +35,8 @@ class Comment(models.Model):
 class Flight(Service):
     flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
-    origin = models.ForeignKey('Airport', related_name='departures')
-    destination = models.ForeignKey('Airport', related_name='arrivals')
+    # origin = models.ForeignKey('Airport', related_name='departures')
+    # destination = models.ForeignKey('Airport', related_name='arrivals')
     time = models.DateTimeField()
     @staticmethod
     def get_exist(self):
@@ -48,7 +48,7 @@ class Flight(Service):
     airplane = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.flight_number + ": " + "از" + self.origin.name + "به"\
+        return self.airline.name + " : " +  " پرواز شماره "  + self.flight_number + "  " + " از " + self.origin.name + " به " \
                + self.destination.name
 
     def get_type(self):
@@ -82,6 +82,7 @@ class Tour(Service):
     going_date = models.DateField()
     return_date = models.DateField()
     description = models.TextField()
+    trans_type = models.CharField(max_length=6)
     # going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
     # return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
     # hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)

@@ -50,24 +50,34 @@
 
             {% if type == "هتل" %}
                 <div class="ui horizontal divider">مشخصات</div>
-                <div class="ui orange large label">
+                <div class="ui large label">
                             درجه کیفی هتل:
             {{ service.degree }}
         ستاره
                 </div>
-                <div class="ui yellow large label" style="direction: ltr; margin-bottom: 3px;">
+                <div class="ui large label" style="direction: ltr; margin-bottom: 3px;">
                 تلفن هتل:
                 {{ provider.telephone }}
                 </div>
-                <div class="ui brown large label">
+                <div class="ui large label">
                 تعداد تخت هر اتاق:
                 {{ service.number_of_bed }}
                 </div>
-                <div class="ui large grey label">
+                <div class="ui large label">
                 ظرفیت (تعداد اتاق ها):
                 {{ service.capacity }}
                 </div>
-                <div class="ui blue large label">
+                <br><br>
+                <div class="ui blue large label" style="margin-bottom: 3px;">
+                تاریخ شروع:
+                {{ service.start_date }}
+                </div>
+                <div class="ui blue large label" style="margin-bottom: 3px;">
+                تاریخ پایان:
+                {{ service.end_date }}
+                </div>
+                <br><br>
+                <div class="ui large label">
                 آدرس هتل:
                 {{ provider.location.city.name }}
                 ،
@@ -198,10 +208,55 @@
 
             {% elif type == "تور" %}
                 <div class="ui horizontal divider">مشخصات</div>
+                <div class="ui big label">
+از:
+                {{ service.origin.name }}
+                </div>
+                <div class="ui big label">
+                به:
+                {{ service.destination.name }}
+                </div>
+                <div class="ui big blue label">
+                تاریخ رفت:
+                {{ service.going_date }}
+                </div>
+                <div class="ui big blue label">
+                تاریخ رفت:
+                {{ service.return_date }}
+                </div>
 
+                <div class="ui big label">
+                نوع سفر:
+                    {% if service.trans_type == 'plane' %}
+                         هوایی
+                    {% elif servic.trans_type == 'tarn' %}
+                        قطار
+                    {% else %}
+                        اتوبوس
+                    {% endif %}
+                </div>
 
 
             {% elif type == "پرواز" %}
+                <div class="ui horizontal divider">مشخصات</div>
+                <div class="ui big label">
+از:
+                {{ service.origin.name }}
+                </div>
+                <div class="ui big label">
+                به:
+                {{ service.destination.name }}
+                </div>
+                <div class="ui big blue label">
+                تاریخ رفت:
+                {{ service.date }}
+                </div>
+                <div class="ui big blue label">
+               ساعت پرواز:
+                {{ service.time }}
+                </div>
+
+
             {% endif %}
 
 
@@ -228,13 +283,13 @@
             <div class="ui segment">
                 {{ service.description }}
             </div>
-<<<<<<< HEAD
             {% endif %}
 
             <div class="ui horizontal divider">خرید</div>
 
-            <span>قیمت (به ریال): </span>
+            <span>قیمت: </span>
             <span class="off_price">{{ service.price }}</span>
+        ریال
 {#            <div>#}
 {#                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8955192008875!2d51.48534099999998!3d35.72878800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQzJzQzLjYiTiA1McKwMjknMDcuMiJF!5e0!3m2!1sen!2sir!4v1438352009292" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>#}
 {#            </div>#}
