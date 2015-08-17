@@ -9,7 +9,7 @@ from tourist.models import Tourist
 class Service(PolymorphicModel):
     price = models.IntegerField()
     capacity = models.IntegerField()
-    sold_number = models.IntegerField(default=0)
+    sold_number = models.CharField(max_length=20)
     tag_line = models.CharField(max_length=255)
     image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
@@ -39,6 +39,8 @@ class Flight(Service):
 
 
 class Room(Service):
+    start_date = models.DateField()
+    end_date = models.DateField()
     hotel = models.ForeignKey(Hotel, related_name='rooms')
     number_of_bed = models.IntegerField()
     has_television = models.BooleanField(default=False)
