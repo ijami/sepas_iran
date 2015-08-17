@@ -70,11 +70,11 @@
                 <br><br>
                 <div class="ui blue large label" style="margin-bottom: 3px;">
                 تاریخ شروع:
-                {{ service.start_date }}
+                {{ start_date }}
                 </div>
                 <div class="ui blue large label" style="margin-bottom: 3px;">
                 تاریخ پایان:
-                {{ service.end_date }}
+                {{ end_date }}
                 </div>
                 <br><br>
                 <div class="ui large label">
@@ -218,11 +218,11 @@
                 </div>
                 <div class="ui big blue label">
                 تاریخ رفت:
-                {{ service.going_date }}
+                {{ start_date }}
                 </div>
                 <div class="ui big blue label">
-                تاریخ رفت:
-                {{ service.return_date }}
+تاریخ برگشت:
+                {{ end_date }}
                 </div>
 
                 <div class="ui big label">
@@ -247,13 +247,20 @@
                 به:
                 {{ service.destination.name }}
                 </div>
+                    {% if service.airplane %}
+                        <div class="ui big label">
+                        هواپیما: 
+                            {{ service.airplane }}
+                        </div>
+
+                    {% endif %}
                 <div class="ui big blue label">
-                تاریخ رفت:
-                {{ service.date }}
+                تاریخ :
+                {{ start_date }}
                 </div>
                 <div class="ui big blue label">
-               ساعت پرواز:
-                {{ service.time }}
+               ساعت :
+                {{ service.time.hour }}:{{ service.time.minute }}
                 </div>
 
 
