@@ -7,5 +7,6 @@ __author__ = 'Iman'
 urlpatterns = [
     # Examples:
     url(r'^cart$', 'sale.views.cart_view.cart_view', name='cart'),
+    url(r'^success$', 'sale.views.success_view.success_view', name='success'),
     url(r'^shopping$', TemplateView.as_view(template_name='sale/service.html'), name='shopping'),
 ]
