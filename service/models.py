@@ -34,7 +34,7 @@ class Flight(Service):
     time = models.DateTimeField()
     @staticmethod
     def get_exist(self):
-        return Flight.objects.filter(time__lt=(datetime.now()-5))
+        return Flight.objects.filter(time__lt=(datetime.now()))
     def __str__(self):
         return self.flight_number + ": " + "از" + self.origin.city.name + "به"\
                + self.destination.city.name
@@ -47,7 +47,11 @@ class Room(Service):
     has_television = models.BooleanField(default=False)
     has_telephone = models.BooleanField(default=False)
     has_bathroom = models.BooleanField(default=False)
-
+    def get_city(self):
+        return self.hotel.location.city
+    @staticmethod
+    def get_exist(self):
+        return Room.objects.filter(time__lt=(datetime.now()))
     def __str__(self):
         return self.hotel.name + ": " + "اتاق " + self.number_of_bed + "تخته"
 
@@ -65,7 +69,9 @@ class Tour(Service):
     hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)
     hotel_name = models.CharField(max_length=100, null=True, blank=True)
     tour_guide_name = models.CharField(max_length=100)
-
+    @staticmethod
+    def get_exist(self):
+        return Tour.objects.filter(time__lt=(datetime.now()))
     def __str__(self):
         return self.travel_agency.name + ": " + "از " + self.origin.city.name + " به " + self.destination.city.name
 

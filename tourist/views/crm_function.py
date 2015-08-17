@@ -2,8 +2,9 @@ __author__ = 'آرمان'
 
 from django.shortcuts import render
 from tourist.models import Tourist
-from service.models import Flight
+from service.models import Flight,Room,Tour,TourLocation
 from service.models import Airport
+from service_provider.models import Hotel
 from django.http import Http404
 from django.core.mail import send_mail
 from datetime import datetime, timedelta, timezone
@@ -15,6 +16,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from datetime import datetime, timedelta, timezone
 from django.db.models import Max
+from base.models import City
 # Create your views here.
 
 
@@ -44,8 +46,22 @@ def send_recommended_mail(user_id):
         flights_exist = Flight.get_exist()
         for flight in flights:
             airports = Airport.objects.filter(city=flight.destination.city)
+            flight_city = []
             for airport in airports:
-                recommended.extend(flights_exist.filter(destination=airport).all())
+                flight_city.append(flights_exist.filter(destination=airport).all().latest('sold_number'))
+            recommended.append(flight_city.sort(key=lambda x: x.sold_number)[flight_city.__len__()-1])
+
+        tours = factor.serviceitem_set.filter(instanceof=Tour)
+        tours_exist = Tour.get_exist()
+        for tour in tours :
+            cities = City.objects.filter(collection=tour.destination.city.collection)
+            for tour_city in cities:
+                if tour_city != tour.destination.city:
+                    destination = TourLocation.objects.filter(city=tour_city)
+                    recommended.append(tours_exist.filter(destination=destination).all().latest('sold_number'))
+
+
+
 
 #
 # def send_news():
