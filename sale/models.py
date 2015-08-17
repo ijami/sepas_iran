@@ -27,4 +27,4 @@ class ServiceItem(models.Model):
         return self.number * self.service.price
 
     def __str__(self):
-        self.service.__str__() + ": " + self.number
+        self.service.__str__() + ": " + str(self.number)

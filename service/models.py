@@ -17,6 +17,9 @@ class Service(PolymorphicModel):
         pass
     image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
+    def get_type(self):
+        pass
+
 
 
 class Comment(models.Model):
@@ -40,7 +43,7 @@ class Flight(Service):
         return Flight.objects.filter(time__lt=(datetime.now()))
     origin = models.ForeignKey('base.City', related_name='flight_departures')
     destination = models.ForeignKey('base.City', related_name='flight_arrivals')
-    date = models.DateTimeField()
+    date = models.DateField()
     time = models.TimeField()
     airplane = models.CharField(max_length=40)
 
@@ -48,6 +51,8 @@ class Flight(Service):
         return self.flight_number + ": " + "از" + self.origin.name + "به"\
                + self.destination.name
 
+    def get_type(self):
+        return 'f'
 
 class Room(Service):
     start_date = models.DateField()
@@ -64,8 +69,10 @@ class Room(Service):
         return Room.objects.filter(time__lt=(datetime.now()))
 
     def __str__(self):
-        return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + "تخته"
+        return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + " تخته "
 
+    def get_type(self):
+        return 'r'
 
 class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
@@ -89,8 +96,11 @@ class Tour(Service):
 
 
     def __str__(self):
-        return self.travel_agency.name + ": " + "از " + self.origin.name + " به " + self.destination.name
+        return self.travel_agency.name + ": " + " از "  +   self.origin.name + " به " + self.destination.name
 
+
+    def get_type(self):
+        return 't'
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)
