@@ -21,6 +21,9 @@ class SiteUser(PolymorphicModel):
     def get_fields(self):
         pass
 
+    def get_cart_num(self):
+        return self.cart.items.count()
+
 
 class Location(models.Model):
     city = models.ForeignKey('City', related_name='locations')
