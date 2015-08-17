@@ -19,6 +19,7 @@ class Factor(ServiceList):
         return self.tourist.__str__() + "\'s factor"
 
 
+
 class ServiceItem(models.Model):
     service = models.ForeignKey(Service)
     number = models.IntegerField()
@@ -28,4 +29,4 @@ class ServiceItem(models.Model):
         return self.number * self.service.price
 
     def __str__(self):
-        self.service.__str__() + ": " + self.number
+        self.service.__str__() + ": " + str(self.number)

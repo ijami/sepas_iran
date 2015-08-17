@@ -14,5 +14,3 @@ class Tourist(SiteUser):
 
     def __str__(self):
         return self.primary_user.first_name + " " + self.primary_user.last_name
-
-

@@ -13,14 +13,14 @@
 
         {% for service in services %}
                 <div class="card" style="width: 31%; {% if service.expired %}border: 2px solid darkred; background-color: #cfd0d2{% endif %}">
-                    <div class="ui fluid image">
+                    <a class="ui fluid image" href="#">
                         {% if service.expired %}
                             <div class="ui large red ribbon label">
                                 گذشته<i class="thumbs down icon"></i>
                             </div>
                         {% endif %}
                         <img src="{{ service.image.url }}"  style="max-height: 255px">
-                    </div>
+                    </a>
                     <div class="content">
                         <div class="header" style="font-size: 14px;">
                             {{ service.name }}
@@ -38,8 +38,8 @@
                             {{ service.capacity }}
                         </span>
                         <br><br>
-                        <div class="description">
-                            قیمت واحد
+                        <div class="description" style="color: forestgreen;">
+                            قیمت واحد:
                         {{ service.price }}
                         ریال
 
