@@ -309,53 +309,28 @@
     <br/>
 
     <div class="main_container">
-        <div class="user_comment">
-            <h4>احسان نظریان (21/2/94)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">12</i>
-            <br><br>
-                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
-        </div>
-        <div class="ui divider"></div>
-        <div class="user_comment">
-            <h4>اکبر کبرایی (4/2/1393)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">12</i>
-            <br><br>
-                <p>رفتار راهنمای تور کمی غیر مودبانه بود. ایشان به من فحش دادند.<br> کیفیت وسائل حمل و نقل خوب بود.</p>
-        </div>
-        <div class="ui divider"></div>
+
+        {% for comment in comments %}
             <div class="user_comment">
-            <h4>احسان نظریان (21/2/94)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">222</i>
+                <div class="ui label" style="float: right">{{ comment.sender.name }} </div>
+                <div class="ui label" style="float: left">{{ comment.send_time }} </div>
                 <br><br>
-                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
-        </div>
-        <div class="ui divider"></div>
-            <div class="user_comment">
-            <h4>جواد رفیعی (1/1/1394)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">1200</i>
-                <br><br>
-                <p>این تور را همراه با استاد ابطحی رفتیم. اگر ایشان نبودند، بسیار خوش میگذشت</p>
-        </div>
-        <div class="ui divider"></div>
-        <div class="ui form">
-        <div class="field">
-        <label class="right_float">لطفا نظر خود را وارد کنید</label>
-        <textarea class="rtl"></textarea>
-        </div>
-            <div class="ui large grey button left_float">ارسال نظر</div>
-        </div>
+                <div class="ui segment">
+                    <p>{{ comment.text | linebreaks }}</p>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+        {% endfor %}
+
+        <form class="ui form" action="{% url 'comment' %}" method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label class="right_float">لطفا نظر خود را وارد کنید</label>
+                <textarea rows="5" type="text" class="rtl" name="comment"></textarea>
+                <input type="text" style="display: none" value="{{ service.sold_number }}" name="sn">
+            </div>
+            <button type="submit" class="ui large grey button left_float">ارسال نظر</button>
+        </form>
     </div>
 
 {% endblock %}
