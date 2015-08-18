@@ -4,26 +4,36 @@
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{% static 'service/css/service_list.css' %}">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+
 
     <script>
-    $(function() {
+    $(document).ready(function() {
     $( "#slider-range" ).slider({
     range: true,
     min: 0,
-    max: 500,
-    values: [ 75, 300 ],
+    max: "{{max_price.price}}",
+    values: [ "{{max_price.price}}" / 4,  "{{max_price.price}}" * 3 / 4],
     slide: function( event, ui ) {
-    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    $( "#amount" ).val( "تومان" + ui.values[ 1 ] + " - تومان" + ui.values[ 0 ] );
     }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#amount" ).val( "تومان" + $( "#slider-range" ).slider( "values", 1              ) +
+    " - تومان" + $( "#slider-range" ).slider( "values", 0 ) );
     });
     </script>
 {% endblock %}
 
 {% block title %}
-    <title>لیست تورها</title>
+{% if type == 'tour' %}
+<title>لیست تورها</title>
+{% endif %}
+{% if type == 'flight' %}
+<title>لیست پروازها</title>
+{% endif %}
+{% if type == 'room' %}
+<title>لیست اتاق ها</title>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -116,37 +126,57 @@
                 </div>
 
                 <div class="ui divider"></div>
-                <div class="ui pagination menu left floated" style="direction: ltr">
-                    <a class="item">
-                      12
-                    </a>
-                    <a class="item">
-                      11
-                    </a>
-                    <a class="item">
-                      10
-                    </a>
-                    <div class="disabled item">
-                      ...
-                    </div>
-                    <a class="active item">
-                      1
-                    </a>
-                </div>
+
                 <br><br><br>
                 <div class="ui right_float three cards">
                     {% for service in services %}
                     <div class="ui card rtl right_aligned">
                         <div class="image">
-                            <img src="{% static 'service/images/tour.jpeg' %}">
+                            <img class="list_item_img" src="{{service.image.url}}" style=" height:250px;">
                         </div>
                         <div class="content">
-                            <a href="{% url 'shopping' %}" class="header">{{service.destination}}</a>
+                            {% if type == 'tour' or type == 'flight' %}
+                            <div class="header">
+
+                                <a href="{% url 'shopping' %}" class="header">{{service.origin}}</a>
+                                <i class="long arrow left icon"></i>
+
+
+                                <a href="{% url 'shopping' %}" class="left_float header">{{service.destination}}</a>
+
+                            </div>
+                            {% endif %}
+                            {% if type == 'room' %}
+                            <a href="{% url 'shopping' %}" class="header">{{service.hotel.location.city}}</a>
+                            {% endif %}
+                            <br/>
                             <div class="meta">
-                            <span class="date">{{service.going_date}}</span>
+                            {% if type == 'tour' %}
+                                <span class="date">{{service.going_date}}</span>
+                            {% endif %}
+                            {% if type == 'flight' %}
+                                <div class="date">{{service.date}}</div>
+                                <div class="time">{{service.time}}</div>
+                            {% endif %}
+                            {% if type == 'room' %}
+                                <span>از </span>
+                                <span class="date">{{service.start_date}}</span>
+                                <span> به </span>
+                                <span class="date">{{service.start_date}}</span>
+
+
+                            {% endif %}
                             </div>
                             <div class="description">
-                                {{service.description}}
+                            {% if type == 'tour' %}
+                                {{service.tag_line}}
+                            {% endif %}
+                            {% if type == 'flight' %}
+                                {{service.airline.name}}
+                            {% endif %}
+                            {% if type == 'room' %}
+                                {{service.hotel.name}}
+                            {% endif %}
                             </div>
                         </div>
                         <div class="extra content">
@@ -157,26 +187,6 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="ui card rtl right_aligned">
-                        <div class="image">
-                            <img src="{% static 'service/images/tour.jpeg' %}">
-                        </div>
-                        <div class="content">
-                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
-                            <div class="meta">
-                            <span class="date">شهریور 94</span>
-                            </div>
-                            <div class="description">
-                                بهترین تور مشهد با نازلترین قیمت
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
-                                333 خریدار
-                            </a>
-                        </div>
-                    </div>
 
 
 
@@ -185,8 +195,8 @@
             </div>
             <div class="search_container">
                 <form method="post">
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    <div id="slider-range"></div>
+                    <input type="text" id="amount"  style="border:0; color:#777777; padding:12; font-size:15px; width: 220px; ">
+                    <div id="slider-range" style="width:220px;"></div>
 
 
                 </form>
