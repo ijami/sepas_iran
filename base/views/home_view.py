@@ -14,8 +14,17 @@ def home(request):
 
     tourists = Tourist.objects.all()
     for tourist in tourists:
-        print(send_recommended_mail(tourist.primary_user.id).__len__())
-
+        recs =send_recommended_mail(tourist.primary_user.id)
+        for rec in recs:
+            if rec.get_type() == 'f':
+                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+                            'tourist/recomendation.html', {'rec': rec,'tr':rec.airline.name}, True)
+            if rec.get_type() == 't':
+                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+                            'tourist/recomendation.html', {'rec': rec,'tr':rec.travel_agency.name}, True)
+            if rec.get_type() == 'r':
+                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+                            'tourist/recomendation.html', {'rec': rec,'tr':rec.hotel.name}, True)
 
 
 

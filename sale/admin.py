@@ -11,8 +11,10 @@ class CartAdmin(admin.ModelAdmin):
     inlines = [ServiceInline]
 
 
+
 class FactorAdmin(admin.ModelAdmin):
     inlines = [ServiceInline]
 
 admin.site.register(Cart, CartAdmin)
 admin.site.register(Factor, FactorAdmin)
+admin.site.register(ServiceItem)

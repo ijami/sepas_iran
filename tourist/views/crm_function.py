@@ -1,17 +1,18 @@
 __author__ = 'آرمان'
 
-from django.shortcuts import render
-from tourist.models import Tourist
-from service.models import Flight,Room,Tour,Comment
-from service.models import Airport
-from sale.views.finance import tourist_services
+from datetime import datetime
+
 from django.http import Http404
-from service.models import Service,Tour
+
 from django.contrib.auth.models import User
-from datetime import datetime, timedelta, timezone
-from django.db.models import Max
+
+from tourist.models import Tourist
+from service.models import Flight, Comment
+from sale.views.finance import tourist_services
+from service.models import Service, Tour
 from base.models import City
 from sale.models import ServiceItem
+
 # Create your views here.
 
 
@@ -20,19 +21,20 @@ def loyalty(user_id):
         tourist = User.objects.get(id=user_id)
     except Tourist.DoesNotExist:
         return Http404
-    time_now=datetime.now().date().year * 365 +datetime.now().date().month*30 + datetime.now().date().day
-    time_joined = tourist.date_joined.year * 365 +tourist.date_joined.month*30 + tourist.date_joined.day
-    print("\ntime joining   " + str(time_now -time_joined)+"\n")
-    
+    time_now = datetime.now().date().year * 365 + datetime.now().date().month * 30 + datetime.now().date().day
+    time_joined = tourist.date_joined.year * 365 + tourist.date_joined.month * 30 + tourist.date_joined.day
+    print("\ntime joining   " + str(time_now - time_joined) + "\n")
+
     # comments_count = tourist.comments.count()
     # comments_count= 0
     # print("\n%%%%%   "+str(time_joining)+ "  " + str(comments_count)+" %%%%%%%\n" )
     # prices = [bought_service.service.cost for bought_service in tourist.boughtservice_set]
     # sum_buy = sum(prices)
 
+
 def tourist_comments_count(tourist_id):
     services = tourist_services(tourist_id)
-    counter =0
+    counter = 0
     for service in services:
         counter += Comment.objects.filter(service=service).all().count()
     return counter
@@ -46,25 +48,43 @@ def send_recommended_mail(user_id):
     tours_past = tourist.factors.all()
     recommended = []
     for factor in tours_past:
-        flights = ServiceItem.objects.filter(factor=factor).filter(type=Flight)
-        flights_exist = Flight.get_exist()
-        for flight in flights:
-            airports = Airport.objects.filter(city=flight.destination.city)
-            flight_city = []
-            for airport in airports:
-                flight_city.append(flights_exist.filter(destination=airport).all().latest('sold_number'))
-            recommended.append(flight_city.sort(key=lambda x: x.sold_number)[flight_city.__len__()-1])
+        flights = Service.objects.filter(id__in=ServiceItem.objects.filter(factor=factor)
+                                         .values_list('service__id', flat=True)) \
+            .filter(id__in=Flight.objects.all().values_list('id', flat=True))
+        try:
+            flights_exist = Flight.get_exist()
+        except Tourist.DoesNotExist:
+            return Http404
 
-        tours = ServiceItem.objects.filter(factor=factor).filter(type=Tour)
-        tours_exist = Tour.get_exist()
-        for tour in tours :
-            cities = City.objects.filter(collection=tour.destination.collection)
-            for tour_city in cities:
-                if tour_city != tour.destination:
-                    recommended.append(tours_exist.filter(destination=tour_city).all().latest('sold_number'))
+        if flights_exist:
+            for flight in flights:
+                # airports = Airport.objects.filter(city=flight.destination)
+                cities = City.objects.filter(map_code=flight.destination.map_code)
+                for tour_city in cities:
+                    if flights_exist.filter(destination=tour_city):
+                        recommended.append(flights_exist.filter(destination=tour_city).latest('sold_number'))
+                        # flight_city = []
+                        # for airport in airports:
+                        #     flight_city.append(flights_exist.filter(destination=airport).all().latest('sold_number'))
+                        # # recommended.append(flight_city.sort(key=lambda x: x.sold_number)[flight_city.__len__() - 1])
+
+        tours = Service.objects.filter(id__in=ServiceItem.objects.filter(factor=factor)
+                                       .values_list('service__id', flat=True)) \
+            .filter(id__in=Tour.objects.all().values_list('id', flat=True))
+        try:
+            tours_exist = Tour.get_exist()
+        except Tourist.DoesNotExist:
+            return Http404
+
+        if tours_exist:
+            for tour in tours:
+                cities = City.objects.filter(map_code=tour.destination.map_code)
+                for tour_city in cities:
+                    if tour_city != tour.destination:
+                        if tours_exist.filter(destination=tour_city):
+                            recommended.append(tours_exist.filter(destination=tour_city).latest('sold_number'))
 
     return recommended
-
 
 #
 # def send_news():
