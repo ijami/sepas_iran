@@ -28,13 +28,13 @@ def service_show(request, sold_number):
     elif t == 't':
         type = 'تور'
         provider = service.travel_agency
-        start_date = jdatetime.date.fromgregorian(date=service.going_date.date())
-        end_date = jdatetime.date.fromgregorian(date=service.return_date.date())
+        start_date = jdatetime.date.fromgregorian(date=service.going_date)
+        end_date = jdatetime.date.fromgregorian(date=service.return_date)
     elif t == 'f':
         type = 'پرواز'
         provider = service.airline
         start_date = jdatetime.date.fromgregorian(date=service.date)
-    q = ServiceItem.objects.filter(service=service)
+    q = ServiceItem.objects.filter(service=service, cart=None)
     size = len(q)
     remain = service.capacity - size
     comments = service.comments.all()
