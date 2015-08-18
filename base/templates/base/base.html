@@ -1,3 +1,4 @@
+{% load base_extra %}
 <!DOCTYPE html>
 <html>
 <head lang="fa">
@@ -66,13 +67,18 @@
                 </div>
                 <div id="search" class="bordered">
                     <div class="digigreen ui small button right_float
-                            {% if user.site_user.get_fields.super_type == 'service_provider' %}non-display{% endif %}" id="cart">
+                            {% if user.site_user.get_fields.super_type == 'service_provider' %}non-display{% endif %}"
+                         id="cart">
                         <i class="cart icon right_float"></i>
                         <a href="{% url 'cart' %}" style="color: white">
                             &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
                         </a>
                         <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
-                            {#                            {{ user.site_user.get_cart_num }}#}
+                            {% if user.site_user.get_fields.type == "tourist" %}
+                                {{ user.site_user.cart.items.all | length }}
+                            {% else %}
+                                0
+                            {% endif %}
                         </a>
                     </div>
                     <div class="ui left icon small input right_float" id="search_box" dir="rtl">

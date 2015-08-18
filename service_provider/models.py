@@ -11,9 +11,6 @@ class ServiceProvider(SiteUser):
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
 
-    def get_fields(self):
-        return {'super_type': 'service_provider'}
-
     def __str__(self):
         return self.name
 
@@ -42,6 +39,7 @@ class Hotel(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'hotel',
             'image': self.image,
             'name': self.name,
@@ -73,6 +71,7 @@ class AirLine(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'airline',
             'image': self.image,
             'name': self.name,
@@ -89,6 +88,7 @@ class TravelAgency(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'agency',
             'image': self.image,
             'name': self.name,
