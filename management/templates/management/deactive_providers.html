@@ -1,0 +1,55 @@
+{% extends 'management/dashboard.html' %}
+{% load staticfiles %}
+{% block menu_content %}
+    <div class="ui pagination menu left floated" style="direction: ltr"
+         xmlns="http://www.w3.org/1999/html">
+        <a class="item">
+            12
+        </a>
+        <a class="item">
+            11
+        </a>
+        <a class="item">
+            10
+        </a>
+
+        <div class="disabled item">
+            ...
+        </div>
+        <a class="active item">
+            1
+        </a>
+    </div>
+    <br><br><br>
+    <div class="ui right_float four cards rtl">
+        {% for item in providers %}
+            <div class="ui card rtl right_aligned" style="min-width: 200px">
+                <div class="image" style="height: 209px;">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}">
+                    {% else %}
+                        <img src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
+                    {% endif %}
+                </div>
+                <div class="content">
+                    <a class="header">{{ item.name }}</a>
+
+                    <div class="description">
+                        {{ item.short_description }}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <div class="extra content">
+                            <form method="post" action="{% url 'deactive_providers' %}">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{ item.id }}" name="provider_id">
+                                <input type="submit" class="ui green button" value="فعال کردن">
+                            </form>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
