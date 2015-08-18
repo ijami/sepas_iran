@@ -8,10 +8,8 @@ from django.forms.models import ModelForm
 from django.template.defaultfilters import register
 
 from jdatetime import date as jdate
-from location_field.forms.plain import PlainLocationField
 
 from base.models import City, Location
-from sale.models import Cart
 from service_provider.models import ServiceProvider, TravelAgency, Hotel, AirLine
 
 
