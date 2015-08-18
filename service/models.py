@@ -38,6 +38,7 @@ class Flight(Service):
     flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
     time = models.DateTimeField()
+    type = models.CharField(max_length=10, default="Flight")
 
     @staticmethod
     def get_exist(self):
@@ -63,6 +64,7 @@ class Room(Service):
     has_television = models.BooleanField(default=False)
     has_telephone = models.BooleanField(default=False)
     has_bathroom = models.BooleanField(default=False)
+    type = models.CharField(max_length=10, default="Room")
 
     def get_city(self):
         return self.hotel.location.city
@@ -92,6 +94,8 @@ class Tour(Service):
     hotel_name = models.CharField(max_length=100, null=True, blank=True)
 
     tour_guide_name = models.CharField(max_length=100)
+
+    type = models.CharField(max_length=10, default="Tour")
 
     @staticmethod
     def get_exist(self):
