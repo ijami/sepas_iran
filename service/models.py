@@ -29,7 +29,7 @@ class Flight(Service):
     airline = models.ForeignKey(AirLine, related_name='flights')
     origin = models.ForeignKey('base.City', related_name='flight_departures')
     destination = models.ForeignKey('base.City', related_name='flight_arrivals')
-    date = models.DateTimeField()
+    date = models.DateField()
     time = models.TimeField()
     airplane = models.CharField(max_length=40)
 

@@ -34,7 +34,7 @@ def service_list(request):
                 service.append(s)
         capacityadd = CapacityAddingForm()
 
-        return render(request, 'service_provider/service_list.html', {'services': service, 'capa': capacityadd})
+        return render(request, 'service_provider/type_service_list.html', {'services': service, 'capa': capacityadd})
 
 def add_capacity(request):
     print("salaaaaaaaam")
