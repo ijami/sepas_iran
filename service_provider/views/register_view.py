@@ -14,6 +14,7 @@ def register(request):
             'form': form
         })
 
+    print(request.POST)
     form = ServiceProviderCreationForm(request.POST, request.FILES)
     print(unicode(form['username'].value()).encode('utf8'))
 

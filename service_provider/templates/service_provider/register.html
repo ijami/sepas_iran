@@ -76,7 +76,7 @@
                                 {#                            <input type="text" name="first-name" placeholder="نام">#}
                                 {{ form.first_name }}
                             </div>
-                            <div class="field{% if form.last_name.errors %}error{% endif %}">
+                            <div class="field{% if form.last_name.errors %}error{% endif %}{% if form.last_name.field.required %} required{% endif %}">
 
                                 {{ form.last_name.label_tag }}
                                 {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="field {% if form.national_id.errors %}error{% endif %}">
+                        <div class="field {% if form.national_id.errors %}error{% endif %}{% if form.national_id.field.required %} required{% endif %}">
 
                             {{ form.national_id.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="نام خانوداگی">#}
@@ -95,40 +95,30 @@
                             ایجاد حساب کاربری شرکت
                         </h4>
 
-                        <div class="field {% if form.username.errors %}error{% endif %}">
+                        <div class="field {% if form.username.errors %}error{% endif %}{% if form.username.field.required %} required{% endif %}">
                             {{ form.username.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.username }}
                         </div>
-                        <div class="field {% if form.email.errors %}error{% endif %}">
+                        <div class="field {% if form.email.errors %}error{% endif %}{% if form.email.field.required %} required{% endif %}">
                             {{ form.email.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.email }}
                         </div>
 
-                        <div class="field {% if form.password1.errors %}error{% endif %}">
+                        <div class="field {% if form.password1.errors %}error{% endif %}{% if form.password1.field.required %} required{% endif %}">
                             {#                            <label>پست الکترونیک</label>#}
                             {{ form.password1.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password1 }}
                         </div>
-                        <div class="field {% if form.password2.errors %}error{% endif %}">
+                        <div class="field {% if form.password2.errors %}error{% endif %}{% if form.password2.field.required %} required{% endif %}">
                             {{ form.password2.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.password2 }}
                         </div>
 
-                        <div class="field {% if form.image.errors %}error{% endif %}">
-                            {{ form.image.label_tag }}
-                            <label for="id_image" class="ui icon button">
-                                <i class="file icon"></i>
-                                انتخاب عکس
-                            </label>
-                            {{ form.image }}
-                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
-                        </div>
-
-                        <div class="field {% if form.image.errors %}error{% endif %}">
+                        <div class="field {% if form.image.errors %}error{% endif %}{% if form.image.field.required %} required{% endif %}">
                             {{ form.image.label_tag }}
                             <label for="id_image" class="ui icon button">
                                 <i class="file icon"></i>
@@ -142,64 +132,74 @@
                             مشخصات گردش ساز / یار
                         </h4>
 
-                        <div class="field {% if form.name.errors %}error{% endif %}">
+                        <div class="field {% if form.name.errors %}error{% endif %}{% if form.name.field.required %} required{% endif %}">
                             {{ form.name.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.name }}
                         </div>
 
-                        <div class="field {% if form.short_description.errors %}error{% endif %}">
+                        <div class="field {% if form.short_description.errors %}error{% endif %}{% if form.short_description.field.required %} required{% endif %}">
                             {{ form.short_description.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.short_description }}
                         </div>
 
-                        <div class="field {% if form.long_description.errors %}error{% endif %}">
+                        <div class="field {% if form.long_description.errors %}error{% endif %}{% if form.long_description.field.required %} required{% endif %}">
                             {{ form.long_description.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.long_description }}
                         </div>
 
-                        <div class="field {% if form.telephone.errors %}error{% endif %}">
+                        <div class="field {% if form.telephone.errors %}error{% endif %}{% if form.telephone.field.required %} required{% endif %}">
                             {{ form.telephone.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.telephone }}
                         </div>
 
-                        <div class="field{% if form.city.errors %} error{% endif %}{% if form.city.required %} required{% endif %}">
+                        <div class="field{% if form.city.errors %} error{% endif %}{% if form.city.field.required %} required{% endif %}">
                             {{ form.city.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.city }}
                         </div>
-                        <div class="field {% if form.address.errors %}error{% endif %}">
+                        <div class="field {% if form.address.errors %}error{% endif %}{% if form.address.field.required %} required{% endif %}">
                             {{ form.address.label_tag }}
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                             {{ form.address }}
                         </div>
-                        <div class="field">
+                        <div class="field {% if form.type.errors %}error{% endif %}{% if form.type.field.required %} required{% endif %}">
                             <label>خدمت ارائه شده</label>
 
                             <div class="ui selection dropdown">
-                                <input type="hidden" name="gender">
+{#                                <input type="hidden" name="type">#}
+                                {{ form.type }}
                                 <i class="dropdown icon"></i>
 
                                 <div class="default text">انتخاب کنید</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1" data-tab="tour">تور</div>
-                                    <div class="item" data-value="2" data-tab="hotel">هتل</div>
-                                    <div class="item" data-value="3" data-tab="airline">هواپیمایی</div>
+                                    <div class="item" data-value="tour" data-tab="tour">تور</div>
+                                    <div class="item" data-value="hotel" data-tab="hotel">هتل</div>
+                                    <div class="item" data-value="airline" data-tab="airline">هواپیمایی</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="ui tab field" data-tab="tour">
-                            <div class="field{% if form.first_name.errors %} error{% endif %}{% if form.first_name.field.required %} required{% endif %}">
+
+                        </div>
+
+                        <div class="ui tab field" data-tab="hotel">
+                            <div class="field{% if form.degree.errors %} error{% endif %}{% if form.degree.field.required %} required{% endif %}">
                                 {{ form.degree.label_tag }}
-                                <div class="ui star rating" data-rating="1"></div>
+                                <div class="ui field" id="stars_container">
+
+                                    <div class="ui star rating" data-rating="1"></div>
+                                </div>
                                 {{ form.degree }}
                             </div>
 
-                            <div class="ui two column center aligned stackable divided grid segment">
+                            <label>امکانات:</label>
+
+                            <div class="ui two column right aligned stackable divided grid segment" id="facilities">
                                 <div class="column">
                                     <div class="ui toggle checkbox">
                                         {{ form.has_restaurant }}
@@ -284,12 +284,6 @@
                                         {{ form.has_gamenet.label_tag }}
                                     </div>
                                 </div>
-                                 <div class="column">
-                                    <div class="ui toggle checkbox">
-                                        {{ form.has_gamenet }}
-                                        {{ form.has_gamenet.label_tag }}
-                                    </div>
-                                </div>
                                 <div class="column">
                                     <div class="ui toggle checkbox">
                                         {{ form.has_shop_center }}
@@ -298,23 +292,26 @@
                                 </div>
 
                             </div>
-
+                            <div class="field {% if form.map_widget.errors %}error{% endif %}">
+                                {{ form.map_widget.label_tag }}
+                                {{ form.map_widget }}
+                                <div class="ui info message">
+                                    برای گرفتن موقعیت جغرافیای هتل خود به
+                                    <a href="https://support.google.com/maps/answer/3544418?hl=en">این لینک </a>
+                                    مراجعه کنید و لینک share شده را در این قسمت قرار دهید.
+                                </div>
+                            </div>
 
                         </div>
 
-                        <div class="ui tab" data-tab="hotel">
-                            <div class="field {% if form.address.errors %}error{% endif %}">
 
+                        <div class="ui tab field" data-tab="airline">
+                            <div class="field {% if form.is_international.errors %}error{% endif %}">
+                                <div class="ui toggle checkbox">
+                                    {{ form.is_international }}
+                                    {{ form.is_international.label_tag }}
+                                </div>
                             </div>
-
-
-                        </div>
-                        <div class="ui tab" data-tab="airline">
-                            <div class="ui toggle checkbox">
-                                <input type="checkbox" name="public">
-                                <label>Subscribe to weekly hotel</label>
-                            </div>
-
                         </div>
 
 

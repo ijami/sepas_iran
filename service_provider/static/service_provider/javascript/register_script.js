@@ -10,6 +10,7 @@ $(document).ready(function () {
     $('.menu .item').tab();
     var rating = $('.field .rating');
     var degree = $('#id_degree');
+    degree.attr('value',1);
     rating
         .rating({
             initialRating: 1,
