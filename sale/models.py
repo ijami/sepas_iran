@@ -16,6 +16,7 @@ class Factor(models.Model):
         return self.tourist.__str__() + " " + self.create_date
 
 
+
 class ServiceItem(models.Model):
     service = models.ForeignKey(Service)
     number = models.IntegerField()
@@ -26,4 +27,4 @@ class ServiceItem(models.Model):
         return self.number * self.service.price
 
     def __str__(self):
-        self.service.__str__() + ": " + self.number
+        self.service.__str__() + ": " + str(self.number)
