@@ -6,6 +6,7 @@
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
     <script type="text/javascript" src="{% static 'base/javascript/base.js' %}"></script>
+
     <link type="text/css" rel="stylesheet" href="{% static 'bower_components/semantic-ui/dist/semantic.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'base/css/base.css' %}">
     {% block head %}{% endblock %}
@@ -63,7 +64,7 @@
                             &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
                         </a>
                         <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
-                            12
+{#                            {{ user.site_user.get_cart_num }}#}
                         </a>
                     </div>
                     <div class="ui left icon small input right_float" id="search_box" dir="rtl">

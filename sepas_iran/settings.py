@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.core.urlresolvers import reverse
+import base
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'django://'
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,9 +51,11 @@ INSTALLED_APPS = (
     'service_provider',
     'tourist',
     'sale',
+    'djcelery',
+    'django_cron',
     'base',
-    'kombu.transport.django'
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,5 +126,20 @@ STATICFILES_DIRS = (
 
 SITE_URL = 'http://localhost:8000'
 LOGIN_URL = '/accounts/login/'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "samanasoftware@gmail.com"
+EMAIL_HOST_PASSWORD = "samanapass"
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'samanasoftware@gmail.com'
+
+
+CRON_CLASSES = [
+    "base.views.tasks.MyCronJob"
+]
+# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
 
 FILE_UPLOAD_PERMISSIONS = 0o777

@@ -84,6 +84,13 @@ class TourForm(ModelForm):
     tag_line = forms.CharField(max_length=555, label="جمله نشانه", required=True,
                                 error_messages={'required': "پر کردن فیلد جمله نشانه الزامی است"},
                                 widget=forms.TimeInput(attrs={'placeholder': 'مثال: تور خاطره انگیز در سواحل بکر دریای مازندران'}))
+    CHOICES = (
+        ("plane", "هواپیما"),
+        ("tran", "قطار"),
+        ("bus", 'اتوبوس'),
+    )
+    trans_type = forms.ChoiceField(label="وسیله نقلیه", required=True, error_messages={'required': "پرکردن فیلد وسیله نقلیه الزامی است"}
+                                   , choices=CHOICES)
 
     def clean_going_date(self):
         going_date = self.cleaned_data["going_date"]
@@ -124,8 +131,11 @@ class TourForm(ModelForm):
         service.travel_agency = user
         service.price = self.cleaned_data['price']
         service.capacity = self.cleaned_data['capacity']
-        service.sold_number = 1
+        service.sold_number = 't_' + str(user.id) + "_" + str(len(Tour.objects.filter(travel_agency=user)))
         service.tag_line = self.cleaned_data['tag_line']
+        service.trans_type = self.cleaned_data['trans_type']
+        print("sag")
+        print(self.cleaned_data['image'])
         service.image = self.cleaned_data['image']
         if service.image == None:
             service.image = user.image
@@ -215,7 +225,7 @@ class RoomForm(ModelForm):
             r.image = self.cleaned_data['image']
         else:
             r.image = user.image
-        r.sold_number = 1
+        r.sold_number = 'r_' + str(user.id) + "_" + str(len(Room.objects.filter(hotel=user)))
         if commit:
             r.save()
         else:
@@ -258,6 +268,7 @@ class FlightForm(ModelForm):
         price = self.cleaned_data['price']
         if price <= 0 or price > 1000000000:
             raise forms.ValidationError(message="قیمت نامعتبر است")
+        return price
 
     def save(self, commit=True, user=None):
         flight = super(FlightForm, self).save(commit=False)
@@ -266,12 +277,13 @@ class FlightForm(ModelForm):
         flight.destination = self.cleaned_data['destination']
         flight.capacity = self.cleaned_data['capacity']
         flight.price = self.cleaned_data['price']
+        print(flight.price)
         flight.tag_line = self.cleaned_data['tag_line']
         flight.date = self.cleaned_data['date']
         flight.time = self.cleaned_data['time']
         flight.airplane = self.cleaned_data['airplane']
         flight.flight_number = self.cleaned_data['flight_number']
-        flight.sold_number = 1
+        flight.sold_number = 'f_' + str(user.id) + "_" + str(len(Flight.objects.filter(airline=user)))
         if self.cleaned_data['image'] != None:
             flight.image = self.cleaned_data['image']
         else:
@@ -280,3 +292,8 @@ class FlightForm(ModelForm):
             flight.save()
         else:
             return flight
+
+
+class CapacityAddingForm(forms.Form):
+    added_capacity = forms.IntegerField(min_value=1, max_value=200, required=True, label="افزایش ظرفیت درخواستی")
+    sold_number = forms.CharField(max_length=20, required=False)

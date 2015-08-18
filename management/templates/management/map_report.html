@@ -1,0 +1,224 @@
+{% extends 'management/dashboard.html' %}
+{% load static %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script src="{% static 'management/javascript/buy_report.js' %}"></script>
+{% endblock %}
+{% block nav_item %}
+    گزارش دوره‌ای
+{% endblock %}
+{% block menu_content %}
+    <h2>گزارش دوره‌ای سامانه سپاس ایران</h2>
+    <div class="ui tow column grid">
+
+        <div class="four wide column">
+            <form class="ui form rtl" action="{% url 'area_report' %}" method="post">
+                {% csrf_token %}
+                <h3>ویژگی کاربران مشمول گزارش</h3>
+                {% for field in form %}
+                    <div class="tow field">
+                        <div class="field{% if field.errors %}error{% endif %}">
+                            {{ field.label }}
+                        </div>
+                        <div class="field">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="ui rtl" dir="rtl" style="color: red; margin-right: -25px">
+                    {% for k, message in form.errors.items %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                <input type="submit" style="margin-top: 20px" class="ui green button"
+                       value="دریافت گزارش">
+            </form>
+        </div>
+        <div class="twelve wide column" id="chart_container" dir="ltr">
+        </div>
+    </div>
+    <style type="text/css">
+        ${demo.css}
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+            // Prepare demo data
+            var data = [
+                {
+                    "hc-key": "ir-5428",
+                    "value": 0
+                },
+                {
+                    "hc-key": "ir-hg",
+                    "value": 10
+                },
+                {
+                    "hc-key": "ir-bs",
+                    "value": 10
+                },
+                {
+                    "hc-key": "ir-kb",
+                    "value": 10
+                },
+                {
+                    "hc-key": "ir-fa",
+                    "value": 4
+                },
+                {
+                    "hc-key": "ir-es",
+                    "value": 3
+                },
+                {
+                    "hc-key": "ir-sm",
+                    "value": 6
+                },
+                {
+                    "hc-key": "ir-go",
+                    "value": 7
+                },
+                {
+                    "hc-key": "ir-mn",
+                    "value": 8
+                },
+                {
+                    "hc-key": "ir-th",
+                    "value": 9
+                },
+                {
+                    "hc-key": "ir-mk",
+                    "value": 10
+                },
+                {
+                    "hc-key": "ir-ya",
+                    "value": 11
+                },
+                {
+                    "hc-key": "ir-cm",
+                    "value": 12
+                },
+                {
+                    "hc-key": "ir-kz",
+                    "value": 13
+                },
+                {
+                    "hc-key": "ir-lo",
+                    "value": 14
+                },
+                {
+                    "hc-key": "ir-il",
+                    "value": 15
+                },
+                {
+                    "hc-key": "ir-ar",
+                    "value": 16
+                },
+                {
+                    "hc-key": "ir-qm",
+                    "value": 17
+                },
+                {
+                    "hc-key": "ir-hd",
+                    "value": 18
+                },
+                {
+                    "hc-key": "ir-za",
+                    "value": 19
+                },
+                {
+                    "hc-key": "ir-qz",
+                    "value": 20
+                },
+                {
+                    "hc-key": "ir-wa",
+                    "value": 21
+                },
+                {
+                    "hc-key": "ir-ea",
+                    "value": 22
+                },
+                {
+                    "hc-key": "ir-bk",
+                    "value": 23
+                },
+                {
+                    "hc-key": "ir-gi",
+                    "value": 24
+                },
+                {
+                    "hc-key": "ir-kd",
+                    "value": 25
+                },
+                {
+                    "hc-key": "ir-kj",
+                    "value": 26
+                },
+                {
+                    "hc-key": "ir-kv",
+                    "value": 27
+                },
+                {
+                    "hc-key": "ir-ks",
+                    "value": 28
+                },
+                {
+                    "hc-key": "ir-sb",
+                    "value": 29
+                },
+                {
+                    "hc-key": "ir-ke",
+                    "value": 300
+                },
+                {
+                    "hc-key": "ir-al",
+                    "value": 31
+                }
+            ];
+
+            // Initiate the chart
+            $('#chart_container').highcharts('Map', {
+
+                title: {
+                    text: 'نمودار درصد اقبال نسبت به شهرهای ایران'
+                },
+
+
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+
+                colorAxis: {
+                    min: 0
+                },
+
+                series: [{
+                    data: data,
+                    mapData: Highcharts.maps['countries/ir/ir-all'],
+                    joinBy: 'hc-key',
+                    name: 'اقبال',
+                    states: {
+                        hover: {
+                            color: '#BADA55'
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }]
+            });
+        });
+    </script>
+    <script src="{% static 'management/Highmaps-1.1.7/js/highmaps.js' %}"></script>
+    <script src="{% static 'management/Highmaps-1.1.7/js/modules/exporting.js' %}"></script>
+    <script src="{% static 'management/Highmaps-1.1.7/js/ir-all.js' %}"></script>
+
+{% endblock %}
+
