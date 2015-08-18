@@ -132,10 +132,10 @@
                     {% for service in services %}
                     <div class="ui card rtl right_aligned">
                         <div class="image">
-                            <img class="list_item_img" src="{{service.0.image.url}}" style=" height:250px;">
+                            <img class="list_item_img" src="{{service.image.url}}" style=" height:250px;">
                         </div>
                         <div class="content">
-                            {% if service.1 == 'tour' or type == 'flight' %}
+                            {% if type == 'tour' or type == 'flight' %}
                             <div class="header">
 
                                 <a href="{% url 'shopping' %}" class="header">{{service.origin}}</a>
@@ -187,26 +187,6 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="ui card rtl right_aligned">
-                        <div class="image">
-                            <img src="{% static 'service/images/tour.jpeg' %}">
-                        </div>
-                        <div class="content">
-                            <a href="{% url 'shopping' %}" class="header">مشهد</a>
-                            <div class="meta">
-                            <span class="date">شهریور 94</span>
-                            </div>
-                            <div class="description">
-                                بهترین تور مشهد با نازلترین قیمت
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
-                                333 خریدار
-                            </a>
-                        </div>
-                    </div>
 
 
 
