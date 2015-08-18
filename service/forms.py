@@ -297,3 +297,6 @@ class FlightForm(ModelForm):
 class CapacityAddingForm(forms.Form):
     added_capacity = forms.IntegerField(min_value=1, max_value=200, required=True, label="افزایش ظرفیت درخواستی")
     sold_number = forms.CharField(max_length=20, required=False)
+
+
+

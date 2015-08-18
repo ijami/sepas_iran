@@ -135,7 +135,7 @@
                             <img class="list_item_img" src="{{service.0.image.url}}" style=" height:250px;">
                         </div>
                         <div class="content">
-                            {% if service.1 == 'tour' or type == 'flight' %}
+                            {% if isinstane(service, Tour) or isinstance(service, Flight) %}
                             <div class="header">
 
                                 <a href="{% url 'shopping' %}" class="header">{{service.origin}}</a>
@@ -146,19 +146,19 @@
 
                             </div>
                             {% endif %}
-                            {% if type == 'room' %}
+                            {% if isinstane(service, Room) %}
                             <a href="{% url 'shopping' %}" class="header">{{service.hotel.location.city}}</a>
                             {% endif %}
                             <br/>
                             <div class="meta">
-                            {% if type == 'tour' %}
+                            {% if isinstane(service, Tour) %}
                                 <span class="date">{{service.going_date}}</span>
                             {% endif %}
-                            {% if type == 'flight' %}
+                            {% if isinstane(service, Flight) %}
                                 <div class="date">{{service.date}}</div>
                                 <div class="time">{{service.time}}</div>
                             {% endif %}
-                            {% if type == 'room' %}
+                            {% if isinstane(service, Room) %}
                                 <span>از </span>
                                 <span class="date">{{service.start_date}}</span>
                                 <span> به </span>
@@ -168,13 +168,13 @@
                             {% endif %}
                             </div>
                             <div class="description">
-                            {% if type == 'tour' %}
+                            {% if isinstane(service, Tour) %}
                                 {{service.tag_line}}
                             {% endif %}
-                            {% if type == 'flight' %}
+                            {% if isinstane(service, Flight) %}
                                 {{service.airline.name}}
                             {% endif %}
-                            {% if type == 'room' %}
+                            {% if isinstane(service, Room) %}
                                 {{service.hotel.name}}
                             {% endif %}
                             </div>

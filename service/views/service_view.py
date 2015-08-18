@@ -62,8 +62,11 @@ def show_service_list_view(request):
 
 
     return render(request, 'service_list.html', {
-        'services': (service, 'tour' if (service.going_date) else 'flight' if (service.time) else 'room'),
+        'services': service,
         'max_price': max_price,
+        'Tour': Tour,
+        'Flight': Flight,
+        'Room': Room
 
     })
 
