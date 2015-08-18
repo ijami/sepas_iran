@@ -85,7 +85,7 @@ class Tour(Service):
     going_date = models.DateField()
     return_date = models.DateField()
     description = models.TextField()
-    trans_type = models.CharField(max_length=6)
+    trans_type = models.CharField(max_length=6, default='plane')
     # going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
     # return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
     # hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)

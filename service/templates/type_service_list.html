@@ -138,16 +138,16 @@
                             {% if type == 'tour' or type == 'flight' %}
                             <div class="header">
 
-                                <a href="{% url 'shopping' %}" class="header">{{service.origin}}</a>
+                                <a href="" class="header">{{service.origin}}</a>
                                 <i class="long arrow left icon"></i>
 
 
-                                <a href="{% url 'shopping' %}" class="left_float header">{{service.destination}}</a>
+                                <a href="" class="left_float header">{{service.destination}}</a>
 
                             </div>
                             {% endif %}
                             {% if type == 'room' %}
-                            <a href="{% url 'shopping' %}" class="header">{{service.hotel.location.city}}</a>
+                            <a href="" class="header">{{service.hotel.location.city}}</a>
                             {% endif %}
                             <br/>
                             <div class="meta">
