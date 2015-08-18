@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from datetime import datetime, timedelta, timezone
 from django.db.models import Max
 from base.models import City
+from sale.models import ServiceItem
 # Create your views here.
 
 
@@ -39,13 +40,13 @@ def tourist_comments_count(tourist_id):
 
 def send_recommended_mail(user_id):
     try:
-        tourist = Tourist.objects.get(id=user_id)
+        tourist = Tourist.objects.get(primary_user__id=user_id)
     except Tourist.DoesNotExist:
         return Http404
     tours_past = tourist.factors.all()
     recommended = []
     for factor in tours_past:
-        flights = factor.serviceitem_set.filter(instanceof=Flight)
+        flights = ServiceItem.objects.filter(factor=factor).filter(type=Flight)
         flights_exist = Flight.get_exist()
         for flight in flights:
             airports = Airport.objects.filter(city=flight.destination.city)
@@ -54,7 +55,7 @@ def send_recommended_mail(user_id):
                 flight_city.append(flights_exist.filter(destination=airport).all().latest('sold_number'))
             recommended.append(flight_city.sort(key=lambda x: x.sold_number)[flight_city.__len__()-1])
 
-        tours = factor.serviceitem_set.filter(instanceof=Tour)
+        tours = ServiceItem.objects.filter(factor=factor).filter(type=Tour)
         tours_exist = Tour.get_exist()
         for tour in tours :
             cities = City.objects.filter(collection=tour.destination.collection)
@@ -62,7 +63,7 @@ def send_recommended_mail(user_id):
                 if tour_city != tour.destination:
                     recommended.append(tours_exist.filter(destination=tour_city).all().latest('sold_number'))
 
-
+    return recommended
 
 
 #

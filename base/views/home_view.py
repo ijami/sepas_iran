@@ -9,8 +9,20 @@ from base.views.send_mail import send_mail
 from datetime import datetime
 from django.db.models import Max
 from itertools import chain
-
+from tourist.views.crm_function import send_recommended_mail
 def home(request):
+
+    tourists = Tourist.objects.all()
+    for tourist in tourists:
+        print(send_recommended_mail(tourist.primary_user.id).__len__())
+
+
+
+
+    return render(request, 'base/home.html')
+
+
+
     # users = User.objects.all()
     #     #  tourists = Tourist.objects.all()
     # for user in users:
@@ -36,4 +48,3 @@ def home(request):
     # print("\n    kiiiiilll  Biiiiiiiilllll \n"+ str(users.count()))
     # for tourist in users:
     #     loyalty(tourist.id)
-    return render(request, 'base/home.html')
