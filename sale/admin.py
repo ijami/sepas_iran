@@ -16,3 +16,4 @@ class FactorAdmin(admin.ModelAdmin):
 
 admin.site.register(Cart, CartAdmin)
 admin.site.register(Factor, FactorAdmin)
+admin.site.register(ServiceItem)

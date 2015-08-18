@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
     <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
     <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
-    <script src="{% static 'management/javascript/buy_report.js' %}"></script>
+    <script src="{% static 'management/javascript/area_report.js' %}"></script>
 {% endblock %}
 {% block nav_item %}
     گزارش دوره‌ای
@@ -57,7 +57,9 @@
                 xAxis: {
                     type: 'datetime',
                     dateTimeLabelFormats: { // don't display the dummy year
-                        day: '%Y/%m/%e'
+                        day: '%Y/%m/%e',
+                        week: '%Y/%m/%e',
+                        year: '%Y/%m/%e',
                     },
                     title: {text: 'بازه‌ی زمانی'},
                     /*labels: {
@@ -78,7 +80,7 @@
                 },
                 tooltip: {
                     headerFormat: '',
-                    pointFormat: '{point.y}'
+                    pointFormat: '{point.x:%Y/%m/%e} : {point.y}'
                 },
                 plotOptions: {
                     area: {
@@ -96,9 +98,10 @@
                 series: [{
                     name: 'مقدار فروش از سامانه',
                     data: [
-                            [Date.UTC(1970, 9, 10), 120],
-                            [Date.UTC(1970, 9, 12), 130],
-                            [Date.UTC(1970, 9, 17), 100],
+                        {% for value in values %}
+                            [Date.UTC({{ value.0.year }}, {{ value.0.month }} - 1, {{ value.0.day }}), {{ value.1 }}],
+                        {% endfor %}
+
                     ]
                 }]
             });
