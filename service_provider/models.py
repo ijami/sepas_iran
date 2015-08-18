@@ -8,6 +8,8 @@ class ServiceProvider(SiteUser):
     name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=200)
     long_description = models.TextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
