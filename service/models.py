@@ -23,6 +23,12 @@ class Service(PolymorphicModel):
     def get_type(self):
         pass
 
+    def __str__(self):
+        return self.tag_line
+
+    def get_date(self):
+        pass
+
 
 class Comment(models.Model):
     sender = models.ForeignKey(SiteUser, related_name='comments')
@@ -32,6 +38,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.sender.primary_user.username + ": " + self.text
+
+    def get_city(self):
+        pass
 
 
 class Flight(Service):
@@ -57,6 +66,11 @@ class Flight(Service):
     def get_type(self):
         return 'f'
 
+    def get_date(self):
+        return self.date
+
+    def get_city(self):
+        return self.destination
 
 class Room(Service):
     start_date = models.DateField()
@@ -81,6 +95,11 @@ class Room(Service):
     def get_type(self):
         return 'r'
 
+    def get_date(self):
+        return self.start_date
+
+    def get_city(self):
+        return self.hotel.location.city
 
 class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
@@ -112,6 +131,11 @@ class Tour(Service):
     def get_type(self):
         return 't'
 
+    def get_date(self):
+        return self.going_date
+
+    def get_city(self):
+        return self.destination
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)

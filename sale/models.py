@@ -9,6 +9,9 @@ from tourist.models import Tourist
 class Cart(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.tourist.__str__() + "\'s factor"
+
 class Factor(models.Model):
     tourist = models.ForeignKey(Tourist, related_name='factors')
     create_date = models.DateTimeField(auto_now_add=True)
@@ -28,4 +31,4 @@ class ServiceItem(models.Model):
         return self.number * self.service.price
 
     def __str__(self):
-        self.service.__str__() + ": " + str(self.number)
+         return self.service.__str__() + "item: " + str(self.number)
