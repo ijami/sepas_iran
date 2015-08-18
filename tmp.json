@@ -1,0 +1,302 @@
+[
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "model": "logentry",
+      "app_label": "admin"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "model": "permission",
+      "app_label": "auth"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "model": "group",
+      "app_label": "auth"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "model": "user",
+      "app_label": "auth"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "model": "contenttype",
+      "app_label": "contenttypes"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "model": "session",
+      "app_label": "sessions"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "model": "complain",
+      "app_label": "complain"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "model": "poll",
+      "app_label": "complain"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "model": "roompoll",
+      "app_label": "complain"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "model": "flightpoll",
+      "app_label": "complain"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "model": "tourpoll",
+      "app_label": "complain"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "model": "manager",
+      "app_label": "management"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "model": "message",
+      "app_label": "messaging"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "model": "service",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+      "model": "comment",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+      "model": "flight",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+      "model": "room",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+      "model": "tour",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+      "model": "airport",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+      "model": "tourlocation",
+      "app_label": "service"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+      "model": "serviceprovider",
+      "app_label": "service_provider"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+      "model": "hotel",
+      "app_label": "service_provider"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+      "model": "airline",
+      "app_label": "service_provider"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+      "model": "travelagency",
+      "app_label": "service_provider"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+      "model": "tourist",
+      "app_label": "tourist"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+      "model": "cart",
+      "app_label": "sale"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+      "model": "factor",
+      "app_label": "sale"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 28,
+    "fields": {
+      "model": "serviceitem",
+      "app_label": "sale"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 29,
+    "fields": {
+      "model": "siteuser",
+      "app_label": "base"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 30,
+    "fields": {
+      "model": "location",
+      "app_label": "base"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 31,
+    "fields": {
+      "model": "city",
+      "app_label": "base"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 32,
+    "fields": {
+      "model": "citycollection",
+      "app_label": "base"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 33,
+    "fields": {
+      "model": "queue",
+      "app_label": "kombu_transport_django"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 34,
+    "fields": {
+      "model": "message",
+      "app_label": "kombu_transport_django"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "099ibjiiklfiqvree8jjdn8foivr9v37",
+    "fields": {
+      "session_data": "OTc3MzBhMDVjN2UwNzM0Y2FmZGVmZDc3OWRmY2VlZWQ0ZWE3NmM1ZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiOTRiODc1ZjQ4ZmM1NDA4OGUxZGRkOGM0ZWE1ZmE3NzVkZjdiMDE3ZiIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+      "expire_date": "2015-08-30T05:40:14.652Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "a5ptwk2kb5non3ho0oq3aq1pijypqb26",
+    "fields": {
+      "session_data": "YjcwMjk5MzVmMTAxN2VkZjNjMGE3OTg4MDg0MzU1MWUzMTdiZTQwNTp7fQ==",
+      "expire_date": "2015-08-30T05:29:52.622Z"
+    }
+  },
+  {
+    "model": "service.service",
+    "pk": 1,
+    "fields": {
+      "price": 1200000,
+      "sold_number": 1,
+      "tag_line": "\u0628\u0647\u062a\u0631\u06cc\u0646 \u062a\u0648\u0631 \u062f\u0646\u06cc\u0627",
+      "image": "base/service_images/Iman1.jpg",
+      "capacity": 12,
+      "polymorphic_ctype": 18
+    }
+  }
+]

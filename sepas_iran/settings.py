@@ -54,7 +54,6 @@ INSTALLED_APPS = (
     'djcelery',
     'django_cron',
     'base',
-    'kombu.transport.django'
 )
 
 

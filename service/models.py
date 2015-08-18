@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from django.db import models
 from polymorphic.polymorphic_model import PolymorphicModel
-from datetime import datetime, timedelta, timezone
+
 from base.models import City, SiteUser
 from service_provider.models import AirLine, Hotel, TravelAgency
 from tourist.models import Tourist
@@ -35,9 +37,8 @@ class Comment(models.Model):
 class Flight(Service):
     flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
-    # origin = models.ForeignKey('Airport', related_name='departures')
-    # destination = models.ForeignKey('Airport', related_name='arrivals')
     time = models.DateTimeField()
+
     @staticmethod
     def get_exist(self):
         return Flight.objects.filter(time__lt=(datetime.now()))
@@ -62,8 +63,10 @@ class Room(Service):
     has_television = models.BooleanField(default=False)
     has_telephone = models.BooleanField(default=False)
     has_bathroom = models.BooleanField(default=False)
+
     def get_city(self):
         return self.hotel.location.city
+
     @staticmethod
     def get_exist(self):
         return Room.objects.filter(time__lt=(datetime.now()))
@@ -82,23 +85,22 @@ class Tour(Service):
     going_date = models.DateField()
     return_date = models.DateField()
     description = models.TextField()
-    trans_type = models.CharField(max_length=6)
+    trans_type = models.CharField(max_length=6, default='plane')
     # going_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='going_tours')
     # return_flight = models.ForeignKey('Flight', null=True, blank=True, related_name='return_tours')
     # hotel = models.ForeignKey('service_provider.Hotel', null=True, blank=True)
     hotel_name = models.CharField(max_length=100, null=True, blank=True)
 
     tour_guide_name = models.CharField(max_length=100)
+
     @staticmethod
     def get_exist(self):
         return Tour.objects.filter(time__lt=(datetime.now()))
 
     # tour_guide_name = models.CharField(max_length=100)
 
-
     def __str__(self):
-        return self.travel_agency.name + ": " + " از "  +   self.origin.name + " به " + self.destination.name
-
+        return self.travel_agency.name + ": " + " از "  + self.origin.name + " به " + self.destination.name
 
     def get_type(self):
         return 't'

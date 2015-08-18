@@ -1,24 +1,25 @@
+from datetime import datetime
+
 from tourist.models import Tourist
-from sale.models import ServiceItem,Factor
-from service.models import Tour,Room,Flight
-from datetime import datetime, timedelta, timezone
+from sale.models import ServiceItem, Factor
+from service.models import Tour, Room, Flight
 
 
-def dashboard_report(start,end):
+def dashboard_report(start, end):
     services = tourist_services_all()
-    output =[]
+    output = []
     for service in services:
-        if isinstance(service,Tour):
-            if service.going_date < end:
-                if service.going_date > start:
+        if isinstance(service, Tour):
+            if service.going_date <= end:
+                if service.going_date >= start:
                     output.append(service)
-        elif isinstance(service,Room):
-            if service.end_date < end:
-                if service.end_date > start:
+        elif isinstance(service, Room):
+            if service.end_date <= end:
+                if service.end_date >= start:
                     output.append(service)
-        elif isinstance(service,Flight):
-            if service.date < end:
-                if service.date > start:
+        elif isinstance(service, Flight):
+            if service.date <= end:
+                if service.date >= start:
                     output.append(service)
     return output
 
@@ -26,7 +27,7 @@ def dashboard_report(start,end):
 
 def tourist_services_all():
     factors = Factor.objects.all()
-    services =[]
+    services = []
     for factor in factors:
         serviceItems = ServiceItem.objects.filter(factor=factor).all()
         for serviceItem in serviceItems:
@@ -50,13 +51,13 @@ def tourist_services_used(tourist_id):
     output = []
     # tours = services.filter(instanceof=Tour)
     for service in services:
-        if isinstance(service,Tour):
+        if isinstance(service, Tour):
             if service.going_date < datetime.now():
                 output.append(service)
-        elif isinstance(service,Room):
+        elif isinstance(service, Room):
             if service.end_date < datetime.now():
                 output.append(service)
-        elif isinstance(service,Flight):
+        elif isinstance(service, Flight):
             if service.date < datetime.now():
                 output.append(service)
     return output
@@ -110,14 +111,14 @@ def tourist_flights(tourist_id):
     services = tourist_services(tourist_id)
     output=[]
     for service in services:
-        if isinstance(service,Flight):
+        if isinstance(service, Flight):
             if service.going_date > datetime.now():
                 output.append(service)
     return output
 
 def tourist_services_price(tourist_id):
     services = tourist_services(tourist_id)
-    price =0
+    price = 0
     for service in services:
         price += service.price
     return price
