@@ -1,0 +1,110 @@
+{% extends 'management/dashboard.html' %}
+{% load static %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script src="{% static 'management/javascript/buy_report.js' %}"></script>
+{% endblock %}
+{% block nav_item %}
+    گزارش دوره‌ای
+{% endblock %}
+{% block menu_content %}
+    <h2>گزارش دوره‌ای سامانه سپاس ایران</h2>
+    <div class="ui tow column grid">
+
+        <div class="four wide column">
+            <form class="ui form rtl" action="{% url 'area_report' %}" method="post">
+                {% csrf_token %}
+                <h3>ویژگی کاربران مشمول گزارش</h3>
+                {% for field in form %}
+                    <div class="tow field">
+                        <div class="field{% if field.errors %}error{% endif %}">
+                            {{ field.label }}
+                        </div>
+                        <div class="field">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="ui rtl" dir="rtl" style="color: red; margin-right: -25px">
+                    {% for k, message in form.errors.items %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                <input type="submit" style="margin-top: 20px" class="ui green button"
+                       value="دریافت گزارش">
+            </form>
+        </div>
+        <div class="twelve wide column" id="chart_container" dir="ltr">
+        </div>
+    </div>
+    <style type="text/css">
+        ${demo.css}
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('#chart_container').highcharts({
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'نمودار خرید از سامانه سپاس ایران'
+                },
+
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        day: '%Y/%m/%e'
+                    },
+                    title: {text: 'بازه‌ی زمانی'},
+                    /*labels: {
+                        formatter: function () {
+                            return this.value; // clean, unformatted number for year
+                        }
+                    }*/
+                },
+                yAxis: {
+                    title: {
+                        text: 'مقدار فروش'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value;
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '{point.y}'
+                },
+                plotOptions: {
+                    area: {
+                        marker: {
+                            enabled: true,
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'مقدار فروش از سامانه',
+                    data: [
+                            [Date.UTC(1970, 9, 10), 120],
+                            [Date.UTC(1970, 9, 12), 130],
+                            [Date.UTC(1970, 9, 17), 100],
+                    ]
+                }]
+            });
+        });
+    </script>
+    <script src="{% static 'management/Highcharts-4.1.7/js/highcharts.js' %}"></script>
+    <script src="{% static 'management/Highcharts-4.1.7/js/modules/exporting.js' %}"></script>
+{% endblock %}
+
