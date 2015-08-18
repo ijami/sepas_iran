@@ -50,24 +50,34 @@
 
             {% if type == "هتل" %}
                 <div class="ui horizontal divider">مشخصات</div>
-                <div class="ui orange large label">
+                <div class="ui large label">
                             درجه کیفی هتل:
             {{ service.degree }}
         ستاره
                 </div>
-                <div class="ui yellow large label" style="direction: ltr; margin-bottom: 3px;">
+                <div class="ui large label" style="direction: ltr; margin-bottom: 3px;">
                 تلفن هتل:
                 {{ provider.telephone }}
                 </div>
-                <div class="ui brown large label">
+                <div class="ui large label">
                 تعداد تخت هر اتاق:
                 {{ service.number_of_bed }}
                 </div>
-                <div class="ui large grey label">
+                <div class="ui large label">
                 ظرفیت (تعداد اتاق ها):
                 {{ service.capacity }}
                 </div>
-                <div class="ui blue large label">
+                <br><br>
+                <div class="ui blue large label" style="margin-bottom: 3px;">
+                تاریخ شروع:
+                {{ start_date }}
+                </div>
+                <div class="ui blue large label" style="margin-bottom: 3px;">
+                تاریخ پایان:
+                {{ end_date }}
+                </div>
+                <br><br>
+                <div class="ui large label">
                 آدرس هتل:
                 {{ provider.location.city.name }}
                 ،
@@ -198,10 +208,62 @@
 
             {% elif type == "تور" %}
                 <div class="ui horizontal divider">مشخصات</div>
+                <div class="ui big label">
+از:
+                {{ service.origin.name }}
+                </div>
+                <div class="ui big label">
+                به:
+                {{ service.destination.name }}
+                </div>
+                <div class="ui big blue label">
+                تاریخ رفت:
+                {{ start_date }}
+                </div>
+                <div class="ui big blue label">
+تاریخ برگشت:
+                {{ end_date }}
+                </div>
 
+                <div class="ui big label">
+                نوع سفر:
+                    {% if service.trans_type == 'plane' %}
+                         هوایی
+                    {% elif servic.trans_type == 'tarn' %}
+                        قطار
+                    {% else %}
+                        اتوبوس
+                    {% endif %}
+                </div>
 
 
             {% elif type == "پرواز" %}
+                <div class="ui horizontal divider">مشخصات</div>
+                <div class="ui big label">
+از:
+                {{ service.origin.name }}
+                </div>
+                <div class="ui big label">
+                به:
+                {{ service.destination.name }}
+                </div>
+                    {% if service.airplane %}
+                        <div class="ui big label">
+                        هواپیما: 
+                            {{ service.airplane }}
+                        </div>
+
+                    {% endif %}
+                <div class="ui big blue label">
+                تاریخ :
+                {{ start_date }}
+                </div>
+                <div class="ui big blue label">
+               ساعت :
+                {{ service.time.hour }}:{{ service.time.minute }}
+                </div>
+
+
             {% endif %}
 
 
@@ -228,13 +290,13 @@
             <div class="ui segment">
                 {{ service.description }}
             </div>
-<<<<<<< HEAD
             {% endif %}
 
             <div class="ui horizontal divider">خرید</div>
 
-            <span>قیمت (به ریال): </span>
+            <span>قیمت: </span>
             <span class="off_price">{{ service.price }}</span>
+        ریال
 {#            <div>#}
 {#                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8955192008875!2d51.48534099999998!3d35.72878800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQzJzQzLjYiTiA1McKwMjknMDcuMiJF!5e0!3m2!1sen!2sir!4v1438352009292" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>#}
 {#            </div>#}
@@ -254,53 +316,28 @@
     <br/>
 
     <div class="main_container">
-        <div class="user_comment">
-            <h4>احسان نظریان (21/2/94)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">12</i>
-            <br><br>
-                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
-        </div>
-        <div class="ui divider"></div>
-        <div class="user_comment">
-            <h4>اکبر کبرایی (4/2/1393)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">12</i>
-            <br><br>
-                <p>رفتار راهنمای تور کمی غیر مودبانه بود. ایشان به من فحش دادند.<br> کیفیت وسائل حمل و نقل خوب بود.</p>
-        </div>
-        <div class="ui divider"></div>
+
+        {% for comment in comments %}
             <div class="user_comment">
-            <h4>احسان نظریان (21/2/94)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">222</i>
+                <div class="ui label" style="float: right">{{ comment.sender.name }} </div>
+                <div class="ui label" style="float: left">{{ comment.send_time }} </div>
                 <br><br>
-                <p>من از این تور بسیار استفاده کرده و راضی ام</p>
-        </div>
-        <div class="ui divider"></div>
-            <div class="user_comment">
-            <h4>جواد رفیعی (1/1/1394)</h4>
-            <button class="ui mini green icon button left floated">
-                <i class="tiny white add icon"></i>
-            </button>
-            <i class="ui large circular white label left_float">1200</i>
-                <br><br>
-                <p>این تور را همراه با استاد ابطحی رفتیم. اگر ایشان نبودند، بسیار خوش میگذشت</p>
-        </div>
-        <div class="ui divider"></div>
-        <div class="ui form">
-        <div class="field">
-        <label class="right_float">لطفا نظر خود را وارد کنید</label>
-        <textarea class="rtl"></textarea>
-        </div>
-            <div class="ui large grey button left_float">ارسال نظر</div>
-        </div>
+                <div class="ui segment">
+                    <p>{{ comment.text | linebreaks }}</p>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+        {% endfor %}
+
+        <form class="ui form" action="{% url 'comment' %}" method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label class="right_float">لطفا نظر خود را وارد کنید</label>
+                <textarea rows="5" type="text" class="rtl" name="comment"></textarea>
+                <input type="text" style="display: none" value="{{ service.sold_number }}" name="sn">
+            </div>
+            <button type="submit" class="ui large grey button left_float">ارسال نظر</button>
+        </form>
     </div>
 
 {% endblock %}
