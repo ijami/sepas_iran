@@ -11,6 +11,9 @@ class ServiceProvider(SiteUser):
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
 
+    def get_fields(self):
+        return {'super_type': 'service_provider'}
+
     def __str__(self):
         return self.name
 

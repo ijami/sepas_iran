@@ -20,14 +20,27 @@
         <div class="right floated bordered" id="runit">
             <div id="user-menu" class="bordered">
                 {% if user.is_authenticated %}
-                    <div id="sign-in" class="logged_in bordered"><a class="nodec" {% if user.site_user.get_fields.type == 'tourist' %}
-                        href="{% url 'panel' %}"
-                        {% else %}
-                        href="{% url 'service_provider_panel' %}" {% endif %}>
-                    <i class="user basic icon right_float"></i><span>
+                    <div id="sign-in" class="logged_in bordered">
+                    {% if user.site_user.get_fields.type == 'tourist' %}
+                        <a class="nodec" href="{% url 'panel' %}">
+                        <i class="user basic icon right_float"></i><span>
+                    {% elif user.site_user.get_fields.type == 'manager' %}
+                        <a class="nodec" href="{% url 'management_dashboard' %}">
+                        <i class="setting basic icon right_float"></i><span>
+                    {% else %}
+                        <a class="nodec" href="{% url 'service_provider_panel' %}">
+                        <i class="user basic icon right_float"></i><span>
+                    {% endif %}
+
                     سلام
                     {{ user.first_name }}،
-                    ورورد به پنل کاربری
+                    {% if user.site_user.get_fields.type == 'tourist' %}
+                        ورود به پنل کاربری
+                    {% elif user.site_user.get_fields.type == 'manager' %}
+                        ورود به داشبورد مدیریتی سپاس ایران
+                    {% else %}
+                        ورود به پنل خدمت ساز
+                    {% endif %}
                 {% else %}
                     <div id="sign-in" class="bordered"><a class="nodec"><i class="lock icon right_float"></i><span>
 
@@ -50,21 +63,16 @@
                     {% endif %}
 
                 </div>
-                {% if user.is_authenticated %}
-                    <div class="vertical_divider"></div>
-                    <div id="manage" class="bordered"><a class="nodec" href="/manage"><i
-                            class="setting basic icon right_float"></i><span>مدیریت</span>
-                    </a></div>
-                {% endif %}
                 </div>
                 <div id="search" class="bordered">
-                    <div class="digigreen ui small button right_float" id="cart">
+                    <div class="digigreen ui small button right_float
+                            {% if user.site_user.get_fields.super_type == 'service_provider' %}non-display{% endif %}" id="cart">
                         <i class="cart icon right_float"></i>
                         <a href="{% url 'cart' %}" style="color: white">
                             &nbsp &nbsp سبد خرید شما&nbsp &nbsp &nbsp
                         </a>
                         <a class="ui small circular forestgreen label left_float" style="margin-top: -2px;">
-{#                            {{ user.site_user.get_cart_num }}#}
+                            {#                            {{ user.site_user.get_cart_num }}#}
                         </a>
                     </div>
                     <div class="ui left icon small input right_float" id="search_box" dir="rtl">
@@ -268,8 +276,8 @@
         <div class="center aligned">
             <div class="rememberme ui checkbox">
                 <label for="example">مرا به خاطر بسپار
-                    <input type="checkbox" name="example">
                 </label>
+                <input type="checkbox" name="remember_me">
             </div>
 
             <div class="register">قبلاً در سپاس ایران ثبت نام نکرده اید؟ <a class="green"

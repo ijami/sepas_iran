@@ -183,11 +183,11 @@
                             </div>
                         </div>
 
-                        <div class="ui tab field" data-tab="tour">
+                        <div class="ui tab field {% if form.type.value == 'tour' %}active{% endif %}" data-tab="tour">
 
                         </div>
 
-                        <div class="ui tab field" data-tab="hotel">
+                        <div class="ui tab field {% if form.type.value == 'hotel' %}active{% endif %}" data-tab="hotel">
                             <div class="field{% if form.degree.errors %} error{% endif %}{% if form.degree.field.required %} required{% endif %}">
                                 {{ form.degree.label_tag }}
                                 <div class="ui field" id="stars_container">
@@ -305,7 +305,7 @@
                         </div>
 
 
-                        <div class="ui tab field" data-tab="airline">
+                        <div class="ui tab field {% if form.type.value == 'airline' %}active{% endif %}" data-tab="airline">
                             <div class="field {% if form.is_international.errors %}error{% endif %}">
                                 <div class="ui toggle checkbox">
                                     {{ form.is_international }}
