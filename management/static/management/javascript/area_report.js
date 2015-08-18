@@ -14,29 +14,23 @@ $(document).ready(function () {
             'minDate': minDate.getTime(),
             'justSelectOnDate': true
         });
-        var dateValue = datepicker.attr('value');
-        if (dateValue) {
-            var year;
-            var month;
-            var day;
-            if (datepicker.parent().hasClass("error")) {
-                try {
-                    datepicker.pDatepicker("goToday");
-                } catch (err) {
-                    console.log(err);
-                }
-            } else {
-                console.log("s2");
+        datepicker.each(function () {
+            dateValue = $(this).attr('value');
+            if (dateValue) {
+                var year;
+                var month;
+                var day;
                 var splitted = dateValue.split("/");
                 year = parseInt(splitted[0]);
                 month = parseInt(splitted[1]);
                 day = parseInt(splitted[2]);
                 try {
-                    datepicker.pDatepicker("setDate", [year, month, day, 0, 0])
+                    $(this).pDatepicker("setDate", [year, month, day, 0, 0])
                 } catch (err) {
                     console.log(err);
                 }
+
             }
-        }
+        });
     }
 );
