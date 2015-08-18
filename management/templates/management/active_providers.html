@@ -1,5 +1,8 @@
 {% extends 'management/dashboard.html' %}
 {% load staticfiles %}
+{% block nav_item %}
+    گردش‌ساز(یار)ان فعال
+{% endblock %}
 {% block menu_content %}
     <div class="ui pagination menu left floated" style="direction: ltr"
          xmlns="http://www.w3.org/1999/html">
@@ -24,9 +27,9 @@
     <div class="ui right_float four cards rtl">
         {% for item in providers %}
             <div class="ui card rtl right_aligned" style="min-width: 200px">
-                <div class="image" style="height: 209px;">
+                <div class="image" style="height: 209px;" >
                     {% if item.image %}
-                        <img src="{{ item.image.url }}">
+                        <img src="{{ item.image.url }}" style="max-height: 210px">
                     {% else %}
                         <img src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
                     {% endif %}
