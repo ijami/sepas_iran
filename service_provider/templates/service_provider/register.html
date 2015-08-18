@@ -66,7 +66,6 @@
                     <form class="ui form {% if form.errors %}error{% endif %}" {% if form.is_multipart %}
                           enctype="multipart/form-data" {% endif %} method="post" action="">
                         {% csrf_token %}
-
                         <h4 class="ui dividing header blue">
                             مشخصات نماینده حقوقی شرکت
                         </h4>
@@ -129,6 +128,16 @@
                             {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
                         </div>
 
+                        <div class="field {% if form.image.errors %}error{% endif %}">
+                            {{ form.image.label_tag }}
+                            <label for="id_image" class="ui icon button">
+                                <i class="file icon"></i>
+                                انتخاب عکس
+                            </label>
+                            {{ form.image }}
+                            {#                            <input class="" type="text" name="last-name" placeholder="example@host.com">#}
+                        </div>
+
                         <h4 class="ui dividing header blue">
                             مشخصات گردش ساز / یار
                         </h4>
@@ -178,18 +187,129 @@
                                 <div class="menu">
                                     <div class="item" data-value="1" data-tab="tour">تور</div>
                                     <div class="item" data-value="2" data-tab="hotel">هتل</div>
+                                    <div class="item" data-value="3" data-tab="airline">هواپیمایی</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="ui tab special-form" data-tab="tour">
-                            <div class="ui toggle checkbox">
-                                <input type="checkbox" name="public">
-                                <label>Subscribe to weekly tour</label>
+                        <div class="ui tab field" data-tab="tour">
+                            <div class="field{% if form.first_name.errors %} error{% endif %}{% if form.first_name.field.required %} required{% endif %}">
+                                {{ form.degree.label_tag }}
+                                <div class="ui star rating" data-rating="1"></div>
+                                {{ form.degree }}
                             </div>
+
+                            <div class="ui two column center aligned stackable divided grid segment">
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_restaurant }}
+                                        {{ form.has_restaurant.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_coffeeshop }}
+                                        {{ form.has_coffeeshop.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_conference_hall }}
+                                        {{ form.has_conference_hall.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_emergency }}
+                                        {{ form.has_emergency.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_fire_extinguisher }}
+                                        {{ form.has_fire_extinguisher.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_protection_system }}
+                                        {{ form.has_protection_system.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_health_center }}
+                                        {{ form.has_health_center.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_internet }}
+                                        {{ form.has_internet.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_photo_studio }}
+                                        {{ form.has_photo_studio.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_parking }}
+                                        {{ form.has_parking.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_pool }}
+                                        {{ form.has_pool.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_jungle }}
+                                        {{ form.has_jungle.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_sport_salloon }}
+                                        {{ form.has_sport_salloon.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_gamenet }}
+                                        {{ form.has_gamenet.label_tag }}
+                                    </div>
+                                </div>
+                                 <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_gamenet }}
+                                        {{ form.has_gamenet.label_tag }}
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="ui toggle checkbox">
+                                        {{ form.has_shop_center }}
+                                        {{ form.has_shop_center.label_tag }}
+                                    </div>
+                                </div>
+
+                            </div>
+
+
                         </div>
 
-                        <div class="ui tab special-form" data-tab="hotel">
+                        <div class="ui tab" data-tab="hotel">
+                            <div class="field {% if form.address.errors %}error{% endif %}">
+
+                            </div>
+
+
+                        </div>
+                        <div class="ui tab" data-tab="airline">
                             <div class="ui toggle checkbox">
                                 <input type="checkbox" name="public">
                                 <label>Subscribe to weekly hotel</label>

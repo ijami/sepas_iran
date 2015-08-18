@@ -1,14 +1,18 @@
-from django.forms import Form
+# from django.forms.models import ModelForm
+import datetime
+import re
+
 from django import forms
 from django.contrib.auth.models import User
+from django.forms.models import ModelForm
 from django.template.defaultfilters import register
+
+from jdatetime import date as jdate
+from location_field.forms.plain import PlainLocationField
 
 from base.models import City, Location
 from sale.models import Cart
-from tourist.models import Tourist
-from jdatetime import date as jdate
-import datetime
-import re
+from service_provider.models import ServiceProvider
 
 
 @register.filter(is_safe=True)
@@ -39,7 +43,7 @@ class PersianDateField(forms.DateField):
             raise forms.ValidationError(self.default_error_messages['invalid'], code='invalid')
 
 
-class ServiceProviderCreationForm(Form):
+class ServiceProviderCreationForm(ModelForm):
     first_name = forms.CharField(max_length=100, label="نام", required=True,
                                  error_messages={'required': "پر کردن فیلد نام الزامی است"},
                                  widget=forms.TextInput(attrs={'placeholder': 'نام'}))
@@ -76,12 +80,44 @@ class ServiceProviderCreationForm(Form):
                                            'rows': '5'}))
     image = forms.ImageField(label="عکس پروفایل کاربری", required=False,
                              widget=forms.FileInput(attrs={'style': "display:none", 'accept': "image/*"}))
+    advertise_image = forms.ImageField(label="عکس برای بنر تبلیغاتی", required=False,
+                                       widget=forms.FileInput(attrs={'style': "display:none", 'accept': "image/*"}))
     national_id = forms.IntegerField(min_value=0, max_value=10000000000, label="کد ملی", required=False,
                                      error_messages={'required': "پر کردن فیلد کد ملی الزامی است"},
                                      widget=forms.NumberInput(attrs={'placeholder': '0015557890'}))
     address = forms.CharField(max_length=500, label="آدرس", required=False,
                               error_messages={'required': "پر کردن فیلد آدرس الزامی است"},
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل', 'rows': '5'}))
+
+    # hotel
+    map_widget = forms.CharField(max_length=500)
+    degree = forms.IntegerField(label="درجه هتل", required=True,
+                                error_messages={'required': "پر کردن فیلد درجه هتل الزامی است"},
+                                widget=forms.NumberInput(attrs={'hidden': "hidden"}))
+    has_restaurant = forms.BooleanField(required=False, label="رستوران")
+    has_parking = forms.BooleanField(required=False, label="پارکینگ")
+    has_internet = forms.BooleanField(required=False, label="اینترنت")
+    has_pool = forms.BooleanField(required=False, label="استخر")
+    has_conference_hall = forms.BooleanField(required=False, label="اتاق کنفرانس")
+    has_fire_extinguisher = forms.BooleanField(required=False, label="سیستم اطفای حریق")
+    has_sport_salloon = forms.BooleanField(required=False, label="سالن ورزشی")
+    has_health_center = forms.BooleanField(required=False, label="مرکز بهداشت")
+    has_coffeeshop = forms.BooleanField(required=False, label="کافی شاپ")
+    has_emergency = forms.BooleanField(required=False, label="اورژانس")
+    has_jungle = forms.BooleanField(required=False, label="فضای سبز")
+    has_protection_system = forms.BooleanField(required=False, label="سیستم امنیتی")
+    has_shop_center = forms.BooleanField(required=False, label="مرکز خرید")
+    has_gamenet = forms.BooleanField(required=False, label="گیم نت")
+    has_photo_studio = forms.BooleanField(required=False, label="آتلیه عکاسی")
+
+    ###Airline
+
+
+    ###tour
+
+    class Meta:
+        model = ServiceProvider
+        fields = ('advertise_image', 'name', 'short_description', 'long_description', 'advertise_image', 'image')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
