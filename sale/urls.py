@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'comment$', 'sale.views.comment.add_comment', name='comment'),
     url(r'add_to_cart$', 'sale.views.add_to_cart.add_to_cart', name='add_to_cart'),
     url(r'^cart/([rtf]_[\d+]_[\d+])$', 'sale.views.add_to_cart.delete', name='delete_item'),
-    url(r'^buy$', 'sale.views.buy', name='buy'),
+    url(r'^buy$', 'sale.views.buy.buy', name='buy'),
 ]
