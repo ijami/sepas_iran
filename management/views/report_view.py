@@ -25,3 +25,11 @@ class PieReportView(FormView):
 
     def form_valid(self, form):
         return render(self.request, 'management/pie_report.html', {'form': form})
+
+
+class MapReportView(FormView):
+    template_name = 'management/map_report.html'
+    form_class = IntervalReportForm
+
+    def form_valid(self, form):
+        return render(self.request, 'management/map_report.html', {'form': form})

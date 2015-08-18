@@ -13,4 +13,6 @@ class Tourist(SiteUser):
         return {'type': 'tourist'}
 
     def __str__(self):
-        return self.primary_user.first_name + " " + self.primary_user.last_name
+        return self.primary_user.username + ":" + \
+               self.primary_user.first_name + " " + \
+               self.primary_user.last_name

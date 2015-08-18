@@ -5,13 +5,11 @@ from service.models import Service
 from tourist.models import Tourist
 
 
-class ServiceList(PolymorphicModel):
-    pass
 
-class Cart(ServiceList):
+class Cart(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
-class Factor(ServiceList):
+class Factor(models.Model):
     tourist = models.ForeignKey(Tourist, related_name='factors')
     create_date = models.DateTimeField(auto_now_add=True)
 
@@ -23,7 +21,8 @@ class Factor(ServiceList):
 class ServiceItem(models.Model):
     service = models.ForeignKey(Service)
     number = models.IntegerField()
-    list = models.ForeignKey('ServiceList', null=True, blank=True, related_name='items')
+    cart = models.ForeignKey('Cart', null=True, blank=True, related_name='items')
+    factor = models.ForeignKey('Factor', null=True, blank=True, related_name='items')
 
     def get_price(self):
         return self.number * self.service.price

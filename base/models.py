@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
-from django.db import models
 import os
 
-# Create your models here.
+from django.contrib.auth.models import User
+from django.db import models
+
 from polymorphic.polymorphic_model import PolymorphicModel
 
 
@@ -33,6 +33,7 @@ class Location(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=100)
+    map_code = models.CharField(max_length=10)
     collection = models.ForeignKey('CityCollection', null=True, blank=True)
 
     def __str__(self):

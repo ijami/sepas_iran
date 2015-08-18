@@ -67,8 +67,6 @@ base/static/bower_components/*
 
 base/images
 
-# migration
-**/migrations
 
 # git merge
 *.orig
