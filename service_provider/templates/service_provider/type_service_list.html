@@ -46,10 +46,10 @@
                         </div>
                     </div>
                 {% if service.expired %}
-                    <div class="ui bottom attached blue button" style="width: 99.6%; margin: auto">
+                    <a class="ui bottom attached blue button" style="width: 99.6%; margin: auto" href="/service/information/{{ service.number }}">
                         <i class="info icon" style="margin-left: 2px;"></i>
 مشاهده جزئیات
-                    </div>
+                    </a>
                 {% else %}
                     <div class="ui divider"></div>
                     <form class="ui rtl form" method="POST" action="{% url 'add_service_capacity' %}">

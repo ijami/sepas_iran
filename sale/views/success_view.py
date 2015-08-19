@@ -15,10 +15,13 @@ def success_view(request):
     factor.tourist = tourist
     factor.create_date = str(datetime.datetime.now())
     factor.save()
+    d = 0
     for si in cart.items.all():
         si.cart = None
         si.factor = factor
+        si.size = d;
+        d += 1;
         si.save()
-    factorNum = Factor.objects.all().count()
+    factorNum = len(Factor.objects.filter(tourist=tourist))
     serviceItems = ServiceItem.objects.filter(factor=factor)
     return render(request, 'sale/success.html', {'serviceItems': serviceItems,'factorNum': factorNum})

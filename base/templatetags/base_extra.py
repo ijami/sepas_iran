@@ -1,7 +1,6 @@
 __author__ = 'MJR'
 
 from django import template
-from sale.models import ServiceItem
 
 
 register = template.Library()
