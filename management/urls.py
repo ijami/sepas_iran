@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import user_passes_test
+from management.views.advertise_select import AdvertiseView
 from management.views.manage_providers_view import NewProviders, ActiveProviders, DeactiveProviders
 from management.views.report_view import IntervalReportView, PieReportView, MapReportView
 
@@ -6,13 +6,13 @@ __author__ = 'Iman'
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 from base.views.decorators import manager_required
+from .views import advertise_search
 
 urlpatterns = [
     # Examples:
     url(r'^finance$', manager_required(TemplateView.as_view(template_name='management/financeReport.html')),
         name='finance'),
-    url(r'^advertisement$', manager_required(TemplateView.as_view(template_name='management/advertisement.html')),
-        name='advertisement'),
+    url(r'^advertisement$', manager_required(AdvertiseView.as_view()), name='advertisement'),
     url(r'^service_activate$', manager_required(TemplateView.as_view(template_name='management/service_activate.html')),
         name='service-activate'),
     url(r'^service_provider_activate$',
@@ -28,4 +28,5 @@ urlpatterns = [
         name='sell_report'),
     url(r'^$', manager_required(TemplateView.as_view(template_name='management/dashboard.html')),
         name='management_dashboard'),
+    url(r'^search/$', advertise_search.search, name='search_advertise'),
 ]

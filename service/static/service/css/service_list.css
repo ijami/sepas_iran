@@ -11,6 +11,7 @@
     display: block;
     overflow: hidden;
     text-align: center;
+    direction: rtl;
 }
 
 .list_item_img {
@@ -23,6 +24,11 @@
     width: 79%;
     height: auto;
     display: inline-block;
+    direction: rtl;
+}
+
+#card{
+    direction: rtl;
 }
 
 .search_container {

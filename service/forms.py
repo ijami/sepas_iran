@@ -4,7 +4,9 @@ from django.forms.models import ModelForm
 from service.models import Tour, Room, Flight
 from django import forms
 from base.models import City
+from service_provider.models import ServiceProvider, Hotel, TravelAgency, AirLine
 import datetime
+
 
 # class TourForm(ModelForm):
 #
@@ -297,3 +299,17 @@ class FlightForm(ModelForm):
 class CapacityAddingForm(forms.Form):
     added_capacity = forms.IntegerField(min_value=1, max_value=200, required=True, label="افزایش ظرفیت درخواستی")
     sold_number = forms.CharField(max_length=20, required=False)
+
+class SearchServiceListForm(forms.Form):
+    price_range = forms.CharField(max_length=30, label="قیمت",
+    widget=forms.TextInput(attrs={'type': 'text', 'id':'amount' , 'style': 'border:0; color:#777777; padding:12; font-size:15px; width: 240px; '}))
+
+    service_provider = forms.ModelChoiceField(queryset=ServiceProvider.objects.all(), label='گردشساز: ', required=False)
+    travel_agency = forms.ModelChoiceField(queryset=TravelAgency.objects.all(), required=False)
+    hotel = forms.ModelChoiceField(queryset=Hotel.objects.all(), required=False)
+    airline = forms.ModelChoiceField(queryset=AirLine.objects.all(), required=False)
+    start_date = PersianDateField(label="از تاریخ:", widget= forms.DateInput(attrs={'class': 'datepicker ui input'}), required=False)
+    end_date = PersianDateField(label="تا تاریخ:", widget= forms.DateInput(attrs={'class': 'datepicker ui input'}), required=False)
+    origin = forms.ModelChoiceField(queryset=City.objects.all(), label="مبدا: ", required=False)
+    destination = forms.ModelChoiceField(queryset=City.objects.all(), label="مقصد: ", required=False)
+    location = forms.ModelChoiceField(queryset=City.objects.all(), label="مکان: ", required=False)

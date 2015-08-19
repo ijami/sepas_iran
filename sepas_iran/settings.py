@@ -51,7 +51,6 @@ INSTALLED_APPS = (
     'service_provider',
     'tourist',
     'sale',
-    'djcelery',
     'django_cron',
     'base',
 )
@@ -137,7 +136,9 @@ DEFAULT_FROM_EMAIL = 'b.i.sepasiran@gmail.com'
 
 
 CRON_CLASSES = [
-    "base.views.tasks.MyCronJob"
+    "tourist.views.task_recommended_email.MyCronJob",
+    "tourist.views.task_birthday_email.MyCronJob",
+    # "tourist.views.task_birthday_sms.MyCronJob",
 ]
 # CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 

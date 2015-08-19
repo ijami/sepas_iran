@@ -2,9 +2,11 @@
 {% load staticfiles %}
 
 {% block head %}
-    <link type="text/css" rel="stylesheet" href="{% static 'service/css/service_list.css' %}">
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+    <link type="text/css" rel="stylesheet" href="{% static 'service/css/service_list.css' %}" />
+    <link rel="stylesheet" href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
+    <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
+    <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
+    <script src="{% static 'service/javascript/date_search.js' %}"></script>
 
 
     <script>
@@ -15,11 +17,11 @@
     max: "{{max_price.price}}",
     values: [ "{{max_price.price}}" / 4,  "{{max_price.price}}" * 3 / 4],
     slide: function( event, ui ) {
-    $( "#amount" ).val( "تومان" + ui.values[ 1 ] + " - تومان" + ui.values[ 0 ] );
+    $( "#amount" ).val(ui.values[ 1 ] +  " ریال - "+ ui.values[ 0 ] + " ریال" );
     }
     });
-    $( "#amount" ).val( "تومان" + $( "#slider-range" ).slider( "values", 1              ) +
-    " - تومان" + $( "#slider-range" ).slider( "values", 0 ) );
+    $( "#amount" ).val($( "#slider-range" ).slider( "values", 1) +  " ریال - " 
+    + $( "#slider-range" ).slider( "values", 0 ) + "  ریال " );
     });
     </script>
 {% endblock %}
@@ -40,152 +42,12 @@
     <div class="body">
         <div id="main_container" class="center aligned">
             <div class="list_container">
-                <div class="advanced_search_box">
-                    <div class="ui right_float rtl breadcrumb">
-                        <a href="{% url 'home' %}" class="section">صفحه اصلی</a>
-                        <i class="left angle icon divider"></i>
-                        <a class="section">خدمات</a>
-                        <i class="left angle icon divider"></i>
-                        <div class="active section">لیست تورها</div>
-                    </div>
-                    <br><br>
-                    <div class="ui floating right_float right_aligned dropdown labeled mini grey search icon button">
-                        <i class="marker icon"></i>
-                        <span class="text">مبدا</span>
-                        <div class="menu">
-                            <div class="item">تهران</div>
-                            <div class="item">اصفهان</div>
-                            <div class="item">مشهد</div>
-                            <div class="item">شیراز</div>
-                            <div class="item">تبریز</div>
-                            <div class="item">کرج</div>
-                            <div class="item">ارومیه</div>
-                            <div class="item">بندرعباس</div>
-                            <div class="item">زاهدان</div>
-                        </div>
-                    </div>
-                    <div class="ui floating right_float right_aligned dropdown labeled mini grey search icon button">
-                        <i class="marker icon"></i>
-                        <span class="text">مقصد</span>
-                        <div class="menu">
-                            <div class="item">تهران</div>
-                            <div class="item">اصفهان</div>
-                            <div class="item">مشهد</div>
-                            <div class="item">شیراز</div>
-                            <div class="item">تبریز</div>
-                            <div class="item">کرج</div>
-                            <div class="item">ارومیه</div>
-                            <div class="item">بندرعباس</div>
-                            <div class="item">زاهدان</div>
-                        </div>
-                    </div>
-                    <div class="ui right_aligned right_float floating labeled icon grey tiny dropdown button">
-                    <i class="taxi icon"></i>
-                    <span class="text">نوع سفر</span>
-                    <div class="menu">
-                      <div class="item">
-                        <i class="plane icon"></i>
-                        هوایی
-                      </div>
-                      <div class="item">
-                        <i class="car icon"></i>
-                        زمینی
-                      </div>
-                    </div>
-                </div>
-                <div class="ui right_float right_aligned rtl mini search" style="margin-right: 5px;">
-                    <div class="ui icon input">
-                        <input class="prompt" type="text" placeholder="جستجو">
-                        <i class="search icon"></i>
-                    </div>
-                    <div class="results"></div>
-                </div>
-                    <br><br>
-                <div class="ui labels right_aligned right_float">
-                    <a class="ui label">
-                        <i class="close icon"></i>
-                        تور
-                    </a>
-                    <a class="ui label">
-                        <i class="close icon"></i>
-                      خدمات
-                    </a>
-                    <a class="ui label">
-                        <i class="close icon"></i>
-                      سپاس ایران
-                    </a>
-                    <a class="ui label">
-                        <i class="close icon"></i>
-                      ابطحی
-                    </a>
-                    <a class="ui label">
-                        <i class="close icon"></i>
-                      بدبختی
-                    </a>
-                  </div>
-                </div>
-
-                <div class="ui divider"></div>
-
-                <br><br><br>
-                <div class="ui right_float three cards">
+                
+                <br><br>
+                <div class="ui four cards">
                     {% for service in services %}
-                    <div class="ui card rtl right_aligned">
-                        <div class="image">
-                            <img class="list_item_img" src="{{service.image.url}}" style=" height:250px;">
-                        </div>
-                        <div class="content">
-                            {% if type == 'tour' or type == 'flight' %}
-                            <div class="header">
+                    {% include 'base/service_show.html'%}
 
-                                <a href="" class="header">{{service.origin}}</a>
-                                <i class="long arrow left icon"></i>
-
-
-                                <a href="" class="left_float header">{{service.destination}}</a>
-
-                            </div>
-                            {% endif %}
-                            {% if type == 'room' %}
-                            <a href="" class="header">{{service.hotel.location.city}}</a>
-                            {% endif %}
-                            <br/>
-                            <div class="meta">
-                            {% if type == 'tour' %}
-                                <span class="date">{{service.going_date}}</span>
-                            {% endif %}
-                            {% if type == 'flight' %}
-                                <div class="date">{{service.date}}</div>
-                                <div class="time">{{service.time}}</div>
-                            {% endif %}
-                            {% if type == 'room' %}
-                                <span>از </span>
-                                <span class="date">{{service.start_date}}</span>
-                                <span> به </span>
-                                <span class="date">{{service.start_date}}</span>
-
-
-                            {% endif %}
-                            </div>
-                            <div class="description">
-                            {% if type == 'tour' %}
-                                {{service.tag_line}}
-                            {% endif %}
-                            {% if type == 'flight' %}
-                                {{service.airline.name}}
-                            {% endif %}
-                            {% if type == 'room' %}
-                                {{service.hotel.name}}
-                            {% endif %}
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
-                                {{service.sold_number}} خریدار
-                            </a>
-                        </div>
-                    </div>
                     {% endfor %}
 
 
@@ -194,13 +56,66 @@
                 </div>
             </div>
             <div class="search_container">
-                <form method="post">
-                    <input type="text" id="amount"  style="border:0; color:#777777; padding:12; font-size:15px; width: 220px; ">
-                    <div id="slider-range" style="width:220px;"></div>
-
-
+                {% if type == 'tour' %}
+                <form method="post" class="ui form" action="{% url 'type_service_list' type='tour' %}">
+                {% endif %}
+                {% if type == 'flight' %}
+                <form method="post" class="ui form" action="{% url 'type_service_list' type='flight' %}">
+                {% endif %}
+                {% if type == 'room' %}
+                <form method="post" class="ui form" action="{% url 'type_service_list' type='room' %}">
+                {% endif %}
+                    <!--<input type="text" id="amount"  style="border:0; color:#777777; padding:12; font-size:15px; width: 220px; ">-->
+                    {% csrf_token %}
+                    <div class="field">
+                        {{form.price_range}}
+                        <div id="slider-range" style="width:220px;"></div>
+                    </div>
+                    <div class="field">
+                        <label>{{form.service_provider.label}}</label>
+                        {% if type == 'tour' %}
+                        {{ form.travel_agency }}
+                        {% endif %}
+                        {% if type == 'flight' %}
+                        {{ form.airline }}
+                        {% endif %}
+                        {% if type == 'room' %}
+                        {{ form.hotel }}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        <label >{{form.start_date.label}}</label>
+                        {{form.start_date}}
+                    </div>
+                    <div class="field">
+                        <label >{{form.end_date.label}}</label>
+                        {{form.end_date}}
+                    </div>
+                    {% if type == 'tour' or type == 'flight' %}
+                    <div class="field">
+                        <label >{{form.origin.label}}</label>
+                        {{form.origin}}
+                    </div>
+                    <div class="field">
+                        <label >{{form.destination.label}}</label>
+                        {{form.destination}}
+                    </div>
+                    {% endif %}
+                    {% if type == 'room' %}
+                    <div class="field">
+                        <label >{{form.location.label}}</label>
+                        {{form.location}}
+                    </div>
+                    {% endif %}
+                     <div>
+                         <button class="ui left labeled icon positive button">
+                          <i class="left arrow icon"></i>
+                          جست و جو
+                        </button>
+                     </div>
                 </form>
-            </div>
+
+
         </div>
     </div>
 {% endblock %}

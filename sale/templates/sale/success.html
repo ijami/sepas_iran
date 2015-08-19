@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{% static 'sale/css/cart.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>سبد خرید</title>
+{% endblock %}
+
+{% block content %}
+    <div class="body">
+        <div id="main_container" class="center aligned ui segment" style="background-color: forestgreen;width: 40%;">
+            <div class="advertisement">
+                خرید با موفقیت انجام شد
+            </div>
+        </div>
+            {% for serviceItem in serviceItems %}
+                <div id="main_container" class="center aligned ui segment" style="width: 40%">
+                تور
+           <br>
+               {{ serviceItem.service.tag_line }}
+ <br>
+                    با موفقیت خریداری شد
+                <span class="rtl">
+                    شماره پیگیری شما
+                    <br>
+                {{ serviceItem.service.sold_number }}_{{ serviceItems.count }}_{{ factorNum }}
+                     <br>
+                    میباشد.
+                    <br>
+                </span>
+                </div>
+            {% endfor %}
+    <div id="main_container" class="center aligned ui segment" style="background-color: lightseagreen;width: 40%;">
+        لطفا تا پایان سفر این شماره را نزد خود نگه دارید
+    </div>
+  </div>
+{% endblock %}

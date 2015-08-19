@@ -44,7 +44,7 @@ def tourist_services(tourist_id):
     for factor in factors:
         serviceItems = ServiceItem.objects.filter(factor=factor).all()
         for serviceItem in serviceItems:
-            services.append(serviceItem)
+            services.append(serviceItem.service)
     return services
 
 def tourist_services_used(tourist_id):
@@ -53,13 +53,13 @@ def tourist_services_used(tourist_id):
     # tours = services.filter(instanceof=Tour)
     for service in services:
         if isinstance(service, Tour):
-            if service.going_date < datetime.now():
+            if service.going_date < datetime.now().date():
                 output.append(service)
         elif isinstance(service, Room):
-            if service.end_date < datetime.now():
+            if service.end_date < datetime.now().date():
                 output.append(service)
         elif isinstance(service, Flight):
-            if service.date < datetime.now():
+            if service.date < datetime.now().date():
                 output.append(service)
     return output
     #
@@ -79,13 +79,13 @@ def tourist_services_waited(tourist_id):
     # tours = services.filter(instanceof=Tour)
     for service in services:
         if isinstance(service,Tour):
-            if service.going_date > datetime.now():
+            if service.going_date > datetime.now().date():
                 output.append(service)
         elif isinstance(service,Room):
-            if service.start_date > datetime.now():
+            if service.start_date > datetime.now().date():
                 output.append(service)
         elif isinstance(service,Flight):
-            if service.date > datetime.now():
+            if service.date > datetime.now().date():
                 output.append(service)
     return output
 
@@ -94,7 +94,7 @@ def tourist_tours(tourist_id):
     output=[]
     for service in services:
         if isinstance(service,Tour):
-            if service.going_date > datetime.now():
+            if service.going_date > datetime.now().date():
                 output.append(service)
     return output
 
@@ -103,7 +103,7 @@ def tourist_rooms(tourist_id):
     output=[]
     for service in services:
         if isinstance(service,Room):
-            if service.going_date > datetime.now():
+            if service.going_date > datetime.now().date():
                 output.append(service)
     return output
 
@@ -113,7 +113,7 @@ def tourist_flights(tourist_id):
     output=[]
     for service in services:
         if isinstance(service, Flight):
-            if service.going_date > datetime.now():
+            if service.going_date > datetime.now().date():
                 output.append(service)
     return output
 

@@ -1,3 +1,5 @@
+from sale.models import ServiceItem
+
 __author__ = 'MJR'
 from django.shortcuts import render, redirect
 from service.models import Tour, Room, Flight, Service
@@ -21,7 +23,12 @@ def service_list(request):
 
         if q != None:
             for foo in q.all():
+                sold = ServiceItem.objects.filter(service=foo, cart=None).all()
+                sum = 0
+                for i in sold:
+                    sum += i.number
                 s = {}
+                s['remain'] = foo.capacity - sum
                 s['image'] = foo.image
                 s['name'] = foo.__str__()
                 s['number'] = foo.sold_number
@@ -40,11 +47,7 @@ def service_list(request):
 
 @service_provider_required()
 def add_capacity(request):
-    print("salaaaaaaaam")
-    print(request.POST)
     if request.method == 'POST':
-        print("Hi")
-        print(request.POST)
         form = CapacityAddingForm(request.POST)
         if form.is_valid():
             service = Service.objects.get(sold_number=form.cleaned_data['sold_number'])

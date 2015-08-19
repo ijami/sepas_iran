@@ -2,9 +2,17 @@ from django.forms.fields import ChoiceField
 from django.forms.forms import Form, ValidationError
 from django.forms.widgets import DateInput
 from service_provider.forms import PersianDateField
+from django import forms
 
 __author__ = 'Iman'
 
+
+class AdvertiseForm(forms.Form):
+    add1 = forms.CharField(label='تبلیغ اول', required=False)
+    add2 = forms.CharField(label='تبلیغ دوم', required=False)
+    add3 = forms.CharField(label='تبلیغ سوم', required=False)
+    add4 = forms.CharField(label='تبلیغ چهارم', required=False)
+    add5 = forms.CharField(label='تبلیغ پنجم', required=False)
 class IntervalReportForm(Form):
     start_date = PersianDateField(label='شروع بازه', required=True,
                                   error_messages={'required': 'پر کزدن فیلد شروع بازه الزامیست!'},

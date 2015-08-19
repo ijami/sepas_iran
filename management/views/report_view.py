@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 import jdatetime
 from base.models import City
+from management.forms import IntervalReportForm,PieReportForm,MapReportForm
 
-from management.forms import IntervalReportForm, PieReportForm, MapReportForm
 from sale.views.finance import dashboard_report
 from service.models import Tour, Flight
 
