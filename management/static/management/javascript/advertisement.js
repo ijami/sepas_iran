@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 
-    var $serach_box = $('.auto-complete');
+    var $serach_box = $('.auto-complete').children();
     var csrf = $("input[name=csrfmiddlewaretoken]").val();
 
     $serach_box.on('input', function(){
@@ -12,7 +12,6 @@ $(document).ready(function(){
     });
 
     function search(str) {
-        console.log('dsadasd');
         $.ajax({
             url: 'search/',
             method: 'POST',

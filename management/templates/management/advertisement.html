@@ -6,73 +6,76 @@
 {% endblock %}
 {% block menu_content %}
     <h2 class="ui header">
-    تعیین تبلیغات برای صفحه خانه سایت
+        تعیین تبلیغات برای صفحه خانه سایت
     </h2>
     <div class="ui divider"></div>
     <h5 class="ui header">
-    برای هر قسمت خدمت رسانی که می خواهید تبلیغ آن را بکنید انتخاب کنید!
+        برای هر قسمت خدمت رسانی که می خواهید تبلیغ آن را بکنید انتخاب کنید!
     </h5>
-
-    <section class="red_bordered advertisement">
-        <div class="ad_number">
-            <div class="ad_title">
-                تبلیغ اول :
+    <form action="" id="advertise-form" method="post">
+        {% csrf_token %}
+        <section class="red_bordered advertisement">
+            <div class="ad_number">
+                <div class="ad_title">
+                    تبلیغ اول :
+                </div>
             </div>
-        </div>
-        <div class="ad_select">
-            <div class="ui input">
-                <input type="text" class="auto-complete">
+            <div class="ad_select">
+                <div class="ui input auto-complete">
+                    {{ form.add1 }}
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="green_bordered advertisement">
-        <div class="ad_number">
-            <div class="ad_title">
-تبلیغ دوم :
+        </section>
+        <section class="green_bordered advertisement">
+            <div class="ad_number">
+                <div class="ad_title">
+                    تبلیغ دوم :
+                </div>
             </div>
-        </div>
-        <div class="ad_select">
-            <div class="ui input">
-                <input type="text">
+            <div class="ad_select">
+                <div class="ui input auto-complete">
+                    {{ form.add2 }}
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="blue_bordered advertisement">
-        <div class="ad_number">
-            <div class="ad_title">
-                تبلیغ سوم:
+        </section>
+        <section class="blue_bordered advertisement">
+            <div class="ad_number">
+                <div class="ad_title">
+                    تبلیغ سوم:
+                </div>
             </div>
-        </div>
-        <div class="ad_select">
-            <div class="ui input">
-                <input type="text">
+            <div class="ad_select">
+                <div class="ui input auto-complete">
+                    {{ form.add3 }}
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="yellow_bordered advertisement">
-        <div class="ad_number">
-            <div class="ad_title">
-                تبلیغ چهارم:
+        </section>
+        <section class="yellow_bordered advertisement">
+            <div class="ad_number">
+                <div class="ad_title">
+                    تبلیغ چهارم:
+                </div>
             </div>
-        </div>
-        <div class="ad_select">
-            <div class="ui input">
-                <input type="text">
+            <div class="ad_select">
+                <div class="ui input auto-complete">
+                    {{ form.add4 }}
+                </div>
             </div>
-        </div>
-    </section>
-    <section class="orange_bordered advertisement">
-        <div class="ad_number">
-            <div class="ad_title">
-                تبلیغ پنجم:
+        </section>
+        <section class="orange_bordered advertisement">
+            <div class="ad_number">
+                <div class="ad_title">
+                    تبلیغ پنجم:
+                </div>
             </div>
-        </div>
-        <div class="ad_select">
-            <div class="ui input">
-                <input type="text">
+            <div class="ad_select">
+                <div class="ui input auto-complete">
+                    {{ form.add5 }}
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <input type="submit" value="Submit" />
+    </form>
 
 {% endblock %}
 
