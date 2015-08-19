@@ -4,8 +4,9 @@ __author__ = 'MJR'
 from django.shortcuts import render, redirect
 from service.forms import RoomForm, FlightForm, TourForm
 from django.core.urlresolvers import reverse
+from base.views.decorators import service_provider_required
 
-
+@service_provider_required()
 def new_service(request):
     C = None
     user = request.user.site_user

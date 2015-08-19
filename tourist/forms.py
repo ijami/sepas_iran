@@ -82,9 +82,11 @@ class TouristCreationForm(ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data["email"]
-        if email == "":
-            raise forms.ValidationError("ایمیل معتبر نیست.")
-        return email
+        try:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError("قبلا با این پست الکترونیک ثبت نام انجام شده", code='duplicate_email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1", "")

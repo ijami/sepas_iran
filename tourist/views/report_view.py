@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
@@ -6,9 +5,9 @@ from sale.views.finance import tourist_flights,\
     tourist_rooms, tourist_services,\
     tourist_services_price, tourist_services_waited, tourist_tours,tourist_services_used
 from tourist.views.crm_function import tourist_comments_count
+from base.views.decorators import tourist_required
 
-
-@login_required
+@tourist_required()
 def reprot_view(request):
     if request.method == 'GET':
         tourist = request.user.site_user.tourist
