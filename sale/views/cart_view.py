@@ -1,12 +1,12 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from sale.models import ServiceItem, Cart
 from service.models import Service
+from base.views.decorators import tourist_required
 
 __author__ = 'Ehsan'
 
-@login_required
+@tourist_required()
 def cart_view(request):
     tourist = request.user.site_user
     if request.method == "POST":

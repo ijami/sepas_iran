@@ -2,9 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
+from base.views.decorators import tourist_required
 __author__ = 'Iman'
 
-@login_required
+@tourist_required()
 def profile_view(request):
     if request.method == 'GET':
         tourist = request.user.site_user.tourist

@@ -130,10 +130,10 @@ LOGIN_URL = '/accounts/login/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = "samanasoftware@gmail.com"
-EMAIL_HOST_PASSWORD = "samanapass"
+EMAIL_HOST_USER = "b.i.sepasiran@gmail.com"
+EMAIL_HOST_PASSWORD = "sepasiranpass"
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'samanasoftware@gmail.com'
+DEFAULT_FROM_EMAIL = 'b.i.sepasiran@gmail.com'
 
 
 CRON_CLASSES = [

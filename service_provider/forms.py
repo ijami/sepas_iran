@@ -52,7 +52,8 @@ class ServiceProviderCreationForm(ModelForm):
                                error_messages={'required': "پر کردن فیلد نام کاربری الزامی است"},
                                widget=forms.TextInput(attrs={'placeholder': 'نام کاربری'}))
     email = forms.EmailField(max_length=100, label="پست الکترونیک", required=True,
-                             error_messages={'required': "پر کردن فیلد پست الکترونیک الزامی است"},
+                             error_messages={'required': "پر کردن فیلد پست الکترونیک الزامی است",
+                                             'invalid': "ایمیل وارد شده معتبر نیست"},
                              widget=forms.EmailInput(attrs={'placeholder': 'example@host.com'}))
     password1 = forms.CharField(max_length=100, label="گذرواژه", required=True,
                                 error_messages={'required': "پر کردن فیلد گذرواژه الزامی است"},
@@ -92,6 +93,8 @@ class ServiceProviderCreationForm(ModelForm):
     type = forms.ChoiceField(required=True, label="خدمت ارائه شده توسط شرکت", widget=forms.HiddenInput, choices=types,
                              error_messages={'required': "انتخاب نوع سرویس الزامی است",
                                              'invalid_choice': "انتخاب نوع سرویس الزامی است"})
+
+    accept_terms = forms.BooleanField(label="با قوانین سپاس ایران موافقم", )
 
     # hotel
     degree = forms.IntegerField(label="درجه هتل", required=False,
@@ -138,9 +141,11 @@ class ServiceProviderCreationForm(ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data["email"]
-        if email == "":
-            raise forms.ValidationError("ایمیل معتبر نیست.")
-        return email
+        try:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError("قبلا با این پست الکترونیک ثبت نام انجام شده", code='duplicate_email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1", "")

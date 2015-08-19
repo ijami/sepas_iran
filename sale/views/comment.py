@@ -7,7 +7,9 @@ from django.http import Http404
 from sale.models import Factor, ServiceItem
 from django.core.urlresolvers import reverse
 import datetime
+from base.views.decorators import login_required
 
+@login_required()
 def add_comment(request):
     if request.method == "POST":
         user = request.user.site_user
