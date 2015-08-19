@@ -1,3 +1,5 @@
+from management.models import AdvertiseBox
+
 __author__ = 'Mohsen'
 from django.shortcuts import render
 from service.models import Service, Tour
@@ -30,4 +32,5 @@ def home(request):
             pass
     return render(request, 'base/home.html',{
         'new_services': zip(new_services, new_solds),
+        'pics': AdvertiseBox.load()
     })

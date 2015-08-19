@@ -1,6 +1,6 @@
 from django.contrib.sessions.serializers import JSONSerializer
 from django.core import serializers
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 import json
 from service_provider.models import ServiceProvider
 from base.views.decorators import manager_required
@@ -18,4 +18,4 @@ class Model(ServiceProvider):
 def search(request):
     name = request.POST.get('name', 'bad request')
     service_providers = [s.name for s in ServiceProvider.objects.filter(name__icontains=name)]
-    return HttpResponse(json.dumps(service_providers))
+    return JsonResponse({'result': service_providers})
