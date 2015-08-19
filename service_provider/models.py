@@ -10,9 +10,7 @@ class ServiceProvider(SiteUser):
     long_description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
+    pic = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.name

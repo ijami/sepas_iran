@@ -57,7 +57,7 @@
             </div>
             <div class="search_container">
                 {% if type == 'tour' %}
-                <form method="post" class="ui form" action="{% url 'type_service_list' type='tour' %}">
+                <form method="post" class="ui form" action="{% url 'type_service_list' type='tour' %}" id="search_form">
                 {% endif %}
                 {% if type == 'flight' %}
                 <form method="post" class="ui form" action="{% url 'type_service_list' type='flight' %}">
@@ -108,7 +108,7 @@
                     </div>
                     {% endif %}
                      <div>
-                         <button class="ui left labeled icon positive button">
+                         <button type="submit" form="search_form" class="ui left labeled icon positive button" value="جست و جو">
                           <i class="left arrow icon"></i>
                           جست و جو
                         </button>

@@ -22,7 +22,11 @@ def cart_view(request):
     sum = 0
     for serv in serviceItems:
         sum = sum + serv.number*serv.service.price
-        serv.range = range(1, serv.service.capacity - len(ServiceItem.objects.filter(service=serv.service, cart=None)) + 1)
+        k = ServiceItem.objects.filter(service=serv.service, cart=None).all()
+        to = 0
+        for e in k:
+            to += e.number
+        serv.range = range(1, serv.service.capacity - to + 1)
     sum2 = sum
 #    sum2 = sum*loyalty(tourist.id)
     return render(request, 'sale/cart.html', {'serviceItems': serviceItems, 'sum': sum, 'sum2': sum2})
