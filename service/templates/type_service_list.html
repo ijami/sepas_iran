@@ -17,11 +17,11 @@
     max: "{{max_price.price}}",
     values: [ "{{max_price.price}}" / 4,  "{{max_price.price}}" * 3 / 4],
     slide: function( event, ui ) {
-    $( "#amount" ).val( " تومان " + ui.values[ 1 ] + " - تومان " + ui.values[ 0 ] );
+    $( "#amount" ).val(ui.values[ 1 ] +  " ریال - "+ ui.values[ 0 ] + " ریال" );
     }
     });
-    $( "#amount" ).val( " تومان " + $( "#slider-range" ).slider( "values", 1) +
-    " - تومان " + $( "#slider-range" ).slider( "values", 0 ) );
+    $( "#amount" ).val($( "#slider-range" ).slider( "values", 1) +  " ریال - " 
+    + $( "#slider-range" ).slider( "values", 0 ) + "  ریال " );
     });
     </script>
 {% endblock %}
@@ -90,20 +90,13 @@
                             {% endif %}
                             </div>
                             <div class="description">
-                            {% if type == 'tour' %}
                                 {{service.tag_line}}
-                            {% endif %}
-                            {% if type == 'flight' %}
-                                {{service.airline.name}}
-                            {% endif %}
-                            {% if type == 'room' %}
-                                {{service.hotel.name}}
-                            {% endif %}
                             </div>
                             <br/>
                             <div class="meta" style="color: teal; font-size:12px">
                                 <span>قیمت</span>
                                 {{service.price}}
+                                <span> ریال</span>
                             </div>
                         </div>
 
