@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{% static 'messaging/css/message_box.css' %}"/>
 {% endblock %}
 
+{% block nav_item %}
+    بایگانی شکایات
+{% endblock %}
+
 {% block menu_content %}
     {% for complain in complains_list %}
         <div class="ui inverted segment" style="background-color: #f0f0f0">
