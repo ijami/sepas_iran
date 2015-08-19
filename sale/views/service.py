@@ -17,14 +17,16 @@ def service_show(request, sold_number):
         print('exception')
         raise Http404
     t = service.get_type()
+    print("abt")
+    print(service.is_exp())
     start_date = None
     end_date = None
     hour = None
     if t == 'r':
         type = 'هتل'
         provider = service.hotel
-        start_date = jdatetime.date.fromgregorian(date=service.start_date.date())
-        end_date = jdatetime.date.fromgregorian(date=service.end_date.date())
+        start_date = jdatetime.date.fromgregorian(date=service.start_date)
+        end_date = jdatetime.date.fromgregorian(date=service.end_date)
     elif t == 't':
         type = 'تور'
         provider = service.travel_agency
@@ -35,6 +37,10 @@ def service_show(request, sold_number):
         provider = service.airline
         start_date = jdatetime.date.fromgregorian(date=service.date)
     q = ServiceItem.objects.filter(service=service, cart=None)
+    size = 0
+    for x in q.all():
+        size += x.number
+        print(size)
     size = len(q)
     remain = service.capacity - size
     comments = service.comments.all()

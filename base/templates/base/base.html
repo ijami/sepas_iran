@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     {% load staticfiles %}
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.js' %}"></script>
     <script type="text/javascript" src="{% static 'bower_components/semantic-ui/dist/semantic.js' %}"></script>
     <script type="text/javascript" src="{% static 'base/javascript/base.js' %}"></script>
 
@@ -50,24 +51,34 @@
                 </span></a>
                 </div>
                 <div class="vertical_divider"></div>
-                <div id="sign-up" class="bordered">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
+                    <div id="sign-up" class="bordered">
                         <a href="{% url 'logout' %}" class="nodec"><i
                                 class="sign out icon right_float"></i><span>
                              خروج
-                </span></a>
-                    {% else %}
+                </span></a></div>
+                {% else %}
+                    <div id="sign-up" class="bordered">
                         <a href="{% url 'register_tourist' %}" class="nodec"><i
                                 class="user basic icon right_float"></i><span>
                     ثبت نام کنید
-                </span></a>
-                    {% endif %}
+                </span></a></div>
+                    <div class="vertical_divider"></div>
+                    <div id="sign-up" class="bordered">
 
-                </div>
+                        <a href="{% url 'register_service_provider' %}" class="nodec"><span style="font-size: 11px">
+                                گردش ساز هستید؟ برای ارائه خدمت در سپاس ایران کلیک کنید
+                </span></a>
+
+
+                    </div>
+                {% endif %}
+
+
                 </div>
                 <div id="search" class="bordered">
                     <div class="digigreen ui small button right_float
-                            {% if user.site_user.get_fields.super_type == 'service_provider' %}non-display{% endif %}"
+                            {% if user.site_user.get_fields.super_type == 'service_provider' or user.site_user.get_fields.type == 'manager' %}non-display{% endif %}"
                          id="cart">
                         <i class="cart icon right_float"></i>
                         <a href="{% url 'cart' %}" style="color: white">

@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "jquery": "*",
+    "jquery-ui": "*",
     "semantic-ui": "*",
     "bootstrap": "*"
   }

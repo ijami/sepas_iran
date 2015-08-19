@@ -1,3 +1,14 @@
+#breadcrumb_container {
+    height: 30px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    margin-top: 10px;
+}
+
+.breadcrumb {
+    font-size: 12px !important;
+}
+
 #forgot_pass_section .header:not(.bottom) img.icon{
     margin-bottom: 8px !important;
 }

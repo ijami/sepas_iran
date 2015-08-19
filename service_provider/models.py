@@ -14,7 +14,8 @@ class ServiceProvider(SiteUser):
     def __str__(self):
         return self.name
 
-
+    def __str__(self):
+        return self.name
 
 
 class Hotel(ServiceProvider):
@@ -65,6 +66,7 @@ class Hotel(ServiceProvider):
             'has_photo_studio': self.has_photo_studio,
         }
         return context
+
 
 class AirLine(ServiceProvider):
     is_international = models.BooleanField()

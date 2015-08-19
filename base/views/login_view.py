@@ -27,7 +27,8 @@ def logout_user(request):
     # sms_req = urllib.request.Request(url, binary_data)
     # sms_response = urllib.request.urlopen(sms_req)
     # print(sms_response.read())
-    logout(request)
+    if request.user.is_authenticated():
+        logout(request)
     return redirect(reverse('home'))
 
 
@@ -43,6 +44,9 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
+                if user.site_user.get_fields()['super_type'] == 'service_provider':
+                    if not user.site_user.is_verified:
+                        return render(request, 'base/login.html', {'not_verified': True})
                 login(request, user)
                 if request.GET.get('next'):
                     return redirect(request.GET.get('next'))

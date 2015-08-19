@@ -1,0 +1,240 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'service_provider/css/panel.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="mrg-auto" style="height: auto; margin-top: 10px; margin-bottom: 10px;">
+        <div class="ui grid rtl" style="margin-bottom: 10px;">
+            <div class=" twelve wide column right_float" style="background-color: white; margin: 25px auto!important;
+             box-shadow: honeydew; ">
+                <div class="ui container segment right_aligned" style="border: none; box-shadow: none">
+    <div class="ui three column centered grid" id="provider_profile">
+       <div class="rtl right aligned column" id="profpic_container">
+           {% if context.image %}
+           <img class="ui medium rounded image" src="{{ context.image.url }}">
+           {% else %}
+           <img class="ui medium rounded image" src="{% static 'bower_components/semantic-ui/examples/assets/images/wireframe/image-square.png' %}">
+           {% endif %}
+       </div>
+       <div class="ui horizontal divider" style="margin-top: 45px;">مشخصات</div>
+       <div class="six column centered row" id="provider_information">
+           {% if context.type == 'hotel' %}
+               <div class="six wide column" style="text-align: right">
+               نام هتل:
+               {{ context.name }}
+               </div>
+               <div class="four wide column" style="text-align: right">
+               درجه کیفی:
+                       {{ context.degree }}
+                       ستاره
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
+               <div class="ui horizontal divider">توضیحات</div>
+               <div class="ten wide column" style="text-align: right">
+                {{ context.short_description }}
+                   <br><br>
+                {{ context.long_description|linebreaks }}
+               </div>
+
+               <div class="ui horizontal divider"> امکانات رفاهی </div>
+
+               <div class="ui padded segment" style="width: 75%; margin: auto" id="labels">
+                    <a class="ui large {% if context.has_restaurant %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large food icon" style="margin-left: 10px; margin-right: 0"></i>
+                        رستوران
+                    </a>
+                    <a class="ui large {% if context.has_parking %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large car icon" style="margin-left: 10px; margin-right: 0"></i>
+                        پارکینگ
+                    </a>
+                    <a class="ui large {% if context.has_internet %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large wifi icon" style="margin-left: 10px; margin-right: 0"></i>
+                        اینترنت
+                    </a>
+                    <a class="ui large {% if context.has_pool %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large life ring icon" style="margin-left: 10px; margin-right: 0"></i>
+                        استخر
+                    </a>
+                    <a class="ui large {% if context.has_conference_hall %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large desktop icon" style="margin-left: 10px; margin-right: 0"></i>
+                        سالن کنفرانس
+                    </a>
+                    <a class="ui large {% if context.has_fire_extinguisher %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large fire extinguisher icon" style="margin-left: 10px; margin-right: 0"></i>
+                        سیستم اطفاء حریق
+                    </a>
+                    <a class="ui large {% if context.has_sport_salloon %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large soccer icon" style="margin-left: 10px; margin-right: 0"></i>
+                        سالن ورزشی
+                    </a>
+                    <a class="ui large {% if context.has_health_center %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large treatment icon" style="margin-left: 10px; margin-right: 0"></i>
+                        کلینیک درمانی
+                    </a>
+                    <a class="ui large {% if context.has_coffeeshop %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large coffee icon" style="margin-left: 10px; margin-right: 0"></i>
+                        کافی شاپ
+                    </a>
+                    <a class="ui large {% if context.has_emergency %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large emergency icon" style="margin-left: 10px; margin-right: 0"></i>
+                        اورژانس
+                    </a>
+                    <a class="ui large {% if context.has_jungle %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large tree icon" style="margin-left: 10px; margin-right: 0"></i>
+                        فضای سبز
+                    </a>
+                    <a class="ui large {% if context.has_protection_system %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large protect icon" style="margin-left: 10px; margin-right: 0"></i>
+                        سیستم یپشرفته امنیتی
+                    </a>
+                    <a class="ui large {% if context.has_shop_center %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large shop icon" style="margin-left: 10px; margin-right: 0"></i>
+                        مرکز خرید
+                    </a>
+                    <a class="ui large {% if context.has_gamenet %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large game icon" style="margin-left: 10px; margin-right: 0"></i>
+                        گیم نت
+                    </a>
+                    <a class="ui large {% if context.has_photo_studio %}
+                            green
+                        {% else %}
+                            red
+                    {% endif %}  label">
+                        <i class="large photo icon" style="margin-left: 10px; margin-right: 0"></i>
+                        آتلیه عکاسی
+                    </a>
+               </div>
+
+از این جا به بعد به شرطیست که کاربر وارد شده مربوط به یک آژانس هوایپیمایی باشد
+           {% elif context.type == 'airline' %}
+
+               <div class="six wide column" style="text-align: right">
+               نام دفتر هواپیمایی:
+               {{ context.name }}
+               </div>
+               <div class="four wide column" style="text-align: right">
+               نوع:
+                       {% if context.is_international %}
+                           بین المللی
+                                     {% else %}
+                           داخلی
+                       {% endif %}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
+               <div class="ui horizontal divider">توضیحات</div>
+               <div class="ten wide column" style="text-align: right">
+                {{ context.short_description }}
+                   <br><br>
+                {{ context.long_description|linebreaks }}
+               </div>
+
+
+               از این جا به بعد به شرطیست که کاربر وارد شده، خدمت سازی از جنس دفتر خدمات مسافرتی باشد
+           {% elif context.type == 'agency' %}
+
+               <div class="ten wide column" style="text-align: right">
+نام دفتر خدمات مسافرتی:
+               {{ context.name }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                آدرس:
+               {{ context.address.city }}
+               ،
+               {{ context.address.address }}
+               </div>
+               <div class="ten wide column" style="text-align: right">
+                تلفن تماس:
+               {{ context.phone }}
+               </div>
+
+               <div class="ui horizontal divider">توضیحات</div>
+               <div class="ten wide column" style="text-align: right">
+                {{ context.short_description }}
+                   <br><br>
+                {{ context.long_description|linebreaks }}
+               </div>
+           {% endif %}
+       </div>
+   </div>
+                </div></div></div></div></div>
+{% endblock %}

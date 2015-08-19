@@ -11,6 +11,7 @@ class CartAdmin(admin.ModelAdmin):
     inlines = [ServiceInline]
 
 
+
 class FactorAdmin(admin.ModelAdmin):
     inlines = [ServiceInline]
 
