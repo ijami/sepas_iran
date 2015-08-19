@@ -13,14 +13,17 @@ class Service(PolymorphicModel):
     capacity = models.IntegerField()
     sold_number = models.CharField(max_length=20)
     tag_line = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     @staticmethod
     def get_exist(self):
         pass
-    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     def get_type(self):
         pass
+
+    def is_exp(self):
+        return self.get_date() <= datetime.now().date()
 
     def __str__(self):
         return self.tag_line
@@ -131,6 +134,7 @@ class Tour(Service):
 
     def get_city(self):
         return self.destination
+
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)

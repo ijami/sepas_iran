@@ -13,10 +13,6 @@ def service_list(request):
     for f in factors:
         items = f.items.all()
         for i in items:
-            if i.service.get_date() < datetime.datetime.now().date():
-                i.expired = True
-            else:
-                i.expired = False
             item_list.append(i)
     for f in item_list:
         print(f)
