@@ -1,14 +1,16 @@
+from management.views.advertise_select import AdvertiseView
 from management.views.manage_providers_view import NewProviders, ActiveProviders, DeactiveProviders
 from management.views.report_view import IntervalReportView, PieReportView, MapReportView
 
 __author__ = 'Iman'
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
+from .views import advertise_search
 
 urlpatterns = [
     # Examples:
     url(r'^finance$', TemplateView.as_view(template_name='management/financeReport.html'), name='finance'),
-    url(r'^advertisement$', TemplateView.as_view(template_name='management/advertisement.html'), name='advertisement'),
+    url(r'^advertisement$', AdvertiseView.as_view(), name='advertisement'),
     url(r'^service_activate$', TemplateView.as_view(template_name='management/service_activate.html'),
         name='service-activate'),
     url(r'^service_provider_activate$', TemplateView.as_view(template_name='management/manage_providers.html'),
@@ -21,4 +23,5 @@ urlpatterns = [
     url(r'^deactive_providers', DeactiveProviders.as_view(), name='deactive_providers'),
     url(r'^sell_report', TemplateView.as_view(template_name='management/advertisement.html'), name='sell_report'),
     url(r'^$', TemplateView.as_view(template_name='management/dashboard.html'), name='management_dashboard'),
+    url(r'^search/$', advertise_search.search, name='search_advertise'),
 ]

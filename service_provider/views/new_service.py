@@ -1,3 +1,5 @@
+from http.client import HTTPResponse
+
 __author__ = 'MJR'
 from django.shortcuts import render, redirect
 from service.forms import RoomForm, FlightForm, TourForm
@@ -7,6 +9,8 @@ from django.core.urlresolvers import reverse
 def new_service(request):
     C = None
     user = request.user.site_user
+    if not user.is_active:
+        return render(request, 'service_provider/inactive_user_error.html')
     if request.method == 'GET':
             if user:
                 if user.get_fields()['type'] != 'tourist':

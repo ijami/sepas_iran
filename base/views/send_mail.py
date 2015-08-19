@@ -29,6 +29,7 @@ class EmailThread(threading.Thread):
         msg = EmailMultiAlternatives(subject, text_content, from_email, to)
         if self.html_template:
             msg.attach_alternative(html_content, "text/html")
+            # msg.attach_file('E:/ce/sepas iran 4/sepas_iran/base/static/base/images/sepasIran.png')
         msg.send()
 
 
