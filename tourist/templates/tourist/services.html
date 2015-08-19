@@ -12,23 +12,25 @@
 {% block menu_content %}
     <div class="ui link cards">
 
-    {% for service in services %}
+        {% for service in services %}
             <div class="ui card" style="width: 31%">
-                    <a class="ui fluid image" href="/sale/service/{{ service.service.sold_number }}">
-                        {% if service.expired %}
-                            <div class="ui large red ribbon label">
-                                گذشته<i class="thumbs down icon"></i>
-                            </div>
-                        {% endif %}
+                <a class="ui fluid image" href="/sale/service/{{ service.service.sold_number }}">
+                    {% if service.expired %}
+                        <div class="ui large red ribbon label">
+                            گذشته<i class="thumbs down icon"></i>
+                        </div>
+                    {% endif %}
 
-                        <img src="{{ service.service.image.url }}">
-                    </a>
+                    <img src="{{ service.service.image.url }}" style="max-height: 220px; min-height: 220px;">
+                </a>
+
                 <div class="content">
                     <div class="header">
                         {{ service.service }}
                     </div>
                     <div class="meta">
-                        <a href="/sale/service/{{ service.service.sold_number }}" style="float: right">{{ service.service.sold_number }}</a>
+                        <a href="/sale/service/{{ service.service.sold_number }}"
+                           style="float: right">{{ service.service.sold_number }}</a>
                         <span style="float: left">{{ service.service.price }}</span>
                     </div>
                     <div class="ui divider" style="clear: both"></div>
@@ -38,17 +40,46 @@
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <div class="ui yellow button" style="margin-left: 1px; border-radius: 3px;">امتیازدهی</div>
-                        <div class="ui orange button" style="margin-right: 1px; border-radius: 3px;">شکایت</div>
+                        <button class="ui yellow button"
+                                style="margin-left: 1px; border-radius: 3px;">امتیازدهی
+                        </button>
+                        <button class="ui orange button but_complain"
+                                style="margin-right: 1px; border-radius: 3px;"
+                                id="button_{{ service.id }}">شکایت
+                        </button>
                     </div>
                 </div>
             </div>
-    {% endfor %}
+
+        {% endfor %}
 
     </div>
 
+    <div class="ui modal complain" style="direction: rtl">
+        <form class="ui form" style="height: auto!important;" action="{% url 'new_complain' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="service_item_id" id="complain-id">
+            <input name="title" type="text" style="margin-bottom: 5px;" placeholder="عنوان شکایت">
 
+            <div class="field">
+                <input name="text" placeholder="متن شکایت را وارد کنید" style="height: 215px;"></input>
+            </div>
+            <div class="ui left floated buttons" dir="rtl">
+                <input type="submit" class="ui positive button" value="ارسال">
+            </div>
+        </form>
+    </div>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ui.modal.complain').modal();
+            $('.but_complain').on('click', function () {
+                $('.ui.modal.complain').modal('show');
+                $('#complain-id').val(this.id);
+                $('#complain-id').attr('value', this.id);
+            });
+        });
+    </script>
 {% endblock %}
 
 

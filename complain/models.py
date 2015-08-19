@@ -12,6 +12,7 @@ class Complain(models.Model):
 
     service_item = models.ForeignKey(ServiceItem)
     text = models.TextField()
+    title = models.CharField(max_length=300)
     create_date = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=10, choices=STATES, default='Q')
     last_state_change = models.DateTimeField(auto_now=True)
