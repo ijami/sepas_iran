@@ -59,7 +59,7 @@ class Flight(Service):
     airplane = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.airline.name + " : " +  " پرواز شماره "  + self.flight_number + "  " + " از " + self.origin.name + " به " \
+        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به " \
                + self.destination.name
 
     def get_type(self):
