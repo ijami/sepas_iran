@@ -1,0 +1,65 @@
+{% extends 'tourist/dashbord.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'tourist/css/report.css' %}"/>
+{% endblock %}
+
+{% block breadcrumb %}
+    گزارش عملکردی
+{% endblock %}
+
+{% block menu_content %}
+    <div class="ui middle aligned divided list rtl">
+        <div class="item">
+            <img class="ui avatar tiny image" src="{% static 'tourist/images/total.png' %}">
+
+            <div class="content">
+                <h3>تعداد کل خدمات ارئه شده</h3>
+            </div>
+            <div class="mrgtp_1em left floated ui huge label">
+                {{ provided_services }}
+            </div>
+        </div>
+        <div class="item">
+            <img class="ui avatar tiny image" src="{% static 'tourist/images/passed.jpg' %}">
+
+            <div class="content">
+                <h3>تعداد کل خدمات فروخته شده</h3>
+            </div>
+            <div class="mrgtp_1em left floated ui huge label">
+                {{ saled_services }}
+            </div>
+        </div>
+        <div class="item">
+            <img class="ui avatar tiny image" src="{% static 'tourist/images/sandclockflat.png' %}">
+
+            <div class="content">
+                <h3>تعداد خدمات در انتظار اجرا</h3>
+            </div>
+            <div class="mrgtp_1em left floated ui huge label">
+                {{ waited_services }}
+            </div>
+        </div>
+        <div class="item">
+            <img class="ui avatar tiny image" src="{% static 'tourist/images/money.png' %}">
+
+            <div class="content">
+                <h3>درآمد بدست آورده</h3>
+            </div>
+            <div class="mrgtp_1em left floated ui huge label">
+                {{ income }}
+            </div>
+        </div>
+        <div class="item">
+            <img class="ui avatar tiny image" src="{% static 'tourist/images/comment.png' %}">
+
+            <div class="content">
+                <h3>تعداد کل بازخوردها</h3>
+            </div>
+            <div class="mrgtp_1em left floated ui huge label">
+                {{ feedback_count }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
