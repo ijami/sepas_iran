@@ -1,0 +1,78 @@
+{% extends 'service_provider/provider_dashbord_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'service_provider/css/service_list.css' %}">
+{% endblock %}
+
+{% block breadcrumb %}
+    لیست خدمات ارائه شده
+{% endblock %}
+
+{% block menu_content %}
+    <div class="ui link cards">
+
+        {% for service in services %}
+                <div class="card" style="width: 31%; {% if service.expired %}border: 2px solid darkred; background-color: #cfd0d2{% endif %}">
+                    <a class="ui fluid image" href="/sale/service/{{ service.number }}">
+                        {% if service.expired %}
+                            <div class="ui large red ribbon label">
+                                گذشته<i class="thumbs down icon"></i>
+                            </div>
+                        {% endif %}
+                        <img src="{{ service.image.url }}"  style="max-height: 255px">
+                    </a>
+                    <div class="content">
+                        <div class="header" style="font-size: 14px;">
+                            {{ service.name }}
+                        </div>
+                        <div class="meta">
+                            <a>{{ service.number }}</a>
+                        </div>
+                        <div class="ui divider"></div>
+                        <span class="right floated" style="font-size: 12px;">
+                            ظرفیت باقیمانده:
+                            {{ service.remain }}
+                        </span>
+                        <span class="left floated" style="font-size: 12px;">
+                            ظرفیت کل:
+                            {{ service.capacity }}
+                        </span>
+                        <br><br>
+                        <div class="description" style="color: forestgreen;">
+                            قیمت واحد:
+                        {{ service.price }}
+                        ریال
+
+                        </div>
+                    </div>
+                {% if service.expired %}
+                    <div class="ui bottom attached blue button" style="width: 99.6%; margin: auto">
+                        <i class="info icon" style="margin-left: 2px;"></i>
+مشاهده جزئیات
+                    </div>
+                {% else %}
+                    <div class="ui divider"></div>
+                    <form class="ui rtl form" method="POST" action="{% url 'add_service_capacity' %}">
+                        {% csrf_token %}
+
+                        <input style="display: none" type="text" name="sold_number" id="capa_sold_number{{ service.number }}">
+                        <script type="text/javascript">
+                            var elem = document.getElementById("capa_sold_number{{ service.number }}");
+                            elem.value = "{{ service.number }}";
+                        </script>
+                        <div class="field {% if capa.added_capacity.errors %}error{% endif %}">
+                            {{ capa.added_capacity.label_tag }}
+                            <div class="ui action input" style="display: inline-block; float: right; width: 60%; margin-bottom: 3px; margin-right: 3px;">
+                                {{ capa.added_capacity }}
+                            </div>
+                            <button class="ui large green button" type="submit">افزایش</button>
+                        </div>
+                    </form>
+                    <div class="ui field"></div>
+                {% endif %}
+                </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+

@@ -6,32 +6,40 @@
 {#{% endblock %}#}
 
 {% block breadcrumb %}
-    ?????
+    لیست خدمات خریداری شده
 {% endblock %}
 
 {% block menu_content %}
     <div class="ui link cards">
 
     {% for service in services %}
-            <div class="card">
-                <div class="image">
-                    <img src="{{ service.service.image }}">
-                </div>
+            <div class="ui card" style="width: 31%">
+                    <a class="ui fluid image" href="/sale/service/{{ service.service.sold_number }}">
+                        {% if service.is_exp %}
+                            <div class="ui large red ribbon label">
+                                گذشته<i class="thumbs down icon"></i>
+                            </div>
+                        {% endif %}
+
+                        <img src="{{ service.service.image.url }}">
+                    </a>
                 <div class="content">
                     <div class="header">
-                        {{ service.service.name }}
+                        {{ service.service }}
                     </div>
                     <div class="meta">
-                        <a>{{ service.number }}</a>
+                        <a href="/sale/service/{{ service.service.sold_number }}" style="float: right">{{ service.service.sold_number }}</a>
+                        <span style="float: left">{{ service.service.price }}</span>
                     </div>
+                    <div class="ui divider" style="clear: both"></div>
                     <div class="description">
                         {{ service.service.tag_line }}
                     </div>
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <div class="ui basic green button">???</div>
-                        <div class="ui basic red button">???</div>
+                        <div class="ui yellow button" style="margin-left: 1px; border-radius: 3px;">امتیازدهی</div>
+                        <div class="ui orange button" style="margin-right: 1px; border-radius: 3px;">شکایت</div>
                     </div>
                 </div>
             </div>
@@ -40,7 +48,6 @@
     </div>
 
 
-</div>
 
 {% endblock %}
 

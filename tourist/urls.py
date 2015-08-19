@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^panel/modify$', 'tourist.views.prifile_edit_view.profile_edit_view', name='profile_modify'),
     url(r'^panel/modify/upload_image$', 'tourist.views.prifile_edit_view.profile_edit_view', name='upload_image'),
     url(r'^register/$', 'tourist.views.register_view.register', name='register_tourist'),
-    url(r'^report$', TemplateView.as_view(template_name='tourist/report.html'), name='report'),
-    url(r'^service_list$', TemplateView.as_view(template_name='tourist/services.html'), name='service_list'),
+    url(r'^report$', 'tourist.views.report_view.reprot_view', name='report'),
+    url(r'^service_list$', 'tourist.views.service_list.service_list', name='service_list'),
 ]

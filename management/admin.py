@@ -1,8 +1,9 @@
-from django.contrib import admin
 
 # Register your models here.
+from django.contrib import admin
 from management.models import AdvertiseBox
 from sale.models import Cart, Factor, ServiceItem
+
 
 class ServiceInline(admin.TabularInline):
     model = ServiceItem

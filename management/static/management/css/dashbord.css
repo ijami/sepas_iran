@@ -10,3 +10,10 @@
 .redcolored {
     color: red!important;
 }
+
+#breadcrumb_container{
+    height: 30px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    margin-top: 10px;
+}

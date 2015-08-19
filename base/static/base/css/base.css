@@ -225,6 +225,10 @@ a:hover {
     /*text-align: right;*/
 }
 
+.non-display{
+    display: none !important;
+}
+
 .vertical_center_child {
     display: table !important;
 }

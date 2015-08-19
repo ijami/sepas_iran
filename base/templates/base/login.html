@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load staticfiles %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'tourist/css/login_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/login_style.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -17,6 +17,16 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="content rtl">
+                    {% if request.GET.next %}
+                        <div class="ui error message" id="redirect">
+                            <div class="header">
+                                خطای دسترسی
+                            </div>
+                            <p>
+                                برای دسترسی به صفحه مورد نظر، لازم است با اکانت مناسب، وارد شوید.
+                            </p>
+                        </div>
+                    {% endif %}
                     <div class="description">
                         <form class="ui form {% if errors %}error{% endif %}" method="post" action="">
                             {% csrf_token %}

@@ -8,6 +8,8 @@ from tourist.forms import TouristCreationForm
 
 
 def register(request):
+
+
     if request.method != "POST":
         form = TouristCreationForm()
         return render(request, 'tourist/register.html', {

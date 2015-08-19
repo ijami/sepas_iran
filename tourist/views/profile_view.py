@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
+import jdatetime
+
 __author__ = 'Iman'
 
 @login_required
@@ -15,7 +17,7 @@ def profile_view(request):
                 'address': tourist.location.address,
                 'mail': tourist.primary_user.email,
                 'phone': tourist.telephone,
-                'birth_day': tourist.birth_day,
+                'birth_day': jdatetime.date.fromgregorian(date=tourist.birth_day),
                 'image': tourist.image,
             }
             return render(request, 'tourist/profile.html', context)

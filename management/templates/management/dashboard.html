@@ -9,121 +9,159 @@
 
 {% block content %}
 
-    <div class="mrg-auto" style="height: auto; margin-top: 10px">
+    <div class="mrg-auto" style="height: auto;">
         <div class="ui grid rtl">
-            <div class="three wide column " style="margin-bottom: 15px;">
-                <div class="ui vertical menu ">
-                    <div class="item">
-                        <div class="header">خانه</div>
-                        <div class="menu">
-                            <a class="item" href="{% url 'management_dashboard' %}">خانه</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">تبلیغات</div>
-                        <div class="menu">
-                            <a class="item" href="/manage/advertisement">مدیریت  تبلیغ</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">گزارشات مدیریتی</div>
-                        <div class="menu">
-                            <a class="item" href="/manage/buy_report">گزارش تراکنش محور</a>
-                            <a class="item" href="/manage/buy_report">گزارشات دوره ای</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">مدیریت خدمات</div>
-                        <div class="menu">
-                            <a class="item" href="/manage/service_provider_activate">کنترل کاربران</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">پیامرسانی</div>
-                        <div class="menu">
-                            <a class="item">صندوق پیام ها</a>
-                            <a class="item">ارسال پیام</a>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="header">شکایات</div>
-                        <div class="menu">
-                            <a class="item">شکایات قابل بررسی</a>
-                            <a class="item">صدور حکم</a>
-                            <a class="item">بایگانی</a>
+            <div class="row">
+                <div class="sixteen wide column">
+                    <div class="ui segment rtl" id="breadcrumb_container">
+                        <div class="ui right_float rtl breadcrumb">
+                            <a href="{% url 'home' %}" class="section">مدیریت سپاس‌ایران</a>
+                            <i class="left angle icon divider"></i>
+
+                            <div class="active section">{% block nav_item %}{% endblock %}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class=" thirteen wide column right_float" style="margin-bottom: 10px;">
-                <div class="ui container segment right_aligned " style="height: auto;">
-                    {% block menu_content %}
-                        <h2 class="ui header">با سلام</h2>
-                        <h3 class="ui header">به صفحه مدیریت سپاس ایران خوش آمدید</h3>
-                        <div id="help_box">
-                            <div class="ui very relaxed list">
-                              <div class="item">
-                                <img class="ui avatar image" src="{% static 'management/images/ads.png' %}">
-                                <div class="content">
-                                  <a class="redcolored header">
-                                      شما می توانید تبلیغات صفحه اول را تعیین کنید!
-                                  </a>
-                                  <div class="description">
-                                      برای تعیین تبلیغات باید از روشهای مرسوم و رایج این بخش استفاده نمایید
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="item">
-                                <img class="ui avatar image" src="{% static 'management/images/report.png' %}">
-                                <div class="content">
-                                  <a class="redcolored header">
-                                      گزارش های مدیریتی را مشاهده کنید
-                                  </a>
-                                  <div class="description">
-                                      گزارشگیری یک امر مهم در مدیریت است
-                                  </div>
-                                </div>
-                              </div>
-                                <div class="item">
-                                <img class="ui avatar image" src="{% static 'management/images/manage.jpg' %}">
-                                <div class="content">
-                                  <a class="header">
-                    خدمات را مدیریت کنید
-                                  </a>
-                                  <div class="description">
-                                      خدمات را مدیریت کردن شاخصه اصلی هر کار مدیریتی است
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="item">
-                                <img class="ui avatar image" src="{% static 'management/images/messaging.ico' %}">
-                                <div class="content">
-                                  <a class="header">
-                                      پیامها را کنترل کنید
-                                  </a>
-                                  <div class="description">
-                                      واقعا مقوله پیامرسانی از اهمیت بالایی برخوردار است
-                                  </div>
-                                </div>
-                              </div>
-                                <div class="item">
-                                <img class="ui avatar image" src="{% static 'management/images/complain.png' %}">
-                                <div class="content">
-                                  <a class="redcolored header">
-                                      شکایتها را رسیدگی کنید
-                                  </a>
-                                  <div class="description">
-                                      رسیدگی نکردن به شکایات خیلی خطرناک است
-                                  </div>
-                                </div>
-                              </div>
-                              </div>
+            <div class="row" style="margin-top: -15px">
+                <div class="three wide column " style="margin-bottom: 15px;">
+                    <div class="ui vertical menu ">
+                        <div class="item">
+                            <div class="header">خانه</div>
+                            <div class="menu">
+                                <a class="item" href="{% url 'management_dashboard' %}">خانه</a>
                             </div>
                         </div>
-                    {% endblock %}
+                        <div class="item">
+                            <div class="header">تبلیغات</div>
+                            <div class="menu">
+                                <a class="item" href="/manage/advertisement">مدیریت تبلیغ</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="header">گزارشات مدیریتی</div>
+                            <div class="menu">
+                                <a class="item" href="{% url 'area_report' %}">گزارش دوره‌ای خدمات</a>
+                                <a class="item" href="{% url 'pie_report' %}">گزارش نسبت خدمات عرضه شده</a>
+                                <a class="item" href="{% url 'map_report' %}">گزارش محبوبیت گردشگری استان‌ها</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="header">مدیریت خدمات</div>
+                            <div class="menu">
+                                <a class="item" href="{% url 'new_providers' %}">
+                                    تایید گردش‌ساز(یار)ان جدید
+                                </a>
+                                <a class="item" href="{% url 'active_providers' %}">
+                                    گردش‌ساز(یار)ان فعال
+                                </a>
+                                <a class="item" href="{% url 'deactive_providers' %}">
+                                    گردش‌ساز(یار)ان غیر فعال
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="header">پیامرسانی</div>
+                            <div class="menu">
+                                <a class="item">صندوق پیام ها</a>
+                                <a class="item">ارسال پیام</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="header">شکایات</div>
+                            <div class="menu">
+                                <a class="item">شکایات قابل بررسی</a>
+                                <a class="item">صدور حکم</a>
+                                <a class="item">بایگانی</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" thirteen wide column right_float" style="margin-bottom: 10px;">
+                    <div class="ui container segment right_aligned " style="min-height: 595px;">
+                        {% block menu_content %}
+                            <h2 class="ui header">با سلام</h2>
+                            <h3 class="ui header">به صفحه مدیریت سپاس ایران خوش آمدید</h3>
+                            <div id="help_box">
+                                <div class="ui very relaxed list">
+                                    <div class="item">
+                                        <img class="ui avatar image"
+                                             src="{% static 'management/images/ads.png' %}">
+
+                                        <div class="content">
+                                            <a class="redcolored header">
+                                                شما می توانید تبلیغات صفحه اول را تعیین کنید!
+                                            </a>
+
+                                            <div class="description">
+                                                برای تعیین تبلیغات باید از روشهای مرسوم و رایج این
+                                                بخش
+                                                استفاده نمایید
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="ui avatar image"
+                                             src="{% static 'management/images/report.png' %}">
+
+                                        <div class="content">
+                                            <a class="redcolored header">
+                                                گزارش های مدیریتی را مشاهده کنید
+                                            </a>
+
+                                            <div class="description">
+                                                گزارشگیری یک امر مهم در مدیریت است
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="ui avatar image"
+                                             src="{% static 'management/images/manage.jpg' %}">
+
+                                        <div class="content">
+                                            <a class="header">
+                                                خدمات را مدیریت کنید
+                                            </a>
+
+                                            <div class="description">
+                                                خدمات را مدیریت کردن شاخصه اصلی هر کار مدیریتی است
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="ui avatar image"
+                                             src="{% static 'management/images/messaging.ico' %}">
+
+                                        <div class="content">
+                                            <a class="header">
+                                                پیامها را کنترل کنید
+                                            </a>
+
+                                            <div class="description">
+                                                واقعا مقوله پیامرسانی از اهمیت بالایی برخوردار است
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="ui avatar image"
+                                             src="{% static 'management/images/complain.png' %}">
+
+                                        <div class="content">
+                                            <a class="redcolored header">
+                                                شکایتها را رسیدگی کنید
+                                            </a>
+
+                                            <div class="description">
+                                                رسیدگی نکردن به شکایات خیلی خطرناک است
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        {% endblock %}
                 </div>
             </div>
-
         </div>
     </div>
 
