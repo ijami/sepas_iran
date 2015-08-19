@@ -20,6 +20,9 @@ class Service(PolymorphicModel):
     def get_exist():
         pass
 
+    def get_service_provider(self):
+        pass
+
     def get_type(self):
         pass
 
@@ -49,22 +52,25 @@ class Comment(models.Model):
 class Flight(Service):
     flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
-    time = models.DateTimeField()
     type = models.CharField(max_length=10, default="Flight")
-
-    @staticmethod
-    def get_exist():
-        return Flight.objects.filter(time__gt=(datetime.now()))
-
     origin = models.ForeignKey('base.City', related_name='flight_departures')
     destination = models.ForeignKey('base.City', related_name='flight_arrivals')
     date = models.DateField()
     time = models.TimeField()
     airplane = models.CharField(max_length=40)
 
+
+    @staticmethod
+    def get_exist():
+        return Flight.objects.filter(date__gt=(datetime.now()))
+
+
     def __str__(self):
 
         return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به " \
+
+    def get_service_provider(self):
+        return self.airline
 
     def get_type(self):
         return 'f'
@@ -90,12 +96,15 @@ class Room(Service):
     has_bathroom = models.BooleanField(default=False)
     type = models.CharField(max_length=10, default="Room")
 
+    def get_service_provider(self):
+        return self.hotel
+
     def get_city(self):
         return self.hotel.location.city
 
     @staticmethod
     def get_exist():
-        return Room.objects.filter(time__gt=(datetime.now()))
+        return Room.objects.filter(end_date__gt=(datetime.now()))
 
     def __str__(self):
         return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + " تخته "
@@ -134,6 +143,9 @@ class Tour(Service):
 
     type = models.CharField(max_length=10, default="Tour")
 
+    def get_service_provider(self):
+        return self.travel_agency
+
     @staticmethod
     def get_exist():
         return Tour.objects.filter(return_date__gt=datetime.now())
@@ -141,7 +153,7 @@ class Tour(Service):
     # tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.travel_agency.name + ": " + " از " + self.origin.name + " به " + self.destination.name
+        return self.travel_agency.name + ": \n" + " از " + self.origin.name + " به " + self.destination.name
 
     def get_type(self):
         return 't'

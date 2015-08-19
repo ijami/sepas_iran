@@ -9,10 +9,11 @@ from django.contrib.auth.models import User
 from tourist.models import Tourist
 from service.models import Flight, Comment
 from sale.views.finance import tourist_services
-from service.models import Service, Tour
+from service.models import Service, Tour,Room
 from base.models import City
 from sale.models import ServiceItem , Factor
 from sale.views.finance import tourist_services_price
+from service_provider.models import ServiceProvider
 # Create your views here.
 
 def sold_count(service_sold_number):
@@ -109,6 +110,24 @@ def send_recommended_mail(user_id):
 
     return recommended
 
+
+def feedback_count(service_provider):
+
+    # service_provider = ServiceProvider.objects.filter(id=service_provider_id)
+    feedback=0
+
+    flights=Flight.objects.filter(airline__primary_user__id=service_provider.primary_user.id)
+    for flight in flights:
+        feedback+= Comment.objects.filter(service=flight).__len__()
+
+    rooms=Room.objects.filter(hotel__primary_user__id=service_provider.primary_user.id)
+    for room in rooms:
+        feedback+= Comment.objects.filter(service=room).__len__()
+
+    tours=Tour.objects.filter(travel_agency__primary_user__id=service_provider.primary_user.id)
+    for tour in tours:
+        feedback+= Comment.objects.filter(service=tour).__len__()
+    return feedback
 #
 # def send_news():
 #     tourists = Tourist.objects.all()

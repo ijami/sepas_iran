@@ -15,7 +15,8 @@ def information(request, id):
             context = {
                 'tourist': item.factor.tourist,
                 'number': item.number,
-                'date': jdatetime.datetime.fromgregorian(date=item.factor.create_date.date()).strftime("%Y/%m/%d")
+                'date': jdatetime.datetime.fromgregorian(date=item.factor.create_date.date()).strftime("%Y/%m/%d"),
+                'factor_num': item.service.sold_number + "_" + items.count().__str__() + "_" + Factor.objects.all().count().__str__()
             }
             list.append(context)
     data = {'context': list}
