@@ -45,7 +45,7 @@
                 
                 <br><br>
                 <div class="ui four cards">
-                    {% for service in services %}
+                    {% for service, sold in service_sold %}
                     {% include 'base/service_show.html'%}
 
                     {% endfor %}

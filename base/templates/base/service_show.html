@@ -3,26 +3,13 @@
         <img class="list_item_img" src="{{service.image.url}}" style=" height:250px;">
     </div>
     <div class="content">
-        <!--{% if type == 'tour' or type == 'flight' %}
+
         <div class="header">
-
-            <a href="" class="header">{{service.origin}}</a>
-            <i class="long arrow left icon"></i>
-
-
-            <a href="" class="left_float header">{{service.destination}}</a>
-
-        </div>
-        {% endif %}
-        {% if type == 'room' %}
-        <a href="" class="header">{{service.hotel.location.city}}</a>
-        {% endif %}-->
-        <div class="header">
-            <a href="" class="header">{{service}}</a>
+            <a href="{% url 'service' service.sold_number %}" class="header">{{service | linebreaks}}</a>
         </div>
 
         <br/>
-        <div class="meta" sytle="color: gray;">
+        <div class="meta" style="color: gray;">
         {% if service.get_type == 't' %}
             <span class="date">{{service.get_persian_going_date}}</span>
             <span> تا</span>
@@ -56,7 +43,7 @@
     <div class="extra content" >
         <a>
             <i class="user icon" style="color: LightSteelBlue; "></i>
-            <span style="color: DarkKhaki; ">{{service.sold_number}} خریدار</span>
+            <span style="color: DarkKhaki; ">{{sold}} خریدار</span>
         </a>
     </div>
 </div>

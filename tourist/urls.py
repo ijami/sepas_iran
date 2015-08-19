@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^report$', 'tourist.views.report_view.reprot_view', name='report'),
     url(r'^service_list$', 'tourist.views.service_list.service_list', name='service_list'),
     url(r'^complains', ComplainList.as_view(), name='tourist_complains')
+    url(r'^information/(\d+)$', 'tourist.views.profile_view.information', name='tourist_information')
 ]
