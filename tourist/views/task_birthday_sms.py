@@ -6,29 +6,32 @@ from tourist.models import Tourist
 import urllib.parse
 import urllib.request
 
+
 class MyCronJob(CronJobBase):
-    RUN_EVERY_MINS = 1 # every 2 hours
+    RUN_EVERY_MINS = 1  # every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'tourist.view.task_birthday_sms' # a unique code
+    code = 'tourist.views.task_birthday_sms'  # a unique code
+
     def do(self):
         tourists = Tourist.objects.all()
-        receptors =""
+        # receptors = ""
         for tourist in tourists:
-            if (datetime.now().day==tourist.birth_day.day)&(datetime.now().month==tourist.birth_day.mounth):
-                receptors = receptors+tourist.telephone
+                msg = "Ø³Ù„Ø§Ù… " + tourist.primary_user.first_name + " " + tourist.primary_user.last_name + " Ø¹Ø²ÛŒØ²ØŒ Ø³Ø§Ù„Ú¯Ø±Ø¯ ØªÙˆÙ„Ø¯ Ø´Ù…Ø§ Ø±Ø§ ØªØ¨Ø±ÛŒÚ©Ø¹Ø±Ø¶ Ù…ÛŒ Ú©Ù†ÛŒÙ…. Ø³Ø§Ù„ÛŒ Ø³Ø±Ø´Ø§Ø± Ø§Ø² Ù…ÙˆÙÙ‚ÛŒØª Ø¯Ø§Ø´ØªÙ‡ Ø¨Ø§Ø´ÛŒØ¯" + "\n" + "Ú¯Ø±ÙˆÙ‡ Ø¨Ø²Ø±Ú¯ Ø³Ù¾Ø§Ø³ Ø§ÛŒØ±Ø§Ù†"
+            # if (datetime.now().day == tourist.birth_day.day) & (datetime.now().month == tourist.birth_day.mounth):
+                api_key = '724F4F72774A6F384751442F504F6F724447734D4B413D3D'
+                url = 'http://api.kavenegar.com/v1/' + api_key + '/sms/send.json'
 
+                values = {
+                    'receptor': tourist.telephone+"",
+                    'sender': '30006703323323',
+                    'type': '1',
+                    'message': msg
+                }
 
+                data = urllib.parse.urlencode(values)
+                binary_data = data.encode('utf-8')
+                sms_req = urllib.request.Request(url, binary_data)
+                sms_response = urllib.request.urlopen(sms_req)
+                print(sms_response.read())
+                # receptors = receptors+tourist.telephone
 
-        api_key = '724F4F72774A6F384751442F504F6F724447734D4B413D3D'
-        url = 'http://api.kavenegar.com/v1/' + api_key + '/sms/send.json'
-
-        values = {
-            'receptor': receptors,
-            'sender': '30006703323323',
-            'type': '1',
-            'message': "ÓáÇã. ÓÇãÇäå ÓÇÓ Ç?ÑÇä Èå ÔãÇ ãÑÓ? ã?æ?Ï Èå ÎÇØÑ Ç?ä˜å åÓÊ?Ï. ÇÑÓÇá ÔÏå ÇÒ ØÑ?Ş ˜Ï. ãÓÆæá ÈÎÔ ÊÍŞ?Ş æ ÊæÓÚå :|"
-        }
-
-        data = urllib.parse.urlencode(values)
-        binary_data = data.encode('utf-8')
-        sms_req = urllib.request.Request(url, binary_data)

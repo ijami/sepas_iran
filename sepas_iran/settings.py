@@ -137,7 +137,9 @@ DEFAULT_FROM_EMAIL = 'b.i.sepasiran@gmail.com'
 
 
 CRON_CLASSES = [
-    "tourist.view.task_birthday_email.MyCronJ"
+    "tourist.views.task_recommended_email.MyCronJob",
+    "tourist.views.task_birthday_email.MyCronJob",
+    # "tourist.views.task_birthday_sms.MyCronJob",
 ]
 # CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 

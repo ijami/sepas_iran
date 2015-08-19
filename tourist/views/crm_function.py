@@ -11,25 +11,29 @@ from service.models import Flight, Comment
 from sale.views.finance import tourist_services
 from service.models import Service, Tour
 from base.models import City
-from sale.models import ServiceItem
-
+from sale.models import ServiceItem , Factor
+from sale.views.finance import tourist_services_price
 # Create your views here.
 
+def sold_count(service_sold_number):
+        service=Service.objects.filter(sold_number=service_sold_number)
+        factors = Factor.objects.all()
+        counter =0
+        for factor in factors:
+             counter += ServiceItem.objects.filter(factor=factor).filter(service=service).__len__()
+        return counter
 
-def loyalty(user_id):
+
+def loyalty(tourist_id):
     try:
-        tourist = User.objects.get(id=user_id)
+        tourist = Tourist.objects.get(id=tourist_id)
     except Tourist.DoesNotExist:
         return Http404
     time_now = datetime.now().date().year * 365 + datetime.now().date().month * 30 + datetime.now().date().day
     time_joined = tourist.date_joined.year * 365 + tourist.date_joined.month * 30 + tourist.date_joined.day
-    print("\ntime joining   " + str(time_now - time_joined) + "\n")
+    # print("\ntime joining   " + str(time_now - time_joined) + "\n")
+    return time_now - time_joined+tourist_comments_count(tourist_id)*100+tourist_services_price(tourist_id)
 
-    # comments_count = tourist.comments.count()
-    # comments_count= 0
-    # print("\n%%%%%   "+str(time_joining)+ "  " + str(comments_count)+" %%%%%%%\n" )
-    # prices = [bought_service.service.cost for bought_service in tourist.boughtservice_set]
-    # sum_buy = sum(prices)
 
 
 def tourist_comments_count(tourist_id):
@@ -53,6 +57,7 @@ def send_recommended_mail(user_id):
             .filter(id__in=Flight.objects.all().values_list('id', flat=True))
         try:
             flights_exist = Flight.get_exist()
+            print(" ^^^^  "+str(flights_exist.__len__())+"\n")
         except Tourist.DoesNotExist:
             return Http404
 
@@ -62,7 +67,17 @@ def send_recommended_mail(user_id):
                 cities = City.objects.filter(map_code=flight.destination.map_code)
                 for tour_city in cities:
                     if flights_exist.filter(destination=tour_city):
-                        recommended.append(flights_exist.filter(destination=tour_city).latest('sold_number'))
+                        flight_its =flights_exist.filter(destination=tour_city)
+                        flight_max = None
+                        for flight_it in flight_its:
+                            if(flight_max):
+                                if(sold_count(flight_it.sold_number)>= sold_count(flight_max.sold_number)):
+                                    flight_max= flight_it
+                            else:
+                                flight_max =flight_it
+                        recommended.append(flight_max)
+
+                        # recommended.append(flights_exist.filter(destination=tour_city).latest('sold_number'))
                         # flight_city = []
                         # for airport in airports:
                         #     flight_city.append(flights_exist.filter(destination=airport).all().latest('sold_number'))
@@ -80,9 +95,17 @@ def send_recommended_mail(user_id):
             for tour in tours:
                 cities = City.objects.filter(map_code=tour.destination.map_code)
                 for tour_city in cities:
-                    if tour_city != tour.destination:
-                        if tours_exist.filter(destination=tour_city):
-                            recommended.append(tours_exist.filter(destination=tour_city).latest('sold_number'))
+                    if tours_exist.filter(destination=tour_city):
+                        tour_its =tours_exist.filter(destination=tour_city)
+                        tour_max = None
+                        for tour_it in tour_its:
+                            if(tour_max):
+                                if(sold_count(tour_it.sold_number)>= sold_count(tour_max.sold_number)):
+                                    tour_max= tour_it
+                            else:
+                                tour_max =tour_it
+                        recommended.append(tour_max)
+                        # recommended.append(tours_exist.filter(destination=tour_city).latest('sold_number'))
 
     return recommended
 

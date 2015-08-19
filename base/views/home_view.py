@@ -9,24 +9,41 @@ from base.views.send_mail import send_mail
 from datetime import datetime
 from django.db.models import Max
 from itertools import chain
+from service.models import Service
+from sale.models import ServiceItem
+
 from tourist.views.crm_function import send_recommended_mail
 def home(request):
 
-    tourists = Tourist.objects.all()
-    for tourist in tourists:
-        recs =send_recommended_mail(tourist.primary_user.id)
-        for rec in recs:
-            if rec.get_type() == 'f':
-                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
-                            'tourist/recomendation.html', {'rec': rec,'tr':rec.airline.name}, True)
-            if rec.get_type() == 't':
-                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
-                            'tourist/recomendation.html', {'rec': rec,'tr':rec.travel_agency.name}, True)
-            if rec.get_type() == 'r':
-                send_mail('happy birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
-                            'tourist/recomendation.html', {'rec': rec,'tr':rec.hotel.name}, True)
-
-
+    # tourists = Tourist.objects.all()
+    # for tourist in tourists:
+    #     tours_past = tourist.factors.all()
+    #     for factor in tours_past:
+    #         boughts = Service.objects.filter(id__in=ServiceItem.objects.filter(factor=factor)
+    #                                      .values_list('service__id', flat=True))
+    #
+    #     recs =send_recommended_mail(tourist.primary_user.id)
+    #     for rec in boughts:
+    #         if rec.get_type() == 'f':
+    #             send_mail('happy 8 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.airline.name,'au':rec.destination.name}, True)
+    #         if rec.get_type() == 't':
+    #             send_mail('happy 8 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.travel_agency.name,'au':rec.destination.name}, True)
+    #         if rec.get_type() == 'r':
+    #             send_mail('happy 8 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.hotel.name,'au':rec.destination.name}, True)
+    #     for rec in recs:
+    #         if rec.get_type() == 'f':
+    #             send_mail('happy 9 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.airline.name,'au':rec.destination.name}, True)
+    #         if rec.get_type() == 't':
+    #             send_mail('happy 9 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.travel_agency.name,'au':rec.destination.name}, True)
+    #         if rec.get_type() == 'r':
+    #             send_mail('happy 9 birthday', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
+    #                         'tourist/recommendation.html', {'rec': rec,'tr':rec.hotel.name,'au':rec.destination.name}, True)
+    #
 
     return render(request, 'base/home.html')
 

@@ -6,19 +6,20 @@ from polymorphic.polymorphic_model import PolymorphicModel
 from base.models import City, SiteUser
 from service_provider.models import AirLine, Hotel, TravelAgency
 from tourist.models import Tourist
-
-
+# from sale.models import ServiceItem, Factor
+# from tourist.views.crm_function import sold_count
 class Service(PolymorphicModel):
     price = models.IntegerField()
     capacity = models.IntegerField()
     sold_number = models.CharField(max_length=20)
     tag_line = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     @staticmethod
     def get_exist():
         pass
 
-    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
+
 
     def get_type(self):
         pass
