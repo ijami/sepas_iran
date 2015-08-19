@@ -1,7 +1,7 @@
 from django.http.response import HttpResponse
 from django.views.generic.edit import FormView
 
-from management.forms.advertise_form import AdvertiseForm
+from management.forms import AdvertiseForm
 from management.models import AdvertiseBox
 from sepas_iran.settings import SITE_URL
 
