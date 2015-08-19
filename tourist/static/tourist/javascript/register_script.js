@@ -55,92 +55,87 @@ $(document).ready(function () {
 
     $.fn.form.settings.templates.error = myerror;
 
-    form.find('.field.error').on('input propertychange paste', function () {
-        console.log($(this));
-        $(this).removeClass('error');
+    //form.form('settings', 'templates', {'error': myerror});
+
+    form.form({
+        fields: {
+            first_name: {
+                identifier: 'firstname',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا نام خود را وارد کنید'
+                    }
+                ]
+            },
+            last_name: {
+                identifier: 'lastname',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا نام خانوادگی خود را وارد کنید'
+                    }
+                ]
+            },
+            username: {
+                identifier: 'username',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا نام کاربری را وارد کنید'
+                    }
+                ]
+            },
+            email: {
+                identifier: 'email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا ایمیل خود را وارد کنید'
+                    },
+                    {
+                        type: 'email',
+                        prompt: 'ایمیل معتبر وارد کنید'
+                    }
+                ]
+            },
+            password1: {
+                identifier: 'password1',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا گذرواژه خود را وارد کنید'
+                    },
+                    {
+                        type: 'minLength[4]',
+                        prompt: 'گذرواژه باید حداقل 4 کاراکتر داشته باشد'
+                    }
+                ]
+            },
+            password2: {
+                identifier: 'password2',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'لطفا تکرار گذرواژه خود را وارد کنید'
+                    },
+                    {
+                        type: 'match[password1]',
+                        prompt: 'گذرواژه ها همخوانی ندارند.'
+                    }
+                ]
+            },
+            terms: {
+                identifier: 'terms',
+                rules: [
+                    {
+                        type: 'checked',
+                        prompt: 'باید با قوانین سپاس ایران موافقت کنید'
+                    }
+                ]
+            }
+        }
     });
 
-    //form.form('settings', 'templates', {'error': myerror});
-/*
-     form.form({
-     fields: {
-     firstname: {
-     identifier: 'firstname',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا نام خود را وارد کنید'
-     }
-     ]
-     },
-     lastname: {
-     identifier: 'lastname',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا نام خانوادگی خود را وارد کنید'
-     }
-     ]
-     },
-     username: {
-     identifier: 'username',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا نام کاربری را وارد کنید'
-     }
-     ]
-     },
-     email: {
-     identifier: 'email',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا ایمیل خود را وارد کنید'
-     },
-     {
-     type: 'email',
-     prompt: 'ایمیل معتبر وارد کنید'
-     }
-     ]
-     },
-     password1: {
-     identifier: 'password1',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا گذرواژه خود را وارد کنید'
-     },
-     {
-     type: 'minLength[8]',
-     prompt: 'گذرواژه باید حداقل 8 کاراکتر داشته باشد'
-     }
-     ]
-     },
-     password2: {
-     identifier: 'password2',
-     rules: [
-     {
-     type: 'empty',
-     prompt: 'لطفا تکرار گذرواژه خود را وارد کنید'
-     },
-     {
-     type: 'match[password1]',
-     prompt: 'گذرواژه ها همخوانی ندارند.'
-     }
-     ]
-     },
-     terms: {
-     identifier: 'terms',
-     rules: [
-     {
-     type: 'checked',
-     prompt: 'باید با قوانین سپاس ایران موافقت کنید'
-     }
-     ]
-     }
-     }
-     });
-*/
 
 });

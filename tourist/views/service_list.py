@@ -4,7 +4,9 @@ __author__ = 'MJR'
 from sale.models import Factor
 from django.shortcuts import render
 from django.conf import settings
+from base.views.decorators import tourist_required
 
+@tourist_required()
 def service_list(request):
     print("salam")
     tourist = request.user.site_user

@@ -1,0 +1,62 @@
+<div class="ui card rtl right_aligned" id="card">
+    <div class="image">
+        <img class="list_item_img" src="{{service.image.url}}" style=" height:250px;">
+    </div>
+    <div class="content">
+        <!--{% if type == 'tour' or type == 'flight' %}
+        <div class="header">
+
+            <a href="" class="header">{{service.origin}}</a>
+            <i class="long arrow left icon"></i>
+
+
+            <a href="" class="left_float header">{{service.destination}}</a>
+
+        </div>
+        {% endif %}
+        {% if type == 'room' %}
+        <a href="" class="header">{{service.hotel.location.city}}</a>
+        {% endif %}-->
+        <div class="header">
+            <a href="" class="header">{{service}}</a>
+        </div>
+
+        <br/>
+        <div class="meta" sytle="color: gray;">
+        {% if service.get_type == 't' %}
+            <span class="date">{{service.get_persian_going_date}}</span>
+            <span> تا</span>
+            <span class="date">{{service.get_persian_return_date}}</span>
+
+        {% endif %}
+        {% if service.get_type == 'f' %}
+            <div class="date">{{service.get_persian_date}}</div>
+            <div class="time">{{service.time}}</div>
+        {% endif %}
+        {% if service.get_type == 'r' %}
+            <span>از </span>
+            <span class="date">{{service.get_persian_start_date}}</span>
+            <span> تا </span>
+            <span class="date">{{service.get_persian_start_date}}</span>
+
+
+        {% endif %}
+        </div>
+        <div class="description">
+            {{service.tag_line}}
+        </div>
+        <br/>
+        <div class="meta" style="color: teal; font-size:12px">
+            <span>قیمت</span>
+            {{service.price}}
+            <span> ریال</span>
+        </div>
+    </div>
+
+    <div class="extra content" >
+        <a>
+            <i class="user icon" style="color: LightSteelBlue; "></i>
+            <span style="color: DarkKhaki; ">{{service.sold_number}} خریدار</span>
+        </a>
+    </div>
+</div>

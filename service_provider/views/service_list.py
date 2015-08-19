@@ -6,7 +6,9 @@ from service.models import Tour, Room, Flight, Service
 from service.forms import CapacityAddingForm
 import datetime
 from django.core.urlresolvers import reverse
+from base.views.decorators import service_provider_required
 
+@service_provider_required()
 def service_list(request):
     user = request.user.site_user
     type = user.get_fields()['type']
@@ -44,6 +46,7 @@ def service_list(request):
 
         return render(request, 'service_provider/type_service_list.html', {'services': service, 'capa': capacityadd})
 
+@service_provider_required()
 def add_capacity(request):
     if request.method == 'POST':
         form = CapacityAddingForm(request.POST)

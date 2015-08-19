@@ -5,7 +5,9 @@ from service.models import Service
 from django.http import Http404
 from sale.models import Factor, ServiceItem
 from sale.models import Cart
+from base.views.decorators import tourist_required
 
+@tourist_required()
 def add_to_cart(request):
     print("in addtocart")
     if request.method == "POST":
@@ -34,7 +36,7 @@ def add_to_cart(request):
             item.save()
             return redirect('/sale/cart')
 
-
+@tourist_required()
 def delete(request, code):
     user = request.user.site_user
     cart = user.cart

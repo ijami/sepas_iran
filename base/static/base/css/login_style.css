@@ -1,3 +1,14 @@
+#breadcrumb_container {
+    height: 30px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    margin-top: 10px;
+}
+
+.breadcrumb {
+    font-size: 12px !important;
+}
+
 #login_section>.inner>  .header:not(.bottom) img.icon{
     margin-bottom: 8px !important;
 }
@@ -12,7 +23,7 @@
     padding: 20px 20px 0px 20px;
 }
 
-#login_section #redirect.error.message{
+#login_section .content> .message{
     font-size: 0.85em;
 }
 
