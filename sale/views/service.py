@@ -25,18 +25,18 @@ def service_show(request, sold_number):
     if t == 'r':
         type = 'هتل'
         provider = service.hotel
-        start_date = jdatetime.date.fromgregorian(date=service.start_date)
-        end_date = jdatetime.date.fromgregorian(date=service.end_date)
+        start_date = jdatetime.date.fromgregorian(date=service.start_date).strftime("%Y/%m/%d")
+        end_date = jdatetime.date.fromgregorian(date=service.end_date).strftime("%Y/%m/%d")
     elif t == 't':
         type = 'تور'
         provider = service.travel_agency
-        start_date = jdatetime.date.fromgregorian(date=service.going_date)
-        end_date = jdatetime.date.fromgregorian(date=service.return_date)
+        start_date = jdatetime.date.fromgregorian(date=service.going_date).strftime("%Y/%m/%d")
+        end_date = jdatetime.date.fromgregorian(date=service.return_date).strftime("%Y/%m/%d")
     elif t == 'f':
         type = 'پرواز'
         provider = service.airline
-        start_date = jdatetime.date.fromgregorian(date=service.date)
-    q = ServiceItem.objects.filter(service=service, cart=None)
+        start_date = jdatetime.date.fromgregorian(date=service.date).strftime("%Y/%m/%d")
+    q = ServiceItem.objects.filter(service=service, cart=None).strftime("%Y/%m/%d")
     size = 0
     for x in q.all():
         size += x.number

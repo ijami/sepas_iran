@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 
 __author__ = 'Javad'
 
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
 urlpatterns = [

@@ -1,0 +1,74 @@
+{% extends 'management/dashboard.html' %}
+{% load static %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'messaging/css/message_box.css' %}"/>
+{% endblock %}
+
+{% block menu_content %}
+    {% for complain in complains_list %}
+        <div class="ui inverted segment" style="background-color: #f0f0f0">
+            <div class="sent message">
+                <div class="right floated metadata">
+                    <div class="message_header">
+                        <h1 class="ui header ">{{ complain.title }}</h1>
+                    </div>
+                    <div class="mailer">
+                        <div class="ui tiny header">
+
+                            <div class="sub header" style="color: darkgreen;">
+                                وضعیت:
+                                {{ complain.get_state }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui tiny header">
+
+                        <div class="sub header">
+                            {{ complain.service_item.service }}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    {{ complain.text | linebreaks }}
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <button id="answer_{{ complain.id }}"
+                        class="ui button answer_complain"
+                        style="background-color: whitesmoke;
+                               border: 1px solid brown;
+                               margin-right: 20px;
+                               margin-bottom: 30px;
+                               clear: both;">پاسخ‌گویی به شکایت
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="ui modal answer_complain_mod" style="direction: rtl">
+        <form class="ui form" style="height: auto!important;" action="{% url 'answer_complain' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="complain_id" id="complain-id">
+
+            <div class="field">
+                <textarea name="text" placeholder="متن جواب شکایت را وارد کنید" style="height: 215px;"></textarea>
+            </div>
+            <div class="ui left floated buttons" dir="rtl">
+                <input type="submit" class="ui positive button" value="ارسال">
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ui.modal.answer_complain_mod').modal();
+            $('.answer_complain').on('click', function () {
+                $('.ui.modal.answer_complain_mod').modal('show');
+                $('#complain-id').val(this.id);
+                $('#complain-id').attr('value', this.id);
+            });
+        });
+    </script>
+{% endblock %}
