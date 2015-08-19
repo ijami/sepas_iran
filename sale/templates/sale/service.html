@@ -308,13 +308,18 @@
             <form action="{% url 'add_to_cart' %}" method="post" >
                 {% csrf_token %}
                 <input type="text" value="{{ service.sold_number }}" style="display: none" name="sn">
-                {% if not service.is_exp and exist %}
-
-                    <button type="submit" class="ui big labeled left floated green icon button ">
-                    افزودن به سبد خرید
-                    <i class="add to cart icon"></i>
-                </button>
-
+                {% if not service.is_exp and exist  %}
+                    {% if tourist %}
+                        <button type="submit" class="ui big labeled left floated green icon button ">
+                        افزودن به سبد خرید
+                        <i class="add to cart icon"></i>
+                        </button>
+                    {% else %}
+                        <div class="ui big labeled left floated grey icon button ">
+                        افزودن به سبد خرید(نیازمند ورود)
+                        <i class="add to cart icon"></i>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </form>
         </div>
