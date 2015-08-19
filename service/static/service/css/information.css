@@ -1,0 +1,22 @@
+#breadcrumb_container{
+    height: 30px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    margin-top: 10px;
+}
+
+#main_container {
+}
+
+#register_section{
+    padding: 65px 120px 120px 120px;
+}
+
+#base_content_block_container{
+    background: none;
+    overflow: hidden;
+    width: 960px;
+    margin: 25px auto;
+    direction: rtl;
+    text-align: right;
+}

@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^panel/modify/upload_image$', 'tourist.views.prifile_edit_view.profile_edit_view', name='upload_image'),
     url(r'^register/$', 'tourist.views.register_view.register', name='register_tourist'),
     url(r'^report$', 'tourist.views.report_view.reprot_view', name='report'),
-    url(r'^service_list$', 'tourist.views.service_list.service_list', name='service_list')
+    url(r'^service_list$', 'tourist.views.service_list.service_list', name='service_list'),
+    url(r'^information/(\d+)$', 'tourist.views.profile_view.information', name='tourist_information')
 ]

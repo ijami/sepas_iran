@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^panel/service_list/$', 'service_provider.views.service_list.service_list', name='provider_service_list'),
     url(r'^panel/service_list/capa', 'service_provider.views.service_list.add_capacity', name='add_service_capacity'),
     url(r'^panel/ads$', 'service_provider.views.ad_request.advertisement_request', name='ads'),
-    url(r'information/(\d+)$', 'service_provider.views.information.information', name='sag')
+    url(r'information/(\w+)$', 'service_provider.views.information.information', name='sag')
 ]

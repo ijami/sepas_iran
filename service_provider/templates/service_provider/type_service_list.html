@@ -26,12 +26,12 @@
                             {{ service.name }}
                         </div>
                         <div class="meta">
-                            <a>{{ service.number }}</a>
+                            <a href="/service/information/{{ service.number }}" style="color: blue; font-size: 12px;">مشاهده خریداران</a>
                         </div>
                         <div class="ui divider"></div>
                         <span class="right floated" style="font-size: 12px;">
                             ظرفیت باقیمانده:
-                            <a href=""></a>{{ service.remain }}
+                            {{ service.remain }}
                         </span>
                         <span class="left floated" style="font-size: 12px;">
                             ظرفیت فروش رفته:
@@ -75,8 +75,6 @@
 
     </div>
 
-    <script type="text/javascript">
-        
-    </script>
+
 {% endblock %}
 
