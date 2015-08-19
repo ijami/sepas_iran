@@ -12,19 +12,22 @@ def home(request):
         new_solds.append(sold_count(srv.sold_number))
 
 
-    if request.user.is_authenticated() and request.user.site_user.get_fields()['super_type'] == 'tourist' :
-        recomended_services = send_recommended_mail(request.user.id)
+    if request.user.is_authenticated():
+        try:
+            if request.user.site_user is not None:
+                if request.user.site_user.get_fields()['super_type'] == 'tourist':
+                    recomended_services = send_recommended_mail(request.user.id)
 
-        recomended_solds = []
-        for srv in recomended_services:
-            recomended_solds.append(sold_count(srv.sold_number))
+                    recomended_solds = []
+                    for srv in recomended_services:
+                        recomended_solds.append(sold_count(srv.sold_number))
 
-        return render(request, 'base/home.html',{
-        'new_services': zip(new_services, new_solds),
-        'recomended_services': zip(recomended_services, recomended_solds)
-    })
-
-
+                    return render(request, 'base/home.html',{
+                    'new_services': zip(new_services, new_solds),
+                    'recomended_services': zip(recomended_services, recomended_solds)
+                    })
+        except:
+            pass
     return render(request, 'base/home.html',{
         'new_services': zip(new_services, new_solds),
     })
