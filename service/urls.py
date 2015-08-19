@@ -5,6 +5,5 @@ __author__ = 'Iman'
 urlpatterns = [
     # Examples:
     url(r'^(?P<type>tour|room|flight)/$', 'service.views.service_view.show_type_service_list_view', name='type_service_list'),
-    url(r'^$', 'service.views.service_view.show_service_list_view', name='service_list'),
-
+    url(r'^$', 'service.views.service_view.show_service_list_view', name='service_list_2'),
 ]

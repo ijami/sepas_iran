@@ -8,6 +8,8 @@ class ServiceProvider(SiteUser):
     name = models.CharField(max_length=100)
     short_description = models.CharField(max_length=200)
     long_description = models.TextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -37,6 +39,7 @@ class Hotel(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'hotel',
             'image': self.image,
             'name': self.name,
@@ -68,6 +71,7 @@ class AirLine(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'airline',
             'image': self.image,
             'name': self.name,
@@ -84,6 +88,7 @@ class TravelAgency(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'agency',
             'image': self.image,
             'name': self.name,

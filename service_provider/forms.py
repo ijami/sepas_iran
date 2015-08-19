@@ -1,13 +1,21 @@
-from django.forms.models import ModelForm
-from django import forms
-from django.contrib.auth.models import User
-
-from base.models import City, Location
-from sale.models import Cart
-from tourist.models import Tourist
-from jdatetime import date as jdate
+# from django.forms.models import ModelForm
 import datetime
 import re
+
+from django import forms
+from django.contrib.auth.models import User
+from django.forms.models import ModelForm
+from django.template.defaultfilters import register
+
+from jdatetime import date as jdate
+
+from base.models import City, Location
+from service_provider.models import ServiceProvider, TravelAgency, Hotel, AirLine
+
+
+@register.filter(is_safe=True)
+def label_with_classes(value, arg):
+    return value.label_tag(attrs={'class': arg})
 
 
 class PersianDateField(forms.DateField):
@@ -33,7 +41,7 @@ class PersianDateField(forms.DateField):
             raise forms.ValidationError(self.default_error_messages['invalid'], code='invalid')
 
 
-class TouristCreationForm(ModelForm):
+class ServiceProviderCreationForm(ModelForm):
     first_name = forms.CharField(max_length=100, label="نام", required=True,
                                  error_messages={'required': "پر کردن فیلد نام الزامی است"},
                                  widget=forms.TextInput(attrs={'placeholder': 'نام'}))
@@ -52,22 +60,69 @@ class TouristCreationForm(ModelForm):
     password2 = forms.CharField(max_length=100, label="تکرار گذرواژه", required=True,
                                 error_messages={'required': "پر کردن فیلد تکرار گذرواژه الزامی است"},
                                 widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}))
-    telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
+    telephone = forms.CharField(max_length=20, label="شماره تلفن", required=True,
                                 error_messages={'required': "پر کردن فیلد شماره تلفن الزامی است"},
-                                widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
-    birth_day = PersianDateField(label="تاریخ تولد", required=True,
-                                 error_messages={'required': "پر کردن فیلد تولد الزامی است"},
-                                 widget=forms.DateInput(attrs={'class': 'datepicker'}))
+                                widget=forms.TimeInput(attrs={'placeholder': '02188226543'}))
     city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False,
                                   error_messages={'required': "پر کردن فیلد شهر الزامی است"})
-
+    name = forms.CharField(max_length=100, label="نام شرکت", required=True,
+                           error_messages={'required': "پر کردن فیلد نام شرکت الزامی است"},
+                           widget=forms.TextInput(attrs={'placeholder': 'نام شرکت'}))
+    short_description = forms.CharField(max_length=100, label="توضیح مختصر", required=True,
+                                        error_messages={'required': "پر کردن فیلد توضیح مختصر اجباری است"},
+                                        widget=forms.TextInput(
+                                            attrs={'placeholder': 'برای مثال: اولین شرکت خدمات جامع گردشگری ایران'}))
+    long_description = forms.CharField(max_length=100, label="توضیح بلند", required=False,
+                                       error_messages={'required': "پر کردن فیلد توضیح بلند اجباری است"},
+                                       widget=forms.Textarea(attrs={
+                                           'placeholder': 'توضیحاتی در مورد سابقه و خدمات ارائه شده توسط گردش ساز / یار',
+                                           'rows': '5'}))
+    image = forms.ImageField(label="عکس پروفایل کاربری", required=False,
+                             widget=forms.FileInput(attrs={'style': "display:none", 'accept': "image/*"}))
+    national_id = forms.IntegerField(min_value=0, max_value=10000000000, label="کد ملی", required=False,
+                                     error_messages={'required': "پر کردن فیلد کد ملی الزامی است"},
+                                     widget=forms.NumberInput(attrs={'placeholder': '0015557890'}))
     address = forms.CharField(max_length=500, label="آدرس", required=False,
                               error_messages={'required': "پر کردن فیلد آدرس الزامی است"},
                               widget=forms.Textarea(attrs={'placeholder': 'آدرس کامل', 'rows': '5'}))
+    types = (('tour', "tour"),
+             ('hotel', "hotel"),
+             ('airline', "airline"),
+             )
+    type = forms.ChoiceField(required=True, label="خدمت ارائه شده توسط شرکت", widget=forms.HiddenInput, choices=types,
+                             error_messages={'required': "انتخاب نوع سرویس الزامی است",
+                                             'invalid_choice': "انتخاب نوع سرویس الزامی است"})
+
+    # hotel
+    degree = forms.IntegerField(label="درجه هتل", required=False,
+                                error_messages={'required': "پر کردن فیلد درجه هتل الزامی است"},
+                                widget=forms.NumberInput(attrs={'hidden': "hidden"}))
+    has_restaurant = forms.BooleanField(required=False, label="رستوران")
+    has_parking = forms.BooleanField(required=False, label="پارکینگ")
+    has_internet = forms.BooleanField(required=False, label="اینترنت")
+    has_pool = forms.BooleanField(required=False, label="استخر")
+    has_conference_hall = forms.BooleanField(required=False, label="اتاق کنفرانس")
+    has_fire_extinguisher = forms.BooleanField(required=False, label="سیستم اطفای حریق")
+    has_sport_salloon = forms.BooleanField(required=False, label="سالن ورزشی")
+    has_health_center = forms.BooleanField(required=False, label="مرکز بهداشت")
+    has_coffeeshop = forms.BooleanField(required=False, label="کافی شاپ")
+    has_emergency = forms.BooleanField(required=False, label="اورژانس")
+    has_jungle = forms.BooleanField(required=False, label="فضای سبز")
+    has_protection_system = forms.BooleanField(required=False, label="سیستم امنیتی")
+    has_shop_center = forms.BooleanField(required=False, label="مرکز خرید")
+    has_gamenet = forms.BooleanField(required=False, label="گیم نت")
+    has_photo_studio = forms.BooleanField(required=False, label="آتلیه عکاسی")
+    map_widget = forms.CharField(max_length=500, required=False, label="موقعیت جغرافیایی",
+                                 widget=forms.TextInput(
+                                     attrs={'placeholder': "https://www.google.com/maps/place/...", 'dir': 'ltr'}))
+    ###Airline
+    is_international = forms.BooleanField(required=False, label="دارای پروازهای بین المللی")
+
+    ###tour
 
     class Meta:
-        model = Tourist
-        fields = ('telephone', 'birth_day')
+        model = ServiceProvider
+        fields = ('name', 'short_description', 'long_description', 'image', 'telephone')
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -104,66 +159,81 @@ class TouristCreationForm(ModelForm):
 
     def clean_telephone(self):
         number = self.cleaned_data['telephone']
-        if re.match('^\d{11,13}$', number):
+        if re.match('^\d{7,13}$', number):
             return number
         else:
-            raise forms.ValidationError("شماره موبایل وارد شده معتبر نیست", code="invalid mobile number")
+            raise forms.ValidationError("شماره تلفن وارد شده معتبر نیست", code="invalid mobile number")
 
     def save(self, commit=True):
-        tourist = super(TouristCreationForm, self).save(commit=False)
-        user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
-                                        password=self.cleaned_data["password1"])
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.save()
-        tourist.primary_user = user
-        location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
-        location.save()
-        cart = Cart()
-        cart.save()
-        tourist.location = location
-        tourist.cart = cart
+        temp = super(ServiceProviderCreationForm, self).save(commit=False)
+        service_type = self.cleaned_data.get('type')
+        if service_type == 'tour':
+            service_provider = TravelAgency()
+            user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
+                                            password=self.cleaned_data["password1"])
+            user.first_name = self.cleaned_data["first_name"]
+            user.last_name = self.cleaned_data["last_name"]
+            user.save()
+            service_provider.primary_user = user
+            location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
+            location.save()
+            service_provider.location = location
+            service_provider.image = temp.image
+            service_provider.telephone = temp.telephone
+            service_provider.name = temp.name
+            service_provider.short_description = temp.short_description
+            service_provider.long_description = temp.long_description
+        elif service_type == 'hotel':
+            service_provider = Hotel()
+            user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
+                                            password=self.cleaned_data["password1"])
+            user.first_name = self.cleaned_data["first_name"]
+            user.last_name = self.cleaned_data["last_name"]
+            user.save()
+            service_provider.primary_user = user
+            location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
+            location.save()
+            service_provider.location = location
+            service_provider.image = temp.image
+            service_provider.telephone = temp.telephone
+            service_provider.name = temp.name
+            service_provider.short_description = temp.short_description
+            service_provider.long_description = temp.long_description
+            service_provider.has_coffeeshop = self.cleaned_data["has_coffeeshop"]
+            service_provider.has_conference_hall = self.cleaned_data["has_conference_hall"]
+            service_provider.has_emergency = self.cleaned_data["has_emergency"]
+            service_provider.has_fire_extinguisher = self.cleaned_data["has_fire_extinguisher"]
+            service_provider.has_health_center = self.cleaned_data["has_health_center"]
+            service_provider.has_gamenet = self.cleaned_data["has_gamenet"]
+            service_provider.has_jungle = self.cleaned_data["has_jungle"]
+            service_provider.has_internet = self.cleaned_data["has_internet"]
+            service_provider.has_pool = self.cleaned_data["has_pool"]
+            service_provider.has_sport_salloon = self.cleaned_data["has_sport_salloon"]
+            service_provider.has_parking = self.cleaned_data["has_parking"]
+            service_provider.has_shop_center = self.cleaned_data["has_shop_center"]
+            service_provider.has_restaurant = self.cleaned_data["has_restaurant"]
+            service_provider.has_protection_system = self.cleaned_data["has_protection_system"]
+            service_provider.has_photo_studio = self.cleaned_data["has_photo_studio"]
+            service_provider.degree = self.cleaned_data["degree"]
+            service_provider.map_widget = self.cleaned_data['map_widget']
+
+        elif service_type == 'airline':
+            service_provider = AirLine()
+            user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data["email"],
+                                            password=self.cleaned_data["password1"])
+            user.first_name = self.cleaned_data["first_name"]
+            user.last_name = self.cleaned_data["last_name"]
+            user.save()
+            service_provider.primary_user = user
+            location = Location(city=self.cleaned_data["city"], address=self.cleaned_data["address"])
+            location.save()
+            service_provider.location = location
+            service_provider.image = temp.image
+            service_provider.telephone = temp.telephone
+            service_provider.name = temp.name
+            service_provider.short_description = temp.short_description
+            service_provider.long_description = temp.long_description
+            service_provider.is_international = self.cleaned_data["is_international"]
         if commit:
-            tourist.save()
-        return tourist
-
-
-class TouristEditProfileForm(ModelForm):
-    firstname = forms.CharField(max_length=100, label="نام", required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'نام'}))
-    lastname = forms.CharField(max_length=100, label="نام خانوادگی", required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی'}))
-    username = forms.CharField(max_length=100, label="نام کاربری", required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'نام کاربری', 'readonly': 'readonly'}))
-    birth_day = forms.DateField(widget=forms.DateInput())
-    city = forms.CharField()
-    address = forms.CharField(max_length=1000)
-    telephone = forms.CharField(max_length=20)
-
-    def __init__(self, *args, instance=None, **kwargs):
-        super(TouristEditProfileForm, self).__init__(*args, **kwargs)
-        self.instance = instance
-        if instance:
-            self.fields['firstname'].initial = instance.primary_user.first_name
-            self.fields['lastname'].initial = instance.primary_user.last_name
-            self.fields['username'].initial = instance.primary_user.username
-            self.fields['birth_day'].initial = instance.birth_day
-            self.fields['city'].initial = instance.location.city
-            self.fields['address'].initial = instance.location.address
-            self.fields['telephone'].initial = instance.telephone
-            self.image = instance.image
-
-    class Meta:
-        model = Tourist
-        fields = ['birth_day', 'telephone']
-
-    def save(self, commit=True):
-        tourist = User.objects.get(username=self['username'].value()).site_user.tourist
-        tourist.primary_user.first_name = self['firstname'].value()
-        tourist.primary_user.last_name = self['lastname'].value()
-        tourist.primary_user.save()
-        tourist.birth_day = self['birth_day'].value()
-        tourist.location.address = self['address'].value()
-        tourist.location.save()
-        tourist.telephone = self['telephone'].value()
-        tourist.save()
+            service_provider.save()
+        return service_provider

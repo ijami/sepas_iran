@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="{% static 'base/css/persian-datepicker-0.4.5.css' %}"/>
     <script src="{% static 'base/javascript/persian-date-0.1.8.js' %}"></script>
     <script src="{% static 'base/javascript/persian-datepicker-0.4.5.js' %}"></script>
-    <script src="{% static 'management/javascript/buy_report.js' %}"></script>
+    <script src="{% static 'management/javascript/pie_report.js' %}"></script>
 {% endblock %}
 {% block nav_item %}
-    گزارش دوره‌ای
+    گزارش نسبت سهم خدمات عرضه شده در فروش
 {% endblock %}
 {% block menu_content %}
-    <h2>گزارش دوره‌ای سامانه سپاس ایران</h2>
+    <h2>گزارش دوره‌ای نسبت سهم خدمات عرضه شده در فروش سامانه سپاس‌ایران</h2>
     <div class="ui tow column grid">
 
         <div class="four wide column">
@@ -57,7 +57,7 @@
                     text: 'درصد فروش انواع مختلف خدمت'
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>٪{point.percentage:.1f}</b>'
+                    pointFormat: '{series.name}: ٪<b>{point.percentage:.1f}</b>'
                 },
                 plotOptions: {
                     pie: {
@@ -73,18 +73,17 @@
                     }
                 },
                 series: [{
-                    name: "سلام",
                     colorByPoint: true,
                     data: [{
-                        name: "Microsoft Internet Explorer",
-                        y: 56.33
+                        name: "تور",
+                        y: {{ tour }}
                     }, {
-                        name: "Chrome",
-                        y: 24.03
+                        name: "هتل",
+                        y: {{ hotel }}
 
                     }, {
-                        name: "Firefox",
-                        y: 10.38
+                        name: "هواپیما",
+                        y: {{ flight }}
                     }]
                 }]
             });
