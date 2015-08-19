@@ -8,14 +8,18 @@ from tourist.models import Tourist
 
 class Complain(models.Model):
 
-    STATES = (('Q', 'در صف بررسی'), ('H', 'در حال بررسی'), ('S', 'صدور حکم'), ('F', 'پایان یافته'))
+    STATES = (('Q', 'در حال بررسی'), ('F', 'پایان یافته'))
 
-    service_item = models.ForeignKey(ServiceItem)
+    service_item = models.OneToOneField(ServiceItem, related_name='complain')
     text = models.TextField()
-    title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300, default='شکایت')
     create_date = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=10, choices=STATES, default='Q')
     last_state_change = models.DateTimeField(auto_now=True)
+    answer = models.TextField(null=True, blank=True)
+
+    def get_state(self):
+        return dict(self.STATES).get(self.state)
 
 
 class Poll(models.Model):
