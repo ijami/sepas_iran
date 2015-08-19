@@ -27,6 +27,7 @@ def service_list(request):
                     sum += i.number
                 s = {}
                 s['remain'] = foo.capacity - sum
+                s['sold'] = sum
                 s['image'] = foo.image
                 s['name'] = foo.__str__()
                 s['number'] = foo.sold_number

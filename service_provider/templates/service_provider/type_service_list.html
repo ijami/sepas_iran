@@ -31,11 +31,11 @@
                         <div class="ui divider"></div>
                         <span class="right floated" style="font-size: 12px;">
                             ظرفیت باقیمانده:
-                            {{ service.remain }}
+                            <a href=""></a>{{ service.remain }}
                         </span>
                         <span class="left floated" style="font-size: 12px;">
-                            ظرفیت کل:
-                            {{ service.capacity }}
+                            ظرفیت فروش رفته:
+                            {{ service.sold }}
                         </span>
                         <br><br>
                         <div class="description" style="color: forestgreen;">
@@ -74,5 +74,9 @@
         {% endfor %}
 
     </div>
+
+    <script type="text/javascript">
+        
+    </script>
 {% endblock %}
 
