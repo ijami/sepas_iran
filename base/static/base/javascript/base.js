@@ -26,6 +26,7 @@ var content = [
 ];
 
 $(document).ready(function () {
+    $('.ui.checkbox').checkbox();
     var modal = $('.ui.modal');
     modal.modal();
     modal.modal('setting',{detachable:false, observeChanges: true, debug: true});

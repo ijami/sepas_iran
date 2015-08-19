@@ -39,6 +39,7 @@ class Hotel(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'hotel',
             'image': self.image,
             'name': self.name,
@@ -70,6 +71,7 @@ class AirLine(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'airline',
             'image': self.image,
             'name': self.name,
@@ -86,6 +88,7 @@ class TravelAgency(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'agency',
             'image': self.image,
             'name': self.name,

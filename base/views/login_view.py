@@ -32,13 +32,14 @@ def logout_user(request):
 
 
 def login_user(request):
-    print("salam")
-    if request.user.is_authenticated():
-        return redirect(reverse('home'))
+    # if request.user.is_authenticated():
+    #     return redirect(reverse('home'))
 
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        if request.user.is_authenticated():
+            logout(request)
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:

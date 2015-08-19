@@ -20,6 +20,5 @@ urlpatterns = [
     url(r'^active_providers', ActiveProviders.as_view(), name='active_providers'),
     url(r'^deactive_providers', DeactiveProviders.as_view(), name='deactive_providers'),
     url(r'^sell_report', TemplateView.as_view(template_name='management/advertisement.html'), name='sell_report'),
-    url(r'^chart', TemplateView.as_view(template_name='management/chart.html')),
     url(r'^$', TemplateView.as_view(template_name='management/dashboard.html'), name='management_dashboard'),
 ]
