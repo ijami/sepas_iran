@@ -77,7 +77,7 @@ class Flight(Service):
 
 
     def get_persian_date(self):
-        return jdatetime.date.fromgregorian(date=self.date)
+        return jdatetime.date.fromgregorian(date=self.date).strftime("%Y/%m/%d")
 
     def get_date(self):
         return self.date
@@ -114,9 +114,9 @@ class Room(Service):
 
 
     def get_persian_start_date(self):
-        return jdatetime.date.fromgregorian(date=self.start_date)
+        return jdatetime.date.fromgregorian(date=self.start_date).strftime("%Y/%m/%d")
     def get_persian_end_date(self):
-        return jdatetime.date.fromgregorian(date=self.end_date)
+        return jdatetime.date.fromgregorian(date=self.end_date).strftime("%Y/%m/%d")
 
     def get_date(self):
         return self.start_date
@@ -160,9 +160,9 @@ class Tour(Service):
 
 
     def get_persian_going_date(self):
-        return jdatetime.date.fromgregorian(date=self.going_date)
+        return jdatetime.date.fromgregorian(date=self.going_date).strftime("%Y/%m/%d")
     def get_persian_return_date(self):
-        return jdatetime.date.fromgregorian(date=self.return_date)
+        return jdatetime.date.fromgregorian(date=self.return_date).strftime("%Y/%m/%d")
 
     def get_date(self):
         return self.going_date

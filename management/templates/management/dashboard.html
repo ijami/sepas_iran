@@ -70,9 +70,8 @@
                         <div class="item">
                             <div class="header">شکایات</div>
                             <div class="menu">
-                                <a class="item">شکایات قابل بررسی</a>
-                                <a class="item">صدور حکم</a>
-                                <a class="item">بایگانی</a>
+                                <a href="{% url 'unanswered_complains'%}" class="item">شکایات بررسی نشده</a>
+                                <a href="{% url 'answered_complains' %}" class="item">بایگانی شکایات</a>
                             </div>
                         </div>
                     </div>

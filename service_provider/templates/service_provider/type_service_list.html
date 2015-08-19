@@ -26,7 +26,7 @@
                             {{ service.name }}
                         </div>
                         <div class="meta">
-                            <a>{{ service.number }}</a>
+                            <a href="/service/information/{{ service.number }}" style="color: blue; font-size: 12px;">مشاهده خریداران</a>
                         </div>
                         <div class="ui divider"></div>
                         <span class="right floated" style="font-size: 12px;">
@@ -34,8 +34,8 @@
                             {{ service.remain }}
                         </span>
                         <span class="left floated" style="font-size: 12px;">
-                            ظرفیت کل:
-                            {{ service.capacity }}
+                            ظرفیت فروش رفته:
+                            {{ service.sold }}
                         </span>
                         <br><br>
                         <div class="description" style="color: forestgreen;">
@@ -46,10 +46,10 @@
                         </div>
                     </div>
                 {% if service.expired %}
-                    <div class="ui bottom attached blue button" style="width: 99.6%; margin: auto">
+                    <a class="ui bottom attached blue button" style="width: 99.6%; margin: auto" href="/service/information/{{ service.number }}">
                         <i class="info icon" style="margin-left: 2px;"></i>
 مشاهده جزئیات
-                    </div>
+                    </a>
                 {% else %}
                     <div class="ui divider"></div>
                     <form class="ui rtl form" method="POST" action="{% url 'add_service_capacity' %}">
@@ -74,5 +74,7 @@
         {% endfor %}
 
     </div>
+
+
 {% endblock %}
 
