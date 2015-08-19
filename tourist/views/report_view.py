@@ -1,9 +1,9 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
-from sale.views.finance import tourist_flights,\
-    tourist_rooms, tourist_services,\
-    tourist_services_price, tourist_services_waited, tourist_tours,tourist_services_used
+from sale.views.finance import tourist_flights_count,\
+    tourist_rooms_count, tourist_services_count,\
+    tourist_services_price, tourist_services_waited_count, tourist_tours_count,tourist_services_used_count
 from tourist.views.crm_function import tourist_comments_count
 from base.views.decorators import tourist_required
 
@@ -13,12 +13,12 @@ def reprot_view(request):
         tourist = request.user.site_user.tourist
         if tourist:
             context = {
-                'service_bought': tourist_services(tourist.id).__len__(),
-                'servic_used': tourist_services_used(tourist.id).__len__(),
-                'servic_waited': tourist_services_waited(tourist.id).__len__(),
-                'hotel_bought': tourist_rooms(tourist.id).__len__(),
-                'flight_bought': tourist_flights(tourist.id).__len__(),
-                'tour_bought': tourist_tours(tourist.id).__len__(),
+                'service_bought': tourist_services_count(tourist.id),
+                'servic_used': tourist_services_used_count(tourist.id),
+                'servic_waited': tourist_services_waited_count(tourist.id),
+                'hotel_bought': tourist_rooms_count(tourist.id),
+                'flight_bought': tourist_flights_count(tourist.id),
+                'tour_bought': tourist_tours_count(tourist.id),
                 'all_price' : tourist_services_price(tourist.id),
                 'comment_count' : tourist_comments_count(tourist.id),
             }

@@ -36,12 +36,12 @@ def service_show(request, sold_number):
         type = 'پرواز'
         provider = service.airline
         start_date = jdatetime.date.fromgregorian(date=service.date).strftime("%Y/%m/%d")
-    q = ServiceItem.objects.filter(service=service, cart=None).strftime("%Y/%m/%d")
+    q = ServiceItem.objects.filter(service=service, cart=None)
     size = 0
     for x in q.all():
         size += x.number
         print(size)
-    size = len(q)
+    # size = len(q)
     remain = service.capacity - size
     comments = service.comments.all()
     cm = []
@@ -50,7 +50,7 @@ def service_show(request, sold_number):
         cm.append({
             'text': c.text,
             'sender': c.sender,
-            'send_time': jdatetime.date.fromgregorian(date=c.send_time.date())
+            'send_time': jdatetime.date.fromgregorian(date=c.send_time.date()).strftime("%Y/%m/%d")
         })
     context = {
         'type': type,

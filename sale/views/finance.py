@@ -3,8 +3,6 @@ from datetime import datetime
 from tourist.models import Tourist
 from sale.models import ServiceItem, Factor
 from service.models import Tour, Room, Flight
-from service_provider.models import ServiceProvider
-from service.models import Service
 
 
 def dashboard_report(start, end, service_type):
@@ -48,6 +46,28 @@ def tourist_services(tourist_id):
     return services
 
 
+def tourist_serviceItems(tourist_id):
+    tourist = Tourist.objects.filter(id=tourist_id)
+    factors = Factor.objects.filter(tourist=tourist)
+    return_serviceItems = []
+    for factor in factors:
+        serviceItems = ServiceItem.objects.filter(factor=factor).all()
+        for serviceItem in serviceItems:
+            return_serviceItems.append(serviceItem)
+    return return_serviceItems
+
+
+def tourist_services_count(tourist_id):
+    tourist = Tourist.objects.filter(id=tourist_id)
+    factors = Factor.objects.filter(tourist=tourist)
+    return_value = 0
+    for factor in factors:
+        serviceItems = ServiceItem.objects.filter(factor=factor).all()
+        for serviceItem in serviceItems:
+            return_value += serviceItem.number
+    return return_value
+
+
 def tourist_services_used(tourist_id):
     services = tourist_services(tourist_id)
     output = []
@@ -63,6 +83,19 @@ def tourist_services_used(tourist_id):
             if service.date < datetime.now().date():
                 output.append(service)
     return output
+
+
+def tourist_services_used_count(tourist_id):
+    serviceItems = tourist_serviceItems(tourist_id)
+    return_value = 0
+    # tours = services.filter(instanceof=Tour)
+    for serviceItem in serviceItems:
+        if serviceItem.service.get_date() < datetime.now().date():
+            return_value += serviceItem.number
+
+    return return_value
+
+
     #
     # rooms = services.filter(instanceof=Room)
     # for room in rooms:
@@ -91,6 +124,19 @@ def tourist_services_waited(tourist_id):
     return output
 
 
+def tourist_services_waited_count(tourist_id):
+    serviceItems = tourist_serviceItems(tourist_id)
+    print(serviceItems.__len__())
+    return_value = 0
+    # tours = services.filter(instanceof=Tour)
+    for serviceItem in serviceItems:
+
+        if serviceItem.service.get_date() > datetime.now().date():
+            return_value += serviceItem.number
+
+    return return_value
+
+
 def tourist_tours(tourist_id):
     services = tourist_services(tourist_id)
     output = []
@@ -99,6 +145,16 @@ def tourist_tours(tourist_id):
             if service.going_date > datetime.now().date():
                 output.append(service)
     return output
+
+
+def tourist_tours_count(tourist_id):
+    serviceItems = tourist_serviceItems(tourist_id)
+    return_value = 0
+    for serviceItem in serviceItems:
+        if isinstance(serviceItem.service, Tour):
+            if serviceItem.service.get_date() > datetime.now().date():
+                return_value += serviceItem.number
+    return return_value
 
 
 def tourist_rooms(tourist_id):
@@ -111,6 +167,16 @@ def tourist_rooms(tourist_id):
     return output
 
 
+def tourist_rooms_count(tourist_id):
+    serviceItems = tourist_serviceItems(tourist_id)
+    return_value = 0
+    for serviceItem in serviceItems:
+        if isinstance(serviceItem.service, Room):
+            if serviceItem.service.get_date() > datetime.now().date():
+                return_value += serviceItem.number
+    return return_value
+
+
 def tourist_flights(tourist_id):
     services = tourist_services(tourist_id)
     output = []
@@ -121,11 +187,21 @@ def tourist_flights(tourist_id):
     return output
 
 
+def tourist_flights_count(tourist_id):
+    serviceItems = tourist_serviceItems(tourist_id)
+    return_value = 0
+    for serviceItem in serviceItems:
+        if isinstance(serviceItem.service, Flight):
+            if serviceItem.service.get_date() > datetime.now().date():
+                return_value += serviceItem.number
+    return return_value
+
+
 def tourist_services_price(tourist_id):
-    services = tourist_services(tourist_id)
+    serviceItems = tourist_serviceItems(tourist_id)
     price = 0
-    for service in services:
-        price += service.price
+    for serviceItem in serviceItems:
+        price += (serviceItem.service.price * serviceItem.number)
     return price
 
 
@@ -145,13 +221,13 @@ def saled_services_count(service_provider):
     serviceItems = tourist_services_all()
     return_value = 0
     for serviceItem in serviceItems:
-        if serviceItem.service.get_service_provider().primary_user.id==service_provider.primary_user.id:
-                return_value += serviceItem.number
+        if serviceItem.service.get_service_provider().primary_user.id == service_provider.primary_user.id:
+            return_value += serviceItem.number
     return return_value
-        # return_value += service.filter(get_type='f').filter(
-        # airline__primary_user__id=service_provider.primary_user.id).__len__() + service.filter(
-        # service__get_type='r').filter(hotel__primary_user__id=service_provider.primary_user.id).__len__() + service.filter(
-        # service__get_type='t').filter(travel_agency__primary_user__id=service_provider.primary_user.id).__len__()
+    # return_value += service.filter(get_type='f').filter(
+    # airline__primary_user__id=service_provider.primary_user.id).__len__() + service.filter(
+    # service__get_type='r').filter(hotel__primary_user__id=service_provider.primary_user.id).__len__() + service.filter(
+    # service__get_type='t').filter(travel_agency__primary_user__id=service_provider.primary_user.id).__len__()
 
 
 def waited_services_count(service_provider):
@@ -159,8 +235,8 @@ def waited_services_count(service_provider):
     serviceItems = tourist_services_all()
     return_value = 0
     for serviceItem in serviceItems:
-        if serviceItem.service.get_service_provider().primary_user.id==service_provider.primary_user.id:
-            if serviceItem.service.get_date()> datetime.now().date():
+        if serviceItem.service.get_service_provider().primary_user.id == service_provider.primary_user.id:
+            if serviceItem.service.get_date() > datetime.now().date():
                 return_value += (serviceItem.number)
     return return_value
     #
@@ -174,8 +250,8 @@ def income(service_provider):
     serviceItems = tourist_services_all()
     return_value = 0
     for serviceItem in serviceItems:
-        if serviceItem.service.get_service_provider().primary_user.id==service_provider.primary_user.id:
-                return_value += (serviceItem.number * serviceItem.service.price)
+        if serviceItem.service.get_service_provider().primary_user.id == service_provider.primary_user.id:
+            return_value += (serviceItem.number * serviceItem.service.price)
     return return_value
     #
     # serviceItems = tourist_services_all()

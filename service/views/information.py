@@ -8,7 +8,7 @@ __author__ = 'MJR'
 
 def information(request, id):
     service = Service.objects.filter(sold_number=id)
-    items = ServiceItem.objects.filter(service=service)
+    items = ServiceItem.objects.filter(service=service, cart=None)
     list = []
     for item in items:
         if item.factor != None:
@@ -16,7 +16,7 @@ def information(request, id):
                 'tourist': item.factor.tourist,
                 'number': item.number,
                 'date': jdatetime.datetime.fromgregorian(date=item.factor.create_date.date()).strftime("%Y/%m/%d"),
-                'factor_num': item.service.sold_number + "_" + items.count().__str__() + "_" + Factor.objects.all().count().__str__()
+                'factor_num': item.service.sold_number + "_" + items.count().__str__() + "_" + Factor.objects.filter(tourist=item.factor.tourist).count().__str__()
             }
             list.append(context)
     data = {'context': list}
