@@ -15,10 +15,11 @@
                 <div class="sixteen wide column">
                     <div class="ui segment rtl" id="breadcrumb_container">
                         <div class="ui right_float rtl breadcrumb">
-                            <a href="{% url 'home' %}" class="section">مدیریت سپاس‌ایران</a>
+                            <a href="{% url 'home' %}" class="section">خانه</a>
                             <i class="left angle icon divider"></i>
-
-                            <div class="active section">{% block nav_item %}{% endblock %}</div>
+                            <a href="{% url 'management_dashboard' %}" class="section">مدیریت سپاس‌ایران</a>
+                            <i class="left angle icon divider"></i>
+                            <div class="active section">{% block nav_item %}خانه{% endblock %}</div>
                         </div>
                     </div>
                 </div>
