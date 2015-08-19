@@ -4,8 +4,9 @@ from django.shortcuts import render
 from sale.models import Factor, ServiceItem
 
 __author__ = 'MJR'
+from base.views.decorators import tourist_required
 
-
+@tourist_required()
 def buy(request):
     user = request.user.site_user
     cart = user.cart

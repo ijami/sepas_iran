@@ -25,8 +25,8 @@ def service_show(request, sold_number):
     if t == 'r':
         type = 'هتل'
         provider = service.hotel
-        start_date = jdatetime.date.fromgregorian(date=service.start_date.date())
-        end_date = jdatetime.date.fromgregorian(date=service.end_date.date())
+        start_date = jdatetime.date.fromgregorian(date=service.start_date)
+        end_date = jdatetime.date.fromgregorian(date=service.end_date)
     elif t == 't':
         type = 'تور'
         provider = service.travel_agency

@@ -10,7 +10,7 @@ class Tourist(SiteUser):
     cart = models.OneToOneField('sale.Cart', related_name='tourist')
 
     def get_fields(self):
-        return {'type': 'tourist'}
+        return {'type': 'tourist', 'super_type': 'tourist'}
 
     def __str__(self):
         return self.primary_user.site_user.primary_user.get_full_name() + " (" + \
