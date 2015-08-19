@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from base.views.send_mail import send_mail
 from tourist.views.crm_function import send_recommended_mail
 from tourist.models import Tourist
-
+# from jdatetime.jalali import GregorianToJalali
 class MyCronJob(CronJobBase):
     RUN_EVERY_MINS = 1 # every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
