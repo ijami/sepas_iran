@@ -9,12 +9,12 @@ from django.core.urlresolvers import reverse
 
 @login_required
 def new_message_view(request):
-    forms = NewMessageForm
+
     if request.method == 'GET':
         print('form method get')
-
+        form = NewMessageForm
         return render(request, 'messaging/write.html', {
-            'form': forms
+            'form': form
         })
 
     elif request.method == 'POST':
@@ -33,8 +33,6 @@ def new_message_view(request):
             return HttpResponse(form.errors)
 
 
-        return render(request, 'messaging/write.html',{
-            'form': forms
-        })
+        return redirect(reverse('message_box'))
 
 
