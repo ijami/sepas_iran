@@ -13,5 +13,3 @@ class Message(models.Model):
 
     def __str__(self):
         return self.sender.primary_user.username + ": " + self.text
-
-

@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="{% static 'messaging/css/message_box.css' %}"/>
 {% endblock %}
 
-{% block breadcrumb %}
-صندوق پیامها
+{% block title %}
+<title>صندوق پیامها</title>
 {% endblock %}
 
 {% block menu_content %}
@@ -19,7 +19,7 @@
                     <div class="ui tiny header">
                         <i class="ui mail icon"></i>
                         <div class="sub header">
-                        صدرا بریری
+{{user.primery_user.first_name}} {{user.primery_user.last_name}}
                         </div>
                     </div>
                 </div>
