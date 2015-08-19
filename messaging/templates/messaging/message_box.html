@@ -19,7 +19,11 @@
                 <div class="right floated metadata">
 
                     <div class="message_header">
+                        {% if message.sender == user %}
+                        <h1 class="ui header ">{{message.header}}</h1>
+                        {% elif message.receiver == user %}
                         <h1 class="ui header "  style="color: red">{{message.header}}</h1>
+                        {% endif %}
                     </div>
                     <div class="mailer">
                         <div class="ui tiny header">

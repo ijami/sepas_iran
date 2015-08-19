@@ -22,18 +22,18 @@
 <!-- Start WOWSlider.com BODY section -->
 <div id="wowslider-container1">
 <div class="ws_images"><ul>
-		<li><img src="{% static 'home/data1/images/antalia.jpg' %}" alt="antalia" title="سواحل بکر آنتالیا" id="wows1_0"/></li>
-		<li><img src="{% static 'home/data1/images/calahari.jpg' %}" alt="calahari" title="صحرای خوش آب و هوای کالاهاری" id="wows1_1"/></li>
-		<li><img src="{% static 'home/data1/images/marjani.jpg' %}" alt="marjani" title="صخره های مرحانی" id="wows1_2"/></li>
-		<li><a href="http://wowslider.com"><img src="{% static 'home/data1/images/pattaya.jpg' %}" alt="image slider jquery" title="طبیعت باصفای پاتایا" id="wows1_3"/></a></li>
-		<li><img src="{% static 'home/data1/images/shaddad.jpg' %}" alt="shaddad" title="در بهشت شداد" id="wows1_4"/></li>
+		<li><img src="{{ pics.add0.pic.url }}" alt="not load" title="{{ pics.add0.name }}" id="wows1_0"/></li>
+		<li><img src="{{ pics.add1.pic.url }}" alt="not load" title="{{ pics.add1.name }}" id="wows1_1"/></li>
+		<li><img src="{{ pics.add2.pic.url }}" alt="not load" title="{{ pics.add2.name }}" id="wows1_2"/></li>
+		<li><img src="{{ pics.add3.pic.url }}" alt="not load" title="{{ pics.add3.name }}" id="wows1_3"/></li>
+		<li><img src="{{ pics.add4.pic.url }}" alt="not load" title="{{ pics.add4.name }}" id="wows1_4"/></li>
 	</ul></div>
 	<div class="ws_bullets"><div>
-		<a href="#sd" title="سواحل بکر آنتالیا"><span><img src="{% static 'home/data1/tooltips/antalia.jpg' %}" alt="antalia"/>1</span></a>
-		<a href="#" title="صحرای خوش آب و هوای کالاهاری"><span><img src="{% static 'home/data1/tooltips/calahari.jpg' %}" alt="calahari"/>2</span></a>
-		<a href="#" title="صخره های مرحانی"><span><img src="{% static 'home/data1/tooltips/marjani.jpg' %}" alt="marjani"/>3</span></a>
-		<a href="#" title="طبیعت باصفای پاتایا"><span><img src="{% static 'home/data1/tooltips/pattaya.jpg' %}" alt="pattaya"/>4</span></a>
-		<a href="#" title="در بهشت شداد"><span><img src="{% static 'home/data1/tooltips/shaddad.jpg' %}" alt="shaddad"/>5</span></a>
+		<a href="#" title="{{ pics.add0.name }}"><span></span></a>
+		<a href="#" title="{{ pics.add1.name }}"><span></span></a>
+		<a href="#" title="{{ pics.add2.name }}"><span></span></a>
+		<a href="#" title="{{ pics.add3.name }}"><span></span></a>
+		<a href="#" title="{{ pics.add4.name }}"><span></span></a>
 	</div></div>
 <div class="ws_shadow"></div>
 </div>

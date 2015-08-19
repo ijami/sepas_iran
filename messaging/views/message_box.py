@@ -16,16 +16,12 @@ def message_box_view (request):
 
         new_messages = messages.filter(is_read=False).all()
 
-        read_messages = messages.filter(is_read=True).all()
-        print(new_messages)
-        print(read_messages)
+        read_messages = list(messages.filter(is_read=True).all())
 
         for message in new_messages:
-            message.is_read = True
-            message.save()
-
-
-
+            if message.receiver == usern:
+                message.is_read = True
+                message.save()
 
         return render(request, 'messaging/message_box.html', {
             'read_messages': read_messages,

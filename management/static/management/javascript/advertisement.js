@@ -8,10 +8,12 @@ $(document).ready(function(){
     var csrf = $("input[name=csrfmiddlewaretoken]").val();
 
     $serach_box.on('input', function(){
-        search(this.value);
+        var $results = $('#results');
+        $results.html('');
+        search(this.value, this);
     });
 
-    function search(str) {
+    function search(str, man) {
         $.ajax({
             url: 'search/',
             method: 'POST',
@@ -20,7 +22,16 @@ $(document).ready(function(){
                 'csrfmiddlewaretoken': csrf
             },
             success: function(response) {
-                alert(response);
+                var results = response.result;
+                var $results = $('#results');
+                $.each(results, function( index, value ) {
+                    $('<li/>').html(value).appendTo($results).click(function () {
+                        $results.html('');
+                        $(man).val(value);
+                    });
+                });
+
+//                alert(response.charCode);
             }
         });
     }
