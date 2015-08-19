@@ -10,42 +10,52 @@
 
 {% block menu_content %}
     <div class="ui inverted segment" style="background-color: #f0f0f0">
-        <div class="sent message">
-            <div class="right floated metadata">
-                <div class="message_header">
-                    <h1 class="ui header ">بررسی موارد بیان شده</h1>
-                </div>
-                <div class="mailer">
+        {% for message in messages %}
+            {% if message.sender == user %}
+            <div class="sent message">
+            {% elif message.receiver == user %}
+            <div class="received message">
+            {% endif %}
+                <div class="right floated metadata">
+                    <div class="message_header">
+                        <h1 class="ui header ">{{message.header}}</h1>
+                    </div>
+                    <div class="mailer">
+                        <div class="ui tiny header">
+                            <i class="ui mail icon"></i>
+                            <div class="sub header">
+                                {{user.primary_user.first_name}} {{user.primary_user.last_name}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="ui tiny header">
-                        <i class="ui mail icon"></i>
+                        <i class="ui calendar icon"></i>
                         <div class="sub header">
-{{user.primery_user.first_name}} {{user.primery_user.last_name}}
+                            {{message.create_date}}
                         </div>
                     </div>
                 </div>
-                <div class="ui tiny header">
-                    <i class="ui calendar icon"></i>
-                    <div class="sub header">
-23 فروردین 95، 18:32
-                    </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    <p>
+                        {{message.text}}
+                    </p>
                 </div>
             </div>
-            <div class="ui divider"></div>
-            <div class="message_text">
-                <p>
-                    با سلام
-                    <br/>
-                    بنده از برنامه شما کمال تشکر را دارم
-                    <br/>
-                    اما یک اعتراضی نیز دارم
-                    <br/>
-                    حیف وقت گرانبهایتان نیست اتلاف می کنید؟
-                    <br/>
-                    با تشکر از شما!
-                </p>
-            </div>
-        </div>
-                <div class="received message">
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="received message">
             <div class="right floated metadata">
                 <div class="message_header">
                     <h1 class="ui header ">بررسی موارد بیان شده</h1>

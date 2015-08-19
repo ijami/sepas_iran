@@ -1,20 +1,21 @@
-from django.contrib.auth.decorators import login_required
+from base.views.decorators import login_required
+from django.db.models.query_utils import Q
 from messaging.models import Message
+from django.shortcuts import render
+
 __author__ = 'Mohsen'
 
-from django.shortcuts import render
 
 @login_required
 def message_box_view (request):
     if request.method == 'GET':
-        user = request.user.site_user
+        usern = request.user.site_user
 
-        message_sent = Message.objects.filter(sender=user)
-        message_received = Message.objects.filter(receiver=user)
+        messages = Message.objects.filter(Q(sender=usern) | Q(receiver=usern))
+
 
         return render(request, 'messaging/message_box.html', {
-            'message_sent': message_sent,
-            'message_received': message_received,
-            'user': user
+            'messages': messages,
+            'user': usern
         })
 

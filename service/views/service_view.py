@@ -4,7 +4,7 @@ from django.shortcuts import render
 from service.models import Service, Tour, Flight, Room, City
 from service.forms import SearchServiceListForm
 from django.http import HttpResponse
-
+from tourist.views.crm_function import sold_count
 
 def show_type_service_list_view(request, type):
     max_price = 0
@@ -72,8 +72,13 @@ def show_type_service_list_view(request, type):
         else:
             return HttpResponse(form.errors)
 
+        solds = []
+
+        for srv in service:
+            solds.append(sold_count(srv.sold_number));
+
         return render(request, 'type_service_list.html', {
-            'services': service,
+            'service_sold': zip(service, solds),
             'type': type,
             'form': form,
             'max_price': max_price
@@ -93,11 +98,18 @@ def show_type_service_list_view(request, type):
             service = Room.objects.all()
             max_price = Room.objects.all().latest('price')
 
+        solds = []
+
+        for srv in service:
+            solds.append(sold_count(srv.sold_number));
+
         return render(request, 'type_service_list.html', {
-            'services': service,
+            'service_sold': zip(service, solds),
             'max_price': max_price,
             'type': type,
             'form': form
+
+
         })
 
 

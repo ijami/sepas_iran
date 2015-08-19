@@ -52,11 +52,9 @@
         <img src="{% static 'home/images/airline.jpg' %}" class="card_image">
       </div>
       <div class="content card_link">
-{#<<<<<<< HEAD#}
-{#        <a href="{% url 'service_list' %}" class="header card_header">هواپیمایی</a>#}
-{#=======#}
-        <a href="" class="header card_header">هواپیمایی</a>
-{#>>>>>>> 995a700ffea9b58b6d7ebd8aeafe33009aa7c759#}
+
+        <a href="{% url 'type_service_list' 'flight'%}" class="header card_header">هواپیمایی</a>
+
       </div>
     </div>
   </div>
@@ -66,11 +64,9 @@
         <img src="{% static 'home/images/hotel.jpg' %}" class="card_image">
       </div>
       <div class="content card_link">
-{#<<<<<<< HEAD#}
-{#        <a href="{% url 'service_list' %}" class="header card_header">هتل</a>#}
-{#=======#}
-        <a href="" class="header card_header">هتل</a>
-{#>>>>>>> 995a700ffea9b58b6d7ebd8aeafe33009aa7c759#}
+
+        <a href="{% url 'type_service_list' 'room'%}" class="header card_header">هتل</a>
+
       </div>
     </div>
   </div>
@@ -80,11 +76,7 @@
         <img src="{% static 'home/images/tour.jpeg' %}" class="card_image">
       </div>
       <div class="content card_link">
-{#<<<<<<< HEAD#}
-{#        <a href="{% url 'service_list' %}" class="header card_header">تور</a>#}
-{#=======#}
-        <a href="" class="header card_header">تور</a>
-{#>>>>>>> 995a700ffea9b58b6d7ebd8aeafe33009aa7c759#}
+        <a href="{% url 'type_service_list' 'tour'%}" class="header card_header">تور</a>
       </div>
     </div>
   </div>
@@ -103,7 +95,7 @@
   				</div>
   				<div class="ui secondary segment">
             		<div class="ui five column grid">
-						{% for service in new_services %}
+						{% for service, sold in new_services %}
                         <div class="column">
 							<div class="ui card persian_card">
                                 {% include 'base/service_show.html' %}
@@ -120,7 +112,7 @@
 	</div>
 
     <br><br>
-
+    {% if recomended_services %}
      <div class="mrg-auto">
 		<div class="item_preview">
     	    <div class="ui segments">
@@ -129,7 +121,15 @@
   				</div>
   				<div class="ui secondary segment">
             		<div class="ui five column grid">
-						<div class="column">
+						{% for service, sold in recomended_services %}
+                        <div class="column">
+							<div class="ui card persian_card">
+                                {% include 'base/service_show.html' %}
+							</div>
+					  	</div>
+                        {% endfor %}
+                        <!--
+                        <div class="column">
 							<div class="ui card persian_card">
  								<div class="image new_topics_img">
     								<img src="{% static 'home/images/airline.jpg' %}">
@@ -238,12 +238,13 @@
 									</a>
 								</div>
 							</div>
-					  	</div>
+					  	</div>-->
 					</div>
 				</div>
 			</div>
         </div>
 	</div>
+    {% endif %}
 
 <br><br>
 

@@ -141,7 +141,7 @@ class Tour(Service):
     # tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.travel_agency.name + ": " + " از " + self.origin.name + " به " + self.destination.name
+        return self.travel_agency.name + ": \n" + " از " + self.origin.name + " به " + self.destination.name
 
     def get_type(self):
         return 't'
