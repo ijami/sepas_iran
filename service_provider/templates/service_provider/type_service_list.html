@@ -13,7 +13,7 @@
 
         {% for service in services %}
                 <div class="card" style="width: 31%; {% if service.expired %}border: 2px solid darkred; background-color: #cfd0d2{% endif %}">
-                    <a class="ui fluid image" href="#">
+                    <a class="ui fluid image" href="/sale/service/{{ service.number }}">
                         {% if service.expired %}
                             <div class="ui large red ribbon label">
                                 گذشته<i class="thumbs down icon"></i>
@@ -31,7 +31,7 @@
                         <div class="ui divider"></div>
                         <span class="right floated" style="font-size: 12px;">
                             ظرفیت باقیمانده:
-                            14
+                            {{ service.remain }}
                         </span>
                         <span class="left floated" style="font-size: 12px;">
                             ظرفیت کل:

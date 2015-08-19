@@ -51,7 +51,6 @@ INSTALLED_APPS = (
     'service_provider',
     'tourist',
     'sale',
-    'djcelery',
     'django_cron',
     'base',
 )

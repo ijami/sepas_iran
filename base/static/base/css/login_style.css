@@ -1,15 +1,19 @@
-#login_section .header:not(.bottom) img.icon{
+#login_section>.inner>  .header:not(.bottom) img.icon{
     margin-bottom: 8px !important;
 }
 
-#login_section .header:not(.bottom) div{
+#login_section>.inner>  .header:not(.bottom) div{
     font-size: 14px;
     font-weight: bold;
     color: gray;
 }
 
-#login_section .header:not(.bottom){
+#login_section>.inner> .header:not(.bottom){
     padding: 20px 20px 0px 20px;
+}
+
+#login_section #redirect.error.message{
+    font-size: 0.85em;
 }
 
 #login_section{

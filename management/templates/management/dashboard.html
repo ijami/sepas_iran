@@ -41,15 +41,23 @@
                         <div class="item">
                             <div class="header">گزارشات مدیریتی</div>
                             <div class="menu">
-                                <a class="item" href="/manage/buy_report">گزارش تراکنش محور</a>
-                                <a class="item" href="/manage/buy_report">گزارشات دوره ای</a>
+                                <a class="item" href="{% url 'area_report' %}">گزارش دوره‌ای خدمات</a>
+                                <a class="item" href="{% url 'pie_report' %}">گزارش نسبت خدمات عرضه شده</a>
+                                <a class="item" href="{% url 'map_report' %}">گزارش محبوبیت گردشگری استان‌ها</a>
                             </div>
                         </div>
                         <div class="item">
                             <div class="header">مدیریت خدمات</div>
                             <div class="menu">
-                                <a class="item" href="/manage/service_provider_activate">کنترل
-                                    کاربران</a>
+                                <a class="item" href="{% url 'new_providers' %}">
+                                    تایید گردش‌ساز(یار)ان جدید
+                                </a>
+                                <a class="item" href="{% url 'active_providers' %}">
+                                    گردش‌ساز(یار)ان فعال
+                                </a>
+                                <a class="item" href="{% url 'deactive_providers' %}">
+                                    گردش‌ساز(یار)ان غیر فعال
+                                </a>
                             </div>
                         </div>
                         <div class="item">
@@ -70,7 +78,7 @@
                     </div>
                 </div>
                 <div class=" thirteen wide column right_float" style="margin-bottom: 10px;">
-                    <div class="ui container segment right_aligned " style="height: 524px;">
+                    <div class="ui container segment right_aligned " style="min-height: 595px;">
                         {% block menu_content %}
                             <h2 class="ui header">با سلام</h2>
                             <h3 class="ui header">به صفحه مدیریت سپاس ایران خوش آمدید</h3>

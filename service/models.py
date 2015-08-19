@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+import jdatetime
 from polymorphic.polymorphic_model import PolymorphicModel
 
 from base.models import City, SiteUser
@@ -13,13 +14,22 @@ class Service(PolymorphicModel):
     capacity = models.IntegerField()
     sold_number = models.CharField(max_length=20)
     tag_line = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     @staticmethod
     def get_exist(self):
         pass
-    image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     def get_type(self):
+        pass
+
+    def is_exp(self):
+        return self.get_date() <= datetime.now().date()
+
+    def __str__(self):
+        return self.tag_line
+
+    def get_date(self):
         pass
 
 
@@ -32,6 +42,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.sender.primary_user.username + ": " + self.text
+
+    def get_city(self):
+        pass
 
 
 class Flight(Service):
@@ -55,6 +68,17 @@ class Flight(Service):
     def get_type(self):
         return 'f'
 
+
+    def get_persian_date(self):
+        return jdatetime.date.fromgregorian(date=self.date)
+
+    def get_date(self):
+        return self.date
+
+    def get_city(self):
+        return self.destination
+
+
 class Room(Service):
     start_date = models.DateField()
     end_date = models.DateField()
@@ -76,6 +100,19 @@ class Room(Service):
 
     def get_type(self):
         return 'r'
+
+
+    def get_persian_start_date(self):
+        return jdatetime.date.fromgregorian(date=self.start_date)
+    def get_persian_end_date(self):
+        return jdatetime.date.fromgregorian(date=self.end_date)
+
+    def get_date(self):
+        return self.start_date
+
+    def get_city(self):
+        return self.hotel.location.city
+
 
 class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
@@ -104,6 +141,19 @@ class Tour(Service):
 
     def get_type(self):
         return 't'
+
+
+    def get_persian_going_date(self):
+        return jdatetime.date.fromgregorian(date=self.going_date)
+    def get_persian_return_date(self):
+        return jdatetime.date.fromgregorian(date=self.return_date)
+
+    def get_date(self):
+        return self.going_date
+
+    def get_city(self):
+        return self.destination
+
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)

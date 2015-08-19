@@ -7,8 +7,8 @@
     <meta id="te2123asre1" http-equiv="Pragma" content="no-cache">
     <meta id="teaw2sre1" http-equiv="Expires" content="0">
     
-    <link rel="stylesheet" type="text/css" href="{% static "keypad/images/style.css" %}">
-    <title>..:: IranKish ::.s.پرداخت اینترنتی
+    <link rel="stylesheet" type="text/css" href="{% static "base/css/base.css" %}">
+    <title>..:: SepasIran ::.s.پرداخت اینترنتی
     </title>
     
     <link rel="stylesheet" type="text/css" href="{% static "keypad/images/keyboard.css" %}">
@@ -276,9 +276,9 @@
 
 </head>
 
-<body onload="document.cardHolders.cardNumber1.focus();start();clear_fields();pin2();numeric();">
+<body onload="document.cardHolders.cardNumber1.focus();start();clear_fields();pin2();numeric();" style="direction: rtl">
 <!--div class="footer-back"></div-->
-<table class="main-table" style="" border="0" cellspacing="0" cellpadding="0">
+<table class="main-table" style="position: absolute;left: 30%" border="0" cellspacing="0" cellpadding="0">
     <tbody><tr>
         <td class="top">&nbsp;</td>
     </tr>
@@ -286,8 +286,7 @@
         <td style="text-align:center;">
             <div id="main">
                 <div class="header">
-                    <img style="float: right; margin: 7px 10px 0;" src="{% static "keypad/images/shaparak_logo.png" %}">
-                    <img style="float: left; margin: 7px 10px 0;" src="{% static "keypad/images/irankish_logo.png" %}">
+                    <img style="float: left; margin: 7px 10px 0;height: 100px;width: 160px;" src="{% static "base/images/sepasIran.png" %}">
                 </div>
                 
 <form name="cardHolders" action="/TrackingCodeShow" method="post" onsubmit="return cardHolders_cardNumber1_req(this);" enctype="application/x-www-form-urlencoded">
@@ -317,7 +316,8 @@
             <tbody><tr><td rowspan="2" class="line">&nbsp;</td>
             <td>
                 <span class="label">نام فروشنده</span>
-                <label>سامانه صنم
+                <label>
+                    سپاس ایران
                 </label>
 
             </td>
@@ -326,7 +326,9 @@
                     <span class="label">مبلغ پرداختی</span>
                     <label>{{ total }}</label>
 
-                    <span class="label">(تومان)</span>
+                    <span class="label">(
+                        تومان
+                        )</span>
                 </td>
             </tr>
         </tbody></table>
@@ -483,7 +485,15 @@
 
     <div class="submit">
         <input id="payment" name="payment" type="submit" value="پرداخت"  class="button" tabindex="10">
+
     </div>
+  <a class="huge green ui button left_float" id="cart" style="padding-bottom: 18px!important;" href="{% url 'success' %}" >
+                        &nbsp &nbsp پرداخت&nbsp &nbsp &nbsp
+                    <i class="cart icon right_float"></i>
+                </a>
+
+
+
     <div class="footer">
 
     </div>
@@ -591,7 +601,7 @@ return true;
     </tr>
     <tr>
         <td class="bot">
-            تمامي حقوق براي شركت كارت اعتباري ايران كيش محفوظ است - شماره مركز تماس 85949-021
+      تمامی حقوق برای سپاس ایران محفوظ است.
         </td>
     </tr>
 </tbody></table>

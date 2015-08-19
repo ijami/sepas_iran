@@ -7,6 +7,7 @@ class MyCronJob(CronJobBase):
     RUN_EVERY_MINS = 1 # every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'base.views' # a unique code
+
     def do(self):
         users = User.objects.all()
         #  tourists = Tourist.objects.all()
