@@ -13,4 +13,4 @@ class Message(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.sender.primary_user.username + ": " + self.text
+        return self.sender.primary_user.username + ": " + str(self.id)
