@@ -21,15 +21,57 @@
     </div>
     <br><br><br>
     <div class="ui right_float four cards rtl">
+        {% for item in service_providers %}
+            <div class="ui card rtl right_aligned">
+                <div class="image" style="height: 209px;">
+                    <img src="{% static 'home/images/airline.jpg' %}">
+                </div>
+                <div class="content">
+                    <a class="header">شاهین ایر</a>
 
+                    <div class="description">
+                        بهترین ایرلاین ممکن
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <div class="extra content">
+                            <button class="ui red button">غیر فعال</button>
+                            <button class="ui green button">فعال</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="ui card rtl right_aligned">
+            <div class="image">
+                <img src="{% static 'service/images/hotel.jpg' %}">
+            </div>
+            <div class="content">
+                <a class="header">تحلیلان هتل</a>
+
+                <div class="description">
+                    بهترین هتل در کل خاور میانه
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                    <div class="extra content">
+                        <button class="ui red button">غیر فعال</button>
+                        <button class="ui green button">فعال</button>
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="ui card rtl right_aligned">
             <div class="image" style="height: 209px;">
                 <img src="{% static 'home/images/airline.jpg' %}">
             </div>
             <div class="content">
                 <a class="header">شاهین ایر</a>
+
                 <div class="description">
-بهترین ایرلاین ممکن
+                    بهترین ایرلاین ممکن
                 </div>
             </div>
             <div class="extra content">
@@ -67,47 +109,9 @@
             </div>
             <div class="content">
                 <a class="header">شاهین ایر</a>
-                <div class="description">
-بهترین ایرلاین ممکن
-                </div>
-            </div>
-            <div class="extra content">
-                <a>
-                    <div class="extra content">
-                        <button class="ui red button">غیر فعال</button>
-                        <button class="ui green button">فعال</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="ui card rtl right_aligned">
-            <div class="image">
-                <img src="{% static 'service/images/hotel.jpg' %}">
-            </div>
-            <div class="content">
-                <a class="header">تحلیلان هتل</a>
 
                 <div class="description">
-                    بهترین هتل در کل خاور میانه
-                </div>
-            </div>
-            <div class="extra content">
-                <a>
-                    <div class="extra content">
-                        <button class="ui red button">غیر فعال</button>
-                        <button class="ui green button">فعال</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-    <div class="ui card rtl right_aligned">
-            <div class="image" style="height: 209px;">
-                <img src="{% static 'home/images/airline.jpg' %}">
-            </div>
-            <div class="content">
-                <a class="header">شاهین ایر</a>
-                <div class="description">
-بهترین ایرلاین ممکن
+                    بهترین ایرلاین ممکن
                 </div>
             </div>
             <div class="extra content">
@@ -145,47 +149,9 @@
             </div>
             <div class="content">
                 <a class="header">شاهین ایر</a>
-                <div class="description">
-بهترین ایرلاین ممکن
-                </div>
-            </div>
-            <div class="extra content">
-                <a>
-                    <div class="extra content">
-                        <button class="ui red button">غیر فعال</button>
-                        <button class="ui green button">فعال</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="ui card rtl right_aligned">
-            <div class="image">
-                <img src="{% static 'service/images/hotel.jpg' %}">
-            </div>
-            <div class="content">
-                <a class="header">تحلیلان هتل</a>
 
                 <div class="description">
-                    بهترین هتل در کل خاور میانه
-                </div>
-            </div>
-            <div class="extra content">
-                <a>
-                    <div class="extra content">
-                        <button class="ui red button">غیر فعال</button>
-                        <button class="ui green button">فعال</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-    <div class="ui card rtl right_aligned">
-            <div class="image" style="height: 209px;">
-                <img src="{% static 'home/images/airline.jpg' %}">
-            </div>
-            <div class="content">
-                <a class="header">شاهین ایر</a>
-                <div class="description">
-بهترین ایرلاین ممکن
+                    بهترین ایرلاین ممکن
                 </div>
             </div>
             <div class="extra content">
@@ -223,8 +189,9 @@
             </div>
             <div class="content">
                 <a class="header">شاهین ایر</a>
+
                 <div class="description">
-بهترین ایرلاین ممکن
+                    بهترین ایرلاین ممکن
                 </div>
             </div>
             <div class="extra content">
@@ -256,7 +223,45 @@
                 </a>
             </div>
         </div>
+        <div class="ui card rtl right_aligned">
+            <div class="image" style="height: 209px;">
+                <img src="{% static 'home/images/airline.jpg' %}">
+            </div>
+            <div class="content">
+                <a class="header">شاهین ایر</a>
 
+                <div class="description">
+                    بهترین ایرلاین ممکن
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                    <div class="extra content">
+                        <button class="ui red button">غیر فعال</button>
+                        <button class="ui green button">فعال</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="ui card rtl right_aligned">
+            <div class="image">
+                <img src="{% static 'service/images/hotel.jpg' %}">
+            </div>
+            <div class="content">
+                <a class="header">تحلیلان هتل</a>
 
+                <div class="description">
+                    بهترین هتل در کل خاور میانه
+                </div>
+            </div>
+            <div class="extra content">
+                <a>
+                    <div class="extra content">
+                        <button class="ui red button">غیر فعال</button>
+                        <button class="ui green button">فعال</button>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}

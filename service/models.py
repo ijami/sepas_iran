@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+import jdatetime
 from polymorphic.polymorphic_model import PolymorphicModel
 
 from base.models import City, SiteUser
@@ -19,10 +20,11 @@ class Service(PolymorphicModel):
     def get_exist():
         pass
 
-
-
     def get_type(self):
         pass
+
+    def is_exp(self):
+        return self.get_date() <= datetime.now().date()
 
     def __str__(self):
         return self.tag_line
@@ -67,11 +69,16 @@ class Flight(Service):
     def get_type(self):
         return 'f'
 
+
+    def get_persian_date(self):
+        return jdatetime.date.fromgregorian(date=self.date)
+
     def get_date(self):
         return self.date
 
     def get_city(self):
         return self.destination
+
 
 class Room(Service):
     start_date = models.DateField()
@@ -96,11 +103,18 @@ class Room(Service):
     def get_type(self):
         return 'r'
 
+
+    def get_persian_start_date(self):
+        return jdatetime.date.fromgregorian(date=self.start_date)
+    def get_persian_end_date(self):
+        return jdatetime.date.fromgregorian(date=self.end_date)
+
     def get_date(self):
         return self.start_date
 
     def get_city(self):
         return self.hotel.location.city
+
 
 class Tour(Service):
     travel_agency = models.ForeignKey(TravelAgency, related_name='tours')
@@ -132,11 +146,18 @@ class Tour(Service):
     def get_type(self):
         return 't'
 
+
+    def get_persian_going_date(self):
+        return jdatetime.date.fromgregorian(date=self.going_date)
+    def get_persian_return_date(self):
+        return jdatetime.date.fromgregorian(date=self.return_date)
+
     def get_date(self):
         return self.going_date
 
     def get_city(self):
         return self.destination
+
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)

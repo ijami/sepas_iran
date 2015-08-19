@@ -60,9 +60,9 @@ class ServiceProviderCreationForm(ModelForm):
     password2 = forms.CharField(max_length=100, label="تکرار گذرواژه", required=True,
                                 error_messages={'required': "پر کردن فیلد تکرار گذرواژه الزامی است"},
                                 widget=forms.PasswordInput(attrs={'placeholder': 'تکرار گذرواژه'}))
-    telephone = forms.CharField(max_length=20, label="شماره تلفن همراه", required=True,
+    telephone = forms.CharField(max_length=20, label="شماره تلفن", required=True,
                                 error_messages={'required': "پر کردن فیلد شماره تلفن الزامی است"},
-                                widget=forms.TimeInput(attrs={'placeholder': '09121234567'}))
+                                widget=forms.TimeInput(attrs={'placeholder': '02188226543'}))
     city = forms.ModelChoiceField(queryset=City.objects.all(), label="شهر", required=False,
                                   error_messages={'required': "پر کردن فیلد شهر الزامی است"})
     name = forms.CharField(max_length=100, label="نام شرکت", required=True,
@@ -159,10 +159,10 @@ class ServiceProviderCreationForm(ModelForm):
 
     def clean_telephone(self):
         number = self.cleaned_data['telephone']
-        if re.match('^\d{11,13}$', number):
+        if re.match('^\d{7,13}$', number):
             return number
         else:
-            raise forms.ValidationError("شماره موبایل وارد شده معتبر نیست", code="invalid mobile number")
+            raise forms.ValidationError("شماره تلفن وارد شده معتبر نیست", code="invalid mobile number")
 
     def save(self, commit=True):
         temp = super(ServiceProviderCreationForm, self).save(commit=False)
@@ -214,7 +214,8 @@ class ServiceProviderCreationForm(ModelForm):
             service_provider.has_restaurant = self.cleaned_data["has_restaurant"]
             service_provider.has_protection_system = self.cleaned_data["has_protection_system"]
             service_provider.has_photo_studio = self.cleaned_data["has_photo_studio"]
-            service_provider.has = self.cleaned_data["has_restaurant"]
+            service_provider.degree = self.cleaned_data["degree"]
+            service_provider.map_widget = self.cleaned_data['map_widget']
 
         elif service_type == 'airline':
             service_provider = AirLine()

@@ -44,6 +44,10 @@
             <h2>{{ name }}</h2>
             <h5>{{ tagline }}</h5>
 
+            <h5 style="display: inline-block">ارائه دهنده: </h5>
+            <span>
+                <a style="text-decoration: underline; color: blue" href="/service_provider/information/{{ provider.id }}">{{ provider }}</a>
+            </span>
 
 
 
@@ -68,11 +72,11 @@
                 {{ service.capacity }}
                 </div>
                 <br><br>
-                <div class="ui blue large label" style="margin-bottom: 3px;">
+                <div class="ui  large label" style="margin-bottom: 3px;">
                 تاریخ شروع:
                 {{ start_date }}
                 </div>
-                <div class="ui blue large label" style="margin-bottom: 3px;">
+                <div class="ui  large label" style="margin-bottom: 3px;">
                 تاریخ پایان:
                 {{ end_date }}
                 </div>
@@ -208,24 +212,24 @@
 
             {% elif type == "تور" %}
                 <div class="ui horizontal divider">مشخصات</div>
-                <div class="ui big label">
+                <div class="ui large label">
 از:
                 {{ service.origin.name }}
                 </div>
-                <div class="ui big label">
+                <div class="ui large label">
                 به:
                 {{ service.destination.name }}
                 </div>
-                <div class="ui big blue label">
+                <div class="ui large  label">
                 تاریخ رفت:
                 {{ start_date }}
                 </div>
-                <div class="ui big blue label">
+                <div class="ui large  label">
 تاریخ برگشت:
                 {{ end_date }}
                 </div>
 
-                <div class="ui big label">
+                <div class="ui large label">
                 نوع سفر:
                     {% if service.trans_type == 'plane' %}
                          هوایی
@@ -239,26 +243,26 @@
 
             {% elif type == "پرواز" %}
                 <div class="ui horizontal divider">مشخصات</div>
-                <div class="ui big label">
+                <div class="ui large label">
 از:
                 {{ service.origin.name }}
                 </div>
-                <div class="ui big label">
+                <div class="ui large label">
                 به:
                 {{ service.destination.name }}
                 </div>
                     {% if service.airplane %}
-                        <div class="ui big label">
-                        هواپیما: 
+                        <div class="ui large label">
+                        هواپیما:
                             {{ service.airplane }}
                         </div>
 
                     {% endif %}
-                <div class="ui big blue label">
+                <div class="ui large  label">
                 تاریخ :
                 {{ start_date }}
                 </div>
-                <div class="ui big blue label">
+                <div class="ui large  label">
                ساعت :
                 {{ service.time.hour }}:{{ service.time.minute }}
                 </div>
@@ -268,7 +272,7 @@
 
 
             <div class="ui horizontal divider">وضعیت</div>
-            {% if exist %}
+            {% if exist and not service.is_exp %}
                 <div class="ui small green label">موجود
                     <i class="large white checkmark box icon"></i>
                 </div>
@@ -281,31 +285,40 @@
                 {{ remain }}
                 </div>
             {% else %}
-                <i class="red remove circle icon"></i>
-                <i class="ui small black label">ناموجود</i>
+                <div class="ui small red label">
+                    <i class="black remove circle icon" style="margin-left: 10px;"></i>
+ناموجود</div>
             {% endif %}
 
             {% if service.description %}
             <div class="ui horizontal divider">توضیحات</div>
             <div class="ui segment">
-                {{ service.description }}
+                {{ service.description | linebreaks }}
             </div>
             {% endif %}
 
             <div class="ui horizontal divider">خرید</div>
 
-            <span>قیمت: </span>
+            <span>قیمت واحد: </span>
             <span class="off_price">{{ service.price }}</span>
         ریال
 {#            <div>#}
 {#                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8955192008875!2d51.48534099999998!3d35.72878800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQzJzQzLjYiTiA1McKwMjknMDcuMiJF!5e0!3m2!1sen!2sir!4v1438352009292" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>#}
 {#            </div>#}
-            <div class="ui big labeled left floated green icon button ">
+            <form action="{% url 'add_to_cart' %}" method="post" >
+                {% csrf_token %}
+                <input type="text" value="{{ service.sold_number }}" style="display: none" name="sn">
+                {% if not service.is_exp %}
+                    {% if exist %}
 
-                افزودن به سبد خرید
-             </a>
-                <i class="add to cart icon"></i>
-            </div>
+                    <button type="submit" class="ui big labeled left floated green icon button ">
+                    افزودن به سبد خرید
+                    <i class="add to cart icon"></i>
+                </button>
+                    {% endif %}
+
+                {% endif %}
+            </form>
         </div>
     </div>
 
@@ -319,10 +332,9 @@
 
         {% for comment in comments %}
             <div class="user_comment">
-                <div class="ui label" style="float: right">{{ comment.sender.name }} </div>
-                <div class="ui label" style="float: left">{{ comment.send_time }} </div>
-                <br><br>
-                <div class="ui segment">
+                <div class="ui orange label" style="float: right; margin-bottom: 2px;">{{ comment.sender }} </div>
+                <div class="ui label" style="background-color: cornflowerblue; float: left; margin-bottom: 2px;">{{ comment.send_time }} </div>
+                <div class="ui segment" style="clear: both; border: 2px dashed gold; background-color: ghostwhite">
                     <p>{{ comment.text | linebreaks }}</p>
                 </div>
             </div>

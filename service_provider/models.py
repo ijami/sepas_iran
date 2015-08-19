@@ -14,7 +14,8 @@ class ServiceProvider(SiteUser):
     def __str__(self):
         return self.name
 
-
+    def __str__(self):
+        return self.name
 
 
 class Hotel(ServiceProvider):
@@ -39,6 +40,7 @@ class Hotel(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'hotel',
             'image': self.image,
             'name': self.name,
@@ -65,11 +67,13 @@ class Hotel(ServiceProvider):
         }
         return context
 
+
 class AirLine(ServiceProvider):
     is_international = models.BooleanField()
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'airline',
             'image': self.image,
             'name': self.name,
@@ -86,6 +90,7 @@ class TravelAgency(ServiceProvider):
 
     def get_fields(self):
         context = {
+            'super_type': 'service_provider',
             'type': 'agency',
             'image': self.image,
             'name': self.name,

@@ -21,8 +21,10 @@ class SiteUser(PolymorphicModel):
         pass
 
     def get_cart_num(self):
-        return self.cart.items.count()
+        return 0
 
+    def __str__(self):
+        return self.primary_user.get_short_name()
 
 class Location(models.Model):
     city = models.ForeignKey('City', related_name='locations')
@@ -42,4 +44,5 @@ class City(models.Model):
 
 class CityCollection(models.Model):
     name = models.CharField(max_length=100)
+
 

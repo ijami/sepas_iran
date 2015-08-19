@@ -8,16 +8,16 @@
     <script src="{% static 'management/javascript/area_report.js' %}"></script>
 {% endblock %}
 {% block nav_item %}
-    گزارش دوره‌ای
+نمودار محبوبیت گردشگری استان‌ها
 {% endblock %}
 {% block menu_content %}
-    <h2>گزارش دوره‌ای سامانه سپاس ایران</h2>
+    <h2>گزارش دوره‌ای محبوبیت گردشگری استان‌های ایران در سامانه سپاس‌ایران</h2>
     <div class="ui tow column grid">
 
         <div class="four wide column">
             <form class="ui form rtl" action="{% url 'map_report' %}" method="post">
                 {% csrf_token %}
-                <h3>ویژگی کاربران مشمول گزارش</h3>
+                <h3>تعیین ویژگی‌های گزارش</h3>
                 {% for field in form %}
                     <div class="tow field">
                         <div class="field{% if field.errors %}error{% endif %}">
@@ -38,7 +38,7 @@
                        value="دریافت گزارش">
             </form>
         </div>
-        <div class="twelve wide column" id="chart_container" dir="ltr">
+        <div class="twelve wide column" id="chart_container" dir="ltr" style="height: 400px">
         </div>
     </div>
     <style type="text/css">
