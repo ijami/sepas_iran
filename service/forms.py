@@ -302,7 +302,7 @@ class CapacityAddingForm(forms.Form):
 
 class SearchServiceListForm(forms.Form):
     price_range = forms.CharField(max_length=30, label="قیمت",
-    widget=forms.TextInput(attrs={'type': 'text', 'id':'amount' , 'style': 'border:0; color:#777777; padding:12; font-size:15px; width: 220px; '}))
+    widget=forms.TextInput(attrs={'type': 'text', 'id':'amount' , 'style': 'border:0; color:#777777; padding:12; font-size:15px; width: 240px; '}))
 
     service_provider = forms.ModelChoiceField(queryset=ServiceProvider.objects.all(), label='گردشساز: ', required=False)
     travel_agency = forms.ModelChoiceField(queryset=TravelAgency.objects.all(), required=False)

@@ -7,8 +7,8 @@ from polymorphic.polymorphic_model import PolymorphicModel
 from base.models import City, SiteUser
 from service_provider.models import AirLine, Hotel, TravelAgency
 from tourist.models import Tourist
-
-
+# from sale.models import ServiceItem, Factor
+# from tourist.views.crm_function import sold_count
 class Service(PolymorphicModel):
     price = models.IntegerField()
     capacity = models.IntegerField()
@@ -17,7 +17,7 @@ class Service(PolymorphicModel):
     image = models.ImageField(upload_to='base/service_images/', blank=True, null=True)
 
     @staticmethod
-    def get_exist(self):
+    def get_exist():
         pass
 
     def get_type(self):
@@ -31,7 +31,6 @@ class Service(PolymorphicModel):
 
     def get_date(self):
         pass
-
 
 
 class Comment(models.Model):
@@ -51,10 +50,12 @@ class Flight(Service):
     flight_number = models.CharField(max_length=20)
     airline = models.ForeignKey(AirLine, related_name='flights')
     time = models.DateTimeField()
+    type = models.CharField(max_length=10, default="Flight")
 
     @staticmethod
-    def get_exist(self):
-        return Flight.objects.filter(time__lt=(datetime.now()))
+    def get_exist():
+        return Flight.objects.filter(time__gt=(datetime.now()))
+
     origin = models.ForeignKey('base.City', related_name='flight_departures')
     destination = models.ForeignKey('base.City', related_name='flight_arrivals')
     date = models.DateField()
@@ -62,8 +63,8 @@ class Flight(Service):
     airplane = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.airline.name + " : " +  " پرواز شماره "  + self.flight_number + "  " + " از " + self.origin.name + " به " \
-               + self.destination.name
+
+        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به " \
 
     def get_type(self):
         return 'f'
@@ -87,13 +88,14 @@ class Room(Service):
     has_television = models.BooleanField(default=False)
     has_telephone = models.BooleanField(default=False)
     has_bathroom = models.BooleanField(default=False)
+    type = models.CharField(max_length=10, default="Room")
 
     def get_city(self):
         return self.hotel.location.city
 
     @staticmethod
-    def get_exist(self):
-        return Room.objects.filter(time__lt=(datetime.now()))
+    def get_exist():
+        return Room.objects.filter(time__gt=(datetime.now()))
 
     def __str__(self):
         return self.hotel.name + ": " + "اتاق " + str(self.number_of_bed) + " تخته "
@@ -130,14 +132,16 @@ class Tour(Service):
 
     tour_guide_name = models.CharField(max_length=100)
 
+    type = models.CharField(max_length=10, default="Tour")
+
     @staticmethod
-    def get_exist(self):
-        return Tour.objects.filter(time__lt=(datetime.now()))
+    def get_exist():
+        return Tour.objects.filter(return_date__gt=datetime.now())
 
     # tour_guide_name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.travel_agency.name + ": " + " از "  + self.origin.name + " به " + self.destination.name
+        return self.travel_agency.name + ": " + " از " + self.origin.name + " به " + self.destination.name
 
     def get_type(self):
         return 't'
