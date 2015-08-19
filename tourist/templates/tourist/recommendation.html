@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<div style="direction: rtl;">
+
+    سلام گردشگر گرامی
+    {{ tourist.primary_user.first_name }} {{ tourist.primary_user.last_name }}
+    ، برای شما پیشنهاد های ویژه ای داریم که در جدول زیر آورده شده است.
+    <br><br>
+    برای اطلاعات بیشتر بر روی لینک خدمت مورد نظر کلیک نمایید
+    <br><br>
+    <br><br>
+    <table style="width:100%">
+        <tr>
+            <td>ردیف</td>
+            <td>شرکت ارائه دهنده</td>
+            <td>مقصد</td>
+            <td>توضیح مختصر</td>
+            <td>تاریخ اجرا</td>
+            <td>قیمت</td>
+            <td>لینک توضیحات بیشتر</td>
+        </tr>
+        {% for service in recommendations reversed %}
+            {% if forloop.counter < 6 %}
+                {% if service.get_type == "r" %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ service.airline.name}}</td>
+                        <td>{{service.get_city}}</td>
+                        <td>{{ service.tag_line}}</td>
+                        <td>{{service.get_date}}</td>
+                        <td>{{ service.price}}</td>
+                        <td>{{service.sold_number}}</td>
+                    </tr>
+                {% endif %}
+                {% if service.get_type == "t" %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{service.travel_agency.name}}   </td>
+                        <td>{{service.get_city}}   </td>
+                        <td>{{service.tag_line}}   </td>
+                        <td>{{service.get_date}}   </td>
+                        <td>{{service.price}}    </td>
+                        <td>{{service.sold_number}}   </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
