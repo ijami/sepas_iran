@@ -7,7 +7,12 @@
 {% block menu_content %}
     {% for complain in complains_list %}
         <div class="ui inverted segment" style="background-color: #f0f0f0">
+            {% if complain.answer %}
             <div class="sent message">
+            {% else %}
+            <div class="received message">
+            {% endif %}
+
                 <div class="right floated metadata">
                     <div class="message_header">
                         <h1 class="ui header ">{{ complain.title }}</h1>
@@ -32,6 +37,14 @@
                 <div class="message_text">
                     {{ complain.text | linebreaks }}
                 </div>
+                {% if complain.answer %}
+                    <div class="ui divider"></div>
+                    <div class="message_text">
+                        <b>جواب:</b>
+                        <br>
+                        {{ complain.answer | linebreaks }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

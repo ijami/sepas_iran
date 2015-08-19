@@ -49,11 +49,11 @@
                                 id="button_{{ service.id }}">شکایت
                         </button>
                         {% else %}
-                            <button class="ui orange button but_complain"
+                            <a class="ui orange button"
                                     style="margin-right: 1px; border-radius: 3px; font-size: 13px"
-                                    onclick="{% url 'tourist_complains' %}">
+                                    href="{% url 'tourist_complains' %}">
                                 پیگیری شکایت
-                            </button>
+                            </a>
                         {% endif %}
                     </div>
                 </div>
