@@ -88,7 +88,7 @@
                 {{ provider.location.address }}
                 </div>
                 <div class="ui horizontal divider">امکانات</div>
-                <a class="ui small{% if service.has_restaurant %}
+                <a class="ui small{% if provider.has_restaurant %}
                             green
                         {% else %}
                             red
@@ -96,7 +96,7 @@
                         <i class="large food icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         رستوران
                     </a>
-                    <a class="ui small{% if service.has_parking %}
+                    <a class="ui small{% if provider.has_parking %}
                             green
                         {% else %}
                             red
@@ -104,7 +104,7 @@
                         <i class="large car icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         پارکینگ
                     </a>
-                    <a class="ui small{% if service.has_internet %}
+                    <a class="ui small{% if provider.has_internet %}
                             green
                         {% else %}
                             red
@@ -112,23 +112,24 @@
                         <i class="large wifi icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         اینترنت
                     </a>
-                    <a class="ui small{% if service.has_pool %}
+                    <a class="ui small{% if provider.has_pool %}
                             green
                         {% else %}
                             red
                     {% endif %}label" style="margin-bottom: 5px;">
                         <i class="large life ring icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         استخر
+                        {{ provider.has_conference_hall }}
                     </a>
-                    <a class="ui small{% if service.has_conference_hall %}
-                            green
+                    <a class="ui small{% if provider.has_conference_hall %}
+                             green
                         {% else %}
-                            red
+                             red
                     {% endif %}label" style="margin-bottom: 5px;">
                         <i class="large desktop icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         سالن کنفرانس
                     </a>
-                    <a class="ui small{% if service.has_fire_extinguisher %}
+                    <a class="ui small{% if provider.has_fire_extinguisher %}
                             green
                         {% else %}
                             red
@@ -136,7 +137,7 @@
                         <i class="large fire extinguisher icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         سیستم اطفاء حریق
                     </a>
-                    <a class="ui small{% if service.has_sport_salloon %}
+                    <a class="ui small{% if provider.has_sport_salloon %}
                             green
                         {% else %}
                             red
@@ -144,7 +145,7 @@
                         <i class="large soccer icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         سالن ورزشی
                     </a>
-                    <a class="ui small{% if service.has_health_center %}
+                    <a class="ui small{% if provider.has_health_center %}
                             green
                         {% else %}
                             red
@@ -152,7 +153,7 @@
                         <i class="large treatment icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         کلینیک درمانی
                     </a>
-                    <a class="ui small{% if service.has_coffeeshop %}
+                    <a class="ui small{% if provider.has_coffeeshop %}
                             green
                         {% else %}
                             red
@@ -160,7 +161,7 @@
                         <i class="large coffee icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         کافی شاپ
                     </a>
-                    <a class="ui small{% if service.has_emergency %}
+                    <a class="ui small{% if provider.has_emergency %}
                             green
                         {% else %}
                             red
@@ -168,7 +169,7 @@
                         <i class="large emergency icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         اورژانس
                     </a>
-                    <a class="ui small{% if service.has_jungle %}
+                    <a class="ui small{% if provider.has_jungle %}
                             green
                         {% else %}
                             red
@@ -176,7 +177,7 @@
                         <i class="large tree icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         فضای سبز
                     </a>
-                    <a class="ui small{% if service.has_protection_system %}
+                    <a class="ui small{% if provider.has_protection_system %}
                             green
                         {% else %}
                             red
@@ -184,7 +185,7 @@
                         <i class="large protect icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         سیستم یپشرفته امنیتی
                     </a>
-                    <a class="ui small{% if service.has_shop_center %}
+                    <a class="ui small{% if provider.has_shop_center %}
                             green
                         {% else %}
                             red
@@ -192,7 +193,7 @@
                         <i class="large shop icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         مرکز خرید
                     </a>
-                    <a class="ui small{% if service.has_gamenet %}
+                    <a class="ui small{% if provider.has_gamenet %}
                             green
                         {% else %}
                             red
@@ -200,7 +201,7 @@
                         <i class="large game icon" style="margin-left: 10px; margin-right: 0; margin-bottom: 0;"></i>
                         گیم نت
                     </a>
-                    <a class="ui small{% if service.has_photo_studio %}
+                    <a class="ui small{% if provider.has_photo_studio %}
                             green
                         {% else %}
                             red
@@ -308,13 +309,18 @@
             <form action="{% url 'add_to_cart' %}" method="post" >
                 {% csrf_token %}
                 <input type="text" value="{{ service.sold_number }}" style="display: none" name="sn">
-                {% if not service.is_exp and exist %}
-
-                    <button type="submit" class="ui big labeled left floated green icon button ">
-                    افزودن به سبد خرید
-                    <i class="add to cart icon"></i>
-                </button>
-
+                {% if not service.is_exp and exist  %}
+                    {% if tourist %}
+                        <button type="submit" class="ui big labeled left floated green icon button ">
+                        افزودن به سبد خرید
+                        <i class="add to cart icon"></i>
+                        </button>
+                    {% else %}
+                        <div class="ui big labeled left floated grey icon button ">
+                        افزودن به سبد خرید(نیازمند ورود)
+                        <i class="add to cart icon"></i>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </form>
         </div>
