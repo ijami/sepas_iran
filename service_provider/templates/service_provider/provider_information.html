@@ -14,6 +14,16 @@
             <div class=" twelve wide column right_float" style="background-color: white; margin: 25px auto!important;
              box-shadow: honeydew; ">
                 <div class="ui container segment right_aligned" style="border: none; box-shadow: none">
+
+                <div class="ui small breadcrumb">
+                  <a class="section" href="{% url 'home' %}">خانه</a>
+                  <i class="left chevron icon divider"></i>
+                  <div class="active section">مشخصات خدمت ساز</div>
+                </div>
+
+                <div class="ui divider"></div>
+
+
     <div class="ui three column centered grid" id="provider_profile">
        <div class="rtl right aligned column" id="profpic_container">
            {% if context.image %}

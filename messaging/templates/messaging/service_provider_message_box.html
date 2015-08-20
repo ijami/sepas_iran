@@ -1,0 +1,103 @@
+{% extends 'service_provider/provider_dashbord_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'messaging/css/message_box.css' %}"/>
+{% endblock %}
+
+{% block title %}
+<title>صندوق پیامها</title>
+{% endblock %}
+
+{% block menu_content %}
+    <div class="ui inverted segment" style="background-color: #f0f0f0">
+        {% for message in new_messages %}
+            {% if message.sender == user %}
+            <div class="sent message">
+            {% elif message.receiver == user %}
+            <div class="received message">
+            {% endif %}
+                <div class="right floated metadata">
+
+                    <div class="message_header">
+                        {% if message.sender == user %}
+                        <h1 class="ui header ">{{message.header}}</h1>
+                        {% elif message.receiver == user %}
+                        <h1 class="ui header "  style="color: red">{{message.header}}</h1>
+                        {% endif %}
+                    </div>
+                    <div class="mailer">
+                        <div class="ui tiny header">
+                            {% if message.receiver == user %}
+                            <i class="ui mail icon"></i>
+                            {% elif message.sender == user %}
+                            <i class="ui send icon"></i>
+                            {% endif %}
+                            <div class="sub header">
+                                {% if message.receiver == user %}
+                                {{message.sender.primary_user.first_name}} {{message.sender.primary_user.last_name}}
+                                {% elif message.sender == user %}
+                                {{message.receiver.primary_user.first_name}} {{message.receiver.primary_user.last_name}}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui tiny header">
+                        <i class="ui calendar icon"></i>
+                        <div class="sub header">
+                            {{message.create_date}}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    <p>
+                        {{message.text}}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        {% for messag in read_messages %}
+            {% if messag.sender == user %}
+            <div class="sent message">
+            {% elif messag.receiver == user %}
+            <div class="received message">
+            {% endif %}
+                <div class="right floated metadata">
+
+                    <div class="message_header">
+                        <h1 class="ui header ">{{messag.header}}</h1>
+                    </div>
+                    <div class="mailer">
+                        <div class="ui tiny header">
+                            {% if messag.receiver == user %}
+                            <i class="ui mail icon"></i>
+                            {% elif messag.sender == user %}
+                            <i class="ui send icon"></i>
+                            {% endif %}
+                            <div class="sub header">
+                                {% if messag.receiver == user %}
+                                {{messag.sender.primary_user.first_name}} {{messag.sender.primary_user.last_name}}
+                                {% elif messag.sender == user %}
+                                {{messag.receiver.primary_user.first_name}} {{messag.receiver.primary_user.last_name}}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui tiny header">
+                        <i class="ui calendar icon"></i>
+                        <div class="sub header">
+                            {{messag.create_date}}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    <p>
+                        {{messag.text}}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
