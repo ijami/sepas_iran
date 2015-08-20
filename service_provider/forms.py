@@ -94,8 +94,6 @@ class ServiceProviderCreationForm(ModelForm):
                              error_messages={'required': "انتخاب نوع سرویس الزامی است",
                                              'invalid_choice': "انتخاب نوع سرویس الزامی است"})
 
-    accept_terms = forms.BooleanField(label="با قوانین سپاس ایران موافقم", )
-
     # hotel
     degree = forms.IntegerField(label="درجه هتل", required=False,
                                 error_messages={'required': "پر کردن فیلد درجه هتل الزامی است"},
