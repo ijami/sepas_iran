@@ -7,7 +7,7 @@ __author__ = 'MJR'
 
 
 def information(request, id):
-    service = Service.objects.filter(sold_number=id)
+    service = Service.objects.get(sold_number=id)
     items = ServiceItem.objects.filter(service=service, cart=None)
     list = []
     for item in items:

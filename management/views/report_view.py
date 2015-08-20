@@ -30,7 +30,7 @@ class IntervalReportView(FormView):
             for x in service_list:
                 if x.service.get_date() == single_date:
                     print(x.service.get_date())
-                    print(jdatetime.datetime.fromgregorian(date=x.service.get_date())).strftime("%Y/%m/%d")
+                    print(jdatetime.date.fromgregorian(date=x.service.get_date()).strftime("%Y/%m/%d"))
                     if kind == 2:
                         val += x.number
                     else:

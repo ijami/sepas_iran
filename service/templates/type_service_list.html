@@ -42,17 +42,11 @@
     <div class="body">
         <div id="main_container" class="center aligned">
             <div class="list_container">
-                
                 <br><br>
                 <div class="ui four cards">
                     {% for service, sold in service_sold %}
-                    {% include 'base/service_show.html'%}
-
+                        {% include 'base/service_show.html'%}
                     {% endfor %}
-
-
-
-
                 </div>
             </div>
             <div class="search_container">
