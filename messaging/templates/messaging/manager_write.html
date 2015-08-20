@@ -1,0 +1,28 @@
+{% extends 'management/dashboard.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>
+ایجاد پیام
+</title>
+{% endblock %}
+{% block menu_content %}
+    <form method="post" action="{% url 'manager_write' %}" class="ui form" style="height: auto!important;" id="new_message_form">
+        {% csrf_token %}
+
+        {{form.receiver}}
+        <br>
+        <!--<input type="text" style="margin-bottom: 5px;" placeholder="عنوان پیام">-->
+        {{form.header}}
+        <div class="field">
+            <!--<textarea placeholder="متن پیام را وارد کنید" style="height: 215px;"></textarea>-->
+            {{form.text}}
+        </div>
+
+        <div class="ui left floated buttons">
+            <button class="ui red button" type="submit"  value="انصراف"><a href="{% url 'manager_message_box' %}">انصراف</a></button>
+            <div class="or" data-text="یا"></div>
+            <input class="ui positive button" type="submit"  value="ارسال"/>
+        </div>
+    </form>
+{% endblock %}

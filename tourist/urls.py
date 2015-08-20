@@ -1,4 +1,5 @@
 from sepas_iran import settings
+from tourist.views.complains import ComplainList
 
 __author__ = 'Ehsan'
 
@@ -16,5 +17,6 @@ urlpatterns = [
     url(r'^register/$', 'tourist.views.register_view.register', name='register_tourist'),
     url(r'^report$', 'tourist.views.report_view.reprot_view', name='report'),
     url(r'^service_list$', 'tourist.views.service_list.service_list', name='service_list'),
+    url(r'^tourist_complains', ComplainList.as_view(), name='tourist_complains'),
     url(r'^information/(\d+)$', 'tourist.views.profile_view.information', name='tourist_information')
 ]

@@ -9,20 +9,20 @@ from django.contrib.auth.models import User
 from tourist.models import Tourist
 from service.models import Flight, Comment
 from sale.views.finance import tourist_services
-from service.models import Service, Tour,Room
+from service.models import Service, Tour, Room
 from base.models import City
-from sale.models import ServiceItem , Factor
+from sale.models import ServiceItem, Factor
 from sale.views.finance import tourist_services_price
 from service_provider.models import ServiceProvider
 # Create your views here.
 
 def sold_count(service_sold_number):
-        service=Service.objects.filter(sold_number=service_sold_number)
-        factors = Factor.objects.all()
-        counter =0
-        for factor in factors:
-             counter += ServiceItem.objects.filter(factor=factor).filter(service=service).__len__()
-        return counter
+    service = Service.objects.filter(sold_number=service_sold_number)
+    factors = Factor.objects.all()
+    counter = 0
+    for factor in factors:
+        counter += ServiceItem.objects.filter(factor=factor).filter(service=service).__len__()
+    return counter
 
 
 def loyalty(tourist_id):
@@ -33,8 +33,7 @@ def loyalty(tourist_id):
     time_now = datetime.now().date().year * 365 + datetime.now().date().month * 30 + datetime.now().date().day
     time_joined = tourist.date_joined.year * 365 + tourist.date_joined.month * 30 + tourist.date_joined.day
     # print("\ntime joining   " + str(time_now - time_joined) + "\n")
-    return time_now - time_joined+tourist_comments_count(tourist_id)*100+tourist_services_price(tourist_id)
-
+    return time_now - time_joined + tourist_comments_count(tourist_id) * 100 + tourist_services_price(tourist_id)
 
 
 def tourist_comments_count(tourist_id):
@@ -58,7 +57,7 @@ def send_recommended_mail(user_id):
             .filter(id__in=Flight.objects.all().values_list('id', flat=True))
         try:
             flights_exist = Flight.get_exist()
-            print(" ^^^^  "+str(flights_exist.__len__())+"\n")
+            # print(" ^^^^  " + str(flights_exist.__len__()) + "\n")
         except Tourist.DoesNotExist:
             return Http404
 
@@ -68,14 +67,14 @@ def send_recommended_mail(user_id):
                 cities = City.objects.filter(map_code=flight.destination.map_code)
                 for tour_city in cities:
                     if flights_exist.filter(destination=tour_city):
-                        flight_its =flights_exist.filter(destination=tour_city)
+                        flight_its = flights_exist.filter(destination=tour_city)
                         flight_max = None
                         for flight_it in flight_its:
-                            if(flight_max):
-                                if(sold_count(flight_it.sold_number)>= sold_count(flight_max.sold_number)):
-                                    flight_max= flight_it
+                            if (flight_max):
+                                if (sold_count(flight_it.sold_number) >= sold_count(flight_max.sold_number)):
+                                    flight_max = flight_it
                             else:
-                                flight_max =flight_it
+                                flight_max = flight_it
                         recommended.append(flight_max)
 
                         # recommended.append(flights_exist.filter(destination=tour_city).latest('sold_number'))
@@ -97,14 +96,14 @@ def send_recommended_mail(user_id):
                 cities = City.objects.filter(map_code=tour.destination.map_code)
                 for tour_city in cities:
                     if tours_exist.filter(destination=tour_city):
-                        tour_its =tours_exist.filter(destination=tour_city)
+                        tour_its = tours_exist.filter(destination=tour_city)
                         tour_max = None
                         for tour_it in tour_its:
-                            if(tour_max):
-                                if(sold_count(tour_it.sold_number)>= sold_count(tour_max.sold_number)):
-                                    tour_max= tour_it
+                            if (tour_max):
+                                if (sold_count(tour_it.sold_number) >= sold_count(tour_max.sold_number)):
+                                    tour_max = tour_it
                             else:
-                                tour_max =tour_it
+                                tour_max = tour_it
                         recommended.append(tour_max)
                         # recommended.append(tours_exist.filter(destination=tour_city).latest('sold_number'))
 
@@ -112,22 +111,22 @@ def send_recommended_mail(user_id):
 
 
 def feedback_count(service_provider):
-
     # service_provider = ServiceProvider.objects.filter(id=service_provider_id)
-    feedback=0
+    feedback = 0
 
-    flights=Flight.objects.filter(airline__primary_user__id=service_provider.primary_user.id)
+    flights = Flight.objects.filter(airline__primary_user__id=service_provider.primary_user.id)
     for flight in flights:
-        feedback+= Comment.objects.filter(service=flight).__len__()
+        feedback += Comment.objects.filter(service=flight).__len__()
 
-    rooms=Room.objects.filter(hotel__primary_user__id=service_provider.primary_user.id)
+    rooms = Room.objects.filter(hotel__primary_user__id=service_provider.primary_user.id)
     for room in rooms:
-        feedback+= Comment.objects.filter(service=room).__len__()
+        feedback += Comment.objects.filter(service=room).__len__()
 
-    tours=Tour.objects.filter(travel_agency__primary_user__id=service_provider.primary_user.id)
+    tours = Tour.objects.filter(travel_agency__primary_user__id=service_provider.primary_user.id)
     for tour in tours:
-        feedback+= Comment.objects.filter(service=tour).__len__()
+        feedback += Comment.objects.filter(service=tour).__len__()
     return feedback
+
 #
 # def send_news():
 #     tourists = Tourist.objects.all()

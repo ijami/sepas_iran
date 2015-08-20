@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import FormView
 
 from management.forms import AdvertiseForm
@@ -19,9 +19,10 @@ class AdvertiseView(FormView):
         # print(adds)
         for index, add in adds:
             AdvertiseBox.load().set_add(index, add)
+
         # print('cheeeel')
         # print(str(AdvertiseBox.load()))
-        return HttpResponse('success')
+        return HttpResponseRedirect(SITE_URL)
 
     def get_initial(self):
         adv = AdvertiseBox.load()

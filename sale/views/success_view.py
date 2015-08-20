@@ -17,9 +17,12 @@ def success_view(request):
     factor.tourist = tourist
     factor.create_date = str(datetime.datetime.now())
     factor.save()
+    d = 0
     for si in cart.items.all():
         si.cart = None
         si.factor = factor
+        si.size = d;
+        d += 1;
         si.save()
         url = 'http://localhost:8888/change_cap'
         values = {
@@ -30,7 +33,6 @@ def success_view(request):
         binary_data = data.encode('utf-8')
         sms_req = urllib.request.Request(url, binary_data)
         sms_response = urllib.request.urlopen(sms_req)
-
-    factorNum = Factor.objects.all().count()
+    factorNum = len(Factor.objects.filter(tourist=tourist))
     serviceItems = ServiceItem.objects.filter(factor=factor)
     return render(request, 'sale/success.html', {'serviceItems': serviceItems,'factorNum': factorNum})

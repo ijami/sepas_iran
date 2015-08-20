@@ -1,0 +1,49 @@
+{% extends 'management/dashboard.html' %}
+{% load static %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'messaging/css/message_box.css' %}"/>
+{% endblock %}
+
+{% block nav_item %}
+    بایگانی شکایات
+{% endblock %}
+
+{% block menu_content %}
+    {% for complain in complains_list %}
+        <div class="ui inverted segment" style="background-color: #f0f0f0">
+            <div class="sent message" style="border-radius: 5px;">
+                <div class="right floated metadata">
+                    <div class="message_header">
+                        <h1 class="ui header ">{{ complain.title }}</h1>
+                    </div>
+                    <div class="mailer">
+                        <div class="ui tiny header">
+
+                            <div class="sub header" style="color: darkgreen;">
+شاکی:
+                                {{ complain.service_item.factor.tourist }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui tiny header">
+
+                        <div class="sub header">
+                            {{ complain.service_item.service }}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    {{ complain.text | linebreaks }}
+                </div>
+                <div class="ui divider"></div>
+                <div class="message_text">
+                    <b>جواب:</b>
+
+                    {{ complain.answer | linebreaks }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

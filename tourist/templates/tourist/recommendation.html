@@ -1,3 +1,4 @@
+{% load tourist_extra %}
 <!DOCTYPE html>
 <head>
     <style rel="stylesheet">
@@ -147,7 +148,7 @@
                         <td>{{ service.tag_line }}</td>
                         <td>{{ service.get_date }}</td>
                         <td>{{ service.price }}</td>
-                        <td>{{ service.sold_number }}</td>
+                        <td><a href="http://localhost:8000/sale/service/{{ service.sold_number }}">localhost:8000/sale/service/{{ service.sold_number }}</a></td>
                     </tr>
                 {% endif %}
                 {% if service.get_type == "t" %}
@@ -156,9 +157,9 @@
                         <td>{{ service.travel_agency.name }}   </td>
                         <td>{{ service.get_city }}   </td>
                         <td>{{ service.tag_line }}   </td>
-                        <td>{{ service.get_date }}   </td>
+                        <td>{{ times|lookup:forloop.counter0 }}   </td>
                         <td>{{ service.price }}    </td>
-                        <td>{{ service.sold_number }}   </td>
+                        <td><a href="http://localhost:8000/sale/service/{{ service.sold_number }}">localhost:8000/sale/service/{{ service.sold_number }}</a> </td>
                     </tr>
                 {% endif %}
             {% endif %}

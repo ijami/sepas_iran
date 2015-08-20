@@ -55,7 +55,7 @@ def show_type_service_list_view(request, type):
                     service = service.filter(date__lte=end_date)
 
             elif type == 'room':
-                service = Room.objects.filter(price__lte=rng[0], price__gte=rng[1], hotel__location__city=destination, start_date__lte=start_date, end_date__gte=end_date)
+                service = Room.objects.filter(price__lte=rng[0], price__gte=rng[1])
 
                 if origin != None:
                     # print('origin')
@@ -65,10 +65,10 @@ def show_type_service_list_view(request, type):
                     service = service.filter(destination__name=destination.name)
                 if start_date != None:
                     # print(start_date)
-                    service = service.filter(going_date__gte=start_date)
+                    service = service.filter(start_date__gte=start_date)
                 if end_date != None:
                     # print(end_date)
-                    service = service.filter(return_date__lte=end_date)
+                    service = service.filter(end_date__lte=end_date)
         else:
             return HttpResponse(form.errors)
 
@@ -111,43 +111,3 @@ def show_type_service_list_view(request, type):
 
 
         })
-
-
-def show_service_list_view(request):
-
-    service = []
-    service.append(Tour.objects.all())
-    if service :
-        max_price = Tour.objects.all().latest('price')
-
-
-    flight = Flight.objects.all()
-
-
-    if flight :
-        service.append(flight)
-        if max_price:
-            max_price = Flight.objects.all().latest('price') if (Flight.objects.all().latest('price').price > max_price.price) else max_price
-        else :
-            max_price = Flight.objects.all().latest('price')
-
-
-    room = Room.objects.all()
-
-
-    if room :
-        service.append(room)
-        if max_price:
-            max_price = Room.objects.all().latest('price') if (Room.objects.all().latest('price').price > max_price.price) else max_price
-        else :
-            max_price = Room.objects.all().latest('price')
-
-
-    return render(request, 'service_list.html', {
-        'services': service,
-        'max_price': max_price,
-        'Tour': Tour,
-        'Flight': Flight,
-        'Room': Room
-
-    })

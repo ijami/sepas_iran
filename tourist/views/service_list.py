@@ -8,7 +8,7 @@ from base.views.decorators import tourist_required
 
 @tourist_required()
 def service_list(request):
-    print("salam")
+    # print("salam")
     tourist = request.user.site_user
     item_list = []
     factors = Factor.objects.filter(tourist=tourist).all()
@@ -17,6 +17,7 @@ def service_list(request):
         for i in items:
             item_list.append(i)
     for f in item_list:
-        print(f)
+        # print(f)
+        pass
     context = {'services': item_list}
     return render(request, 'tourist/services.html', context)

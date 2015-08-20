@@ -37,7 +37,7 @@ class IntervalReportView(FormView):
                         val += x.number * x.service.price
             chart_values.append([jdatetime.datetime.fromgregorian(date=single_date).strftime("%Y/%m/%d"), val])
 
-        return render(self.request, 'management/area_report.html', {'form': form, 'values': chart_values})
+        return render(self.request, 'management/area_report.html', {'form': form, 'values': chart_values, 'kind': kind})
 
 
 class PieReportView(FormView):

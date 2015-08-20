@@ -1,3 +1,5 @@
+from management.models import AdvertiseBox
+
 __author__ = 'Mohsen'
 from django.shortcuts import render
 from service.models import Service, Tour
@@ -5,7 +7,7 @@ from tourist.views.crm_function import sold_count
 from tourist.views.crm_function import send_recommended_mail
 
 def home(request):
-    new_services = Service.objects.all()[0:5]
+    new_services = Service.objects.all().order_by('-id')[0:5]
 
     new_solds = []
     for srv in new_services:
@@ -30,4 +32,5 @@ def home(request):
             pass
     return render(request, 'base/home.html',{
         'new_services': zip(new_services, new_solds),
+        'pics': AdvertiseBox.load()
     })
