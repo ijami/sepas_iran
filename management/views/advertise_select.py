@@ -16,11 +16,11 @@ class AdvertiseView(FormView):
     def form_valid(self, form):
         data = form.cleaned_data
         adds = [('add{}'.format(i - 1), data.get('add{}'.format(i), '')) for i in range(1, 6)]
-        print(adds)
+        # print(adds)
         for index, add in adds:
             AdvertiseBox.load().set_add(index, add)
-        print('cheeeel')
-        print(str(AdvertiseBox.load()))
+        # print('cheeeel')
+        # print(str(AdvertiseBox.load()))
         return HttpResponse('success')
 
     def get_initial(self):

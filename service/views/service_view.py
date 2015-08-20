@@ -26,48 +26,48 @@ def show_type_service_list_view(request, type):
             if type == 'tour':
                 service = Tour.objects.filter(price__lte=rng[0], price__gte=rng[1])
                 if origin != None:
-                    print('origin')
+                    # print('origin')
                     service = service.filter(origin__name=origin.name)
                 if destination != None:
-                    print('destination')
+                    # print('destination')
                     service = service.filter(destination__name=destination.name)
                 if start_date != None:
-                    print(start_date)
+                    # print(start_date)
                     service = service.filter(going_date__gte=start_date)
                 if end_date != None:
-                    print(end_date)
+                    # print(end_date)
                     service = service.filter(return_date__lte=end_date)
 
             elif type == 'flight':
                 service = Flight.objects.filter(price__lte=rng[0], price__gte=rng[1])
 
                 if origin != None:
-                    print('origin')
+                    # print('origin')
                     service = service.filter(origin__name=origin.name)
                 if destination != None:
-                    print('destination')
+                    # print('destination')
                     service = service.filter(destination__name=destination.name)
                 if start_date != None:
-                    print(start_date)
+                    # print(start_date)
                     service = service.filter(date__gte=start_date)
                 if end_date != None:
-                    print(end_date)
+                    # print(end_date)
                     service = service.filter(date__lte=end_date)
 
             elif type == 'room':
                 service = Room.objects.filter(price__lte=rng[0], price__gte=rng[1], hotel__location__city=destination, start_date__lte=start_date, end_date__gte=end_date)
 
                 if origin != None:
-                    print('origin')
+                    # print('origin')
                     service = service.filter(origin=origin)
                 if destination != None:
-                    print('destination')
+                    # print('destination')
                     service = service.filter(destination__name=destination.name)
                 if start_date != None:
-                    print(start_date)
+                    # print(start_date)
                     service = service.filter(going_date__gte=start_date)
                 if end_date != None:
-                    print(end_date)
+                    # print(end_date)
                     service = service.filter(return_date__lte=end_date)
         else:
             return HttpResponse(form.errors)

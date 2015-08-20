@@ -8,17 +8,19 @@ from service.models import Service
 from django.http import Http404
 from sale.models import Factor, ServiceItem
 import sys
+import urllib.parse
+import urllib.request
 
 def service_show(request, sold_number):
-    print(sold_number)
+    # print(sold_number)
     try:
         service = Service.objects.get(sold_number=sold_number)
     except ObjectDoesNotExist:
-        print('exception')
+        # print('exception')
         raise Http404
     t = service.get_type()
-    print("abt")
-    print(service.is_exp())
+    # print("abt")
+    # print(service.is_exp())
     start_date = None
     end_date = None
     hour = None
@@ -36,17 +38,17 @@ def service_show(request, sold_number):
         type = 'پرواز'
         provider = service.airline
         start_date = jdatetime.date.fromgregorian(date=service.date).strftime("%Y/%m/%d")
-    q = ServiceItem.objects.filter(service=service, cart=None).strftime("%Y/%m/%d")
+    q = ServiceItem.objects.filter(service=service, cart=None)
     size = 0
     for x in q.all():
         size += x.number
-        print(size)
+        # print(size)
     size = len(q)
     remain = service.capacity - size
     comments = service.comments.all()
     cm = []
     for c in comments:
-        print(c.send_time.date())
+        # print(c.send_time.date())
         cm.append({
             'text': c.text,
             'sender': c.sender,

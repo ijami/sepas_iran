@@ -105,7 +105,7 @@ class TourForm(ModelForm):
         return_date = self.cleaned_data["return_date"]
         going_date = self.cleaned_data['going_date']
         if going_date >= return_date:
-            print("borde shodim")
+            # print("borde shodim")
             raise forms.ValidationError(message="تاریخ برگشت وارد شده، معتبر نیست.", code='invalid return_date')
         return return_date
 
@@ -136,8 +136,8 @@ class TourForm(ModelForm):
         service.sold_number = 't_' + str(user.id) + "_" + str(len(Tour.objects.filter(travel_agency=user)))
         service.tag_line = self.cleaned_data['tag_line']
         service.trans_type = self.cleaned_data['trans_type']
-        print("sag")
-        print(self.cleaned_data['image'])
+        # print("sag")
+        # print(self.cleaned_data['image'])
         service.image = self.cleaned_data['image']
         if service.image == None:
             service.image = user.image
@@ -279,7 +279,7 @@ class FlightForm(ModelForm):
         flight.destination = self.cleaned_data['destination']
         flight.capacity = self.cleaned_data['capacity']
         flight.price = self.cleaned_data['price']
-        print(flight.price)
+        # print(flight.price)
         flight.tag_line = self.cleaned_data['tag_line']
         flight.date = self.cleaned_data['date']
         flight.time = self.cleaned_data['time']

@@ -1,0 +1,20 @@
+{
+  "name": "commont_data",
+  "version": "1.0.0",
+  "description": "for handling a part of sepasIran project",
+  "main": "common_datas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "common_data",
+    "socket.io"
+  ],
+  "author": "Ehsan Nazarian",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.0",
+    "socket.io": "^1.3.5"
+  }
+}
