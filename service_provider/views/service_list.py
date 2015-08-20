@@ -52,8 +52,8 @@ def add_capacity(request):
         form = CapacityAddingForm(request.POST)
         if form.is_valid():
             service = Service.objects.get(sold_number=form.cleaned_data['sold_number'])
-            print(service.sold_number)
-            print(service.capacity)
+            # print(service.sold_number)
+            # print(service.capacity)
             service.capacity += form.cleaned_data['added_capacity']
             service.save()
     return redirect(reverse('provider_service_list'))

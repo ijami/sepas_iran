@@ -24,7 +24,7 @@ class PersianDateField(forms.DateField):
     }
 
     def to_python(self, value):
-        print(value)
+        # print(value)
         date_regex = re.compile('^(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)$')
         test = date_regex.match(value)
         if test:

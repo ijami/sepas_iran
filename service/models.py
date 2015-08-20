@@ -70,7 +70,7 @@ class Flight(Service):
 
     def __str__(self):
 
-        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به " \
+        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به "  + self.destination.name
 
     def get_service_provider(self):
         return self.airline

@@ -24,7 +24,7 @@ class ActiveProviders(View):
 
     def get(self, request):
         providers = ServiceProvider.objects.filter(is_verified=True, is_active=True)
-        print(providers)
+        # print(providers)
         return render(self.request, self.template_name, {'providers': providers})
 
     def post(self, request):
@@ -40,7 +40,7 @@ class DeactiveProviders(View):
 
     def get(self, request):
         providers = ServiceProvider.objects.filter(is_verified=True, is_active=False)
-        print(providers)
+        # print(providers)
         return render(self.request, self.template_name, {'providers': providers})
 
     def post(self, request):
