@@ -7,7 +7,7 @@ from tourist.models import Tourist
 import jdatetime
 # from jdatetime.jalali import GregorianToJalali
 class MyCronJob(CronJobBase):
-    RUN_EVERY_MINS = 1  # every 2 hours
+    RUN_EVERY_MINS = 5  # every 2 hours
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'tourist.views.task_recommended_email'  # a unique code
 

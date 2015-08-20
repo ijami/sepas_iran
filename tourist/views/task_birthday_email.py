@@ -10,7 +10,10 @@ class MyCronJob(CronJobBase):
     def do(self):
         # users = User.objects.all()
         tourists = Tourist.objects.all()
+
         for tourist in tourists:
-            # if (datetime.now().day==tourist.birth_day.day)&(datetime.now().month==tourist.birth_day.mounth):
+            # print(tourist.birth_day.day ==)
+            # print(str(datetime.now().day)+"/"+str(datetime.now().month)+"  "+str(tourist.birth_day.day)+"/"+str(tourist.birth_day.mounth))
+            if (datetime.now().day==tourist.birth_day.day)and(datetime.now().month==tourist.birth_day.month):
                 send_mail('تبریک تولد', 'b.i.sepasiran@gmail.com', [tourist.primary_user.email], 'tourist/mail_birthday.txt',
                         'tourist/mail_birthday.html', {'user': tourist}, True)
