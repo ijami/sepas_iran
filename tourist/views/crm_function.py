@@ -57,7 +57,7 @@ def send_recommended_mail(user_id):
             .filter(id__in=Flight.objects.all().values_list('id', flat=True))
         try:
             flights_exist = Flight.get_exist()
-            print(" ^^^^  " + str(flights_exist.__len__()) + "\n")
+            # print(" ^^^^  " + str(flights_exist.__len__()) + "\n")
         except Tourist.DoesNotExist:
             return Http404
 

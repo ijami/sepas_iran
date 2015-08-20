@@ -112,10 +112,26 @@
 <nav id="nav">
     <nav id="navbar" class="ui menu">
 
-        <a class="browse item">تورهای داخلی
-            <i class="ui small dropdown icon"></i>
+        <a href="{% url 'home' %}" class="browse item">
+صفحه اصلی
         </a>
+        {% if user.site_user.get_fields.type == 'tourist' %}
+        <a href="{% url 'panel' %}" class="browse item">
+پنل کاربری
+        </a>
+        {% elif user.site_user.get_fields.type == 'manager' %}
+        <a href="{% url 'management_dashboard' %}" class="browse item">
+داشبورد مدیریتی
+        </a>
+        {% else %}
+        <a href="{% url 'service_provider_panel' %}" class="browse item">
+پنل خدمت ساز
+        </a>
+        {% endif %}
+        <a href="{% url 'type_service_list' 'tour'%}" class="browse item">تورهای داخلی
 
+        </a>
+<!--
         <div class="ui fluid popup bottom left transition hidden"
              style="top: 554px; left: 1px; bottom: auto; right: auto; width: 670px;">
             <div class="ui four column relaxed divided grid">
@@ -160,12 +176,12 @@
                 </div>
             </div>
         </div>
+-->
+        <a href="{% url 'type_service_list' 'room'%}" class="browse item">هتل ها
 
-        <a class="browse item">هتل ها
-            <i class="ui small dropdown icon"></i>
         </a>
-        <a class="browse item">دفاتر هواپیمایی
-            <i class="ui small dropdown icon"></i>
+        <a href="{% url 'type_service_list' 'flight'%}" class="browse item">دفاتر هواپیمایی
+
         </a>
     </nav>
 </nav>

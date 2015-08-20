@@ -9,12 +9,12 @@ from base.views.decorators import tourist_required
 
 @tourist_required()
 def add_to_cart(request):
-    print("in addtocart")
+    # print("in addtocart")
     if request.method == "POST":
-        print("sag")
+        # print("sag")
         user = request.user.site_user
         if user.get_fields()['type'] == 'tourist':
-            print("khar")
+            # print("khar")
             cart = user.cart
             item = ServiceItem()
             service = Service.objects.get(sold_number=request.POST['sn'])

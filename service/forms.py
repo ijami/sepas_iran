@@ -105,7 +105,7 @@ class TourForm(ModelForm):
         return_date = self.cleaned_data["return_date"]
         going_date = self.cleaned_data['going_date']
         if going_date >= return_date:
-            print("borde shodim")
+            # print("borde shodim")
             raise forms.ValidationError(message="تاریخ برگشت وارد شده، معتبر نیست.", code='invalid return_date')
         return return_date
 
@@ -136,8 +136,8 @@ class TourForm(ModelForm):
         service.sold_number = 't_' + str(user.id) + "_" + str(len(Tour.objects.filter(travel_agency=user)))
         service.tag_line = self.cleaned_data['tag_line']
         service.trans_type = self.cleaned_data['trans_type']
-        print("sag")
-        print(self.cleaned_data['image'])
+        # print("sag")
+        # print(self.cleaned_data['image'])
         service.image = self.cleaned_data['image']
         if service.image == None:
             service.image = user.image
@@ -279,7 +279,7 @@ class FlightForm(ModelForm):
         flight.destination = self.cleaned_data['destination']
         flight.capacity = self.cleaned_data['capacity']
         flight.price = self.cleaned_data['price']
-        print(flight.price)
+        # print(flight.price)
         flight.tag_line = self.cleaned_data['tag_line']
         flight.date = self.cleaned_data['date']
         flight.time = self.cleaned_data['time']
@@ -301,8 +301,7 @@ class CapacityAddingForm(forms.Form):
     sold_number = forms.CharField(max_length=20, required=False)
 
 class SearchServiceListForm(forms.Form):
-    price_range = forms.CharField(max_length=30, label="قیمت",
-    widget=forms.TextInput(attrs={'type': 'text', 'id':'amount' , 'style': 'border:0; color:#777777; padding:12; font-size:15px; width: 20px; '}))
+    price_range = forms.CharField(max_length=30, label="قیمت", widget=forms.TextInput(attrs={'type': 'text', 'id':'amount' , 'style': 'border:0; color:#777777; padding:12; font-size:15px; width: 250px; '}))
 
     service_provider = forms.ModelChoiceField(queryset=ServiceProvider.objects.all(), label='گردشساز: ', required=False)
     travel_agency = forms.ModelChoiceField(queryset=TravelAgency.objects.all(), required=False)

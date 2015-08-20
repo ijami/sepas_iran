@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{% static 'sale/css/service.css' %}">
+    <script type="text/javascript" src="{% static 'base/javascript/socket.io.js' %}"></script>
+    <script type="text/javascript" src="{% static 'sale/javascript/service_script.js' %}"></script>
 {% endblock %}
 {% block title %}
     <title>مشخصات خدمت</title>
@@ -283,7 +285,9 @@
                 </div>
                 <div class="ui small label">
                     ظرفیت باقی مانده:
+                    <span id="remain_count">
                 {{ remain }}
+                    </span>
                 </div>
             {% else %}
                 <div class="ui small red label">

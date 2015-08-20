@@ -29,13 +29,11 @@ class IntervalReportView(FormView):
             val = 0
             for x in service_list:
                 if x.service.get_date() == single_date:
-                    print(x.service.get_date())
-                    print(jdatetime.date.fromgregorian(date=x.service.get_date()).strftime("%Y/%m/%d"))
                     if kind == 2:
                         val += x.number
                     else:
                         val += x.number * x.service.price
-            chart_values.append([jdatetime.datetime.fromgregorian(date=single_date).strftime("%Y/%m/%d"), val])
+            chart_values.append([jdatetime.datetime.fromgregorian(date=single_date), val])
 
         return render(self.request, 'management/area_report.html', {'form': form, 'values': chart_values, 'kind': kind})
 

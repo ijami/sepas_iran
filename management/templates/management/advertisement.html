@@ -1,6 +1,7 @@
 {% extends 'management/dashboard.html' %}
 {% load staticfiles %}
 {% block head %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'management/css/advertisement.css' %}"/>
     <script src="{% static 'management/javascript/advertisement.js' %}"></script>
 {% endblock %}
@@ -76,7 +77,7 @@
                 </div>
             </div>
         </section>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="ثبت تبلیغات" class="ui green button" style="margin-right: 20px; margin-top: 20px;;"/>
     </form>
 
 {% endblock %}
