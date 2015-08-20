@@ -42,17 +42,11 @@
     <div class="body">
         <div id="main_container" class="center aligned">
             <div class="list_container">
-                
                 <br><br>
                 <div class="ui four cards">
                     {% for service, sold in service_sold %}
-                    {% include 'base/service_show.html'%}
-
+                        {% include 'base/service_show.html'%}
                     {% endfor %}
-
-
-
-
                 </div>
             </div>
             <div class="search_container">
@@ -108,10 +102,9 @@
                     </div>
                     {% endif %}
                      <div>
-                         <button type="submit" form="search_form" class="ui left labeled icon positive button" value="جست و جو">
-                          <i class="left arrow icon"></i>
-                          جست و جو
-                        </button>
+                         <input type="submit"  class="ui left labeled icon positive button" value="جست و جو">
+
+                         </input>
                      </div>
                 </form>
 

@@ -14,17 +14,13 @@ def register(request):
             'form': form
         })
 
-    print(request.POST)
+    # print(request.POST)
     form = ServiceProviderCreationForm(request.POST, request.FILES)
-    print(unicode(form['username'].value()).encode('utf8'))
+    # print(unicode(form['username'].value()).encode('utf8'))
 
     if form.is_valid():
         form.save()
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password1']
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect(reverse('home'))
+        return redirect(reverse('login'))
 
     return render(request, 'service_provider/register.html', {
         'form': form

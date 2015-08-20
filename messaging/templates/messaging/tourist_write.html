@@ -7,7 +7,7 @@
 </title>
 {% endblock %}
 {% block menu_content %}
-    <form method="post" action="{% url 'write' %}" class="ui form" style="height: auto!important;" id="new_message_form">
+    <form method="post" action="{% url 'tourist_write' %}" class="ui form" style="height: auto!important;" id="new_message_form">
         {% csrf_token %}
 
         {{form.receiver}}
@@ -20,7 +20,7 @@
         </div>
 
         <div class="ui left floated buttons">
-            <button class="ui red button" type="submit"  value="انصراف"><a href="{% url 'message_box' %}">انصراف</a></button>
+            <button class="ui red button" type="submit"  value="انصراف"><a href="{% url 'tourist_message_box' %}">انصراف</a></button>
             <div class="or" data-text="یا"></div>
             <input class="ui positive button" type="submit"  value="ارسال"/>
         </div>

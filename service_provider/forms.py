@@ -24,7 +24,7 @@ class PersianDateField(forms.DateField):
     }
 
     def to_python(self, value):
-        print(value)
+        # print(value)
         date_regex = re.compile('^(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)$')
         test = date_regex.match(value)
         if test:
@@ -93,8 +93,6 @@ class ServiceProviderCreationForm(ModelForm):
     type = forms.ChoiceField(required=True, label="خدمت ارائه شده توسط شرکت", widget=forms.HiddenInput, choices=types,
                              error_messages={'required': "انتخاب نوع سرویس الزامی است",
                                              'invalid_choice': "انتخاب نوع سرویس الزامی است"})
-
-    accept_terms = forms.BooleanField(label="با قوانین سپاس ایران موافقم", )
 
     # hotel
     degree = forms.IntegerField(label="درجه هتل", required=False,

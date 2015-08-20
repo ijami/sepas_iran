@@ -38,7 +38,8 @@
                         {{ service.service.tag_line }}
                     </div>
                 </div>
-                <div class="extra content">
+                {% if service.service.is_exp_2 %}
+                    <div class="extra content">
                     <div class="ui two buttons">
                         <button class="ui yellow button"
                                 style="margin-left: 1px; border-radius: 3px;">امتیازدهی
@@ -57,6 +58,7 @@
                         {% endif %}
                     </div>
                 </div>
+                {% endif %}
             </div>
 
         {% endfor %}

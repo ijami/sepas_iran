@@ -32,6 +32,6 @@ class MyCronJob(CronJobBase):
                 binary_data = data.encode('utf-8')
                 sms_req = urllib.request.Request(url, binary_data)
                 sms_response = urllib.request.urlopen(sms_req)
-                print(sms_response.read())
+                # print(sms_response.read())
                 # receptors = receptors+tourist.telephone
 

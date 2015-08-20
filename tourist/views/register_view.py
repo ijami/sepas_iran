@@ -17,7 +17,7 @@ def register(request):
         })
 
     form = TouristCreationForm(request.POST)
-    print(unicode(form['username'].value()).encode('utf8'))
+    # print(unicode(form['username'].value()).encode('utf8'))
 
     if form.is_valid():
         form.save()

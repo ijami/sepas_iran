@@ -29,6 +29,9 @@ class Service(PolymorphicModel):
     def is_exp(self):
         return self.get_date() <= datetime.now().date()
 
+    def is_exp_2(self):
+        pass
+
     def __str__(self):
         return self.tag_line
 
@@ -67,7 +70,7 @@ class Flight(Service):
 
     def __str__(self):
 
-        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به " \
+        return self.airline.name + " : " +  " \n " + " از " + self.origin.name + " به "  + self.destination.name
 
     def get_service_provider(self):
         return self.airline
@@ -85,6 +88,8 @@ class Flight(Service):
     def get_city(self):
         return self.destination
 
+    def is_exp_2(self):
+        return self.is_exp()
 
 class Room(Service):
     start_date = models.DateField()
@@ -112,6 +117,8 @@ class Room(Service):
     def get_type(self):
         return 'r'
 
+    def is_exp_2(self):
+        return self.end_date <= datetime.now().date()
 
     def get_persian_start_date(self):
         return jdatetime.date.fromgregorian(date=self.start_date).strftime("%Y/%m/%d")
@@ -120,6 +127,7 @@ class Room(Service):
 
     def get_date(self):
         return self.start_date
+
 
     def get_city(self):
         return self.hotel.location.city
@@ -170,6 +178,8 @@ class Tour(Service):
     def get_city(self):
         return self.destination
 
+    def is_exp_2(self):
+        return self.return_date <= datetime.now().date()
 
 class Airport(models.Model):
     name = models.CharField(max_length=60)

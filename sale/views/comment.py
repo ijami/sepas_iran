@@ -23,7 +23,7 @@ def add_comment(request):
         comment.text = text
         comment.save()
         url = '/sale/service/' + service.sold_number
-        print(url)
+        # print(url)
         return redirect(url)
 
 

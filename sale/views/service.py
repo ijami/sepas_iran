@@ -8,17 +8,19 @@ from service.models import Service
 from django.http import Http404
 from sale.models import Factor, ServiceItem
 import sys
+import urllib.parse
+import urllib.request
 
 def service_show(request, sold_number):
-    print(sold_number)
+    # print(sold_number)
     try:
         service = Service.objects.get(sold_number=sold_number)
     except ObjectDoesNotExist:
-        print('exception')
+        # print('exception')
         raise Http404
     t = service.get_type()
-    print("abt")
-    print(service.is_exp())
+    # print("abt")
+    # print(service.is_exp())
     start_date = None
     end_date = None
     hour = None
@@ -40,18 +42,23 @@ def service_show(request, sold_number):
     size = 0
     for x in q.all():
         size += x.number
-        print(size)
+        # print(size)
     # size = len(q)
     remain = service.capacity - size
     comments = service.comments.all()
     cm = []
     for c in comments:
-        print(c.send_time.date())
+        # print(c.send_time.date())
         cm.append({
             'text': c.text,
             'sender': c.sender,
             'send_time': jdatetime.date.fromgregorian(date=c.send_time.date()).strftime("%Y/%m/%d")
         })
+
+    shart = False
+    if request.user.is_authenticated():
+        if (request.user.site_user.get_fields()['type'] == 'tourist'):
+            shart = True
     context = {
         'type': type,
         'image': service.image,
@@ -64,6 +71,7 @@ def service_show(request, sold_number):
         'comments': cm,
         'provider': provider,
         'start_date': start_date,
-        'end_date': end_date
+        'end_date': end_date,
+        'tourist': shart
     }
     return render(request, 'sale/service.html', context)

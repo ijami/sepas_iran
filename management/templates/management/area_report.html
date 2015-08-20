@@ -70,7 +70,11 @@
                 },
                 yAxis: {
                     title: {
+                    {% if kind == 1 %}
+                        text: 'مقدار فروش(ریال)'
+                    {% else %}
                         text: 'مقدار فروش'
+                    {% endif %}
                     },
                     labels: {
                         formatter: function () {
